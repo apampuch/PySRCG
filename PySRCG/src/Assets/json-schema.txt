@@ -1,0 +1,62 @@
+If you don't know how to add something properly, ask Wean.
+
+At the top level of each json should be the following keys and values:
+    "book_abbr": The abbreviation for the book, for example, "sr3".
+    "file_version": The version of the file itself. Increment this by 0.1 for minor changes, 1.0 and reduce decimal to 0
+    for major changes.
+    "schema_version": Version of the schema itself. Increment as explained above when the SCHEMA (this document) changes,
+    and any asset jsons need to be updated.
+    "book": Name of the book, for example, "Shadowrun 3 Core (FASA 7001)".
+
+ALL ITEMS SHOULD HAVE A PAGE NUMBER. IF SOMETHING DOES NOT HAVE A PAGE NUMBER, PYSRCG WILL CRASH. THIS IS INTENTIONAL.
+If a field is not specified in this document, it should be input as a string, or a number if purely numerical.
+
+Availability must be described in three variables: availability_rating, availability_time, and availability_unit.
+availability_rating is the numerical value of the rating itself. e.g: 4/7 days would be availability_rating 4.
+availability_time is the numerical value of the time to check again for availability. e.g 4/7 days would be availability_time 7.
+availability_unit is the unit of time provided, a string. e.g. 4/7 days would be availability_unit "days".
+If something is "always" available, rating and time should be 0, and unit should be "always".
+
+Some items, cyberware, and other objects will have fields that have calculated values. PySRCG has a VERY simple engine
+for parsing arithmetic and calculating it. It can handle operators like +,-,*, and /. It knows the correct order of
+operations for these, but cannot handle parentheses.
+For each calculated value, write its expression as a string. Each variable should also probably be given its own separate
+field on the object (particularly for things like "rating") with the field's value set to the variable itself as a string.
+Variables in expressions should always be lowercase and use underscores in place of spaces.
+A very few variables will have "tiered" calculated variables, such as data encryption and decryption. These need to be
+added in a specific manner. Add a sub object with the variable being checked as the key. For each tier, add a key with
+that tier's minimum and maximum value separated by a semicolon, followed by the value for that tier.
+For example, a Credstick Verification Reader's (sr3, p287) transaction limit value should look like this:
+         "transaction_limit": {
+          "rating": {
+            ";1": 5000,
+            "2;3": 20000,
+            "4;5": 200000,
+            "6;7": 500000,
+            "8;": 1000000
+          }
+        },
+
+Legality is simply given as a string. Letters should be capitalized. This may change in the future.
+
+Items are gear, things like weapons and armor and security devices.
+Damage codes for weapons should be written as a string.
+
+Skills are input as objects with their name as the key, and two attributes: the (in-game) attribute the skill is tied to,
+and the type of skill it is: "active", "knowledge", or "language".
+
+Spells should have their name as the key, and four attributes: type, target, duration, and drain.
+
+Adept powers should have their name as the key, and two attributes: cost, max_levels (null if unlimited)
+
+Some cyberware and adept powers will modify attributes and pools. Ask wean how to input these.
+
+Books with magical traditions should have a Traditions section of the json. Each tradition should have:
+allowed_aspects: an Array of aspects (Sorcerer, Conjurer, etc) allowed by this magical tradition.
+allowed_foci: an Array of focuses (all totems or all elements, or something else, NOT MAGICAL FOCI) for this magical tradition.
+always_has_focus: a Boolean which should be True if the focus should be selectable even if the mage isn't aspected
+focus_name: The name of the particular focus. Totem for Shamans, Element for hermetics.
+IF ALWAYS_HAS_FOCUS IS FALSE FOR A BACKGROUND, ANY ASPECTS WHICH ALLOW FOR A FOCUS MUST HAVE AN ASTERISK AT THE END OF THE STRING
+
+Adding foci/aspects from other books to already-existing traditions will probably be determined at a later date.
+It will most likely be done by just merging two tradition objects with the same name.

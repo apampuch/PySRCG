@@ -1,0 +1,7049 @@
+{
+  "book_abbr": "sr3",
+  "file_version": "1.1",
+  "schema_version": "1.1",
+  "book": "Shadowrun 3 Core (FASA 7001)",
+  "Items": {
+    "Weapons": {
+      "Personal Weapons": {
+        "Edged Weapons": {
+          "Thrusting Point": {
+            "concealability": 12,
+            "reach": 0,
+            "damage": "(STR + 2)L",
+            "weight": "NA",
+            "cost": "NA",
+            "street_index": "NA",
+            "legality": "NA",
+            "page": 275,
+            "availability_rating": 0,
+            "availability_time": 0,
+            "availability_unit": "always"
+          },
+          "Forearm Snap Blades": {
+            "concealability": 7,
+            "reach": 0,
+            "damage": "(STR)M",
+            "weight": 1.5,
+            "cost": 850,
+            "street_index": 2,
+            "legality": "4-B",
+            "page": 275,
+            "availability_time": 48,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Katana": {
+            "concealability": 3,
+            "reach": 1,
+            "damage": "(STR + 3)M",
+            "weight": 1,
+            "cost": 1000,
+            "street_index": 2,
+            "legality": "5-B",
+            "page": 275,
+            "availability_time": 48,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Knife": {
+            "concealability": 3,
+            "reach": null,
+            "damage": "(STR)L",
+            "weight": 0.5,
+            "cost": 30,
+            "street_index": 0.75,
+            "legality": "8-A",
+            "page": 275,
+            "availability_time": 4,
+            "availability_rating": 2,
+            "availability_unit": "hrs"
+          },
+          "Sword": {
+            "concealability": 4,
+            "reach": 1,
+            "damage": "(STR + 2)M",
+            "weight": 1,
+            "cost": 500,
+            "street_index": 1,
+            "legality": "4-B",
+            "page": 276,
+            "availability_time": 24,
+            "availability_rating": 3,
+            "availability_unit": "hrs"
+          },
+          "Survival Knife": {
+            "concealability": 6,
+            "reach": 0,
+            "damage": "(STR + 2)L",
+            "weight": 1,
+            "cost": 450,
+            "street_index": 1,
+            "legality": "6-A",
+            "page": 276,
+            "availability_time": 6,
+            "availability_rating": 3,
+            "availability_unit": "hrs"
+          }
+        },
+        "Clubs": {
+          "Club": {
+            "concealability": 5,
+            "reach": 1,
+            "damage": "(STR + 1)M Stun",
+            "weight": 1,
+            "cost": 10,
+            "street_index": 1,
+            "legality": "6-C",
+            "page": 275,
+            "availability_time": 6,
+            "availability_rating": 2,
+            "availability_unit": "hrs"
+          },
+          "Sap": {
+            "concealability": 8,
+            "reach": null,
+            "damage": "(STR + 2)M Stun",
+            "weight": null,
+            "cost": 10,
+            "street_index": 1,
+            "legality": "5-C",
+            "page": 275,
+            "availability_time": 6,
+            "availability_rating": 2,
+            "availability_unit": "hrs"
+          },
+          "Stun Baton": {
+            "concealability": 4,
+            "reach": 1,
+            "damage": "6S Stun",
+            "weight": 1,
+            "cost": 750,
+            "street_index": 1,
+            "legality": "5-C",
+            "page": 276,
+            "availability_time": 36,
+            "availability_rating": 3,
+            "availability_unit": "hrs"
+          }
+        },
+        "Pole Arms/Staffs": {
+          "Combat Axe": {
+            "concealability": 2,
+            "reach": 2,
+            "damage": "(STR)S",
+            "weight": 2,
+            "cost": 750,
+            "street_index": 2,
+            "legality": "3-B",
+            "page": 275,
+            "availability_time": 24,
+            "availability_rating": 3,
+            "availability_unit": "hrs"
+          },
+          "Pole Arm": {
+            "concealability": 2,
+            "reach": 2,
+            "damage": "(STR + 3)S",
+            "weight": 4,
+            "cost": 500,
+            "street_index": 2,
+            "legality": "3-B",
+            "page": 275,
+            "availability_time": 48,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Staff": {
+            "concealability": 2,
+            "reach": 2,
+            "damage": "(STR + 2)M Stun",
+            "weight": 2,
+            "cost": 50,
+            "street_index": 1,
+            "legality": "8-C",
+            "page": 276,
+            "availability_time": 24,
+            "availability_rating": 3,
+            "availability_unit": "hrs"
+          }
+        },
+        "Other": {
+          "Monofilament Whip": {
+            "concealability": 10,
+            "reach": 2,
+            "damage": "10S",
+            "weight": null,
+            "cost": 3000,
+            "street_index": 3,
+            "legality": "1-K",
+            "page": 275,
+            "availability_time": 14,
+            "availability_rating": 24,
+            "availability_unit": "days"
+          },
+          "Shock Glove": {
+            "concealability": 9,
+            "reach": 0,
+            "damage": "7S Stun",
+            "weight": 0.5,
+            "cost": 950,
+            "street_index": 2,
+            "legality": "5-B",
+            "page": 275,
+            "availability_time": 48,
+            "availability_rating": 5,
+            "availability_unit": "hrs"
+          },
+          "Whip": {
+            "concealability": 5,
+            "reach": 2,
+            "damage": "(STR)L",
+            "weight": 1,
+            "cost": 300,
+            "street_index": 2,
+            "legality": "10-C",
+            "page": 276,
+            "availability_time": 48,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          }
+        }
+      },
+      "Impact Projectile Weapons": {
+        "Bows": {
+          "Standard Bow": {
+            "concealability": 2,
+            "str_min": "1+",
+            "damage": "(STR Min + 2)M",
+            "weight": 1,
+            "cost": 100,
+            "street_index": 1,
+            "legality": "5-D",
+            "page": 276,
+            "availability_time": 36,
+            "availability_rating": 3,
+            "availability_unit": "hrs"
+          },
+          "Arrows": {
+            "concealability": 3,
+            "str_min": null,
+            "damage": "As bow",
+            "weight": 0.1,
+            "cost": 10,
+            "street_index": 1,
+            "legality": "10-D",
+            "page": 276,
+            "availability_time": 36,
+            "availability_rating": 3,
+            "availability_unit": "hrs"
+          }
+        },
+        "Crossbows": {
+          "Light Crossbow": {
+            "concealability": 2,
+            "str_min": 3,
+            "damage": "6L",
+            "weight": 2,
+            "cost": 300,
+            "street_index": 1,
+            "legality": "6-D",
+            "page": 276,
+            "availability_time": 36,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Medium Crossbow": {
+            "concealability": 2,
+            "str_min": 4,
+            "damage": "6M",
+            "weight": 3,
+            "cost": 500,
+            "street_index": 1,
+            "legality": "6-D",
+            "page": 276,
+            "availability_time": 36,
+            "availability_rating": 5,
+            "availability_unit": "hrs"
+          },
+          "Heavy Crossbow": {
+            "concealability": "NA",
+            "str_min": 5,
+            "damage": "6S",
+            "weight": 4,
+            "cost": 750,
+            "street_index": 1,
+            "legality": "5-D",
+            "page": 276,
+            "availability_time": 36,
+            "availability_rating": 6,
+            "availability_unit": "hrs"
+          },
+          "Bolts": {
+            "concealability": 4,
+            "str_min": null,
+            "damage": "As crossbow",
+            "weight": 0.5,
+            "cost": 5,
+            "street_index": 1,
+            "legality": "10-D",
+            "page": 276,
+            "availability_time": 36,
+            "availability_rating": 5,
+            "availability_unit": "hrs"
+          }
+        },
+        "Throwing Weapons": {
+          "Non-Aerodynamic": {
+            "Throwing Knife": {
+              "concealability": 9,
+              "str_min": "NA",
+              "damage": "(STR)L",
+              "weight": 0.25,
+              "cost": 20,
+              "street_index": 1,
+              "legality": "8-D",
+              "page": 276,
+              "availability_time": 24,
+              "availability_rating": 2,
+              "availability_unit": "hrs"
+            }
+          },
+          "Aerodynamic": {
+            "Shuriken": {
+              "concealability": 8,
+              "str_min": "NA",
+              "damage": "(STR)L",
+              "weight": 0.25,
+              "cost": 30,
+              "street_index": 2,
+              "legality": "6-D",
+              "page": 276,
+              "availability_time": 24,
+              "availability_rating": 2,
+              "availability_unit": "hrs"
+            }
+          }
+        }
+      },
+      "Firearms": {
+        "Pistols": {
+          "Hold Out": {
+            "Streetline Special": {
+              "concealability": 8,
+              "weight": 0.5,
+              "cost": 100,
+              "street_index": 0.75,
+              "legality": "10P-E",
+              "damage": "4L",
+              "ammo": "6 (c)",
+              "mode": "SS",
+              "recoil_compensation": null,
+              "page": 276,
+              "availability_time": 12,
+              "availability_rating": 2,
+              "availability_unit": "hrs"
+            },
+            "Walther Palm Pistol": {
+              "concealability": 9,
+              "weight": 0.25,
+              "cost": 200,
+              "street_index": 0.75,
+              "legality": "10P-E",
+              "damage": "4L",
+              "ammo": "2 (b)",
+              "mode": "SS",
+              "recoil_compensation": null,
+              "page": 277,
+              "availability_time": 12,
+              "availability_rating": 3,
+              "availability_unit": "hrs"
+            }
+          },
+          "Light": {
+            "Beretta Model 101T": {
+              "concealability": 5,
+              "weight": 1,
+              "cost": 350,
+              "street_index": 0.8,
+              "legality": "8P-E",
+              "damage": "6L",
+              "ammo": "12 (c)",
+              "mode": "SA",
+              "recoil_compensation": null,
+              "page": 277,
+              "availability_time": 12,
+              "availability_rating": 3,
+              "availability_unit": "hrs"
+            },
+            "Colt American L36": {
+              "concealability": 6,
+              "weight": 1,
+              "cost": 350,
+              "street_index": 0.8,
+              "legality": "8P-E",
+              "damage": "6L",
+              "ammo": "11 (c)",
+              "mode": "SA",
+              "recoil_compensation": null,
+              "page": 277,
+              "availability_time": 12,
+              "availability_rating": 3,
+              "availability_unit": "hrs"
+            },
+            "Fichetti Security 500": {
+              "concealability": 7,
+              "weight": 1,
+              "cost": 400,
+              "street_index": 0.8,
+              "legality": "8P-E",
+              "damage": "6L",
+              "ammo": "12 (c)",
+              "mode": "SA",
+              "recoil_compensation": null,
+              "page": 277,
+              "availability_time": 12,
+              "availability_rating": 3,
+              "availability_unit": "hrs"
+            },
+            "Fichetti Security 500a": {
+              "concealability": 6,
+              "weight": 1.25,
+              "cost": 550,
+              "street_index": 0.8,
+              "legality": "8P-E",
+              "damage": "6L",
+              "ammo": "25 (c)",
+              "mode": "SA",
+              "recoil_compensation": "(1)",
+              "page": 277,
+              "availability_time": 12,
+              "availability_rating": 3,
+              "availability_unit": "hrs"
+            }
+          },
+          "Machine": {
+            "Ceska Black Scorpion": {
+              "concealability": 5,
+              "weight": 3,
+              "cost": 852,
+              "street_index": 2,
+              "legality": "5-G",
+              "damage": "6L",
+              "ammo": "35 (c)",
+              "mode": "SA/BF",
+              "recoil_compensation": "(1)",
+              "page": 277,
+              "availability_time": 36,
+              "availability_rating": 5,
+              "availability_unit": "hrs"
+            }
+          },
+          "Heavy": {
+            "Ares Predator": {
+              "concealability": 5,
+              "weight": 2.25,
+              "cost": 450,
+              "street_index": 0.5,
+              "legality": "6P-E",
+              "damage": "9M",
+              "ammo": "15 (c)",
+              "mode": "SA",
+              "recoil_compensation": null,
+              "page": 277,
+              "availability_time": 24,
+              "availability_rating": 3,
+              "availability_unit": "hrs"
+            },
+            "Ares Viper Silvergun": {
+              "concealability": 6,
+              "weight": 2,
+              "cost": 600,
+              "street_index": 1,
+              "legality": "6P-E",
+              "damage": "9S(f)",
+              "ammo": "30 (c)",
+              "mode": "SA/BF",
+              "recoil_compensation": null,
+              "page": 277,
+              "availability_time": 48,
+              "availability_rating": 3,
+              "availability_unit": "hrs"
+            },
+            "Browning Max-Power": {
+              "concealability": 6,
+              "weight": 2,
+              "cost": 450,
+              "street_index": 1,
+              "legality": "6P-E",
+              "damage": "9M",
+              "ammo": "10 (c)",
+              "mode": "SA",
+              "recoil_compensation": null,
+              "page": 277,
+              "availability_time": 24,
+              "availability_rating": 3,
+              "availability_unit": "hrs"
+            },
+            "Remington Roomsweeper": {
+              "concealability": 6,
+              "weight": 2.5,
+              "cost": 300,
+              "street_index": 1,
+              "legality": "6P-E",
+              "damage": "9S(f)",
+              "ammo": "8 (m)",
+              "mode": "SA",
+              "recoil_compensation": null,
+              "page": 277,
+              "availability_time": 24,
+              "availability_rating": 3,
+              "availability_unit": "hrs"
+            },
+            "Ruger Super Warhawk": {
+              "concealability": 4,
+              "weight": 2.5,
+              "cost": 300,
+              "street_index": 1,
+              "legality": "6P-E",
+              "damage": "10M",
+              "ammo": "6 (cy)",
+              "mode": "SS",
+              "recoil_compensation": null,
+              "page": 277,
+              "availability_time": 24,
+              "availability_rating": 3,
+              "availability_unit": "hrs"
+            }
+          },
+          "Special": {
+            "Defiance Super Shock": {
+              "concealability": 4,
+              "weight": 2,
+              "cost": 1000,
+              "street_index": 1,
+              "legality": "6P-E",
+              "damage": "10S Stun",
+              "ammo": "4 (m)",
+              "mode": "SA",
+              "recoil_compensation": null,
+              "page": 277,
+              "availability_time": 24,
+              "availability_rating": 5,
+              "availability_unit": "hrs"
+            }
+          }
+        },
+        "SMGs": {
+          "AK-97 SMG/Carbine": {
+            "concealability": 4,
+            "weight": 4,
+            "cost": 800,
+            "street_index": 1,
+            "legality": "4-G",
+            "damage": "6M",
+            "ammo": "30 (c)",
+            "mode": "SA/BF/FA",
+            "recoil_compensation": "(1)",
+            "page": 278,
+            "availability_time": 3,
+            "availability_rating": 5,
+            "availability_unit": "days"
+          },
+          "Heckler & Koch HK227": {
+            "concealability": 4,
+            "weight": 4,
+            "cost": 1500,
+            "street_index": 0.75,
+            "legality": "4-G",
+            "damage": "7M",
+            "ammo": "28 (c)",
+            "mode": "SA/BF/FA",
+            "recoil_compensation": "2(3)",
+            "page": 277,
+            "availability_time": 24,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "HK227-S": {
+            "concealability": 5,
+            "weight": 3,
+            "cost": 1200,
+            "street_index": 2,
+            "legality": "3-G",
+            "damage": "7M",
+            "ammo": "28 (c)",
+            "mode": "SA/BF",
+            "recoil_compensation": "(1)",
+            "page": 277,
+            "availability_time": 7,
+            "availability_rating": 10,
+            "availability_unit": "days"
+          },
+          "Ingram Smartgun": {
+            "concealability": 5,
+            "weight": 3,
+            "cost": 950,
+            "street_index": 1,
+            "legality": "4-G",
+            "damage": "7M",
+            "ammo": "32 (c)",
+            "mode": "BF/FA",
+            "recoil_compensation": "2(3)",
+            "page": 277,
+            "availability_time": 24,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Uzi III": {
+            "concealability": 5,
+            "weight": 2,
+            "cost": 600,
+            "street_index": 0.75,
+            "legality": "4-G",
+            "damage": "6M",
+            "ammo": "24 (c)",
+            "mode": "BF",
+            "recoil_compensation": "(1)",
+            "page": 277,
+            "availability_time": 24,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          }
+        },
+        "Rifles": {
+          "Sport": {
+            "Remington 750": {
+              "concealability": 3,
+              "weight": 3,
+              "cost": 600,
+              "street_index": 1,
+              "legality": "5P-F",
+              "damage": "7S",
+              "ammo": "5 (m)",
+              "mode": "SA",
+              "recoil_compensation": null,
+              "page": 278,
+              "availability_time": 24,
+              "availability_rating": 3,
+              "availability_unit": "hrs"
+            },
+            "Remington 950": {
+              "concealability": 2,
+              "weight": 4,
+              "cost": 800,
+              "street_index": 1,
+              "legality": "5P-F",
+              "damage": "9S",
+              "ammo": "5 (m)",
+              "mode": "SA",
+              "recoil_compensation": null,
+              "page": 278,
+              "availability_time": 24,
+              "availability_rating": 3,
+              "availability_unit": "hrs"
+            }
+          },
+          "Sniper": {
+            "Ranger Arms SM-3": {
+              "concealability": null,
+              "weight": 4,
+              "cost": 4000,
+              "street_index": 4,
+              "legality": "2-K",
+              "damage": "14S",
+              "ammo": "6 (m)",
+              "mode": "SA",
+              "recoil_compensation": 2,
+              "page": 278,
+              "availability_time": 7,
+              "availability_rating": 12,
+              "availability_unit": "days"
+            }
+          }
+        },
+        "Shotguns": {
+          "Defiance T-250": {
+            "concealability": 4,
+            "weight": 3,
+            "cost": 500,
+            "street_index": 1,
+            "legality": "5P-F",
+            "damage": "10S",
+            "ammo": "5 (m)",
+            "mode": "SA",
+            "recoil_compensation": null,
+            "page": 279,
+            "availability_time": 24,
+            "availability_rating": 3,
+            "availability_unit": "hrs"
+          },
+          "Einfeld AS-7": {
+            "concealability": 3,
+            "weight": 4,
+            "cost": 1000,
+            "street_index": 1,
+            "legality": "5P-F",
+            "damage": "8S",
+            "ammo": "10 (c)",
+            "mode": "SA/BF",
+            "recoil_compensation": null,
+            "page": 279,
+            "availability_time": 8,
+            "availability_rating": 8,
+            "availability_unit": "days"
+          }
+        },
+        "Assault Rifles": {
+          "AK-97": {
+            "concealability": 3,
+            "weight": 4.5,
+            "cost": 700,
+            "street_index": 2,
+            "legality": "2-G",
+            "damage": "8M",
+            "ammo": "38 (c)",
+            "mode": "SA/BF/FA",
+            "recoil_compensation": null,
+            "page": 278,
+            "availability_time": 36,
+            "availability_rating": 3,
+            "availability_unit": "hrs"
+          },
+          "AK-98": {
+            "concealability": 2,
+            "weight": 6,
+            "cost": 2500,
+            "street_index": 4,
+            "legality": "1-G",
+            "damage": "8M",
+            "ammo": "38 (c)",
+            "mode": "SA/BF/FA",
+            "recoil_compensation": null,
+            "page": 278,
+            "availability_time": 4,
+            "availability_rating": 8,
+            "availability_unit": "days"
+          },
+          "FN HAR": {
+            "concealability": 2,
+            "weight": 4.5,
+            "cost": 1200,
+            "street_index": 2,
+            "legality": "2-G",
+            "damage": "8M",
+            "ammo": "35 (c)",
+            "mode": "SA/BF/FA",
+            "recoil_compensation": 2,
+            "page": 277,
+            "availability_time": 48,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          }
+        }
+      },
+      "Heavy Weapons": {
+        "Light Machine Guns": {
+          "Ingram Valiant": {
+            "concealability": null,
+            "ammo": "50(c)/Belt",
+            "mode": "BF/FA",
+            "damage": "7S",
+            "weight": 9,
+            "cost": 1500,
+            "street_index": 2,
+            "legality": "1-H",
+            "recoil_compensation": 3,
+            "page": 279,
+            "availability_time": 5,
+            "availability_rating": 6,
+            "availability_unit": "days"
+          }
+        },
+        "Heavy Weapons": {
+          "RPK HMG": {
+            "concealability": null,
+            "ammo": "40(c)/Belt",
+            "mode": "FA",
+            "damage": "10S",
+            "weight": 15,
+            "cost": 4000,
+            "street_index": 2,
+            "legality": "2-H",
+            "recoil_compensation": "(6)",
+            "page": 279,
+            "availability_time": 18,
+            "availability_rating": 18,
+            "availability_unit": "days"
+          },
+          "Ultimax MMG": {
+            "concealability": null,
+            "ammo": "40(c)/Belt",
+            "mode": "FA",
+            "damage": "9S",
+            "weight": 12,
+            "cost": 2500,
+            "street_index": 2,
+            "legality": "2-H",
+            "recoil_compensation": "(6)",
+            "page": 279,
+            "availability_time": 14,
+            "availability_rating": 14,
+            "availability_unit": "days"
+          },
+          "Vigorous Assault Cannon": {
+            "concealability": null,
+            "ammo": "20(c)/Belt",
+            "mode": "SS",
+            "damage": "18D",
+            "weight": 20,
+            "cost": 6500,
+            "street_index": 2,
+            "legality": "2-H",
+            "recoil_compensation": null,
+            "page": 279,
+            "availability_time": 14,
+            "availability_rating": 16,
+            "availability_unit": "days"
+          }
+        },
+        "Grenade Launchers": {
+          "Ares Antioch": {
+            "concealability": "6 (-3)",
+            "ammo": "6(m)",
+            "mode": "SS",
+            "damage": "grenade",
+            "weight": "+2 kg",
+            "cost": 1700,
+            "street_index": 3,
+            "legality": "1-K",
+            "recoil_compensation": null,
+            "page": 279,
+            "availability_time": 4,
+            "availability_rating": 8,
+            "availability_unit": "days"
+          }
+        },
+        "Missile/Rocket Launchers": {
+          "IWS Multi-Launcher": {
+            "concealability": null,
+            "ammo": "6(b)",
+            "mode": "SS",
+            "damage": null,
+            "weight": 8,
+            "cost": 8000,
+            "street_index": 2,
+            "legality": "1-K",
+            "recoil_compensation": null,
+            "page": 279,
+            "availability_time": 14,
+            "availability_rating": 12,
+            "availability_unit": "days"
+          }
+        }
+      },
+      "Ammunition": {
+        "Rockets": {
+          "Anti-Personnel": {
+            "intelligence": "NA",
+            "damage": "16D",
+            "blast": "-1/.5m",
+            "weight": 2,
+            "availability_rating": 8,
+            "availability_time": 14,
+            "availability_unit": "days",
+            "cost": 1000,
+            "street_index": 2,
+            "legality": "1-K",
+            "page": 281
+          },
+          "Anti-Vehicle": {
+            "intelligence": "NA",
+            "damage": "16D",
+            "blast": "-8/m",
+            "weight": 3,
+            "availability_rating": 8,
+            "availability_time": 14,
+            "availability_unit": "days",
+            "cost": 2000,
+            "street_index": 2,
+            "legality": "1-K",
+            "page": 281
+          },
+          "High-Explosive": {
+            "intelligence": "NA",
+            "damage": "16D",
+            "blast": "-1/m",
+            "weight": 2,
+            "availability_rating": 8,
+            "availability_time": 14,
+            "availability_unit": "days",
+            "cost": 1500,
+            "street_index": 2,
+            "legality": "1-K",
+            "page": 281
+          }
+        },
+        "Missiles": {
+          "Anti-Personnel": {
+            "intelligence": 3,
+            "damage": "16D",
+            "blast": "-1/.5m",
+            "weight": 2.25,
+            "availability_rating": 12,
+            "availability_time": 14,
+            "availability_unit": "days",
+            "cost": 2500,
+            "street_index": 3,
+            "legality": "1-K",
+            "page": 281
+          },
+          "Anti-Vehicle": {
+            "intelligence": 4,
+            "damage": "16D",
+            "blast": "-8/m",
+            "weight": 3.25,
+            "availability_rating": 12,
+            "availability_time": 14,
+            "availability_unit": "days",
+            "cost": 5000,
+            "street_index": 3,
+            "legality": "1-K",
+            "page": 281
+          },
+          "High-Explosive": {
+            "intelligence": 3,
+            "damage": "16D",
+            "blast": "-1/m",
+            "weight": 2.25,
+            "availability_rating": 8,
+            "availability_time": 14,
+            "availability_unit": "days",
+            "cost": 3750,
+            "street_index": 3,
+            "legality": "1-K",
+            "page": 281
+          }
+        },
+        "Ammunition, Per shot": {
+          "APDS": {
+            "concealability": 8,
+            "damage": "See rules",
+            "weight": 0.025,
+            "availability_rating": 14,
+            "availability_time": 14,
+            "availability_unit": "days",
+            "cost": 7,
+            "street_index": 4,
+            "legality": "3-M",
+            "page": 281
+          },
+          "Assault Cannon": {
+            "concealability": 3,
+            "damage": "As weapon",
+            "weight": 0.125,
+            "availability_rating": 5,
+            "availability_time": 3,
+            "availability_unit": "days",
+            "cost": 45,
+            "street_index": 2,
+            "legality": "As weapon",
+            "page": 281
+          },
+          "Assault Cannon, Belt 100": {
+            "concealability": "yeah, right",
+            "damage": "As weapon",
+            "weight": 12.5,
+            "availability_rating": 6,
+            "availability_time": 3,
+            "availability_unit": "days",
+            "cost": 4250,
+            "street_index": 2,
+            "legality": "As weapon",
+            "page": 281
+          },
+          "Explosive Rounds": {
+            "concealability": 8,
+            "damage": "See rules",
+            "weight": 0.075,
+            "availability_rating": 3,
+            "availability_time": 36,
+            "availability_unit": "hours",
+            "cost": 5,
+            "street_index": 0.8,
+            "legality": "As weapon",
+            "page": 281
+          },
+          "EX Explosive": {
+            "concealability": 8,
+            "damage": "See rules",
+            "weight": 0.075,
+            "availability_rating": 6,
+            "availability_time": 72,
+            "availability_unit": "hours",
+            "cost": 10,
+            "street_index": 1.5,
+            "legality": "As weapon",
+            "page": 281
+          },
+          "Flechette Rounds": {
+            "concealability": 8,
+            "damage": "See rules",
+            "weight": 0.05,
+            "availability_rating": 3,
+            "availability_time": 36,
+            "availability_unit": "hours",
+            "cost": 10,
+            "street_index": 0.8,
+            "legality": "As weapon",
+            "page": 281
+          },
+          "Gel Rounds": {
+            "concealability": 8,
+            "damage": "See rules",
+            "weight": 0.025,
+            "availability_rating": 4,
+            "availability_time": 48,
+            "availability_unit": "hours",
+            "cost": 3,
+            "street_index": 1,
+            "legality": "As weapon",
+            "page": 281
+          },
+          "Regular Ammo": {
+            "concealability": 8,
+            "damage": "As weapon",
+            "weight": 0.05,
+            "availability_rating": 2,
+            "availability_time": 24,
+            "availability_unit": "hours",
+            "cost": 2,
+            "street_index": 0.75,
+            "legality": "As weapon",
+            "page": 281
+          },
+          "Tracer": {
+            "concealability": 8,
+            "damage": "See rules",
+            "weight": 0.05,
+            "availability_rating": 3,
+            "availability_time": 24,
+            "availability_unit": "hours",
+            "cost": 7.5,
+            "street_index": 1,
+            "legality": "As weapon",
+            "page": 281
+          },
+          "Taser Dart": {
+            "concealability": 3,
+            "damage": "Special",
+            "weight": 0.05,
+            "availability_rating": 6,
+            "availability_time": 36,
+            "availability_unit": "hours",
+            "cost": 5,
+            "street_index": 1.5,
+            "legality": "As weapon",
+            "page": 281
+          }
+        }
+      },
+      "Firearm and Weapon Accessories": {
+        "General": {
+          "Bipod": {
+            "mount": "Under",
+            "conceal": "NA",
+            "rating": 2,
+            "weight": 2,
+            "availability_rating": 6,
+            "availability_time": 12,
+            "availability_unit": "hrs",
+            "cost": 400,
+            "street_index": 1,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Concealable Holster": {
+            "mount": "NA",
+            "conceal": "+2",
+            "rating": "NA",
+            "weight": 0.1,
+            "availability_rating": 2,
+            "availability_time": 24,
+            "availability_unit": "hrs",
+            "cost": 100,
+            "street_index": 0.75,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Silencer": {
+            "mount": "Barrel",
+            "conceal": "-2",
+            "rating": "NA",
+            "weight": 0.2,
+            "availability_rating": 4,
+            "availability_time": 48,
+            "availability_unit": "hrs",
+            "cost": 500,
+            "street_index": 2,
+            "legality": "As weapon",
+            "page": 282
+          },
+          "Sound Suppresser": {
+            "mount": "Barrel",
+            "conceal": "-2",
+            "rating": "NA",
+            "weight": 0.5,
+            "availability_rating": 6,
+            "availability_time": 48,
+            "availability_unit": "hrs",
+            "cost": 750,
+            "street_index": 2,
+            "legality": "As weapon",
+            "page": 282
+          },
+          "Spare Clips": {
+            "mount": "NA",
+            "conceal": "NA",
+            "rating": "NA",
+            "weight": 0.75,
+            "availability_rating": 2,
+            "availability_time": 24,
+            "availability_unit": "hrs",
+            "cost": 5,
+            "street_index": 0.75,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Tripod": {
+            "mount": "Under",
+            "conceal": "NA",
+            "rating": 6,
+            "weight": 8,
+            "availability_rating": 10,
+            "availability_time": 12,
+            "availability_unit": "hrs",
+            "cost": 600,
+            "street_index": 1,
+            "legality": "Legal",
+            "page": 282
+          }
+        },
+        "Recoil Compensators and Gyros": {
+          "Gas Vent II": {
+            "mount": "Barrel",
+            "conceal": "-1",
+            "rating": 2,
+            "weight": 0.5,
+            "availability_rating": 2,
+            "availability_time": 24,
+            "availability_unit": "hrs",
+            "cost": 450,
+            "street_index": 0.8,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Gas Vent III": {
+            "mount": "Barrel",
+            "conceal": "-2",
+            "rating": 3,
+            "weight": 0.75,
+            "availability_rating": 2,
+            "availability_time": 24,
+            "availability_unit": "hrs",
+            "cost": 700,
+            "street_index": 1,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Gyro Mount, Deluxe": {
+            "mount": "Under",
+            "conceal": "-6",
+            "rating": 6,
+            "weight": 8,
+            "availability_rating": 4,
+            "availability_time": 48,
+            "availability_unit": "hrs",
+            "cost": 6000,
+            "street_index": 1,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Gyro Mount, Standard": {
+            "mount": "Under",
+            "conceal": "-5",
+            "rating": 5,
+            "weight": 6,
+            "availability_rating": 4,
+            "availability_time": 48,
+            "availability_unit": "hrs",
+            "cost": 2500,
+            "street_index": 1,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Shock Pads": {
+            "mount": "NA",
+            "conceal": "NA",
+            "rating": 1,
+            "weight": 0.25,
+            "availability_rating": 2,
+            "availability_time": 24,
+            "availability_unit": "hrs",
+            "cost": 200,
+            "street_index": 0.75,
+            "legality": "Legal",
+            "page": 282
+          }
+        },
+        "Imaging Systems": {
+          "Low-Light Scope": {
+            "mount": "Top",
+            "conceal": "-2",
+            "rating": "NA",
+            "weight": 0.25,
+            "availability_rating": 3,
+            "availability_time": 36,
+            "availability_unit": "hrs",
+            "cost": 1500,
+            "street_index": 0.8,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Magnification 1 Scope": {
+            "mount": "Top",
+            "conceal": "-1",
+            "rating": 1,
+            "weight": 0.25,
+            "availability_rating": 3,
+            "availability_time": 36,
+            "availability_unit": "hrs",
+            "cost": 500,
+            "street_index": 0.8,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Magnification 2 Scope": {
+            "mount": "Top",
+            "conceal": "-1",
+            "rating": 2,
+            "weight": 0.25,
+            "availability_rating": 3,
+            "availability_time": 36,
+            "availability_unit": "hrs",
+            "cost": 800,
+            "street_index": 0.9,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Magnification 3 Scope": {
+            "mount": "Top",
+            "conceal": "-1",
+            "rating": 3,
+            "weight": 0.25,
+            "availability_rating": 3,
+            "availability_time": 36,
+            "availability_unit": "hrs",
+            "cost": 1200,
+            "street_index": 1,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Thermographic Scope": {
+            "mount": "Top",
+            "conceal": "-2",
+            "rating": "NA",
+            "weight": 0.25,
+            "availability_rating": 3,
+            "availability_time": 36,
+            "availability_unit": "hrs",
+            "cost": 1500,
+            "street_index": 0.8,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Laser Sights": {
+            "mount": "Top/under",
+            "conceal": "-1",
+            "rating": "NA",
+            "weight": 0.25,
+            "availability_rating": 6,
+            "availability_time": 36,
+            "availability_unit": "hrs",
+            "cost": 500,
+            "street_index": 0.9,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Ultrasound Sight": {
+            "mount": "Top/under",
+            "conceal": "-2",
+            "rating": "NA",
+            "weight": 0.25,
+            "availability_rating": 8,
+            "availability_time": 4,
+            "availability_unit": "days",
+            "cost": 1300,
+            "street_index": 0.8,
+            "legality": "Legal",
+            "page": 282
+          },
+          "Ultrasound Goggles": {
+            "mount": "NA",
+            "conceal": "NA",
+            "rating": "NA",
+            "weight": 0.25,
+            "availability_rating": 3,
+            "availability_time": 36,
+            "availability_unit": "hrs",
+            "cost": 1100,
+            "street_index": 1,
+            "legality": "Legal",
+            "page": 282
+          }
+        },
+        "SmartLink": {
+          "Smart Goggles": {
+            "mount": "NA",
+            "conceal": "NA",
+            "rating": 0,
+            "weight": 0.1,
+            "availability_rating": 3,
+            "availability_time": 36,
+            "availability_unit": "hrs",
+            "cost": 3000,
+            "street_index": 1,
+            "legality": "4P-N",
+            "page": 282
+          },
+          "Smartgun, internal": {
+            "mount": "NA",
+            "conceal": "NA",
+            "rating": "NA",
+            "weight": 0.5,
+            "availability_rating": 0,
+            "availability_time": 0,
+            "availability_unit": "Weapon",
+            "cost": "+100%",
+            "street_index": "Weapon",
+            "legality": "4P-N",
+            "page": 282
+          },
+          "Smartgun, external": {
+            "mount": "Top/under",
+            "conceal": "-2",
+            "rating": "NA",
+            "weight": 1,
+            "availability_rating": 4,
+            "availability_time": 48,
+            "availability_unit": "hrs",
+            "cost": 600,
+            "street_index": 1,
+            "legality": "4P-N",
+            "page": 282
+          }
+        }
+      },
+      "Explosives": {
+        "Grenades": {
+          "Offensive (HE)": {
+            "concealability": 6,
+            "weight": 0.25,
+            "cost": 30,
+            "street_index": 2,
+            "legality": "3-J",
+            "damage": "10S",
+            "blast": "-1/m",
+            "availability_time": 4,
+            "availability_rating": 4,
+            "availability_unit": "days",
+            "page": 283
+          },
+          "Offensive (AP)": {
+            "concealability": 6,
+            "weight": 0.25,
+            "cost": 30,
+            "street_index": 2,
+            "legality": "3-J",
+            "damage": "10S",
+            "blast": "-1/m",
+            "availability_time": 4,
+            "availability_rating": 4,
+            "availability_unit": "days",
+            "page": 283
+          },
+          "Defensive (HE)": {
+            "concealability": 6,
+            "weight": 0.25,
+            "cost": 30,
+            "street_index": 2,
+            "legality": "3-J",
+            "damage": "10S",
+            "blast": "-1/.5m",
+            "availability_time": 4,
+            "availability_rating": 4,
+            "availability_unit": "days",
+            "page": 283
+          },
+          "Defensive (AP)": {
+            "concealability": 6,
+            "weight": 0.25,
+            "cost": 30,
+            "street_index": 2,
+            "legality": "3-J",
+            "damage": "10S",
+            "blast": "-1/.5m",
+            "availability_time": 4,
+            "availability_rating": 4,
+            "availability_unit": "days",
+            "page": 283
+          },
+          "Concussion": {
+            "concealability": 6,
+            "weight": 0.25,
+            "cost": 30,
+            "street_index": 2,
+            "legality": "3-J",
+            "damage": "12M (Stun)",
+            "blast": "-1/m",
+            "availability_rating": 5,
+            "availability_time": 4,
+            "availability_unit": "days",
+            "page": 283
+          },
+          "Gas (Neuro-Stun VII)": {
+            "concealability": 5,
+            "weight": 0.25,
+            "cost": 60,
+            "street_index": 2,
+            "legality": "3-J",
+            "damage": "Special",
+            "blast": null,
+            "availability_rating": 8,
+            "availability_time": 4,
+            "availability_unit": "days",
+            "page": 283
+          },
+          "Smoke": {
+            "concealability": 6,
+            "weight": 0.25,
+            "cost": 30,
+            "street_index": 2,
+            "legality": "5-J",
+            "damage": null,
+            "blast": null,
+            "availability_rating": 3,
+            "availability_time": 24,
+            "availability_unit": "hours",
+            "page": 283
+          },
+          "Smoke (IR)": {
+            "concealability": 6,
+            "weight": 0.25,
+            "cost": 40,
+            "street_index": 2,
+            "legality": "5-J",
+            "damage": null,
+            "blast": null,
+            "availability_rating": 4,
+            "availability_time": 48,
+            "availability_unit": "hours",
+            "page": 283
+          },
+          "Flash-Pak": {
+            "concealability": 12,
+            "weight": 0.2,
+            "cost": 250,
+            "street_index": 1,
+            "legality": "Legal",
+            "damage": "Special",
+            "blast": null,
+            "availability_rating": 3,
+            "availability_time": 36,
+            "availability_unit": "hours",
+            "page": 283
+          },
+          "Mini-Grenades": {
+            "Mini Offensive (HE)": {
+              "concealability": 8,
+              "weight": 0.1,
+              "cost": 60,
+              "street_index": 3,
+              "legality": "3-J",
+              "damage": "10S",
+              "blast": "-1/m",
+              "availability_time": 4,
+              "availability_rating": 6,
+              "availability_unit": "days",
+              "page": 283
+            },
+            "Mini Offensive (AP)": {
+              "concealability": 8,
+              "weight": 0.1,
+              "cost": 60,
+              "street_index": 3,
+              "legality": "3-J",
+              "damage": "10S",
+              "blast": "-1/m",
+              "availability_time": 4,
+              "availability_rating": 6,
+              "availability_unit": "days",
+              "page": 283
+            },
+            "Mini Defensive (HE)": {
+              "concealability": 8,
+              "weight": 0.1,
+              "cost": 60,
+              "street_index": 3,
+              "legality": "3-J",
+              "damage": "10S",
+              "blast": "-1/.5m",
+              "availability_time": 4,
+              "availability_rating": 6,
+              "availability_unit": "days",
+              "page": 283
+            },
+            "Mini Defensive (AP)": {
+              "concealability": 8,
+              "weight": 0.1,
+              "cost": 60,
+              "street_index": 3,
+              "legality": "3-J",
+              "damage": "10S",
+              "blast": "-1/.5m",
+              "availability_time": 4,
+              "availability_rating": 6,
+              "availability_unit": "days",
+              "page": 283
+            },
+            "Mini Concussion": {
+              "concealability": 8,
+              "weight": 0.1,
+              "cost": 60,
+              "street_index": 3,
+              "legality": "3-J",
+              "damage": "12M (Stun)",
+              "blast": "-1/m",
+              "availability_rating": 7,
+              "availability_time": 4,
+              "availability_unit": "days",
+              "page": 283
+            }
+          }
+        },
+        "Commercial Explosives (Per Kilo)": {
+          "Commercial": {
+            "concealability": 6,
+            "weight": 1,
+            "cost": 60,
+            "street_index": 1,
+            "legality": "4P-J",
+            "rating": 3,
+            "blast": "-3/m",
+            "availability_rating": 6,
+            "availability_time": 48,
+            "availability_unit": "hours",
+            "page": 283
+          },
+          "Plastic, Compound IV": {
+            "concealability": 6,
+            "weight": 1,
+            "cost": 80,
+            "street_index": 1,
+            "legality": "4-J",
+            "rating": 6,
+            "blast": "-6/m",
+            "availability_rating": 8,
+            "availability_time": 48,
+            "availability_unit": "hours",
+            "page": 283
+          },
+          "Plastic, Compound XII": {
+            "concealability": 6,
+            "weight": 1,
+            "cost": 200,
+            "street_index": 2,
+            "legality": "3-J",
+            "rating": 12,
+            "blast": "-12/m",
+            "availability_rating": 10,
+            "availability_time": 48,
+            "availability_unit": "hours",
+            "page": 283
+          }
+        },
+        "Accessories": {
+          "Radio Detonator": {
+            "concealability": 8,
+            "weight": 0.25,
+            "cost": 250,
+            "street_index": 2,
+            "legality": "6-J",
+            "availability_rating": 4,
+            "availability_time": 48,
+            "availability_unit": "hours",
+            "page": 283
+          },
+          "Timer": {
+            "concealability": 6,
+            "weight": 0.5,
+            "cost": 100,
+            "street_index": 2,
+            "legality": "6-J",
+            "availability_rating": 4,
+            "availability_time": 48,
+            "availability_unit": "hours",
+            "page": 283
+          }
+        }
+      }
+    },
+    "Clothing and Armor": {
+      "General": {
+        "Fine Clothing": {
+          "concealability": null,
+          "ballistic": 0,
+          "impact": 0,
+          "weight": 1,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "cost": 500,
+          "street_index": 1,
+          "legality": "legal",
+          "page": 284
+        },
+        "Ordinary Clothing": {
+          "concealability": null,
+          "ballistic": 0,
+          "impact": 0,
+          "weight": 1,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "cost": 50,
+          "street_index": 0.8,
+          "legality": "legal",
+          "page": 284
+        },
+        "Tres Chic": {
+          "concealability": null,
+          "ballistic": 0,
+          "impact": 0,
+          "weight": 1,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "cost": 1000,
+          "street_index": 1,
+          "legality": "legal",
+          "page": 284
+        },
+        "Riot Shield, Small": {
+          "concealability": null,
+          "ballistic": 1,
+          "impact": 2,
+          "weight": 2,
+          "availability_rating": 8,
+          "availability_time": 14,
+          "availability_unit": "days",
+          "cost": 1500,
+          "street_index": 2,
+          "legality": "legal",
+          "page": 284
+        },
+        "Riot Shield, Large": {
+          "concealability": null,
+          "ballistic": 2,
+          "impact": 3,
+          "weight": 2,
+          "availability_rating": 8,
+          "availability_time": 14,
+          "availability_unit": "days",
+          "cost": 1500,
+          "street_index": 2,
+          "legality": "legal",
+          "page": 284
+        },
+        "Riot Shield, Ballistic": {
+          "concealability": null,
+          "ballistic": 3,
+          "impact": 1,
+          "weight": 2,
+          "availability_rating": 8,
+          "availability_time": 14,
+          "availability_unit": "days",
+          "cost": 1500,
+          "street_index": 2,
+          "legality": "legal",
+          "page": 284
+        }
+      },
+      "Armor Clothing": {
+        "Armor Clothing": {
+          "concealability": 10,
+          "ballistic": 3,
+          "impact": 0,
+          "weight": 2,
+          "availability_rating": 2,
+          "availability_time": 36,
+          "availability_unit": "hours",
+          "cost": 500,
+          "street_index": 1,
+          "legality": "legal",
+          "page": 284
+        },
+        "Armor Jacket": {
+          "concealability": 6,
+          "ballistic": 5,
+          "impact": 3,
+          "weight": 2,
+          "availability_rating": 3,
+          "availability_time": 36,
+          "availability_unit": "hours",
+          "cost": 900,
+          "street_index": 0.75,
+          "legality": "legal",
+          "page": 284
+        },
+        "Armor Vest": {
+          "concealability": 12,
+          "ballistic": 2,
+          "impact": 1,
+          "weight": 1,
+          "availability_rating": 2,
+          "availability_time": 36,
+          "availability_unit": "hours",
+          "cost": 200,
+          "street_index": 0.8,
+          "legality": "legal",
+          "page": 284
+        },
+        "Armor Vest With Plates": {
+          "concealability": 10,
+          "ballistic": 4,
+          "impact": 3,
+          "weight": 2,
+          "availability_rating": 3,
+          "availability_time": 36,
+          "availability_unit": "hours",
+          "cost": 600,
+          "street_index": 1,
+          "legality": "legal",
+          "page": 284
+        },
+        "Lined Coat": {
+          "concealability": 8,
+          "ballistic": 4,
+          "impact": 2,
+          "weight": 1,
+          "availability_rating": 2,
+          "availability_time": 24,
+          "availability_unit": "hours",
+          "cost": 700,
+          "street_index": 0.75,
+          "legality": "legal",
+          "page": 284
+        },
+        "Secure Clothing": {
+          "concealability": 12,
+          "ballistic": 3,
+          "impact": 0,
+          "weight": 1.5,
+          "availability_rating": 3,
+          "availability_time": 36,
+          "availability_unit": "hours",
+          "cost": 450,
+          "street_index": 0.9,
+          "legality": "legal",
+          "page": 284
+        },
+        "Secure Jacket": {
+          "concealability": 9,
+          "ballistic": 5,
+          "impact": 3,
+          "weight": 3,
+          "availability_rating": 4,
+          "availability_time": 36,
+          "availability_unit": "hours",
+          "cost": 850,
+          "street_index": 0.8,
+          "legality": "legal",
+          "page": 284
+        },
+        "Secure Vest": {
+          "concealability": 15,
+          "ballistic": 2,
+          "impact": 1,
+          "weight": 0.75,
+          "availability_rating": 3,
+          "availability_time": 36,
+          "availability_unit": "hours",
+          "cost": 175,
+          "street_index": 0.9,
+          "legality": "legal",
+          "page": 284
+        },
+        "Secure Ultra-Vest": {
+          "concealability": 14,
+          "ballistic": 3,
+          "impact": 2,
+          "weight": 2.5,
+          "availability_rating": 3,
+          "availability_time": 36,
+          "availability_unit": "hours",
+          "cost": 350,
+          "street_index": 0.9,
+          "legality": "legal",
+          "page": 284
+        },
+        "Secure Long Coat": {
+          "concealability": 10,
+          "ballistic": 4,
+          "impact": 2,
+          "weight": 2,
+          "availability_rating": 3,
+          "availability_time": 24,
+          "availability_unit": "hours",
+          "cost": 650,
+          "street_index": 0.9,
+          "legality": "legal",
+          "page": 284
+        }
+      },
+      "Camouflage": {
+        "Camo Full Suit": {
+          "concealability": null,
+          "ballistic": 3,
+          "impact": 1,
+          "weight": 1.5,
+          "availability_rating": 4,
+          "availability_time": 36,
+          "availability_unit": "hours",
+          "cost": 800,
+          "street_index": 1,
+          "legality": "legal",
+          "page": 284
+        },
+        "Camo Jacket": {
+          "concealability": null,
+          "ballistic": 5,
+          "impact": 3,
+          "weight": 2,
+          "availability_rating": 5,
+          "availability_time": 36,
+          "availability_unit": "hours",
+          "cost": 1200,
+          "street_index": 1,
+          "legality": "legal",
+          "page": 284
+        }
+      },
+      "Leather": {
+        "Real Leather": {
+          "concealability": null,
+          "ballistic": 0,
+          "impact": 2,
+          "weight": 1,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "cost": 750,
+          "street_index": 0.75,
+          "legality": "legal",
+          "page": 284
+        },
+        "Synthetic Leather": {
+          "concealability": null,
+          "ballistic": 0,
+          "impact": 1,
+          "weight": 1,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "cost": 250,
+          "street_index": 0.6,
+          "legality": "legal",
+          "page": 284
+        }
+      },
+      "Security Armor": {
+        "Light Security": {
+          "concealability": null,
+          "ballistic": 6,
+          "impact": 4,
+          "weight": "9 + body",
+          "availability_rating": 12,
+          "availability_time": 10,
+          "availability_unit": "days",
+          "cost": 7500,
+          "street_index": 2,
+          "legality": "4P-L",
+          "page": 284
+        },
+        "Light Security (with helmet)": {
+          "concealability": null,
+          "ballistic": 7,
+          "impact": 6,
+          "weight": "9 + body",
+          "availability_rating": 12,
+          "availability_time": 14,
+          "availability_unit": "days",
+          "cost": 7750,
+          "street_index": 2,
+          "legality": "3P-L",
+          "page": 284
+        },
+        "Medium Security": {
+          "concealability": null,
+          "ballistic": 6,
+          "impact": 5,
+          "weight": "11 + body",
+          "availability_rating": 14,
+          "availability_time": 10,
+          "availability_unit": "days",
+          "cost": 9000,
+          "street_index": 2.5,
+          "legality": "3P-L",
+          "page": 284
+        },
+        "Medium Security (with helmet)": {
+          "concealability": null,
+          "ballistic": 7,
+          "impact": 7,
+          "weight": "11 + body",
+          "availability_rating": 14,
+          "availability_time": 14,
+          "availability_unit": "days",
+          "cost": 9250,
+          "street_index": 2.5,
+          "legality": "2P-L",
+          "page": 284
+        },
+        "Heavy Security": {
+          "concealability": null,
+          "ballistic": 7,
+          "impact": 5,
+          "weight": "13 + body",
+          "availability_rating": 16,
+          "availability_time": 14,
+          "availability_unit": "days",
+          "cost": 12000,
+          "street_index": 3,
+          "legality": "2P-L",
+          "page": 284
+        },
+        "Heavy Security (with helmet": {
+          "concealability": null,
+          "ballistic": 8,
+          "impact": 7,
+          "weight": "13 + body",
+          "availability_rating": 16,
+          "availability_time": 14,
+          "availability_unit": "days",
+          "cost": 12250,
+          "street_index": 3,
+          "legality": "1P-L",
+          "page": 284
+        }
+      }
+    },
+    "Entertainment": {
+      "Music": {
+        "Disk/Chip": {
+          "concealability": 12,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 20,
+          "street_index": 0.75,
+          "page": 286
+        },
+        "Playback Unit": {
+          "concealability": 9,
+          "weight": 0.5,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 200,
+          "street_index": 0.75,
+          "page": 286
+        },
+        "Quad Speakers": {
+          "concealability": null,
+          "weight": 5,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 100,
+          "street_index": 0.75,
+          "page": 286
+        }
+      },
+      "Video": {
+        "Disk/Chip": {
+          "concealability": 12,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 20,
+          "street_index": 0.75,
+          "page": 286
+        },
+        "Playback Unit": {
+          "concealability": 8,
+          "weight": 0.5,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 400,
+          "street_index": 0.75,
+          "page": 286
+        },
+        "Screen": {
+          "concealability": null,
+          "weight": 3,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 150,
+          "street_index": 0.75,
+          "page": 286
+        }
+      },
+      "Simsense Decks": {
+        "Sony Beautiful Dreamer (monoPOV ACT)": {
+          "concealability": 8,
+          "weight": 0.5,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 200,
+          "street_index": 1,
+          "page": 286
+        },
+        "Novatech Sandman (polyPOV ACT)": {
+          "concealability": 6,
+          "weight": 1,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 2500,
+          "street_index": 1,
+          "page": 286
+        },
+        "Truman Paradiso (polyPOV ACT or DIR-X)": {
+          "concealability": null,
+          "weight": 6,
+          "availability_rating": 4,
+          "availability_time": 36,
+          "availability_unit": "hours",
+          "legality": "Legal",
+          "cost": 75000,
+          "street_index": 1,
+          "page": 286
+        }
+      },
+      "Simsense Recordings": {
+        "ACT Recording (Baseline)": {
+          "concealability": 10,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": "2 * minute * POVs",
+          "street_index": 0.75,
+          "page": 286
+        },
+        "ACT Recording (Full-X)": {
+          "concealability": 10,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": "6 * minute * POVs",
+          "street_index": 0.75,
+          "page": 286
+        },
+        "Dir-X Recording (Baseline)": {
+          "concealability": 10,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": "90 * minute * POVs",
+          "street_index": 0.75,
+          "page": 286
+        },
+        "Dir-X Recording (Full-X)": {
+          "concealability": 10,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": "270 * minute * POVs",
+          "street_index": 0.75,
+          "page": 286
+        }
+      }
+    },
+    "Electronics": {
+      "Telecom": {
+        "weight": 5,
+        "concealability": "NA",
+        "cost": "memory_cost * 1.5",
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "always",
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 287
+      },
+      "Communications": {
+        "Wrist-Model Cellphone": {
+          "concealability": 8,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 100,
+          "street_index": 0.75,
+          "page": 287
+        },
+        "Wrist-Model Cellphone with Flip-Up Screen": {
+          "concealability": 8,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 150,
+          "street_index": 1,
+          "page": 287
+        },
+        "Headset Unit Cellphone": {
+          "concealability": 10,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 50,
+          "street_index": 0.75,
+          "page": 287
+        },
+        "Earplug Unit Cellphone": {
+          "concealability": 12,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 100,
+          "street_index": 1.5,
+          "page": 287
+        },
+        "Pager": {
+          "concealability": 10,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 10,
+          "street_index": 1,
+          "page": 287
+        },
+        "Pocket Secretary": {
+          "concealability": 8,
+          "weight": 0.5,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 2000,
+          "street_index": 1,
+          "page": 287
+        }
+      },
+      "Personal Computers": {
+        "Table Top Computer": {
+          "concealability": 3,
+          "weight": 3,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": "memory",
+          "street_index": 0.75,
+          "page": 287,
+          "memory": "memory"
+        },
+        "Pocket Computer": {
+          "concealability": 8,
+          "weight": 1,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": "memory * 5",
+          "street_index": 1,
+          "page": 287,
+          "memory": "memory"
+        },
+        "Wrist Computer": {
+          "concealability": 6,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": "memory * 20",
+          "street_index": 1.5,
+          "page": 287,
+          "memory": "memory"
+        },
+        "Printer": {
+          "concealability": 4,
+          "weight": 2,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 100,
+          "street_index": 1,
+          "page": 287
+        },
+        "Computer Memory (Non-Cyber)": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": "20 * Mp",
+          "street_index": 1,
+          "page": 287,
+          "memory": "memory"
+        }
+      },
+      "Data Display Systems": {
+        "Data Unit (max 1000 mp)": {
+          "concealability": 6,
+          "weight": 4,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": "memory",
+          "street_index": 1,
+          "page": 287
+        },
+        "Headset (max 500 mp)": {
+          "concealability": 4,
+          "weight": 0.5,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": "memory * 2",
+          "street_index": 1.5,
+          "page": 287
+        },
+        "Heads-Up Display": {
+          "concealability": null,
+          "weight": 0.5,
+          "availability_rating": 6,
+          "availability_time": 7,
+          "availability_unit": "days",
+          "legality": "Legal",
+          "cost": "memory * 10",
+          "street_index": 3,
+          "page": 287
+        }
+      },
+      "Credstick Verification Reader": {
+        "weight": 1,
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "always",
+        "legality": "Legal",
+        "rating": "rating",
+        "transaction_limit": {
+          "rating": {
+            ";1": 5000,
+            "2;3": 20000,
+            "4;5": 200000,
+            "6;7": 500000,
+            "8;": 1000000
+          }
+        },
+        "cost": {
+          "rating": {
+            ";1": 12000,
+            "2;3": 45000,
+            "4;5": 100000,
+            "6;7": "Restricted",
+            "8;": "Restricted"
+          }
+        },
+        "street_index": {
+          "rating": {
+            ";5": 1,
+            "6;": null
+          }
+        },
+        "page": 287
+      },
+      "Credstick Verification Reader (Portable)": {
+        "weight": 1,
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "always",
+        "legality": "Legal",
+        "rating": "rating",
+        "transaction_limit": {
+          "rating": {
+            ";1": 5000,
+            "2;3": 20000
+          }
+        },
+        "cost": {
+          "rating": {
+            ";1": 12000,
+            "2;3": 60000
+          }
+        },
+        "street_index": {
+          "rating": {
+            ";5": 1
+          }
+        },
+        "page": 287
+      }
+    },
+    "Tools": {
+      "Kit": {
+        "concealability": 3,
+        "weight": 5,
+        "availability_rating": 5,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": 500,
+        "street_index": 2,
+        "page": 288
+      },
+      "Shop": {
+        "concealability": null,
+        "weight": null,
+        "availability_rating": 8,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": 5000,
+        "street_index": 3,
+        "page": 288
+      },
+      "Facility": {
+        "concealability": null,
+        "weight": null,
+        "availability_rating": 14,
+        "availability_time": 7,
+        "availability_unit": "days",
+        "legality": "Legal",
+        "cost": 10000,
+        "street_index": 4,
+        "page": 288
+      }
+    },
+    "Surveillance and Security": {
+      "Vision Enhancers": {
+        "Binoculars": {
+          "concealability": 5,
+          "weight": 1,
+          "magnification": "50x",
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 100,
+          "street_index": 1,
+          "page": 288
+        },
+        "Binoculars (Low-Light)": {
+          "concealability": 5,
+          "weight": 1,
+          "magnification": "50x",
+          "availability_rating": 4,
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "cost": 300,
+          "street_index": 1.25,
+          "page": 288
+        },
+        "Binoculars (Thermographic)": {
+          "concealability": 5,
+          "weight": 1,
+          "magnification": "50x",
+          "availability_rating": 4,
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "cost": 350,
+          "street_index": 1.25,
+          "page": 288
+        },
+        "Pocket Flashlight": {
+          "concealability": 12,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 10,
+          "street_index": 1,
+          "page": 288
+        },
+        "Large Flashlight": {
+          "concealability": 7,
+          "weight": 2,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 25,
+          "street_index": 1,
+          "page": 288
+        },
+        "Goggles": {
+          "concealability": 6,
+          "weight": null,
+          "magnification": "20x",
+          "availability_rating": 4,
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "cost": 1500,
+          "street_index": 1.5,
+          "page": 288
+        },
+        "Goggles (Low-Light)": {
+          "concealability": 6,
+          "weight": null,
+          "magnification": "20x",
+          "availability_rating": 6,
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "cost": 2000,
+          "street_index": 2,
+          "page": 288
+        },
+        "Goggles (Thermographic)": {
+          "concealability": 6,
+          "weight": null,
+          "magnification": "20x",
+          "availability_rating": 6,
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "cost": 2200,
+          "street_index": 2,
+          "page": 288
+        }
+      },
+      "Communications": {
+        "Micro-Transciever": {
+          "concealability": 10,
+          "weight": null,
+          "availability_rating": "rating + ECCM - 1",
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "8P-U",
+          "cost": "rating * 1000 + ECCM * 1000 - 1000",
+          "street_index": "2 + ECCM * 0.5 - 0.5",
+          "page": 288,
+          "rating": "rating"
+        },
+        "Subvocal Microphone": {
+          "concealability": 12,
+          "weight": null,
+          "availability_rating": "3 + ECCM - 1",
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "9P-U",
+          "cost": "500 + ECCM * 1000 - 1000",
+          "street_index": "1.25 + ECCM * 0.5 - 0.5",
+          "page": 289
+        },
+        "Transciever": {
+          "concealability": 8,
+          "weight": 1,
+          "availability_rating": "rating + ECCM - 1",
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "8P-U",
+          "cost": "rating * 500 + ECCM * 1000 - 1000",
+          "street_index": "2 + ECCM * 0.5 - 0.5",
+          "page": 289,
+          "rating": "rating"
+        },
+        "Signal Amplifier": {
+          "concealability": 3,
+          "weight": "rating",
+          "availability_rating": "rating + ECCM - 1",
+          "availability_time": "rating * 12",
+          "availability_unit": "hrs",
+          "legality": "10P-U",
+          "cost": "rating * 250 + ECCM * 1000 - 1000",
+          "street_index": "1.5 + ECCM * 0.5 - 0.5",
+          "page": 289,
+          "rating": "rating"
+        },
+        "Signal Repeater": {
+          "concealability": null,
+          "weight": "rating * 2",
+          "availability_rating": "rating * 2 + ECCM - 1",
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "6P-U",
+          "cost": "rating * 1000 + ECCM * 1000 - 1000",
+          "street_index": "3 + ECCM * 0.5 - 0.5",
+          "page": 289,
+          "rating": "rating"
+        },
+        "Simrig": {
+          "concealability": 10,
+          "weight": 0.5,
+          "availability_rating": "8 + ECCM - 1",
+          "availability_time": 2,
+          "availability_unit": "weeks",
+          "legality": "Legal",
+          "cost": "50000 + ECCM * 1000 - 1000",
+          "street_index": "2 + ECCM * 0.5 - 0.5",
+          "page": 289
+        },
+        "Simlink": {
+          "concealability": 8,
+          "weight": 0.5,
+          "availability_rating": "8 + ECCM - 1",
+          "availability_time": 2,
+          "availability_unit": "weeks",
+          "legality": "8P-U",
+          "cost": "25000 + rating * 5000 + ECCM * 1000 - 1000",
+          "street_index": "2 + ECCM * 0.5 - 0.5",
+          "page": 289,
+          "rating": "rating"
+        },
+        "Vidlink Transmitter": {
+          "concealability": 9,
+          "weight": 0.5,
+          "availability_rating": "4 + ECCM - 1",
+          "availability_time": 1,
+          "availability_unit": "weeks",
+          "legality": "8P-U",
+          "cost": "2000 * rating + ECCM * 1000 - 1000",
+          "street_index": "2 + ECCM * 0.5 - 0.5",
+          "page": 289,
+          "rating": "rating"
+        },
+        "Scanner": {
+          "concealability": 8,
+          "weight": 1,
+          "availability_rating": "rating + ECCM - 1",
+          "availability_time": 24,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "cost": "rating * 100 + ECCM * 1000 - 1000",
+          "street_index": "2 + ECCM * 0.5 - 0.5",
+          "page": 289,
+          "rating": "rating"
+        }
+      },
+      "Broadcast Encryption": {
+        "concealability": null,
+        "weight": null,
+        "cost": {
+          "rating": {
+            ";4": "rating * 1000",
+            "5;7": "rating * 2000",
+            "8;9": "rating * 4000",
+            "10;": "rating * 5000"
+          }
+        },
+        "street_index": 1,
+        "legality": {
+          "rating": {
+            ";7": "8P-V",
+            "8; <= rating": "8P-W"
+          }
+        },
+        "page": 290,
+        "availability_time": 0,
+        "availability_rating": 0,
+        "availability_unit": "always",
+        "rating": "rating"
+      },
+      "Broadcast Decryption": {
+        "concealability": null,
+        "weight": null,
+        "cost": {
+          "rating": {
+            ";4": "rating * 2000",
+            "5;7": "rating * 4000",
+            "8;": "rating * 5000"
+          }
+        },
+        "street_index": 1,
+        "legality": {
+          "rating": {
+            ";4": "8P-V",
+            "5; <= rating": "8P-W"
+          }
+        },
+        "page": 290,
+        "availability_time": 0,
+        "availability_rating": 0,
+        "availability_unit": "always",
+        "rating": "rating"
+      }
+    },
+    "Surveillance Measures": {
+      "Data Codebraker": {
+        "concealability": 2,
+        "weight": 5,
+        "availability_rating": "rating",
+        "availability_time": 10,
+        "availability_unit": "days",
+        "legality": "4P-V",
+        "cost": "10000 * rating",
+        "street_index": 1.5,
+        "page": 290,
+        "rating": "rating"
+      },
+      "Dataline Tap": {
+        "concealability": 12,
+        "weight": null,
+        "availability_rating": "rating",
+        "availability_time": 8,
+        "availability_unit": "days",
+        "legality": "6P-V",
+        "cost": "1000 * rating",
+        "street_index": 1.5,
+        "page": 290,
+        "rating": "rating"
+      },
+      "Laser Microphone": {
+        "concealability": 5,
+        "weight": 1,
+        "availability_rating": "rating",
+        "availability_time": 14,
+        "availability_unit": "hrs",
+        "legality": "6P-U",
+        "cost": "1500 * rating",
+        "street_index": 1.5,
+        "page": 290,
+        "rating": "rating"
+      },
+      "Micro Camcorder": {
+        "concealability": 8,
+        "weight": null,
+        "availability_rating": 6,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "8P-U",
+        "cost": 2500,
+        "street_index": 2,
+        "page": 290
+      },
+      "Micro Recorder": {
+        "concealability": 9,
+        "weight": null,
+        "availability_rating": 6,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "8P-U",
+        "cost": "500 * rating",
+        "street_index": 2,
+        "page": 290,
+        "rating": "rating"
+      },
+      "Shotgun Microphone": {
+        "concealability": 5,
+        "weight": 1,
+        "availability_rating": "rating",
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "legality": "6P-U",
+        "cost": "1000 * rating",
+        "street_index": 1,
+        "page": 290,
+        "rating": "rating"
+      },
+      "Signal Locator (Standard)": {
+        "concealability": 3,
+        "weight": 2,
+        "availability_rating": "rating",
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "8P-U",
+        "cost": "200 * rating",
+        "street_index": 1.5,
+        "page": 291,
+        "rating": "rating"
+      },
+      "Signal Locator (AOD)": {
+        "concealability": 3,
+        "weight": 2,
+        "availability_rating": "rating",
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "8P-U",
+        "cost": "500 * rating",
+        "street_index": 1.5,
+        "page": 291,
+        "rating": "rating"
+      },
+      "Sony HB500 Portacam": {
+        "concealability": null,
+        "weight": 3.5,
+        "availability_rating": 4,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": 2200,
+        "street_index": 2,
+        "page": 291
+      },
+      "Sony CB5000 Cybercam": {
+        "concealability": null,
+        "weight": 5.5,
+        "availability_rating": 5,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": 2700,
+        "street_index": 2,
+        "page": 291
+      },
+      "Tridlink Adapter": {
+        "concealability": 6,
+        "weight": 1,
+        "availability_rating": 2,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": 700,
+        "street_index": 1,
+        "page": 291
+      },
+      "Tracking Signal (Standard)": {
+        "concealability": 9,
+        "weight": null,
+        "availability_rating": "rating",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "8P-U",
+        "cost": "500 * rating",
+        "street_index": 2,
+        "page": 291,
+        "rating": "rating"
+      },
+      "Tracking Signal (AOD)": {
+        "concealability": 9,
+        "weight": null,
+        "availability_rating": "rating",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "8P-U",
+        "cost": "600 * rating",
+        "street_index": 2,
+        "page": 291,
+        "rating": "rating"
+      },
+      "Voice Identifier": {
+        "concealability": 2,
+        "weight": 5,
+        "availability_rating": "rating",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "5P-V",
+        "cost": "2000 * rating",
+        "street_index": 2,
+        "page": 291,
+        "rating": "rating"
+      }
+    },
+    "Surveillance Countermeasures": {
+      "Bug Scanner": {
+        "concealability": 3,
+        "weight": 1,
+        "availability_rating": "rating",
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "5P-V",
+        "cost": "500 * rating",
+        "street_index": 1.5,
+        "page": 291,
+        "rating": "rating"
+      },
+      "Data Encryption System": {
+        "concealability": 2,
+        "weight": 1,
+        "availability_rating": "rating",
+        "availability_time": 14,
+        "availability_unit": "days",
+        "legality": "4P-V",
+        "cost": "1000 * rating",
+        "street_index": 2,
+        "page": 291,
+        "rating": "rating"
+      },
+      "Dataline Scanner": {
+        "concealability": 2,
+        "weight": 1,
+        "availability_rating": "rating",
+        "availability_time": 14,
+        "availability_unit": "days",
+        "legality": "4P-U",
+        "cost": "100 * rating",
+        "street_index": 2,
+        "page": 291,
+        "rating": "rating"
+      },
+      "Jammer": {
+        "concealability": 2,
+        "weight": 5,
+        "availability_rating": "rating",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "3P-U",
+        "cost": "1000 * rating",
+        "street_index": 1.5,
+        "page": 291,
+        "rating": "rating"
+      },
+      "Voice Mask": {
+        "concealability": 6,
+        "weight": null,
+        "availability_rating": "rating",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "5P-V",
+        "cost": "3000 * rating",
+        "street_index": 1.5,
+        "page": 291,
+        "rating": "rating"
+      },
+      "White Noise Generator": {
+        "concealability": 3,
+        "weight": 1,
+        "availability_rating": "rating",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "8P-U",
+        "cost": "1500 * rating",
+        "street_index": 1.5,
+        "page": 291,
+        "rating": "rating"
+      }
+    },
+    "Data Encryption/Decryption": {
+      "Data Encryption": {
+        "concealability": null,
+        "weight": null,
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "always",
+        "legality": {
+          "rating": {
+            ";6": "8P-V",
+            "7;": "8P-W"
+          }
+        },
+        "cost": {
+          "rating": {
+            ";3": "rating * rating * 50",
+            "4;6": "rating * rating * 100",
+            "7;9": "rating * rating * 250",
+            "10;": "rating * rating * 500"
+          }
+        },
+        "street_index": 1,
+        "page": 292,
+        "rating": "rating"
+      },
+      "Data Decryption": {
+        "concealability": null,
+        "weight": null,
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "always",
+        "legality": {
+          "rating": {
+            ";3": "8P-V",
+            "4;": "8P-W"
+          }
+        },
+        "cost": {
+          "rating": {
+            ";3": "rating * rating * 100",
+            "4;6": "rating * rating * 250",
+            "7;9": "rating * rating * 500",
+            "10;": "rating * rating * 1000"
+          }
+        },
+        "street_index": 1,
+        "page": 292,
+        "rating": "rating"
+      }
+    },
+    "Security Devices": {
+      "Chem Sniffer (Hand-held)": {
+        "concealability": 6,
+        "weight": 1,
+        "availability_rating": "rating",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "8P-U",
+        "cost": "10000 * rating",
+        "street_index": 2,
+        "page": 292,
+        "rating": "rating"
+      },
+      "Chem Sniffer (Doorway)": {
+        "concealability": 4,
+        "weight": null,
+        "availability_rating": "rating",
+        "availability_time": 2,
+        "availability_unit": "weeks",
+        "legality": "9P-U",
+        "cost": "20000 * rating",
+        "street_index": 3,
+        "page": 292,
+        "rating": "rating"
+      },
+      "Containment Manacles": {
+        "concealability": null,
+        "weight": 5,
+        "availability_rating": 8,
+        "availability_time": 1,
+        "availability_unit": "week",
+        "legality": "4P-V",
+        "cost": 2500,
+        "street_index": 2,
+        "page": 292
+      },
+      "Cyberware Scanner (Hand-held)": {
+        "concealability": 6,
+        "weight": 1,
+        "availability_rating": "rating",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "8P-U",
+        "cost": "2000 * rating",
+        "street_index": 2,
+        "page": 292,
+        "rating": "rating"
+      },
+      "Cyberware Scanner (Doorway)": {
+        "concealability": 8,
+        "weight": null,
+        "availability_rating": "rating",
+        "availability_time": 2,
+        "availability_unit": "weeks",
+        "legality": "9P-U",
+        "cost": "4000 * rating",
+        "street_index": 3,
+        "page": 292,
+        "rating": "rating"
+      },
+      "Headjammer": {
+        "concealability": 3,
+        "weight": 1,
+        "availability_rating": "rating",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "5P-V",
+        "cost": "1200 * rating",
+        "street_index": 2,
+        "page": 292,
+        "rating": "rating"
+      },
+      "Thumbprint Scanner": {
+        "concealability": null,
+        "weight": null,
+        "availability_rating": "rating",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": "200 * rating",
+        "street_index": 1,
+        "page": 292,
+        "rating": "rating"
+      },
+      "Palmprint Scanner": {
+        "concealability": null,
+        "weight": null,
+        "availability_rating": "rating + 1",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": "300 * rating",
+        "street_index": 2,
+        "page": 292,
+        "rating": "rating"
+      },
+      "Retinal Scanner": {
+        "concealability": null,
+        "weight": null,
+        "availability_rating": "rating + 2",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": "1000 * rating",
+        "street_index": 3,
+        "page": 292,
+        "rating": "rating"
+      },
+      "Jackstopper": {
+        "concealability": 10,
+        "weight": null,
+        "availability_rating": 4,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "8P-V",
+        "cost": 100,
+        "street_index": 2,
+        "page": 292
+      },
+      "Magnetic Anomaly Detector (Hand-Held)": {
+        "concealability": 6,
+        "weight": 1,
+        "availability_rating": "rating",
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "legality": "8P-U",
+        "cost": "2500 * Rating",
+        "street_index": 2,
+        "page": 293,
+        "rating": "rating"
+      },
+      "Magnetic Anomaly Detector (Doorway)": {
+        "concealability": 8,
+        "weight": null,
+        "availability_rating": "rating",
+        "availability_time": 2,
+        "availability_unit": "weeks",
+        "legality": "9P-U",
+        "cost": "5000 * Rating",
+        "street_index": 3,
+        "page": 293,
+        "rating": "rating"
+      },
+      "Maglock": {
+        "concealability": null,
+        "weight": null,
+        "availability_rating": "rating",
+        "availability_time": {
+          "rating": {
+            ";3": 2,
+            "4;6": 3,
+            "6;9": 3.5,
+            "10;": 4
+          }
+        },
+        "availability_unit": "days",
+        "legality": "Legal",
+        "cost": {
+          ";3": "75 * rating",
+          "4;6": "100 * rating",
+          "7;9": "150 * rating",
+          "10;": "250 * rating"
+        },
+        "street_index": {
+          "rating": {
+            ";3": 0.75,
+            "4;6": 1,
+            "7;9": 1.25,
+            "10;": 1.5
+          }
+        },
+        "page": 293,
+        "rating": "rating"
+      },
+      "Biometric Maglock": {
+        "concealability": null,
+        "weight": null,
+        "availability_rating": "rating",
+        "availability_time": 5,
+        "availability_unit": "days",
+        "legality": "Legal",
+        "cost": "350 * rating",
+        "street_index": 2,
+        "page": 293,
+        "rating": "rating"
+      },
+      "PANICBUTTON Hook-Up": {
+        "concealability": 10,
+        "weight": null,
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "Always",
+        "legality": "Legal",
+        "cost": 1000,
+        "street_index": 1,
+        "page": 293
+      },
+      "Metal Restraints": {
+        "concealability": 3,
+        "weight": 0.5,
+        "availability_rating": 4,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "6P-U",
+        "cost": 20,
+        "street_index": 1,
+        "page": 293
+      },
+      "Plasteel Restraints": {
+        "concealability": 3,
+        "weight": null,
+        "availability_rating": 4,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "9P-U",
+        "cost": 50,
+        "street_index": 1,
+        "page": 293
+      },
+      "Skilltwitchers": {
+        "concealability": 9,
+        "weight": null,
+        "availability_rating": 6,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "4P-V",
+        "cost": 200,
+        "street_index": 2,
+        "page": 293
+      },
+      "Squealer": {
+        "concealability": 4,
+        "weight": null,
+        "availability_rating": 6,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": 100,
+        "street_index": 2,
+        "page": 293
+      }
+    },
+    "Security Countermeasures": {
+      "Gas Detection System": {
+        "concealability": 5,
+        "weight": 1,
+        "availability_rating": "rating * 3",
+        "availability_time": 7,
+        "availability_unit": "days",
+        "legality": "Legal",
+        "cost": "1000 * rating",
+        "street_index": 2,
+        "page": 293,
+        "rating": "rating"
+      },
+      "Maglock Passkey (illegal)": {
+        "concealability": 9,
+        "weight": 1,
+        "availability_rating": "rating * 2",
+        "availability_time": 10,
+        "availability_unit": "days",
+        "legality": "4P-V",
+        "cost": "10000 * rating",
+        "street_index": 3,
+        "page": 293,
+        "rating": "rating"
+      },
+      "Sequencer": {
+        "concealability": 8,
+        "weight": 2,
+        "availability_rating": "rating * 2",
+        "availability_time": 2,
+        "availability_unit": "weeks",
+        "legality": "4P-V",
+        "cost": "500 * rating * rating",
+        "street_index": 3,
+        "page": 293,
+        "rating": "rating"
+      },
+      "Ultrasound Detector": {
+        "concealability": 10,
+        "weight": null,
+        "availability_rating": 6,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": 40,
+        "street_index": 3,
+        "page": 293
+      },
+      "Ultrasound Emitter/Detector": {
+        "concealability": 8,
+        "weight": 0.5,
+        "availability_rating": "rating * 2",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "8P-V",
+        "cost": "rating * 400",
+        "street_index": 3,
+        "page": 293,
+        "rating": "rating"
+      },
+      "Wire Clippers": {
+        "concealability": 12,
+        "weight": 1,
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "always",
+        "legality": "Legal",
+        "cost": 25,
+        "street_index": 1,
+        "page": 293
+      }
+    },
+    "Survival Gear": {
+      "Chemsuit": {
+        "concealability": null,
+        "weight": 1,
+        "availability_rating": "rating",
+        "availability_time": "rating",
+        "availability_unit": "days",
+        "legality": "Legal",
+        "rating": "rating",
+        "cost": "200 * rating",
+        "street_index": 1,
+        "page": 293
+      },
+      "Climbing Gear": {
+        "Ascent/Descent Harness": {
+          "concealability": 3,
+          "weight": 0.25,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 75,
+          "street_index": 1,
+          "page": 293
+        },
+        "Ascent/Descent Kit": {
+          "concealability": 3,
+          "weight": 2,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 250,
+          "street_index": 1,
+          "page": 293
+        },
+        "Rappelling Gloves": {
+          "concealability": 9,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 70,
+          "street_index": 1,
+          "page": 293
+        },
+        "Rope (50m)": {
+          "concealability": 3,
+          "weight": 1,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always",
+          "legality": "Legal",
+          "cost": 125,
+          "street_index": 1,
+          "page": 293
+        }
+      },
+      "Grapple Gun": {
+        "concealability": 7,
+        "weight": 2.25,
+        "availability_rating": 4,
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "legality": "4P-U",
+        "cost": 450,
+        "street_index": 1,
+        "page": 293
+      },
+      "Grapple Line": {
+        "concealability": 3,
+        "weight": ".02 * meters",
+        "availability_rating": 4,
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": "0.5 * meters",
+        "street_index": 2,
+        "page": 293
+      },
+      "Stealth Grapple Line": {
+        "concealability": 3,
+        "weight": ".03 * meters",
+        "availability_rating": 6,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "6P-V",
+        "cost": "0.85 * meters",
+        "street_index": 3,
+        "page": 293
+      },
+      "Catalyst Stick": {
+        "concealability": 9,
+        "weight": null,
+        "availability_rating": 6,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": 120,
+        "street_index": 1,
+        "page": 293
+      },
+      "Micro Flare Launcher": {
+        "concealability": 6,
+        "weight": 2,
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "always",
+        "legality": "Legal",
+        "cost": 50,
+        "street_index": 1,
+        "page": 293
+      },
+      "Micro Flare": {
+        "concealability": 10,
+        "weight": null,
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "always",
+        "legality": "Legal",
+        "cost": 75,
+        "street_index": 1,
+        "page": 293
+      },
+      "Nav-Dat GPS": {
+        "concealability": 8,
+        "weight": 0.5,
+        "availability_rating": 6,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": 700,
+        "street_index": 1,
+        "page": 294
+      },
+      "Ration Bars": {
+        "concealability": null,
+        "weight": 1,
+        "availability_rating": 2,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": 30,
+        "street_index": 1,
+        "page": 294
+      },
+      "Respirator": {
+        "concealability": null,
+        "weight": 1,
+        "availability_rating": 4,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": 500,
+        "street_index": 2,
+        "page": 294
+      },
+      "Pressure Regulator": {
+        "concealability": null,
+        "weight": 0.5,
+        "availability_rating": 6,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": 250,
+        "street_index": 2,
+        "page": 294
+      },
+      "Survival Kit": {
+        "concealability": null,
+        "weight": 2,
+        "availability_rating": 2,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": 100,
+        "street_index": 1,
+        "page": 294
+      }
+    },
+    "Skillsofts and Chips": {
+      "Activesoft": {
+        "concealability": 12,
+        "weight": null,
+        "availability_rating": 6,
+        "availability_time": 4,
+        "availability_unit": "days",
+        "rating": "rating",
+        "legality": "Legal",
+        "cost": "rating * rating * 3 * 100",
+        "street_index": 1.25,
+        "page": 295
+      },
+      "Activesoft (specialization)": {
+        "concealability": 12,
+        "weight": null,
+        "availability_rating": 6,
+        "availability_time": 4,
+        "availability_unit": "days",
+        "legality": "Legal",
+        "cost": "rating * rating * 2 * 100",
+        "street_index": 1.25,
+        "page": 295,
+        "rating": "rating"
+      },
+      "Datasoft": {
+        "concealability": 12,
+        "weight": null,
+        "availability_rating": 4,
+        "availability_time": 4,
+        "availability_unit": "days",
+        "legality": "Legal",
+        "cost": "rating * rating * 3 * 100",
+        "street_index": 1.25,
+        "page": 295,
+        "rating": "rating"
+      },
+      "Datasoft (specialization)": {
+        "concealability": 12,
+        "weight": null,
+        "availability_rating": 4,
+        "availability_time": 4,
+        "availability_unit": "days",
+        "legality": "Legal",
+        "cost": "rating * rating * 2 * 100",
+        "street_index": 1.25,
+        "page": 295,
+        "rating": "rating"
+      },
+      "Knowsoft": {
+        "concealability": 12,
+        "weight": null,
+        "availability_rating": 4,
+        "availability_time": 4,
+        "availability_unit": "days",
+        "legality": "Legal",
+        "cost": "rating * rating * 3 * 150",
+        "street_index": 1.25,
+        "page": 295,
+        "rating": "rating"
+      },
+      "Knowsoft (specialization)": {
+        "concealability": 12,
+        "weight": null,
+        "availability_rating": 4,
+        "availability_time": 4,
+        "availability_unit": "days",
+        "legality": "Legal",
+        "cost": "rating * rating * 2 * 150",
+        "street_index": 1.25,
+        "page": 295,
+        "rating": "rating"
+      },
+      "Linguasoft": {
+        "concealability": 12,
+        "weight": null,
+        "availability_rating": 6,
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": "rating * rating * 3 * 150",
+        "street_index": 1.25,
+        "page": 295,
+        "rating": "rating"
+      },
+      "Linguasoft (specialization)": {
+        "concealability": 12,
+        "weight": null,
+        "availability_rating": 6,
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": "rating * rating * 2 * 150",
+        "street_index": 1.25,
+        "page": 295,
+        "rating": "rating"
+      },
+      "Skillsoft Jukebox": {
+        "concealability": 6,
+        "weight": null,
+        "availability_rating": 3,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "legality": "Legal",
+        "cost": "Ports * mp * 20",
+        "street_index": 1,
+        "page": 295
+      },
+      "Optical Memory Chip": {
+        "concealability": 12,
+        "weight": null,
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "always",
+        "legality": "Legal",
+        "cost": "mp * .5",
+        "street_index": 1,
+        "page": 295
+      },
+      "Autonav Map Chip": {
+        "concealability": 12,
+        "weight": null,
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "always",
+        "legality": "Legal",
+        "cost": 25,
+        "street_index": 1,
+        "page": 295
+      },
+      "Virtual Instructor Chip": {
+        "concealability": 12,
+        "weight": null,
+        "availability_rating": "skill_rating + instruction_rating",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "skill_rating": "skill_rating",
+        "instruction_rating": "instruction_rating",
+        "legality": "Legal",
+        "cost": "skill_rating * skill_rating * 3 + instruction_rating * instruction_rating * 3",
+        "street_index": 1,
+        "page": 295
+      },
+      "Virtual Instructor Chip (restricted skill)": {
+        "concealability": 12,
+        "weight": null,
+        "availability_rating": "skill_rating + instruction_rating",
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "skill_rating": "skill_rating",
+        "instruction_rating": "instruction_rating",
+        "legality": "3-Y",
+        "cost": "skill_rating * skill_rating * 3 + instruction_rating * instruction_rating * 3",
+        "street_index": 2,
+        "page": 295
+      },
+      "BTLs": {
+        "Direct Input Chip": {
+          "concealability": 12,
+          "weight": null,
+          "availability_rating": 3,
+          "availability_time": 12,
+          "availability_unit": "hrs",
+          "legality": "3-Y",
+          "cost": 250,
+          "street_index": 1,
+          "page": 295
+        },
+        "Dreamdeck Chip": {
+          "concealability": 12,
+          "weight": null,
+          "availability_rating": 3,
+          "availability_time": 12,
+          "availability_unit": "hrs",
+          "legality": "3-Y",
+          "cost": 100,
+          "street_index": 1,
+          "page": 295
+        },
+        "BTL-modified simdeck": {
+          "concealability": 3,
+          "weight": null,
+          "availability_rating": 3,
+          "availability_time": 12,
+          "availability_unit": "hrs",
+          "legality": "3-Y",
+          "cost": 250,
+          "street_index": 1,
+          "page": 295
+        }
+      }
+    },
+    "Magical Equipment": {
+      "Foci": {
+        "Expendable Spell Focus": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 3,
+          "availability_time": 26,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "force": "force",
+          "cost": "force * 1500",
+          "street_index": 1,
+          "page": 189
+        },
+        "Specific Spell Focus": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 4,
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "force": "force",
+          "cost": "force * 45000",
+          "street_index": 2,
+          "page": 189
+        },
+        "Spell Category Focus": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 5,
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "force": "force",
+          "cost": "force * 75000",
+          "street_index": 2,
+          "page": 189
+        },
+        "Spirit Focus": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 4,
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "force": "force",
+          "cost": "force * 60000",
+          "street_index": 2,
+          "page": 189
+        },
+        "Power Focus": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 6,
+          "availability_time": 72,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "force": "force",
+          "cost": "force * 105000",
+          "street_index": 2,
+          "page": 189
+        },
+        "Sustaining Focus": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 2,
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "force": "force",
+          "cost": "force * 15000",
+          "street_index": 2,
+          "page": 189
+        },
+        "Weapon Focus": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 2,
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "force": "force",
+          "reach": "reach",
+          "cost": "reach * 100000 + 100000 + force * 90000",
+          "street_index": 2,
+          "page": 189
+        }
+      },
+      "Magical Supplies": {
+        "Elemental Conjuring Materials": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": "force",
+          "availability_time": 24,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "force": "force",
+          "cost": "force * 1000",
+          "street_index": 1,
+          "page": 189
+        },
+        "Shamanic Lodge Materials": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": "force",
+          "availability_time": 24,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "force": "force",
+          "cost": "force * 500",
+          "street_index": 1,
+          "page": 189
+        },
+        "Hermetic Library (per skill)": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": "rating",
+          "availability_time": 7,
+          "availability_unit": "days",
+          "legality": "Legal",
+          "rating": "rating",
+          "cost": "force * 500",
+          "street_index": 1,
+          "page": 189
+        }
+      },
+      "Fetishes": {
+        "Combat Fetish": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 3,
+          "availability_time": 24,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "cost": 200,
+          "street_index": 1,
+          "page": 189
+        },
+        "Detection": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 3,
+          "availability_time": 24,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "cost": 50,
+          "street_index": 1,
+          "page": 189
+        },
+        "Healing": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 3,
+          "availability_time": 24,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "cost": 500,
+          "street_index": 1,
+          "page": 189
+        },
+        "Illusion": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 3,
+          "availability_time": 24,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "cost": 100,
+          "street_index": 1,
+          "page": 189
+        },
+        "Manipulation": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 3,
+          "availability_time": 24,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "cost": 300,
+          "street_index": 1,
+          "page": 189
+        }
+      },
+      "Spell Formulas": {
+        "L Drain": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": "force",
+          "availability_time": 24,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "force": "force",
+          "reach": "reach",
+          "cost": "force * 50",
+          "street_index": 2,
+          "page": 189
+        },
+        "M Drain": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": "force",
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "force": "force",
+          "reach": "reach",
+          "cost": "force * 100",
+          "street_index": 2,
+          "page": 189
+        },
+        "S Drain": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": "force",
+          "availability_time": 72,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "force": "force",
+          "reach": "reach",
+          "cost": "force * 500",
+          "street_index": 2,
+          "page": 189
+        },
+        "D Drain": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": "force",
+          "availability_time": 7,
+          "availability_unit": "days",
+          "legality": "Legal",
+          "force": "force",
+          "reach": "reach",
+          "cost": "force * 1000",
+          "street_index": 2,
+          "page": 189
+        }
+      }
+    },
+    "Biotech": {
+      "Bio-Monitor": {
+        "concealability": null,
+        "weight": 1,
+        "availability_rating": 6,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "rating": 2,
+        "legality": "Legal",
+        "cost": "10000 * rating",
+        "street_index": 2,
+        "page": 304
+      },
+      "DocWagon Contract": {
+        "Basic Service (one year)": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "On Payment",
+          "legality": "Legal",
+          "cost": 5000,
+          "street_index": null,
+          "page": 304
+        },
+        "Gold Service (one year)": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "On Payment",
+          "legality": "Legal",
+          "cost": 25000,
+          "street_index": null,
+          "page": 304
+        },
+        "Platinum Service (one year)": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "On Payment",
+          "legality": "Legal",
+          "cost": 50000,
+          "street_index": null,
+          "page": 304
+        },
+        "Super-Platinum Service (one year)": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "On Payment",
+          "legality": "Legal",
+          "cost": 100000,
+          "street_index": null,
+          "page": 304
+        }
+      },
+      "Medkit": {
+        "concealability": null,
+        "weight": 3,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "rating": 3,
+        "legality": "Legal",
+        "cost": 200,
+        "street_index": 1.5,
+        "page": 304
+      },
+      "Medkit Supplies": {
+        "concealability": null,
+        "weight": null,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "rating": null,
+        "legality": "Legal",
+        "cost": 50,
+        "street_index": 1.5,
+        "page": 304
+      },
+      "Stabilization Unit": {
+        "concealability": null,
+        "weight": 30,
+        "availability_rating": 12,
+        "availability_time": 1,
+        "availability_unit": "mth",
+        "rating": 2,
+        "legality": "Legal",
+        "cost": 10000,
+        "street_index": 3,
+        "page": 304
+      },
+      "Deluxe Stabilization Unit": {
+        "concealability": null,
+        "weight": 35,
+        "availability_rating": 16,
+        "availability_time": 1,
+        "availability_unit": "mth",
+        "rating": 6,
+        "legality": "Legal",
+        "cost": 20000,
+        "street_index": 3,
+        "page": 304
+      },
+      "Slap Patches": {
+        "Antidote Patch": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 6,
+          "availability_time": 72,
+          "availability_unit": "hrs",
+          "rating": {
+            "rating": {
+              "1;8": "rating"
+            }
+          },
+          "legality": "Legal",
+          "cost": "rating * 50",
+          "street_index": 2,
+          "page": 304
+        },
+        "Stimulant Patch": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 2,
+          "availability_time": 24,
+          "availability_unit": "hrs",
+          "rating": {
+            "rating": {
+              "1;6": "rating"
+            }
+          },
+          "legality": "Legal",
+          "cost": "rating * 25",
+          "street_index": 1,
+          "page": 304
+        },
+        "Tranq Patch": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 4,
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "rating": {
+            "rating": {
+              "1;10": "rating"
+            }
+          },
+          "legality": "Legal",
+          "cost": "rating * 25",
+          "street_index": 2,
+          "page": 304
+        },
+        "Trauma Patch": {
+          "concealability": null,
+          "weight": null,
+          "availability_rating": 4,
+          "availability_time": 48,
+          "availability_unit": "hrs",
+          "legality": "Legal",
+          "cost": 500,
+          "street_index": 4,
+          "page": 304
+        }
+      }
+    }
+  },
+  "Skills": {
+    "Active Skills": {
+      "Combat Skills": {
+        "Assault Rifles": {
+          "attribute": "quickness",
+          "skill_type": "active"
+        },
+        "Clubs": {
+          "attribute": "strength",
+          "skill_type": "active"
+        },
+        "Cyber-Implant Combat": {
+          "attribute": "strength",
+          "skill_type": "active"
+        },
+        "Edged Weapons": {
+          "attribute": "strength",
+          "skill_type": "active"
+        },
+        "Gunnery": {
+          "attribute": "intelligence",
+          "skill_type": "active"
+        },
+        "Heavy Weapons": {
+          "attribute": "strength",
+          "skill_type": "active"
+        },
+        "Laser Weapons": {
+          "attribute": "quickness",
+          "skill_type": "active"
+        },
+        "Launch Weapons": {
+          "attribute": "intelligence",
+          "skill_type": "active"
+        },
+        "Pistols": {
+          "attribute": "quickness",
+          "skill_type": "active"
+        },
+        "Pole Arms/Staffs": {
+          "attribute": "strength",
+          "skill_type": "active"
+        },
+        "Projectile Weapons": {
+          "attribute": "strength",
+          "skill_type": "active"
+        },
+        "Rifles": {
+          "attribute": "quickness",
+          "skill_type": "active"
+        },
+        "Shotguns": {
+          "attribute": "quickness",
+          "skill_type": "active"
+        },
+        "Submachine Guns": {
+          "attribute": "quickness",
+          "skill_type": "active"
+        },
+        "Throwing Weapons": {
+          "attribute": "strength",
+          "skill_type": "active"
+        },
+        "Unarmed Combat": {
+          "attribute": "strength",
+          "skill_type": "active"
+        },
+        "Underwater Combat": {
+          "attribute": "strength",
+          "skill_type": "active"
+        },
+        "Whips": {
+          "attribute": "quickness",
+          "skill_type": "active"
+        }
+      },
+      "Magical Skills": {
+        "Aura Reading": {
+          "attribute": "intelligence",
+          "skill_type": "active"
+        },
+        "Sorcery": {
+          "attribute": "willpower",
+          "skill_type": "active"
+        },
+        "Conjuring": {
+          "attribute": "willpower",
+          "skill_type": "active"
+        }
+      },
+      "Physical Skills": {
+        "Athletics": {
+          "attribute": "body",
+          "skill_type": "active"
+        },
+        "Diving": {
+          "attribute": "body",
+          "skill_type": "active"
+        },
+        "Stealth": {
+          "attribute": "quickness",
+          "skill_type": "active"
+        }
+      },
+      "Social Skills": {
+        "Etiquette": {
+          "attribute": "charisma",
+          "skill_type": "active"
+        },
+        "Instruction": {
+          "attribute": "charisma",
+          "skill_type": "active"
+        },
+        "Interrogation": {
+          "attribute": "charisma",
+          "skill_type": "active"
+        },
+        "Intimidation": {
+          "attribute": "charisma",
+          "skill_type": "active"
+        },
+        "Leadership": {
+          "attribute": "charisma",
+          "skill_type": "active"
+        },
+        "Negotiation": {
+          "attribute": "charisma",
+          "skill_type": "active"
+        }
+      },
+      "Technical Skills": {
+        "Biotech": {
+          "attribute": "Ingelligence",
+          "skill_type": "active"
+        },
+        "Computer": {
+          "attribute": "Ingelligence",
+          "skill_type": "active"
+        },
+        "Demolitions": {
+          "attribute": "Ingelligence",
+          "skill_type": "active"
+        },
+        "Electronics": {
+          "attribute": "Ingelligence",
+          "skill_type": "active"
+        }
+      },
+      "Vehicle Skills": {
+        "Bike": {
+          "attribute": "reaction",
+          "skill_type": "active"
+        },
+        "Car": {
+          "attribute": "reaction",
+          "skill_type": "active"
+        },
+        "Fixed-Wng Aircraft": {
+          "attribute": "reaction",
+          "skill_type": "active"
+        },
+        "Hovercraft": {
+          "attribute": "reaction",
+          "skill_type": "active"
+        },
+        "LTA Aircraft": {
+          "attribute": "reaction",
+          "skill_type": "active"
+        },
+        "Motorboat": {
+          "attribute": "reaction",
+          "skill_type": "active"
+        },
+        "Rotor Aircraft": {
+          "attribute": "reaction",
+          "skill_type": "active"
+        },
+        "Sailboat": {
+          "attribute": "reaction",
+          "skill_type": "active"
+        },
+        "Ship": {
+          "attribute": "reaction",
+          "skill_type": "active"
+        },
+        "Submarine": {
+          "attribute": "reaction",
+          "skill_type": "active"
+        },
+        "Vectored Thrust Aircraft": {
+          "attribute": "reaction",
+          "skill_type": "active"
+        }
+      }
+    },
+    "Knowledge Skills": {},
+    "Language Skills": {}
+  },
+  "Traditions": {
+    "Hermetic": {
+      "allowed_aspects": [
+        "Sorcerer",
+        "Conjurer",
+        "Elementalist*"
+      ],
+      "allowed_foci": [
+        "Fire",
+        "Water",
+        "Earth",
+        "Air"
+      ],
+      "focus_name": "Element",
+      "always_has_focus": false
+    },
+    "Shamanic": {
+      "allowed_aspects": [
+        "Sorcerer",
+        "Conjurer",
+        "Shamanist"
+      ],
+      "allowed_foci": [
+        "Bear",
+        "Buffalo",
+        "Cat",
+        "Coyote",
+        "Dog",
+        "Dolphin",
+        "Eagle",
+        "Gator",
+        "Lion",
+        "Mouse",
+        "Owl",
+        "Raccoon",
+        "Rat",
+        "Raven",
+        "Shark",
+        "Snake",
+        "Wolf"
+      ],
+      "focus_name": "Totem",
+      "always_has_focus": true
+    },
+    "Adept": {
+      "allowed_aspects": [
+        "Physical Adept"
+      ],
+      "allowed_foci": [],
+      "focus_name": "Path",
+      "always_has_focus": false
+    }
+  },
+  "Spells": {
+    "Combat": {
+      "Death Touch": {
+        "type": "M",
+        "target": "W",
+        "duration": "I",
+        "drain": "(Damage Level - 1)",
+        "page": 191
+      },
+      "Manabolt": {
+        "type": "M",
+        "target": "W",
+        "duration": "I",
+        "drain": "(Damage Level)",
+        "page": 191
+      },
+      "Manaball": {
+        "type": "M",
+        "target": "W",
+        "duration": "I",
+        "drain": "(Damage Level + 1)",
+        "page": 191
+      },
+      "Powerbolt": {
+        "type": "P",
+        "target": "B",
+        "duration": "I",
+        "drain": "+1 (Damage Level)",
+        "page": 191
+      },
+      "Powerball": {
+        "type": "P",
+        "target": "B",
+        "duration": "I",
+        "drain": "+1 (Damage Level + 1)",
+        "page": 191
+      },
+      "Stunbolt": {
+        "type": "M",
+        "target": "W",
+        "duration": "I",
+        "drain": "-1 (Damage Level)",
+        "page": 191
+      },
+      "Stunball": {
+        "type": "M",
+        "target": "W",
+        "duration": "I",
+        "drain": "-1 (Damage Level + 1)",
+        "page": 191
+      }
+    },
+    "Detection": {
+      "Analyze Device": {
+        "type": "P",
+        "target": "OR",
+        "duration": "S",
+        "drain": "+1(M)",
+        "page": 192
+      },
+      "Analyze Truth": {
+        "type": "M",
+        "target": "W",
+        "duration": "S",
+        "drain": "L",
+        "page": 192
+      },
+      "Clairaudience": {
+        "type": "M",
+        "target": "6",
+        "duration": "S",
+        "drain": "M",
+        "page": 192
+      },
+      "Clairvoyance": {
+        "type": "M",
+        "target": "6",
+        "duration": "S",
+        "drain": "M",
+        "page": 192
+      },
+      "Combat Sense": {
+        "type": "M",
+        "target": "4",
+        "duration": "S",
+        "drain": "S",
+        "page": 192
+      },
+      "Detect Enemies": {
+        "type": "M",
+        "target": "See table on sr3 p192",
+        "duration": "S",
+        "drain": "M",
+        "page": 192
+      },
+      "Detect Individual": {
+        "type": "M",
+        "target": "See table on sr3 p192",
+        "duration": "S",
+        "drain": "L",
+        "page": 192
+      },
+      "Detect Life": {
+        "type": "M",
+        "target": "See table on sr3 p192",
+        "duration": "S",
+        "drain": "L",
+        "page": 192
+      },
+      "Detect (Life Form)": {
+        "type": "M",
+        "target": "See table on sr3 p192",
+        "duration": "S",
+        "drain": "-1(L)",
+        "page": 193
+      },
+      "Detect Magic": {
+        "type": "M",
+        "target": "See table on sr3 p192",
+        "duration": "S",
+        "drain": "L",
+        "page": 193
+      },
+      "Detect (Object)": {
+        "type": "P",
+        "target": "See table on sr3 p192",
+        "duration": "S",
+        "drain": "+1(M)",
+        "page": 193
+      },
+      "Mindlink": {
+        "type": "M",
+        "target": "4",
+        "duration": "S",
+        "drain": "S",
+        "page": 193
+      },
+      "Mind Probe": {
+        "type": "M",
+        "target": "W",
+        "duration": "S",
+        "drain": "S",
+        "page": 193
+      }
+    },
+    "Health": {
+      "Antidote": {
+        "type": "M",
+        "target": "Toxin Strength",
+        "duration": "P",
+        "drain": "(Toxin Damage Level)",
+        "page": 193
+      },
+      "Cure Disease": {
+        "type": "M",
+        "target": "Power",
+        "duration": "P",
+        "drain": "(Disease Damage Level)",
+        "page": 193
+      },
+      "Decrease (Attribute)": {
+        "type": "M",
+        "target": "10 - Essence",
+        "duration": "S",
+        "drain": "+1(S)",
+        "page": 193
+      },
+      "Decrease (Cybered Attribute)": {
+        "type": "P",
+        "target": "10 - Essence",
+        "duration": "S",
+        "drain": "+2(S)",
+        "page": 193
+      },
+      "Detox": {
+        "type": "M",
+        "target": "Toxin Strength",
+        "duration": "P",
+        "drain": "-2(Toxin Damage)",
+        "page": 193
+      },
+      "Heal": {
+        "type": "M",
+        "target": "10 - Essence",
+        "duration": "P",
+        "drain": "(Wound Level)",
+        "page": 193
+      },
+      "Treat": {
+        "type": "M",
+        "target": "10 - Essence",
+        "duration": "P",
+        "drain": "-1(Wound Level)",
+        "page": 193
+      },
+      "Healthy Glow": {
+        "type": "M",
+        "target": "4",
+        "duration": "P",
+        "drain": "L",
+        "page": 194
+      },
+      "Hibernate": {
+        "type": "M",
+        "target": "4",
+        "duration": "S",
+        "drain": "+1(M)",
+        "page": 194
+      },
+      "Increase (Attribute)": {
+        "type": "M",
+        "target": "Attribute",
+        "duration": "S",
+        "drain": "+1(M)",
+        "page": 194
+      },
+      "Increase (Attribute) (copy)": {
+        "type": "M",
+        "target": "Attribute",
+        "duration": "S",
+        "drain": "+2(M)",
+        "page": 194
+      },
+      "Increase Reaction": {
+        "type": "M",
+        "target": "Reaction",
+        "duration": "S",
+        "drain": "+1(S)",
+        "page": 194
+      },
+      "Increase Reflexes +1": {
+        "type": "M",
+        "target": "Reaction",
+        "duration": "S",
+        "drain": "+1(S)",
+        "page": 194
+      },
+      "Increase Reflexes +2": {
+        "type": "M",
+        "target": "Reaction",
+        "duration": "S",
+        "drain": "+1(D)",
+        "page": 194
+      },
+      "Increase Reflexes +3": {
+        "type": "M",
+        "target": "Reaction",
+        "duration": "S",
+        "drain": "+3(D)",
+        "page": 194
+      },
+      "Oxygenate": {
+        "type": "P",
+        "target": "4",
+        "duration": "S",
+        "drain": "+2(L)",
+        "page": 194
+      },
+      "Prophylaxis": {
+        "type": "M",
+        "target": "4",
+        "duration": "S",
+        "drain": "+1(L)",
+        "page": 194
+      },
+      "Resist Pain": {
+        "type": "M",
+        "target": "4",
+        "duration": "P",
+        "drain": "-2(Damage)",
+        "page": 194
+      },
+      "Stabilize": {
+        "type": "M",
+        "target": "4 + minutes",
+        "duration": "P",
+        "drain": "+1(M)",
+        "page": 194
+      }
+    },
+    "Illusion": {
+      "Directed Illusion": {
+        "Confusion": {
+          "type": "M",
+          "target": "W",
+          "duration": "S",
+          "drain": "S",
+          "page": 195
+        },
+        "Mass Confusion": {
+          "type": "M",
+          "target": "W",
+          "duration": "S",
+          "drain": "D",
+          "page": 195
+        },
+        "Chaos": {
+          "type": "P",
+          "target": "I",
+          "duration": "S",
+          "drain": "+1(S)",
+          "page": 195
+        },
+        "Chaotic World": {
+          "type": "P",
+          "target": "I",
+          "duration": "S",
+          "drain": "+1(D)",
+          "page": 195
+        },
+        "Entertainment": {
+          "type": "M",
+          "target": "W",
+          "duration": "S",
+          "drain": "L",
+          "page": 195
+        },
+        "Trid Entertainment": {
+          "type": "P",
+          "target": "I",
+          "duration": "S",
+          "drain": "+1(L)",
+          "page": 195
+        }
+      },
+      "Indirect Illusion": {
+        "Invisibility": {
+          "type": "M",
+          "target": "4",
+          "duration": "S",
+          "drain": "M",
+          "page": 195
+        },
+        "Improved Invisibility": {
+          "type": "P",
+          "target": "4",
+          "duration": "S",
+          "drain": "+1(M)",
+          "page": 195
+        },
+        "Mask": {
+          "type": "M",
+          "target": "4",
+          "duration": "S",
+          "drain": "M",
+          "page": 195
+        },
+        "Physical Mask": {
+          "type": "P",
+          "target": "4",
+          "duration": "S",
+          "drain": "+1(M)",
+          "page": 195
+        },
+        "Phantasm": {
+          "type": "M",
+          "target": "4",
+          "duration": "S",
+          "drain": "D",
+          "page": 195
+        },
+        "Trid Phantasm": {
+          "type": "P",
+          "target": "4",
+          "duration": "S",
+          "drain": "+1(D)",
+          "page": 195
+        },
+        "Silence": {
+          "type": "P",
+          "target": "4",
+          "duration": "S",
+          "drain": "+1(S)",
+          "page": 196
+        },
+        "Stealth": {
+          "type": "P",
+          "target": "4",
+          "duration": "S",
+          "drain": "+1(M)",
+          "page": 196
+        }
+      }
+    },
+    "Manupulation": {
+      "Control": {
+        "Control Actions": {
+          "type": "M",
+          "target": "W",
+          "duration": "S",
+          "drain": "+1(M)",
+          "page": 196
+        },
+        "Control Emotion": {
+          "type": "M",
+          "target": "W",
+          "duration": "S",
+          "drain": "+1(M)",
+          "page": 196
+        },
+        "Control Thoughts": {
+          "type": "M",
+          "target": "W",
+          "duration": "S",
+          "drain": "+1(S)",
+          "page": 196
+        },
+        "Influence": {
+          "type": "M",
+          "target": "P",
+          "duration": "S",
+          "drain": "S",
+          "page": 196
+        }
+      },
+      "Elemental": {
+        "Acid Stream": {
+          "type": "P",
+          "target": "4",
+          "duration": "I",
+          "drain": "+1(Damage Level + 1)",
+          "page": 196
+        },
+        "Toxic Wave": {
+          "type": "P",
+          "target": "4",
+          "duration": "I",
+          "drain": "+1(Damage Level + 2)",
+          "page": 196
+        },
+        "Flamethrower": {
+          "type": "P",
+          "target": "4",
+          "duration": "I",
+          "drain": "+1(Damage Level + 1)",
+          "page": 197
+        },
+        "Fireball": {
+          "type": "P",
+          "target": "4",
+          "duration": "I",
+          "drain": "+1(Damage Level + 2)",
+          "page": 197
+        },
+        "Lightning Bolt": {
+          "type": "P",
+          "target": "4",
+          "duration": "I",
+          "drain": "+1(Damage Level + 1)",
+          "page": 197
+        },
+        "Ball Lightning": {
+          "type": "P",
+          "target": "4",
+          "duration": "I",
+          "drain": "+1(Damage Level + 2)",
+          "page": 197
+        }
+      },
+      "Telekinetic": {
+        "Clout": {
+          "type": "P",
+          "target": "4",
+          "duration": "I",
+          "drain": "(Damage Level)",
+          "page": 197
+        },
+        "Fling": {
+          "type": "P",
+          "target": "See text sr3 p197",
+          "duration": "I",
+          "drain": "+1(M)",
+          "page": 197
+        },
+        "Levitate": {
+          "type": "P",
+          "target": "4",
+          "duration": "S",
+          "drain": "+2(M)",
+          "page": 197
+        },
+        "Magic Fingers": {
+          "type": "P",
+          "target": "6",
+          "duration": "S",
+          "drain": "+2(M)",
+          "page": 197
+        },
+        "Poltergeist": {
+          "type": "P",
+          "target": "4",
+          "duration": "S",
+          "drain": "+1(M)",
+          "page": 197
+        }
+      },
+      "Transformation": {
+        "Armor": {
+          "type": "P",
+          "target": "6",
+          "duration": "S",
+          "drain": "+2(M)",
+          "page": 198
+        },
+        "Physical Barrier": {
+          "type": "P",
+          "target": "6",
+          "duration": "S",
+          "drain": "+2(S)",
+          "page": 198
+        },
+        "Astral Barrier": {
+          "type": "M",
+          "target": "6",
+          "duration": "S",
+          "drain": "+1(S)",
+          "page": 198
+        },
+        "Ice Sheet": {
+          "type": "P",
+          "target": "4",
+          "duration": "I",
+          "drain": "+1(S)",
+          "page": 198
+        },
+        "Ignite": {
+          "type": "P",
+          "target": "4",
+          "duration": "P",
+          "drain": "+1(D)",
+          "page": 198
+        },
+        "Light": {
+          "type": "P",
+          "target": "4",
+          "duration": "S",
+          "drain": "+2(M)",
+          "page": 198
+        },
+        "Petrify": {
+          "type": "P",
+          "target": "B",
+          "duration": "S",
+          "drain": "+1(S)",
+          "page": 198
+        },
+        "Shadow": {
+          "type": "P",
+          "target": "4",
+          "duration": "S",
+          "drain": "+2(M)",
+          "page": 198
+        }
+      }
+    }
+  },
+  "Powers": {
+    "Astral Perception": {
+      "cost": 2,
+      "max_levels": 1,
+      "page": 168
+    },
+    "Attribute Boost": {
+      "cost": 0.25,
+      "max_levels": null,
+      "page": 168
+    },
+    "Body Control": {
+      "cost": 0.25,
+      "max_levels": null,
+      "page": 169
+    },
+    "Combat Sense": {
+      "cost": 1,
+      "max_levels": 3,
+      "page": 169
+    },
+    "Enhanced Perception": {
+      "cost": 0.5,
+      "max_levels": null,
+      "page": 169
+    },
+    "Improved Ability (physical skill)": {
+      "cost": 0.25,
+      "max_levels": null,
+      "page": 169
+    },
+    "Improved Ability (combat skill)": {
+      "cost": 0.5,
+      "max_levels": null,
+      "page": 169
+    },
+    "Improved Physical Attribute": {
+      "cost": 0.5,
+      "max_levels": null,
+      "page": 169
+    },
+    "Improved Physical Attribute (beyond racial limit)": {
+      "cost": 0.5,
+      "max_levels": null,
+      "page": 169
+    },
+    "Improved Reflexes 1": {
+      "cost": 2,
+      "max_levels": 1,
+      "page": 169
+    },
+    "Improved Reflexes 2": {
+      "cost": 3,
+      "max_levels": 1,
+      "page": 169
+    },
+    "Improved Reflexes 3": {
+      "cost": 5,
+      "max_levels": 1,
+      "page": 169
+    },
+    "Improved Sense (Direction Sense)": {
+      "cost": 0.25,
+      "max_levels": 1,
+      "page": 170
+    },
+    "Improved Sense (Improved Scent)": {
+      "cost": 0.25,
+      "max_levels": 1,
+      "page": 170
+    },
+    "Improved Sense (Improved Taste)": {
+      "cost": 0.25,
+      "max_levels": 1,
+      "page": 170
+    },
+    "Improved Sense (Flare Compensation)": {
+      "cost": 0.25,
+      "max_levels": 1,
+      "page": 170
+    },
+    "Improved Sense (Sound Dampening)": {
+      "cost": 0.25,
+      "max_levels": 1,
+      "page": 170
+    },
+    "Killing Hands (L)": {
+      "cost": 0.5,
+      "max_levels": 1,
+      "page": 170
+    },
+    "Killing Hands (M)": {
+      "cost": 1,
+      "max_levels": 1,
+      "page": 170
+    },
+    "Killing Hands (S)": {
+      "cost": 2,
+      "max_levels": 1,
+      "page": 170
+    },
+    "Killing Hands (D)": {
+      "cost": 4,
+      "max_levels": 1,
+      "page": 170
+    },
+    "Magic Resistance": {
+      "cost": 1,
+      "max_levels": null,
+      "page": 170
+    },
+    "Missile Parry": {
+      "cost": 1,
+      "max_levels": 1,
+      "page": 170
+    },
+    "Mystic Armor": {
+      "cost": 0.5,
+      "max_levels": null,
+      "page": 170
+    },
+    "Pain Resistance": {
+      "cost": 0.5,
+      "max_levels": null,
+      "page": 170
+    },
+    "Rapid Healing": {
+      "cost": 0.5,
+      "max_levels": null,
+      "page": 170
+    },
+    "Suspended State": {
+      "cost": 1,
+      "max_levels": 1,
+      "page": 170
+    }
+  },
+  "Augments": {
+    "Cyberware": {
+      "Bodyware": {
+        "Bone Lacing (Plastic)": {
+          "mods": {
+            "cyber_encumbrance": 5,
+            "cyber_body": 1,
+            "cyber_unarmed": "(STR + 2)M Stun"
+          },
+          "essence": 0.5,
+          "cost": 7500,
+          "street_index": 1.5,
+          "legality": "6P-N",
+          "page": 302,
+          "availability_time": 14,
+          "availability_rating": 5,
+          "availability_unit": "days"
+        },
+        "Bone Lacing (Aluminum)": {
+          "mods": {
+            "cyber_encumbrance": 10,
+            "cyber_body": 1,
+            "cyber_impact": 1,
+            "cyber_unarmed": "(STR + 3)M Stun"
+          },
+          "essence": 1.15,
+          "cost": 25000,
+          "street_index": 1.5,
+          "legality": "6P-Q",
+          "page": 302,
+          "availability_time": 14,
+          "availability_rating": 5,
+          "availability_unit": "days"
+        },
+        "Bone Lacing (Titanium)": {
+          "mods": {
+            "cyber_encumbrance": 15,
+            "cyber_body": 2,
+            "cyber_impact": 1,
+            "cyber_ballistic": 1,
+            "cyber_unarmed": "(STR + 4)M Stun"
+          },
+          "essence": 2.25,
+          "cost": 75000,
+          "street_index": 1.5,
+          "legality": "6-R",
+          "page": 302,
+          "availability_time": 14,
+          "availability_rating": 5,
+          "availability_unit": "days"
+        },
+        "Fingertip Compartment": {
+          "essence": 0.1,
+          "cost": 3000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 302,
+          "availability_time": 3,
+          "availability_rating": 24,
+          "availability_unit": "hrs"
+        },
+        "Hand Blade": {
+          "essence": 0.1,
+          "cost": 7500,
+          "street_index": 1.5,
+          "legality": "4P-R",
+          "page": 302,
+          "availability_time": 6,
+          "availability_rating": 5,
+          "availability_unit": "days"
+        },
+        "Hand Blade (Retractable)": {
+          "essence": 0.25,
+          "cost": 10000,
+          "street_index": 1.5,
+          "legality": "3P-R",
+          "page": 302,
+          "availability_time": 6,
+          "availability_rating": 5,
+          "availability_unit": "days"
+        },
+        "Hand Razors": {
+          "essence": 0.1,
+          "cost": 4500,
+          "street_index": 1,
+          "legality": "3-N",
+          "page": 302,
+          "availability_time": 3,
+          "availability_rating": 72,
+          "availability_unit": "hrs"
+        },
+        "Hand Razors, Retractable": {
+          "essence": 0.2,
+          "cost": 13000,
+          "street_index": 1,
+          "legality": "3-N",
+          "page": 302,
+          "availability_time": 6,
+          "availability_rating": 72,
+          "availability_unit": "hrs"
+        },
+        "Hand Razors, Improved ": {
+          "essence": 0.1,
+          "cost": 9000,
+          "street_index": 1,
+          "legality": "3-N",
+          "page": 302,
+          "availability_time": 5,
+          "availability_rating": 72,
+          "availability_unit": "hrs"
+        },
+        "Hand Razors, Improved, Retractable": {
+          "essence": 0.2,
+          "cost": 17500,
+          "street_index": 1,
+          "legality": "3-N",
+          "page": 302,
+          "availability_time": 6,
+          "availability_rating": 72,
+          "availability_unit": "hrs"
+        },
+        "Muscle Replacement": {
+          "essence": "rating",
+          "cost": "rating * 20000",
+          "street_index": 1,
+          "legality": "5P-Q",
+          "page": 302,
+          "availability_time": 4,
+          "availability_rating": 4,
+          "availability_unit": "days"
+        },
+        "Smartlink": {
+          "essence": 0.5,
+          "cost": 2500,
+          "street_index": 1,
+          "legality": "5P-N",
+          "page": 302,
+          "availability_time": 3,
+          "availability_rating": 36,
+          "availability_unit": "hrs"
+        },
+        "Spur": {
+          "essence": 0.1,
+          "cost": 7000,
+          "street_index": 1,
+          "legality": "3-N",
+          "page": 302,
+          "availability_time": 3,
+          "availability_rating": 72,
+          "availability_unit": "hrs"
+        },
+        "Spur, Retractable": {
+          "essence": 0.3,
+          "cost": 11500,
+          "street_index": 1,
+          "legality": "3-N",
+          "page": 302,
+          "availability_time": 5,
+          "availability_rating": 72,
+          "availability_unit": "hrs"
+        },
+        "Voice Modulator": {
+          "essence": 0.2,
+          "cost": 45000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 302,
+          "availability_time": 2,
+          "availability_rating": 24,
+          "availability_unit": "hrs"
+        },
+        "Voice Modulator Volume": {
+          "essence": 0,
+          "cost": 10000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 302,
+          "availability_time": 2,
+          "availability_rating": 24,
+          "availability_unit": "hrs"
+        },
+        "Voice Modulator Playback": {
+          "essence": 0.2,
+          "cost": 40000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 302,
+          "availability_time": 4,
+          "availability_rating": 48,
+          "availability_unit": "hrs"
+        },
+        "Voice Modulator Secondary Pattern": {
+          "essence": 0,
+          "cost": "30000 + 20000 * rating",
+          "street_index": 2,
+          "legality": "3-Q",
+          "rating": "rating",
+          "page": 302,
+          "availability_time": 6,
+          "availability_rating": 7,
+          "availability_unit": "days"
+        },
+        "Tonal Shift": {
+          "essence": 0,
+          "cost": 25000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 302,
+          "availability_time": 2,
+          "availability_rating": 24,
+          "availability_unit": "hrs"
+        },
+        "Boosted Reflexes": {
+          "mods": {
+            "rating": {
+              "1;1": {
+                "cyber_initiative": 1
+              },
+              "2;2": {
+                "cyber_reaction": 1,
+                "cyber_initiative": 1
+              },
+              "3;3": {
+                "cyber_reaction": 2,
+                "cyber_initiative": 2
+              }
+            }
+          },
+          "essence": {
+            "rating": {
+              "1;1": 0.5,
+              "2;2": 1.25,
+              "3;3": 2.8
+            }
+          },
+          "cost": {
+            "rating": {
+              "1;1": 15000,
+              "2;2": 40000,
+              "3;3": 90000
+            }
+          },
+          "street_index": {
+            "rating": {
+              "1;1": 1,
+              "2;2": 1.25,
+              "3;3": 1.5
+            }
+          },
+          "legality": {
+            "rating": {
+              "1;1": "8P-Q",
+              "2;2": "6P-Q",
+              "3;3": "5P-Q"
+            }
+          },
+          "page": 302,
+          "availability_time": 3,
+          "availability_rating": 24,
+          "availability_unit": "hrs"
+        },
+        "Dermal Plating": {
+          "mods": {
+            "cyber_body": "rating"
+          },
+          "essence": "rating * 0.5",
+          "cost": {
+            "rating": {
+              "1;1": 6000,
+              "2;2": 15000,
+              "3;3": 45000
+            }
+          },
+          "street_index": 1,
+          "legality": {
+            "rating": {
+              "1;2": "6P-N",
+              "3;3": "5P-N"
+            }
+          },
+          "rating": "rating",
+          "page": 302,
+          "availability_time": 4,
+          "availability_rating": 12,
+          "availability_unit": "days"
+        },
+        "Filtration Systems": {
+          "Air Filtration System": {
+            "essence": "rating / 10",
+            "cost": "rating * 15000",
+            "street_index": 1,
+            "legality": "Legal",
+            "rating": "rating",
+            "page": 302,
+            "availability_time": 6,
+            "availability_rating": 4,
+            "availability_unit": "days"
+          },
+          "Blood Filtration System": {
+            "essence": "rating / 5",
+            "cost": "rating * 10000",
+            "street_index": 1,
+            "rating": "rating",
+            "legality": "Legal",
+            "page": 302,
+            "availability_time": 6,
+            "availability_rating": 4,
+            "availability_unit": "days"
+          },
+          "Ingested Toxin Filtration System": {
+            "essence": "rating / 5",
+            "cost": "rating * 10000",
+            "street_index": 1,
+            "rating": "rating",
+            "legality": "Legal",
+            "page": 302,
+            "availability_time": 6,
+            "availability_rating": 4,
+            "availability_unit": "days"
+          }
+        },
+        "Simrigs": {
+          "Baseline Cyberware Simrig": {
+            "essence": 2,
+            "cost": 300000,
+            "street_index": 1,
+            "legality": "Legal",
+            "page": 302,
+            "availability_time": 2,
+            "availability_rating": 5,
+            "availability_unit": "days"
+          },
+          "Full-X Cyberware Simrig": {
+            "essence": 2,
+            "cost": 500000,
+            "street_index": 3,
+            "legality": "Legal",
+            "page": 302,
+            "availability_time": 6,
+            "availability_rating": 12,
+            "availability_unit": "days"
+          },
+          "Simlink": {
+            "essence": 0.6,
+            "cost": "10000 * rating + 70000",
+            "street_index": 1.5,
+            "rating": "rating",
+            "legality": "Legal",
+            "page": 302,
+            "availability_time": 3,
+            "availability_rating": 5,
+            "availability_unit": "days"
+          }
+        },
+        "Skillwires": {
+          "essence": "0.2 * rating",
+          "cost": "max_mp * rating * 500",
+          "street_index": 1,
+          "rating": "rating",
+          "max_mp": "max_mp",
+          "legality": "Legal",
+          "page": 302,
+          "availability_time": "rating",
+          "availability_rating": 10,
+          "availability_unit": "days"
+        },
+        "Vehicle Control Rig": {
+          "mods": {
+            "cyber_initiative_rigger": "rating",
+            "cyber_reaction_rigger": "rating * 2"
+          },
+          "essence": {
+            "rating": {
+              "1;1": 2,
+              "2;2": 3,
+              "3;3": 5
+            }
+          },
+          "cost": {
+            "rating": {
+              "1;1": 12000,
+              "2;2": 60000,
+              "3;3": 300000
+            }
+          },
+          "street_index": {
+            "rating": {
+              "1;1": 1,
+              "2;2": 1.25,
+              "3;3": 1.5
+            }
+          },
+          "rating": "rating",
+          "legality": {
+            "rating": {
+              "1;2": "6P-N",
+              "3;3": "5P-N"
+            }
+          },
+          "page": 302,
+          "availability_time": {
+            "rating": {
+              "1;1": 6,
+              "2;3": 8
+            }
+          },
+          "availability_rating": 48,
+          "availability_unit": "hrs"
+        },
+        "Wired Reflexes": {
+          "mods": {
+            "cyber_initiative": "rating",
+            "cyber_reaction": "rating * 2"
+          },
+          "essence": {
+            "rating": {
+              "1;1": 2,
+              "2;2": 3,
+              "3;3": 5
+            }
+          },
+          "cost": {
+            "rating": {
+              "1;1": 55000,
+              "2;2": 165000,
+              "3;3": 500000
+            }
+          },
+          "street_index": 1,
+          "rating": "rating",
+          "legality": {
+            "rating": {
+              "1;1": "5P-Q",
+              "2;2": "4P-Q",
+              "3;3": "3-R"
+            }
+          },
+          "page": 302,
+          "availability_time": {
+            "rating": {
+              "1;2": 4,
+              "3;3": 8
+            }
+          },
+          "availability_rating": {
+            "rating ": {
+              "1;2": 8,
+              "3;3": 14
+            }
+          },
+          "availability_unit": "days"
+        },
+        "Wired Reflexes with Trigger": {
+          "mods": {
+            "cyber_initiative": "rating",
+            "cyber_reaction": "rating * 2"
+          },
+          "essence": {
+            "rating": {
+              "1;1": 2.2,
+              "2;2": 3.2,
+              "3;3": 5.2
+            }
+          },
+          "cost": {
+            "rating": {
+              "1;1": 68000,
+              "2;2": 178000,
+              "3;3": 513000
+            }
+          },
+          "street_index": 1,
+          "rating": "rating",
+          "legality": {
+            "rating": {
+              "1;2": "4P-Q",
+              "3;3": "3-R"
+            }
+          },
+          "page": 302,
+          "availability_time": {
+            "rating": {
+              "1;2": 4,
+              "3;3": 8
+            }
+          },
+          "availability_rating": {
+            "rating ": {
+              "1;2": 8,
+              "3;3": 14
+            }
+          },
+          "availability_unit": "days"
+        },
+        "Reaction Enhancer": {
+          "mods": {
+            "cyber_reaction": "rating"
+          },
+          "essence": "rating * 0.3",
+          "cost": "rating * 60000",
+          "street_index": 2,
+          "rating": "rating",
+          "legality": "4P-Q",
+          "page": 302,
+          "availability_time": 6,
+          "availability_rating": 7,
+          "availability_unit": "days"
+        }
+      },
+      "Headware": {
+        "Chipjack": {
+          "essence": 0.2,
+          "cost": 1000,
+          "street_index": 0.9,
+          "legality": "legal",
+          "page": 298,
+          "availability_time": 72,
+          "availability_rating": 3,
+          "availability_unit": "hrs"
+        },
+        "Datajack": {
+          "essence": 0.2,
+          "cost": 1000,
+          "street_index": 0.9,
+          "legality": "legal",
+          "page": 298,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "always"
+        },
+        "Data Lock": {
+          "essence": 0.2,
+          "cost": "1000 + encryption",
+          "street_index": 15,
+          "legality": "as encryption",
+          "page": 298,
+          "availability_time": 36,
+          "availability_rating": 6,
+          "availability_unit": "hours"
+        },
+        "Knowsoft Link": {
+          "essence": 0.1,
+          "cost": 1000,
+          "street_index": 1,
+          "legality": "legal",
+          "page": 298,
+          "availability_time": 24,
+          "availability_rating": 3,
+          "availability_unit": "hours"
+        },
+        "Memory": {
+          "essence": "mp / 300",
+          "cost": "mp * 150",
+          "street_index": 0.8,
+          "legality": "legal",
+          "page": 298,
+          "availability_time": 24,
+          "availability_rating": 3,
+          "availability_unit": "hours"
+        },
+        "Tooth Compartment (breakable)": {
+          "essence": 0,
+          "cost": 700,
+          "street_index": 1.5,
+          "legality": "10P-Q",
+          "page": 299,
+          "availability_time": 48,
+          "availability_rating": 3,
+          "availability_unit": "hours"
+        },
+        "Tooth Compartment (storage)": {
+          "essence": 0,
+          "cost": 1500,
+          "street_index": 1.25,
+          "legality": "legal",
+          "page": 299,
+          "availability_time": 48,
+          "availability_rating": 2,
+          "availability_unit": "hours"
+        },
+        "Communications": {
+          "Commlink": {
+            "essence": 0.3,
+            "cost": "rating * 5000",
+            "street_index": 1,
+            "legality": "legal",
+            "page": 297,
+            "availability_time": 48,
+            "availability_rating": 3,
+            "availability_unit": "hrs"
+          },
+          "Radio": {
+            "essence": 0.75,
+            "cost": "rating * 2000",
+            "street_index": 0.8,
+            "legality": "legal",
+            "page": 297,
+            "availability_time": 24,
+            "availability_rating": 2,
+            "availability_unit": "hrs"
+          },
+          "Radio Receiver": {
+            "essence": 0.8,
+            "cost": "rating * 1000",
+            "street_index": 0.8,
+            "legality": "legal",
+            "page": 297,
+            "availability_time": 24,
+            "availability_rating": 2,
+            "availability_unit": "hrs"
+          },
+          "Subvocal Microphones": {
+            "essence": 0.1,
+            "cost": 850,
+            "street_index": 2,
+            "legality": "legal",
+            "page": 297,
+            "availability_time": 72,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Telephone": {
+            "essence": 0.5,
+            "cost": 3700,
+            "street_index": 0.9,
+            "legality": "legal",
+            "page": 298,
+            "availability_time": 24,
+            "availability_rating": 3,
+            "availability_unit": "hrs"
+          }
+        },
+        "Cyberears": {
+          "Cyber Replacement Ear": {
+            "essence": 0.3,
+            "cost": 4000,
+            "street_index": 0.75,
+            "legality": "legal",
+            "holds": {
+              "type": "ear",
+              "essence": 0.5
+            },
+            "page": 299,
+            "availability_time": 24,
+            "availability_rating": 2,
+            "availability_unit": "hrs"
+          },
+          "Cosmetic Modification": {
+            "essence": 0,
+            "cost": 1000,
+            "street_index": 0.8,
+            "legality": "legal",
+            "fits": "ear",
+            "page": 299,
+            "availability_time": 24,
+            "availability_rating": 2,
+            "availability_unit": "hrs"
+          },
+          "Dampener": {
+            "essence": 0.1,
+            "cost": 3500,
+            "street_index": 1.25,
+            "legality": "legal",
+            "fits": "ear",
+            "page": 299,
+            "availability_time": 48,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Hearing Amplification": {
+            "essence": 0.2,
+            "cost": 3500,
+            "street_index": 1.25,
+            "legality": "legal",
+            "fits": "ear",
+            "page": 299,
+            "availability_time": 48,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "High Frequency": {
+            "essence": 0.2,
+            "cost": 3000,
+            "street_index": 1.25,
+            "legality": "legal",
+            "fits": "ear",
+            "page": 299,
+            "availability_time": 48,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Low Frequency": {
+            "essence": 0.2,
+            "cost": 3000,
+            "street_index": 1.25,
+            "legality": "legal",
+            "fits": "ear",
+            "page": 299,
+            "availability_time": 48,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Recorder": {
+            "essence": 0.3,
+            "cost": 7000,
+            "street_index": 2,
+            "legality": "12P-N",
+            "fits": "ear",
+            "page": 299,
+            "availability_time": 48,
+            "availability_rating": 8,
+            "availability_unit": "hrs"
+          },
+          "Select Sound Filter": {
+            "essence": 0.3,
+            "cost": "level * 10000",
+            "street_index": 1.25,
+            "legality": "legal",
+            "fits": "ear",
+            "page": 299,
+            "availability_time": 48,
+            "availability_rating": 6,
+            "availability_unit": "hrs"
+          }
+        },
+        "Cybereyes": {
+          "Cyber Replacement Eye": {
+            "essence": 0.2,
+            "cost": 5000,
+            "street_index": 0.75,
+            "legality": "legal",
+            "holds": {
+              "type": "eye",
+              "essence": 0.5
+            },
+            "page": 299,
+            "availability_time": 24,
+            "availability_rating": 2,
+            "availability_unit": "hrs"
+          },
+          "Cosmetic Modification": {
+            "essence": 0,
+            "cost": 1000,
+            "street_index": 0.75,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 299,
+            "availability_time": 24,
+            "availability_rating": 2,
+            "availability_unit": "hrs"
+          },
+          "Camera": {
+            "essence": 0.4,
+            "cost": 5000,
+            "street_index": 2,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 299,
+            "availability_time": 24,
+            "availability_rating": 6,
+            "availability_unit": "hrs"
+          },
+          "Display Link": {
+            "essence": 0.1,
+            "cost": 1000,
+            "street_index": 1,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 299,
+            "availability_time": 36,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Flare Compensation": {
+            "essence": 0.1,
+            "cost": 2000,
+            "street_index": 1.25,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 299,
+            "availability_time": 48,
+            "availability_rating": 5,
+            "availability_unit": "hrs"
+          },
+          "Image Link": {
+            "essence": 0.2,
+            "cost": 1600,
+            "street_index": 2,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 299,
+            "availability_time": 48,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Low-Light": {
+            "essence": 0.2,
+            "cost": 3000,
+            "street_index": 1.25,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 300,
+            "availability_time": 36,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Opticam": {
+            "essence": 0.5,
+            "cost": 20000,
+            "street_index": 2,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 300,
+            "availability_time": 72,
+            "availability_rating": 5,
+            "availability_unit": "hrs"
+          },
+          "Protective Covers": {
+            "essence": 0,
+            "cost": 500,
+            "street_index": 1.5,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 300,
+            "availability_time": 48,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Protective Covers (one-way reflective)": {
+            "essence": 0,
+            "cost": 600,
+            "street_index": 1.5,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 300,
+            "availability_time": 48,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Retinal Clock": {
+            "essence": 0.1,
+            "cost": 450,
+            "street_index": 1,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 300,
+            "availability_time": 24,
+            "availability_rating": 3,
+            "availability_unit": "hrs"
+          },
+          "Retinal Duplication": {
+            "essence": 0.1,
+            "cost": "rating * 20000",
+            "street_index": 2,
+            "legality": "3-Q",
+            "rating": "rating",
+            "fits": "eye",
+            "page": 300,
+            "availability_time": 7,
+            "availability_rating": 8,
+            "availability_unit": "days"
+          },
+          "Thermographic": {
+            "essence": 0.2,
+            "cost": 3000,
+            "street_index": 1.25,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 300,
+            "availability_time": 36,
+            "availability_rating": 4,
+            "availability_unit": "hrs"
+          },
+          "Vision Magnification": {
+            "Optical 1": {
+              "essence": 0.2,
+              "cost": 2500,
+              "street_index": 1,
+              "legality": "legal",
+              "fits": "eye",
+              "page": 300,
+              "availability_time": 48,
+              "availability_rating": 4,
+              "availability_unit": "hrs"
+            },
+            "Optical 2": {
+              "essence": 0.2,
+              "cost": 4000,
+              "street_index": 1,
+              "legality": "legal",
+              "fits": "eye",
+              "page": 300,
+              "availability_time": 48,
+              "availability_rating": 4,
+              "availability_unit": "hrs"
+            },
+            "Optical 3": {
+              "essence": 0.2,
+              "cost": 6000,
+              "street_index": 1,
+              "legality": "legal",
+              "fits": "eye",
+              "page": 300,
+              "availability_time": 48,
+              "availability_rating": 5,
+              "availability_unit": "hrs"
+            },
+            "Electronic 1": {
+              "essence": 0.1,
+              "cost": 3500,
+              "street_index": 1,
+              "legality": "legal",
+              "fits": "eye",
+              "page": 300,
+              "availability_time": 48,
+              "availability_rating": 5,
+              "availability_unit": "hrs"
+            },
+            "Electronic 2": {
+              "essence": 0.1,
+              "cost": 7500,
+              "street_index": 1,
+              "legality": "legal",
+              "fits": "eye",
+              "page": 300,
+              "availability_time": 48,
+              "availability_rating": 5,
+              "availability_unit": "hrs"
+            },
+            "Electronic 3": {
+              "essence": 0.1,
+              "cost": 11000,
+              "street_index": 1,
+              "legality": "legal",
+              "fits": "eye",
+              "page": 300,
+              "availability_time": 48,
+              "availability_rating": 8,
+              "availability_unit": "hrs"
+            }
+          }
+        }
+      },
+      "Cyberlimbs": {
+        "Obvious Cyberarm": {
+          "concealability": null,
+          "essence": 1,
+          "cost": 75000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 303,
+          "availability_time": 4,
+          "availability_rating": 4,
+          "availability_unit": "days"
+        },
+        "Obvious Cyberleg": {
+          "concealability": null,
+          "essence": 1,
+          "cost": 75000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 303,
+          "availability_time": 4,
+          "availability_rating": 4,
+          "availability_unit": "days"
+        },
+        "Synthetic Cyberarm": {
+          "concealability": 8,
+          "essence": 1,
+          "cost": 100000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 303,
+          "availability_time": 4,
+          "availability_rating": 4,
+          "availability_unit": "days"
+        },
+        "Synthetic Cyberleg": {
+          "concealability": 8,
+          "essence": 1,
+          "cost": 100000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 303,
+          "availability_time": 4,
+          "availability_rating": 4,
+          "availability_unit": "days"
+        }
+      }
+    }
+  },
+  "Decks": {
+    "Allegiance Sigma": {
+      "availability_rating": 4,
+      "availability_time": 7,
+      "availability_unit": "days",
+      "mpcp": 3,
+      "hardening": 1,
+      "active_memory": 200,
+      "storage_memory": 500,
+      "io_speed": 100,
+      "response_increase": 0,
+      "cost": 14000,
+      "street_index": 1,
+      "page": 207
+    },
+    "Sony CTY-360-D": {
+      "availability_rating": 4,
+      "availability_time": 7,
+      "availability_unit": "days",
+      "mpcp": 5,
+      "hardening": 3,
+      "active_memory": 300,
+      "storage_memory": 600,
+      "io_speed": 200,
+      "response_increase": 1,
+      "cost": 70000,
+      "street_index": 1,
+      "page": 207
+    },
+    "Novatech Hyperdeck-6": {
+      "availability_rating": 4,
+      "availability_time": 7,
+      "availability_unit": "days",
+      "mpcp": 6,
+      "hardening": 4,
+      "active_memory": 600,
+      "storage_memory": 1000,
+      "io_speed": 240,
+      "response_increase": 1,
+      "cost": 125000,
+      "street_index": 1,
+      "page": 207
+    },
+    "CMT Avatar": {
+      "availability_rating": 6,
+      "availability_time": 7,
+      "availability_unit": "days",
+      "mpcp": 7,
+      "hardening": 4,
+      "active_memory": 700,
+      "storage_memory": 1400,
+      "io_speed": 300,
+      "response_increase": 1,
+      "cost": 250000,
+      "street_index": 1,
+      "page": 207
+    },
+    "Renraku Craftwerk-8": {
+      "availability_rating": 10,
+      "availability_time": 7,
+      "availability_unit": "days",
+      "mpcp": 8,
+      "hardening": 4,
+      "active_memory": 1000,
+      "storage_memory": 2000,
+      "io_speed": 360,
+      "response_increase": 2,
+      "cost": 400000,
+      "street_index": 1,
+      "page": 207
+    },
+    "Transys Highlander": {
+      "availability_rating": 14,
+      "availability_time": 7,
+      "availability_unit": "days",
+      "mpcp": 9,
+      "hardening": 4,
+      "active_memory": 1500,
+      "storage_memory": 2500,
+      "io_speed": 400,
+      "response_increase": 2,
+      "cost": 600000,
+      "street_index": 1,
+      "page": 207
+    },
+    "Novatech Slimcase-10": {
+      "availability_rating": 18,
+      "availability_time": 7,
+      "availability_unit": "days",
+      "mpcp": 10,
+      "hardening": 5,
+      "active_memory": 2000,
+      "storage_memory": 2500,
+      "io_speed": 480,
+      "response_increase": 2,
+      "cost": 960000,
+      "street_index": 1,
+      "page": 207
+    },
+    "Fairlight Excalibur": {
+      "availability_rating": 22,
+      "availability_time": 7,
+      "availability_unit": "days",
+      "mpcp": 12,
+      "hardening": 6,
+      "active_memory": 3000,
+      "storage_memory": 5000,
+      "io_speed": 600,
+      "response_increase": 3,
+      "cost": 1500000,
+      "street_index": 1,
+      "page": 207
+    }
+  },
+  "Programs": {
+    "Operational Utilities": {
+      "Analyze": {
+        "rating": "rating",
+        "multiplier": 3,
+        "page": 220
+      },
+      "Browse": {
+        "rating": "rating",
+        "multiplier": 1,
+        "page": 220
+      },
+      "Commlink": {
+        "rating": "rating",
+        "multiplier": 1,
+        "page": 220
+      },
+      "Deception": {
+        "rating": "rating",
+        "multiplier": 2,
+        "page": 220
+      },
+      "Decrypt": {
+        "rating": "rating",
+        "multiplier": 1,
+        "page": 220
+      },
+      "Read/Write": {
+        "rating": "rating",
+        "multiplier": 2,
+        "page": 220
+      },
+      "Relocate": {
+        "rating": "rating",
+        "multiplier": 2,
+        "page": 220
+      },
+      "Scanner": {
+        "rating": "rating",
+        "multiplier": 3,
+        "page": 220
+      },
+      "Spoof": {
+        "rating": "rating",
+        "multiplier": 3,
+        "page": 220
+      }
+    },
+    "Special Utilities": {
+      "Sleaze": {
+        "rating": "rating",
+        "multiplier": 3,
+        "page": 221
+      },
+      "Track": {
+        "rating": "rating",
+        "multiplier": 8,
+        "page": 221
+      }
+    },
+    "Offensive Utilities": {
+      "Attack (L)": {
+        "rating": "rating",
+        "multiplier": 2,
+        "page": 221
+      },
+      "Attack (M)": {
+        "rating": "rating",
+        "multiplier": 3,
+        "page": 221
+      },
+      "Attack (S)": {
+        "rating": "rating",
+        "multiplier": 4,
+        "page": 221
+      },
+      "Attack (D)": {
+        "rating": "rating",
+        "multiplier": 5,
+        "page": 221
+      },
+      "Black Hammer": {
+        "rating": "rating",
+        "multiplier": 20,
+        "page": 221
+      },
+      "Killjoy": {
+        "rating": "rating",
+        "multiplier": 10,
+        "page": 221
+      },
+      "Slow": {
+        "rating": "rating",
+        "multiplier": 4,
+        "page": 222
+      }
+    },
+    "Defensive Utilities": {
+      "Armor": {
+        "rating": "rating",
+        "multiplier": 3,
+        "page": 222
+      },
+      "Cloak": {
+        "rating": "rating",
+        "multiplier": 3,
+        "page": 222
+      },
+      "Lock-On": {
+        "rating": "rating",
+        "multiplier": 3,
+        "page": 222
+      },
+      "Medic": {
+        "rating": "rating",
+        "multiplier": 4,
+        "page": 222
+      }
+    }
+  },
+  "Vehicles": {
+    "Cars": {
+      "Chrysler-Nissan Jackrabbit (Electric)": {
+        "handling_normal": 3,
+        "handling_offroad": 8,
+        "speed": 80,
+        "accel": 5,
+        "body": 3,
+        "armor": 0,
+        "sig": 5,
+        "autonav": 1,
+        "pilot": "NA",
+        "sensor": 0,
+        "cargo": 1,
+        "load": 100,
+        "seating": "2 bucket + 1 bench",
+        "entry_points": "2 + 1 trunk",
+        "cost": 16500,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "street_index": 1,
+        "page": 307
+      },
+      "Chrysler-Nissan Jackrabbit (Methane)": {
+        "handling_normal": 3,
+        "handling_offroad": 8,
+        "speed": 90,
+        "accel": 6,
+        "body": 3,
+        "armor": 0,
+        "sig": 4,
+        "autonav": 1,
+        "pilot": "NA",
+        "sensor": 0,
+        "cargo": 1,
+        "load": 100,
+        "seating": "2 bucket + 1 bench",
+        "entry_points": "2 + 1 trunk",
+        "cost": 20500,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "street_index": 1,
+        "page": 307
+      },
+      "Eurocar Westwind 2000": {
+        "handling_normal": 3,
+        "handling_offroad": 8,
+        "speed": 210,
+        "accel": 10,
+        "body": 3,
+        "armor": 0,
+        "sig": 2,
+        "autonav": 3,
+        "pilot": "NA",
+        "sensor": 1,
+        "cargo": 5,
+        "load": 45,
+        "seating": "2 bucket + 1 bench",
+        "entry_points": "2 + 1 trunk",
+        "cost": 57000,
+        "other_features": [
+          "APPS"
+        ],
+        "availability_rating": 3,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "street_index": 2,
+        "page": 308
+      },
+      "Eurocar Westwind 2000 (Turbo)": {
+        "handling_normal": 3,
+        "handling_offroad": 8,
+        "speed": 210,
+        "accel": 14,
+        "body": 3,
+        "armor": 0,
+        "sig": 2,
+        "autonav": 3,
+        "pilot": "NA",
+        "sensor": 1,
+        "cargo": 5,
+        "load": 45,
+        "seating": "2 bucket + 1 bench",
+        "entry_points": "2 + 1 trunk",
+        "cost": 77000,
+        "availability_rating": 4,
+        "availability_time": 96,
+        "availability_unit": "hrs",
+        "other_features": [
+          "APPS",
+          "Turbocharging 2"
+        ],
+        "street_index": 2,
+        "page": 308
+      },
+      "Ford Americar": {
+        "handling_normal": 4,
+        "handling_offroad": 8,
+        "speed": 105,
+        "accel": 8,
+        "body": 3,
+        "armor": 0,
+        "sig": 2,
+        "autonav": 2,
+        "pilot": "NA",
+        "sensor": 1,
+        "cargo": 12,
+        "load": 110,
+        "seating": "2 bucket + 1 bench",
+        "entry_points": "2 + 1 trunk",
+        "cost": 20000,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "street_index": 1,
+        "page": 308
+      }
+    },
+    "Bikes": {
+      "Dodge Scoot": {
+        "handling_normal": 3,
+        "handling_offroad": 4,
+        "speed": 60,
+        "accel": 3,
+        "body": 2,
+        "armor": 0,
+        "sig": 5,
+        "autonav": 0,
+        "pilot": "NA",
+        "sensor": null,
+        "cargo": 1,
+        "load": 10,
+        "seating": "1",
+        "entry_points": null,
+        "cost": 59000,
+        "other_features": [
+          "Gridlink"
+        ],
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "street_index": 0.5,
+        "page": 308
+      },
+      "Harley-Davidson Scorpion": {
+        "handling_normal": 4,
+        "handling_offroad": 5,
+        "speed": 120,
+        "accel": 6,
+        "body": 2,
+        "armor": 1,
+        "sig": 2,
+        "autonav": 2,
+        "pilot": "NA",
+        "sensor": 0,
+        "cargo": 4,
+        "load": 60,
+        "seating": 2,
+        "entry_points": null,
+        "cost": 13500,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "street_index": 1,
+        "page": 308
+      },
+      "Yamaha Rapier": {
+        "handling_normal": 3,
+        "handling_offroad": 6,
+        "speed": 195,
+        "accel": 10,
+        "body": 2,
+        "armor": 0,
+        "sig": 2,
+        "autonav": 1,
+        "pilot": "NA",
+        "sensor": 0,
+        "cargo": 1,
+        "load": 40,
+        "seating": 1,
+        "entry_points": null,
+        "cost": 14200,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "street_index": 1,
+        "page": 308
+      }
+    },
+    "Trucks": {
+      "Ares Roadmaster": {
+        "handling_normal": 4,
+        "handling_offroad": 10,
+        "speed": 90,
+        "accel": 3,
+        "body": 5,
+        "armor": 0,
+        "sig": 2,
+        "autonav": 2,
+        "pilot": "NA",
+        "sensor": 0,
+        "cargo": 80,
+        "load": 2000,
+        "seating": "2 bucket (front), 1 folding bench (rear)",
+        "entry_points": "2 + 1 large rear door",
+        "cost": 45000,
+        "availability_rating": 3,
+        "availability_time": 3,
+        "availability_unit": "days",
+        "street_index": 1,
+        "page": 309
+      },
+      "Ford-Canada Bison": {
+        "handling_normal": 4,
+        "handling_offroad": 3,
+        "speed": 135,
+        "accel": 6,
+        "body": 4,
+        "armor": 4,
+        "sig": 2,
+        "autonav": 3,
+        "pilot": "NA",
+        "sensor": 1,
+        "cargo": 67,
+        "load": 1918,
+        "seating": "2 bucket (front), 5 folding bench (rear)",
+        "entry_points": "2 + 1 sliding door + 1 large rear door",
+        "cost": 145000,
+        "other_features": [
+          "Concealed armor (Concealability 8)",
+          "living amenities (basic)"
+        ],
+        "availability_rating": 8,
+        "availability_time": 8,
+        "availability_unit": "days",
+        "street_index": 1,
+        "page": 309
+      }
+    },
+    "Hovercraft": {
+      "Chrysler-Nissan G12A (Passenger)": {
+        "handling_normal": 4,
+        "handling_offroad": null,
+        "speed": 120,
+        "accel": 5,
+        "body": 4,
+        "armor": 0,
+        "sig": 2,
+        "autonav": 2,
+        "pilot": "NA",
+        "sensor": 0,
+        "cargo": 12,
+        "load": 250,
+        "seating": "10 bucket",
+        "entry_points": "2 + sliding door",
+        "cost": 57000,
+        "availability_rating": 3,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "street_index": 1,
+        "page": 309
+      },
+      "Chrysler-Nissan G12A (Cargo)": {
+        "handling_normal": 4,
+        "handling_offroad": null,
+        "speed": 120,
+        "accel": 5,
+        "body": 4,
+        "armor": 0,
+        "sig": 2,
+        "autonav": 2,
+        "pilot": "NA",
+        "sensor": 0,
+        "cargo": 66,
+        "load": 1000,
+        "seating": "2 bucket",
+        "entry_points": "3 + large rear door",
+        "cost": 62000,
+        "availability_rating": 3,
+        "availability_time": 72,
+        "availability_unit": "hrs",
+        "street_index": 1,
+        "page": 309
+      }
+    },
+    "Boats": {
+      "Samuvani Criscraft Otter": {
+        "handling_normal": 3,
+        "handling_offroad": null,
+        "speed": 45,
+        "accel": 6,
+        "body": 5,
+        "armor": 0,
+        "sig": 3,
+        "autonav": 2,
+        "pilot": "NA",
+        "sensor": 1,
+        "cargo": 48,
+        "load": 650,
+        "seating": "2 bucket",
+        "cost": 32500,
+        "availability_rating": 2,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "street_index": 1,
+        "page": 309
+      },
+      "Sendanko Marlin": {
+        "handling_normal": 3,
+        "handling_offroad": null,
+        "speed": 30,
+        "accel": 3,
+        "body": 3,
+        "armor": 0,
+        "sig": 6,
+        "autonav": 0,
+        "pilot": "NA",
+        "sensor": 0,
+        "cargo": 12,
+        "load": 150,
+        "seating": "2 bucket (front) 1 bench (rear) ",
+        "cost": 18750,
+        "availability_rating": 2,
+        "availability_time": 2,
+        "availability_unit": "days",
+        "street_index": 1,
+        "page": 309
+      }
+    },
+    "Winged Planes": {
+      "Cessna C750 (standard)": {
+        "handling_normal": 5,
+        "handling_offroad": null,
+        "min_speed": 135,
+        "speed": 340,
+        "accel": 22,
+        "body": 6,
+        "armor": 0,
+        "sig": 4,
+        "autonav": 2,
+        "pilot": "NA",
+        "sensor": 1,
+        "cargo": 48,
+        "load": 1100,
+        "seating": "2 bucket",
+        "entry_points": "1 + 1 rear door",
+        "landing_takeoff": "STOL",
+        "cost": 177000,
+        "availability_rating": 9,
+        "availability_time": 9,
+        "availability_unit": "days",
+        "street_index": 1,
+        "page": 310
+      },
+      "Cessna C750 (passenger)": {
+        "handling_normal": 5,
+        "handling_offroad": null,
+        "min_speed": 135,
+        "speed": 340,
+        "accel": 22,
+        "body": 6,
+        "armor": 0,
+        "sig": 4,
+        "autonav": 2,
+        "pilot": "NA",
+        "sensor": 1,
+        "cargo": 36,
+        "load": 500,
+        "seating": "4 bucket",
+        "entry_points": "1 + 1 rear door",
+        "landing_takeoff": "STOL",
+        "cost": 167000,
+        "availability_rating": 9,
+        "availability_time": 9,
+        "availability_unit": "days",
+        "street_index": 1,
+        "page": 310
+      }
+    },
+    "Rotorcraft": {
+      "Ares Dragon": {
+        "handling_normal": 5,
+        "handling_offroad": null,
+        "speed": 260,
+        "accel": 10,
+        "body": 7,
+        "armor": 0,
+        "sig": 3,
+        "autonav": 3,
+        "pilot": "NA",
+        "sensor": 1,
+        "cargo": 95,
+        "load": 3250,
+        "seating": "3 bucket (2 front, 1 rear)",
+        "entry_points": 3,
+        "cost": 590000,
+        "availability_rating": 30,
+        "availability_time": 30,
+        "availability_unit": "days",
+        "street_index": 1,
+        "page": 310
+      },
+      "Hughes WK-2 Stallion": {
+        "handling_normal": 5,
+        "handling_offroad": null,
+        "speed": 190,
+        "accel": 14,
+        "body": 4,
+        "armor": 0,
+        "sig": 3,
+        "autonav": 3,
+        "pilot": "NA",
+        "sensor": 1,
+        "cargo": 72,
+        "load": 1250,
+        "seating": "2 bucket",
+        "entry_points": "2 + 1 sliding door",
+        "cost": 257500,
+        "availability_rating": 13,
+        "availability_time": 13,
+        "availability_unit": "days",
+        "street_index": 1,
+        "page": 310
+      }
+    },
+    "Security Vehicles": {
+      "Ares Citymaster": {
+        "handling_normal": 5,
+        "handling_offroad": 11,
+        "speed": 120,
+        "accel": 3,
+        "body": 5,
+        "armor": 10,
+        "sig": 1,
+        "autonav": 3,
+        "pilot": "NA",
+        "sensor": 0,
+        "cargo": 41,
+        "load": 530,
+        "seating": "2 bucket (front), 5 folding bench (rear)",
+        "entry_points": "2 + 1 large rear door",
+        "cost": 136300,
+        "other_features": [
+          "Gas EnviroSeal",
+          "Life Support (20 man-hours)",
+          "Small Turret (weapon not included, CF ammo bin)"
+        ],
+        "availability_rating": 13,
+        "availability_time": 13,
+        "availability_unit": "days",
+        "street_index": 2,
+        "page": 310
+      },
+      "Chrysler Nissan Patrol-1": {
+        "handling_normal": 4,
+        "handling_offroad": 8,
+        "speed": 120,
+        "accel": 12,
+        "body": 3,
+        "armor": 2,
+        "sig": 1,
+        "autonav": 3,
+        "pilot": "NA",
+        "sensor": 0,
+        "cargo": 11,
+        "load": 40,
+        "seating": "2 bucket, 1 bench",
+        "entry_points": "4 + 1 trunk",
+        "cost": 43700,
+        "other_features": [
+          "Gas EnviroSeal",
+          "Electronics Port (with Rating 4 radio)",
+          "2 Pintile Mounts",
+          "Turbocharging 2"
+        ],
+        "availability_rating": 10,
+        "availability_time": 10,
+        "availability_unit": "days",
+        "street_index": 2,
+        "page": 310
+      },
+      "GMC Banshee": {
+        "handling_normal": 6,
+        "handling_offroad": null,
+        "min_speed": 250,
+        "speed": 1000,
+        "accel": 50,
+        "body": 6,
+        "armor": 18,
+        "sig": 5,
+        "autonav": 2,
+        "pilot": "NA",
+        "sensor": 7,
+        "cargo": 29,
+        "load": 805,
+        "seating": "3 ejection seats",
+        "entry_points": "canopy",
+        "cost": 2560000,
+        "landing_takeoff": "VSTOL",
+        "other_features": [
+          "ECM 5",
+          "ECCM 5",
+          "External Fixed Hardpoint (weapon not included)",
+          "Gas EnviroSeal",
+          "Radar-Absorbent Materials 2",
+          "Thermal Baffles 1",
+          "Small Turret (weapon not included, 1 CF ammo bin)"
+        ],
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "N/A",
+        "street_index": 3,
+        "page": 311
+      },
+      "GMC Beachcraft Patroller": {
+        "handling_normal": 4,
+        "handling_offroad": null,
+        "speed": 165,
+        "accel": 9,
+        "body": 4,
+        "armor": 6,
+        "sig": 1,
+        "autonav": 2,
+        "pilot": "NA",
+        "sensor": 0,
+        "cargo": 65,
+        "load": 510,
+        "seating": "2 bucket",
+        "entry_points": "2 + 1 sliding door",
+        "cost": 176000,
+        "other_features": [
+          "External Fixed Hardpoint (weapon not included, 1 CF ammo bin)"
+        ],
+        "availability_rating": 15,
+        "availability_time": 15,
+        "availability_unit": "days",
+        "street_index": 2,
+        "page": 311
+      },
+      "Doc Wagon Osprey II": {
+        "handling_normal": 5,
+        "handling_offroad": null,
+        "speed": 380,
+        "accel": 10,
+        "body": 5,
+        "armor": 3,
+        "sig": 2,
+        "autonav": 3,
+        "pilot": "NA",
+        "sensor": 1,
+        "cargo": 12,
+        "load": 300,
+        "seating": "2 bucket",
+        "entry_points": "1 + 1 rear ramp",
+        "cost": 331000,
+        "landing_takeoff": "VTOL",
+        "other_features": [
+          "Anti-Theft System (6)",
+          "2 External Hardpoints (weapon not included)",
+          "Medical Clinic (2 patients, Rating 4)"
+        ],
+        "availability_rating": 23,
+        "availability_time": 23,
+        "availability_unit": "days",
+        "street_index": 2.5,
+        "page": 311
+      },
+      "Northrup Wasp (PRC-42B Variant)": {
+        "handling_normal": 3,
+        "handling_offroad": null,
+        "speed": 130,
+        "accel": 15,
+        "body": 3,
+        "armor": 0,
+        "sig": 3,
+        "autonav": 0,
+        "pilot": "NA",
+        "sensor": 2,
+        "cargo": 2,
+        "load": 68,
+        "seating": "1 bucket",
+        "entry_points": 1,
+        "cost": 54000,
+        "landing_takeoff": "VSTOL",
+        "other_features": [
+          "ECCM 1",
+          "Micro-turret (weapon not included)"
+        ],
+        "availability_rating": 9,
+        "availability_time": 9,
+        "availability_unit": "days",
+        "street_index": 2,
+        "page": 311
+      }
+    },
+    "Drones": {
+      "GM-Nissan Doberman": {
+        "handling_normal": 3,
+        "handling_offroad": 5,
+        "speed": 70,
+        "accel": 8,
+        "body": 2,
+        "armor": 6,
+        "sig": 2,
+        "autonav": null,
+        "pilot": 2,
+        "sensor": 1,
+        "cargo": 2.5,
+        "load": 50,
+        "cost": 25000,
+        "setup_breakdown": null,
+        "other_features": [
+          "External Fixed Hardpoint",
+          "Remote Control Interface",
+          "Remote Microturret",
+          "Rigger Adaptation"
+        ],
+        "availability_rating": 8,
+        "availability_time": 8,
+        "availability_unit": "days",
+        "street_index": 2,
+        "page": 312
+      },
+      "Gaz-Niki GNRD-71 Bis Snooper": {
+        "handling_normal": 4,
+        "handling_offroad": 3,
+        "speed": 75,
+        "accel": 3,
+        "body": 1,
+        "armor": 0,
+        "sig": 8,
+        "autonav": null,
+        "pilot": 1,
+        "sensor": 1,
+        "cargo": 2,
+        "load": 30,
+        "cost": 8500,
+        "setup_breakdown": null,
+        "other_features": [
+          "Remote Control Interface",
+          "Rigger Adaptation"
+        ],
+        "availability_rating": 8,
+        "availability_time": 8,
+        "availability_unit": "days",
+        "street_index": 1,
+        "page": 312
+      },
+      "Generic Surveillance Drone": {
+        "handling_normal": 3,
+        "handling_offroad": null,
+        "speed": 70,
+        "accel": 9,
+        "body": 1,
+        "armor": 0,
+        "sig": 5,
+        "autonav": "NA",
+        "pilot": 2,
+        "sensor": 1,
+        "cargo": 0,
+        "load": 10,
+        "setup_breakdown": "3 minutes",
+        "landing_takeoff": "VTOL",
+        "other_features": [
+          "Remote Control Interface",
+          "Rigger Adaptation"
+        ],
+        "cost": 8125,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "street_index": 1,
+        "page": 311
+      },
+      "MCT-Nissan Roto-Drone": {
+        "handling_normal": 4,
+        "handling_offroad": null,
+        "speed": 70,
+        "accel": 6,
+        "body": 2,
+        "armor": 0,
+        "sig": 4,
+        "autonav": null,
+        "pilot": 1,
+        "sensor": 1,
+        "cargo": 4,
+        "load": 150,
+        "cost": 10500,
+        "setup_breakdown": "8 minutes",
+        "landing_takeoff": "VTOL",
+        "other_features": [
+          "Remote Control Interface",
+          "Rigger Adaptation"
+        ],
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "street_index": 1,
+        "page": 312
+      },
+      "Cyberspace Designs Dalmatian": {
+        "handling_normal": 3,
+        "handling_offroad": null,
+        "speed": 105,
+        "accel": 8,
+        "body": 2,
+        "armor": 0,
+        "sig": 6,
+        "autonav": null,
+        "pilot": 2,
+        "sensor": 1,
+        "cargo": 3,
+        "load": 80,
+        "cost": 16000,
+        "setup_breakdown": null,
+        "landing_takeoff": "VTOL",
+        "other_features": [
+          "Remote Control Interface",
+          "Rigger Adaptation"
+        ],
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "street_index": 1,
+        "page": 312
+      }
+    }
+  },
+  "Vehicle Accessories": {
+    "Addons": {
+      "Datajack Port": {
+        "availability_rating": 3,
+        "availability_time": 72,
+        "availability_unit": "hours",
+        "cost": 2500,
+        "street_index": 1.5,
+        "legality": "Legal",
+        "page": 312
+      },
+      "Datajack Port (Bikes)": {
+        "availability_rating": 3,
+        "availability_time": 72,
+        "availability_unit": "hours",
+        "cost": 5000,
+        "street_index": 1.5,
+        "legality": "Legal",
+        "page": 312
+      },
+      "Remote Control Gear": {
+        "availability_rating": 4,
+        "availability_time": 72,
+        "availability_unit": "hours",
+        "cost": "2500 * Body",
+        "street_index": 2,
+        "legality": "Legal",
+        "page": 312
+      },
+      "Vehicle Control Gear": {
+        "availability_rating": 4,
+        "availability_time": 7,
+        "availability_unit": "days",
+        "cost": 2500,
+        "street_index": 2,
+        "legality": "Legal",
+        "page": 312
+      }
+    },
+    "Mounts": {
+      "External Firmpoint Fixed Mount": {
+        "availability_rating": 6,
+        "availability_time": 7,
+        "availability_unit": "days",
+        "cost": 750,
+        "street_index": 2,
+        "legality": "3P-V",
+        "cf_cost": 1,
+        "load": 10,
+        "recoil_compensation": "half",
+        "body_cost": 1,
+        "page": 312
+      },
+      "External Hardpoint Fixed Mount": {
+        "availability_rating": 6,
+        "availability_time": 7,
+        "availability_unit": "days",
+        "cost": 2000,
+        "street_index": 2,
+        "legality": "3P-V",
+        "cf_cost": 2,
+        "load": 10,
+        "recoil_compensation": "half",
+        "body_cost": 2,
+        "page": 312
+      },
+      "Internal Firmpoint Fixed Mount": {
+        "availability_rating": 6,
+        "availability_time": 7,
+        "availability_unit": "days",
+        "cost": 1500,
+        "street_index": 2,
+        "legality": "3P-V",
+        "cf_cost": 5,
+        "load": 10,
+        "recoil_compensation": "half",
+        "body_cost": 1,
+        "page": 312
+      },
+      "Internal Hardpoint Fixed Mount": {
+        "availability_rating": 6,
+        "availability_time": 7,
+        "availability_unit": "days",
+        "cost": 3000,
+        "street_index": 2,
+        "legality": "3P-V",
+        "cf_cost": 7,
+        "load": 10,
+        "recoil_compensation": "half",
+        "body_cost": 2,
+        "page": 312
+      },
+      "Pintile Mount": {
+        "availability_rating": 4,
+        "availability_time": 96,
+        "availability_unit": "hours",
+        "cost": 50,
+        "street_index": 1.5,
+        "legality": "Legal",
+        "cf_cost": 0,
+        "load": 0,
+        "recoil_compensation": 2,
+        "body_cost": 1,
+        "page": 312
+      }
+    },
+    "Vehicle Weapons": {
+      "Ares Vermicide Autocannon": {
+        "availability_rating": "gm_sets_AR",
+        "availability_time": "gm_sets_AT",
+        "availability_unit": "gm_sets_AU",
+        "street_index": "gm_sets_SI",
+        "legality": "gm_sets_lg",
+        "page": 312,
+        "type": "Cannon",
+        "ammo": "10 (c)",
+        "mode": "SA",
+        "damage": "12D",
+        "weight": 45,
+        "cost": 12000
+      },
+      "Water Cannon": {
+        "availability_rating": "gm_sets_AR",
+        "availability_time ": "gm_sets_AT",
+        "availability_unit": "gm_sets_AU",
+        "street_index": "gm_sets_SI",
+        "legality": "gm_sets_lg",
+        "page": 312,
+        "type": "\"Shotgun\"",
+        "ammo": "\"20\"",
+        "mode": "\"SA\"",
+        "damage": "6M Stun",
+        "weight": 12,
+        "cost": 20000
+      }
+    }
+  }
+}
