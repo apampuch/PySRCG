@@ -80,6 +80,13 @@ class Vehicle:
 
         report_str += "Page: {}\n".format(self.page)
 
+        # report accessories if they exist
+        if len(self.accessories) > 0:
+            report_str += "\nAcccessories:\n"
+            for a in self.accessories:
+                a_report = "\t" + a.report().replace("\n", "\n\t") + "\n\n"
+                report_str += a_report
+
         return report_str
 
     def report_if_exists(self, key, name) -> str:
