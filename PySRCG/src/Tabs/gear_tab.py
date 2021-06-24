@@ -5,7 +5,8 @@ from tkinter import *
 from tkinter import ttk
 from src.CharData.gear import *
 
-ATTRIBUTES_TO_CALCULATE = ["cost", "weight", "availability_rating", "availability_time", "street_index", "rating"]  # add legality after splitting that
+ATTRIBUTES_TO_CALCULATE = ["cost", "weight", "availability_rating", "availability_time", "street_index", "rating",
+                           "transaction_limit"]  # find a better way to do this, maybe per-item?
 
 
 class GearTab(NotebookTab):

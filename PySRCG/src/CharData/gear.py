@@ -1,9 +1,37 @@
+def report_dict(field_name, field_value):
+    # format field_name
+    field_name = field_name.replace("_", " ")
+    field_name = field_name.capitalize()
+
+    if type(field_value) is dict:
+        # get sub dict since that's the one we want
+        # there should only be one
+        sub_dict = list(field_value.values())[0]
+        # construct the string
+        to_add = "{}:\n".format(field_name)
+        for k in sub_dict.keys():
+            v = sub_dict[k]
+
+            # replace semicolons in k
+            if k[0] == ";":
+                k = k.replace(";", "<=")
+            elif k[-1] == ";":
+                k = k.replace(";", "+")
+            else:
+                k = k.replace(";", "-")
+
+            to_add += "  {}\t:  {}\n".format(k, v)
+    else:
+        to_add = "{}: {}\n".format(field_name, field_value)
+
+    return to_add
+
+
 class Gear(object):
     def __init__(self, **kwargs):
         try:
             super().__init__()
             self.name = kwargs["name"]; del kwargs["name"]
-            # self.concealability = kwargs["concealability"]; del kwargs["concealability"]
             self.weight = kwargs["weight"]; del kwargs["weight"]
             self.availability_rating = kwargs["availability_rating"]; del kwargs["availability_rating"]
             self.availability_time = kwargs["availability_time"]; del kwargs["availability_time"]
@@ -18,26 +46,26 @@ class Gear(object):
             raise
 
     def report(self) -> str:
-        info = "{}\n\n" \
-               "Weight: {}\n" \
-               "Availability: {}/{} {}\n" \
-               "Cost: ¥{}\n" \
-               "Street Index: {}\n" \
-               "Legality: {}\n" \
-            .format(self.name,
-                    # self.concealability,
-                    self.weight,
-                    self.availability_rating, self.availability_time, self.availability_unit,
-                    self.cost,
-                    self.street_index,
-                    self.legality)
+        info = "{}\n\n".format(self.name)
+
+        info += report_dict("Weight", self.weight)
+        info += self.report_availability()
+        info += report_dict("Cost", self.cost)
+        info += report_dict("Street Index", self.street_index)
+        info += report_dict("Legality", self.legality)
 
         for key in self.other_fields.keys():
-            info += "{}: {}\n".format(key.replace("_", " ").capitalize(), self.other_fields[key])
+            info += report_dict(key, self.other_fields[key])
 
         info += "Page: {}".format(self.page)
 
         return info
+
+    def report_availability(self):
+        if self.availability_unit == "always":
+            return "Availability: Always\n"
+        else:
+            return "Availability: {}/{} {}\n".format(self.availability_rating, self.availability_time, self.availability_unit)
 
     def serialize(self):
         # copy the dict, remove other_fields, and merge it directly into the dict
