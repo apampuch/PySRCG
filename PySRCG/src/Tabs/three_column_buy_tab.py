@@ -17,7 +17,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     """
     @property
     def library_selected(self):  # returns a deck OR a program
-        return treeview_get(self.object_library, self.tree_item_dict)
+        return treeview_get(self.object_library, self.tree_item_dict, self.treeview_get_make_copy)
 
     @property
     def inv_selected_item(self):
@@ -28,11 +28,12 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         return selection[-1]
 
     def __init__(self, parent,
-
                  buy_button_text="Buy",
                  sell_button_text="Sell",
-                 ):
+                 treeview_get_make_copy=True):
         super().__init__(parent)
+        self.treeview_get_make_copy = treeview_get_make_copy
+
         # used to validate input
         self.vcmd = (self.register(self.int_validate), '%d', '%i', '%P', '%s', '%S', '%v', '%V', '%W')
 
@@ -107,7 +108,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         pass
 
     @abstractmethod
-    def sell_callback(self, selected):
+    def sell_callback(self, selected_index):
         pass
 
     @property
@@ -131,32 +132,6 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         self.desc_box.delete(1.0, END)
         self.desc_box.insert(END, contents)
         self.desc_box.config(state=DISABLED)
-
-    def on_tree_item_click(self, event):
-        # only select the last one selected if we've selected multiple things
-        selected = self.object_library.selection()[-1]
-
-        if selected in self.tree_item_dict.keys():
-            selected_item = self.tree_item_dict[selected]
-            # destroy all variable objects
-            self.variables_dict = {}
-            for child in self.variables_frame.winfo_children():
-                child.destroy()
-
-            # get any variables in the item
-            self.variables_dict = get_variables(selected_item, self.attributes_to_calculate)
-
-            self.fill_description_box(selected_item.report())
-
-        # make variable objects if any
-        i = 0
-        for var in self.variables_dict.keys():
-            var_frame = Frame(self.variables_frame)
-            Label(var_frame, text="{}:".format(var)).grid(column=0, row=0)  # label
-            Entry(var_frame, textvariable=self.variables_dict[var], validate="key", validatecommand=self.vcmd) \
-                .grid(column=1, row=0)
-            var_frame.grid(column=0, row=i)
-            i += 1
 
     def add_inv_item(self, item, listbox_string=lambda x: x.name):
         """Adds item to the inventory this tab is linked to."""
@@ -215,6 +190,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         if self.library_selected is not None:
 
             # make copy of item and calculate variables we input
+            # TODO try baleeting this
             item = copy(self.library_selected)
             var_dict = {}
             for key in self.variables_dict.keys():
@@ -224,11 +200,39 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             calculate_attributes(item, var_dict, self.attributes_to_calculate)
 
             self.buy_callback(item)
+        else:
+            print("Can't buy that!")
 
     def on_sell_click(self):
         # don't do anything if nothing is selected
         if len(self.inventory_list.curselection()) > 0:
             self.sell_callback(self.inv_selected_item)
+
+    def on_tree_item_click(self, event):
+        # only select the last one selected if we've selected multiple things
+        selected = self.object_library.selection()[-1]
+
+        if selected in self.tree_item_dict.keys():
+            selected_item = self.tree_item_dict[selected]
+            # destroy all variable objects
+            self.variables_dict = {}
+            for child in self.variables_frame.winfo_children():
+                child.destroy()
+
+            # get any variables in the item
+            self.variables_dict = get_variables(selected_item, self.attributes_to_calculate)
+
+            self.fill_description_box(selected_item.report())
+
+        # make variable objects if any
+        i = 0
+        for var in self.variables_dict.keys():
+            var_frame = Frame(self.variables_frame)
+            Label(var_frame, text="{}:".format(var)).grid(column=0, row=0)  # label
+            Entry(var_frame, textvariable=self.variables_dict[var], validate="key", validatecommand=self.vcmd) \
+                .grid(column=1, row=0)
+            var_frame.grid(column=0, row=i)
+            i += 1
 
     @abstractmethod
     def on_switch(self):

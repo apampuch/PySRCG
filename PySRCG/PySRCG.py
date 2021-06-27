@@ -109,7 +109,7 @@ def main():
     attributes_tab = AttributesTab(app_data.window)
     background_tab = BackgroundTab(app_data.window)
     skills_tab = SkillsTab(app_data.window)
-    gear_tab = GearTab(app_data.window)
+    gear_tab = GearTab(app_data.window, "Buy", "Sell")
     magic_tab = MagicTab(app_data.window)
     augments_tab = AugmentsTab(app_data.window)
     decking_tab = DeckingTab(app_data.window)
