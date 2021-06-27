@@ -70,6 +70,7 @@ def __write_file(file, character: Character):
     # file.encoding = "utf-8"  # set encoding to utf-8 so things work everywhere
     character.file_path = file.name
     serialized_character = character.serialize()
+    serialized_character["save_version"] = 0.1
     json.dump(serialized_character, file, indent=2)
 
 
