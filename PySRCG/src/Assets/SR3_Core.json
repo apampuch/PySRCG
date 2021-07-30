@@ -7032,7 +7032,7 @@
       },
       "Water Cannon": {
         "availability_rating": "gm_sets_AR",
-        "availability_time ": "gm_sets_AT",
+        "availability_time": "gm_sets_AT",
         "availability_unit": "gm_sets_AU",
         "street_index": "gm_sets_SI",
         "legality": "gm_sets_lg",

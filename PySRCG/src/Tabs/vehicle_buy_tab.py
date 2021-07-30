@@ -12,6 +12,19 @@ class VehicleBuyTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent, buy_button_text, sell_button_text):
         super().__init__(parent, buy_button_text, sell_button_text)
 
+        self.race_mod_var = StringVar(value="None")
+
+        self.race_mods_frame = ttk.LabelFrame(self, text="Race Mods")
+        self.no_race_mod = Radiobutton(self.race_mods_frame, text="None", variable=self.race_mod_var, value="None")
+        self.dwarf_race_mod = Radiobutton(self.race_mods_frame, text="Dwarf", variable=self.race_mod_var, value="Dwarf")
+        self.troll_race_mod = Radiobutton(self.race_mods_frame, text="Troll", variable=self.race_mod_var, value="Troll")
+
+        self.no_race_mod.pack(side=LEFT)
+        self.dwarf_race_mod.pack(side=LEFT)
+        self.troll_race_mod.pack(side=LEFT)
+
+        self.race_mods_frame.grid(row=1, column=2)
+
     @property
     def library_source(self):
         return self.parent.game_data["Vehicles"]
@@ -25,6 +38,16 @@ class VehicleBuyTab(ThreeColumnBuyTab, ABC):
         return []
 
     def buy_callback(self, item):
+        # modify the item for any racial mods that have been selected
+        if self.race_mod_var.get() == "Dwarf":
+            item.cost *= 1.1
+            item.cost = int(item.cost)
+            item.optionals["race_mod"] = "Dwarf"
+        elif self.race_mod_var.get() == "Troll":
+            item.cost *= 1.25
+            item.cost = int(item.cost)
+            item.optionals["race_mod"] = "Troll"
+
         if app_data.pay_cash(item.cost):
             self.add_inv_item(item)
 
