@@ -25,6 +25,9 @@ class GearTab(ThreeColumnBuyTab, ABC):
 
         self.race_mod_var = StringVar(value="None")
 
+        amount_label = Label(self, text="Quantity:")
+        self.amount_spinbox = Spinbox(self, from_=1, to=float('inf'))
+
         self.race_mods_frame = ttk.LabelFrame(self, text="Race Mods")
         self.no_race_mod = Radiobutton(self.race_mods_frame, text="None", variable=self.race_mod_var, value="None")
         self.dwarf_race_mod = Radiobutton(self.race_mods_frame, text="Dwarf", variable=self.race_mod_var, value="Dwarf")
@@ -34,7 +37,10 @@ class GearTab(ThreeColumnBuyTab, ABC):
         self.dwarf_race_mod.pack(side=LEFT)
         self.troll_race_mod.pack(side=LEFT)
 
-        self.race_mods_frame.grid(row=1, column=2)
+        self.race_mods_frame.grid(column=3, row=1)
+
+        amount_label.grid(column=0, row=2)
+        self.amount_spinbox.grid(column=1, row=2)
 
     @property
     def recurse_check_func(self):
@@ -61,8 +67,11 @@ class GearTab(ThreeColumnBuyTab, ABC):
             selected.cost = int(selected.cost)
             selected.other_fields["race_mod"] = "Troll"
 
-        if pay_cash(selected.cost):
-            self.add_inv_item(selected)
+        # get the amount by getting the value of the spinbox (always a string) and converting to int
+        count = int(self.amount_spinbox.get())
+
+        if pay_cash(selected.cost * count):
+            self.add_inv_item(selected, count=count)
         else:
             print("Not enough money!")
 
