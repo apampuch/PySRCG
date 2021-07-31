@@ -73,15 +73,15 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                                 self.recurse_check_func, self.recurse_end_func)
 
         # grids
-        self.object_library.grid(column=0, row=0, sticky=(N, S))
-        self.object_library_scroll.grid(column=1, row=0, sticky=(N, S))
-        self.desc_box.grid(column=2, row=0, sticky=(N, S))
-        self.desc_box_scroll.grid(column=3, row=0, sticky=(N, S))
-        self.inventory_list.grid(column=4, row=0, sticky=(N, S))
-        self.inventory_list_scroll.grid(column=5, row=0, sticky=(N, S))
+        self.object_library.grid                (column=0, row=0, sticky=(N, S), columnspan=2)
+        self.object_library_scroll.grid         (column=2, row=0, sticky=(N, S))
+        self.desc_box.grid                      (column=3, row=0, sticky=(N, S), columnspan=2)
+        self.desc_box_scroll.grid               (column=5, row=0, sticky=(N, S))
+        self.inventory_list.grid                (column=6, row=0, sticky=(N, S), columnspan=2)
+        self.inventory_list_scroll.grid         (column=8, row=0, sticky=(N, S))
 
         self.buy_button.grid(column=0, row=1, sticky=N)
-        self.sell_button.grid(column=4, row=1, sticky=N)
+        self.sell_button.grid(column=6, row=1, sticky=N)
 
         self.variables_frame.grid(column=0, row=2)
 
@@ -133,10 +133,11 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         self.desc_box.insert(END, contents)
         self.desc_box.config(state=DISABLED)
 
-    def add_inv_item(self, item, listbox_string=lambda x: x.name):
+    def add_inv_item(self, item, listbox_string=lambda x: x.name, count=1):
         """Adds item to the inventory this tab is linked to."""
-        self.statblock_inventory.append(item)
-        self.inventory_list.insert(END, listbox_string(item))
+        for i in range(count):
+            self.statblock_inventory.append(item)
+            self.inventory_list.insert(END, listbox_string(item))
 
     def remove_inv_item(self, index):
         """Removes an item at index from the inventory this tab is linked to."""
@@ -187,21 +188,24 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
     def on_buy_click(self):
         # make copy of the item from the dict
-        if self.library_selected is not None:
+        if len(self.object_library.selection()) > 0:
+            if self.library_selected is not None:
 
-            # make copy of item and calculate variables we input
-            # TODO try baleeting this
-            item = copy(self.library_selected)
-            var_dict = {}
-            for key in self.variables_dict.keys():
-                var_dict[key] = self.variables_dict[key].get()
+                # make copy of item and calculate variables we input
+                # TODO try baleeting this
+                item = copy(self.library_selected)
+                var_dict = {}
+                for key in self.variables_dict.keys():
+                    var_dict[key] = self.variables_dict[key].get()
 
-            # calculate any arithmetic expressions we have
-            calculate_attributes(item, var_dict, self.attributes_to_calculate)
+                # calculate any arithmetic expressions we have
+                calculate_attributes(item, var_dict, self.attributes_to_calculate)
 
-            self.buy_callback(item)
+                self.buy_callback(item)
+            else:
+                print("Can't buy that!")
         else:
-            print("Can't buy that!")
+            print("Nothing is selected!")
 
     def on_sell_click(self):
         # don't do anything if nothing is selected
