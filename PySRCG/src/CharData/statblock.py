@@ -27,16 +27,14 @@ class Statblock(object):
         self.cash_str = "¥{}".format(self.__cash)
         on_cash_updated()
 
-    def __init__(self, race, *args, **kwargs):
+    def __init__(self, race):
         self.__race = race
-        self.base_attributes = {}
-
-        self.set_initial_base_attribute("body", kwargs)
-        self.set_initial_base_attribute("quickness", kwargs)
-        self.set_initial_base_attribute("strength", kwargs)
-        self.set_initial_base_attribute("charisma", kwargs)
-        self.set_initial_base_attribute("intelligence", kwargs)
-        self.set_initial_base_attribute("willpower", kwargs)
+        self.base_attributes = {"body": 1,
+                                "quickness": 1,
+                                "strength": 1,
+                                "charisma": 1,
+                                "intelligence": 1,
+                                "willpower": 1}
 
         # reset StatMods because those should be fresh with a new statblock, we add those in as we load a character
         # I may be wrong on where this needs to go though
@@ -52,28 +50,17 @@ class Statblock(object):
         self.gen_mode = Priority()
 
         # setup cash
-        self.__cash = None
-        if "cash" in kwargs.keys():
-            self.__cash = kwargs["cash"]
-        else:
-            # make this not use get_generated_value somehow
-            self.__cash = self.gen_mode.get_generated_value("resources")
+        self.__cash = self.gen_mode.get_generated_value("resources")
         self.cash_str = "¥{}".format(self.__cash)
 
         # setup inventory
-        if "inventory" in kwargs.keys():
-            self.inventory = kwargs["inventory"]
-        else:
-            self.inventory = []
+        self.inventory = []
 
         # setup ammo
         self.ammunition = []
 
         # setup skills
-        if "skills" in kwargs.keys():
-            self.skills = kwargs["skills"]
-        else:
-            self.skills = []
+        self.skills = []
 
         """
         self.awakened: Can either be None, "aspected", or "full"
@@ -86,64 +73,26 @@ class Statblock(object):
         self.tradition = None
         self.aspect = None
         self.focus = None
-        if "awakened" in kwargs.keys():
-            self.awakened = kwargs["awakened"]
-        if "tradition" in kwargs.keys():
-            self.tradition = kwargs["tradition"]
-        if "aspect" in kwargs.keys():
-            self.aspect = kwargs["aspect"]
-        if "focus" in kwargs.keys():
-            self.focus = kwargs["focus"]
-
-        if "spells" in kwargs.keys():
-            self.spells = kwargs["spells"]
-        else:
-            self.spells = []
+        self.spells = []
 
         # setup cyberware
-        if "cyberware" in kwargs.keys():
-            self.cyberware = kwargs["cyberware"]
-        else:
-            self.cyberware = []
+        self.cyberware = self.cyberware = []
 
         # setup adept powers
-        if "powers" in kwargs.keys():
-            self.powers = kwargs["powers"]
-            self.bonus_power_points = kwargs["bonus_power_points"]
-        else:
-            self.powers = []
-            self.bonus_power_points = 0
+        self.powers = []
+        self.bonus_power_points = 0
 
         # setup decks
-        if "decks" in kwargs.keys():
-            self.decks = kwargs["decks"]
-        else:
-            self.decks = []
+        self.decks = []
             
         # setup vehicles
-        if "vehicles" in kwargs.keys():
-            self.vehicles = kwargs["vehicles"]
-        else:
-            self.vehicles = []
+        self.vehicles = []
             
         # setup accessories
-        if "other_accessories" in kwargs.keys():
-            self.other_accessories = kwargs["other_accessories"]
-        else:
-            self.other_accessories = []
+        self.other_accessories = []
 
         # setup miscellaneous programs
-        if "other_programs" in kwargs.keys():
-            self.other_programs = kwargs["other_programs"]
-        else:
-            self.other_programs = []
-
-    def set_initial_base_attribute(self, key, kwargs):
-        """Used by __init__ to setup base attributes"""
-        if key in kwargs:
-            self.base_attributes[key] = kwargs[key]
-        else:
-            self.base_attributes[key] = 1
+        self.other_programs = []
 
     def calculate_attribute(self, key):
         # take care of magic keys
