@@ -66,6 +66,9 @@ class Statblock(object):
         else:
             self.inventory = []
 
+        # setup ammo
+        self.ammunition = []
+
         # setup skills
         if "skills" in kwargs.keys():
             self.skills = kwargs["skills"]
@@ -350,6 +353,7 @@ class Statblock(object):
         Serializes this into a dict for turning into a json.
         """
         inventory = list(map(lambda x: x.serialize(), self.inventory))
+        ammunition = list(map(lambda x: x.serialize(), self.ammunition))
 
         gen_mode = self.gen_mode.serialize()
         skills = list(map(lambda x: x.serialize(), self.skills))
@@ -367,6 +371,7 @@ class Statblock(object):
             "base_attributes": self.base_attributes,
             "cash": self.__cash,
             "inventory": inventory,
+            "ammunition": ammunition,
             "gen_mode": gen_mode,
             "skills": skills,
             "spells": spells,

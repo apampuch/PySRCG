@@ -1,3 +1,4 @@
+# noinspection PyUnresolvedReferences
 import json
 
 from src.CharData.character import *
@@ -5,7 +6,8 @@ from src.Tabs.attributes_tab import *
 from src.Tabs.augments_tab import *
 from src.Tabs.background_tab import *
 from src.Tabs.decking_tab import *
-from src.Tabs.gear_tab import *
+from src.Tabs.gear_tab import GearTab
+from src.Tabs.items_tab import *
 from src.Tabs.karma_tab import KarmaTab
 from src.Tabs.magic_tab import *
 from src.Tabs.rigging_tab import RiggingTab
@@ -16,6 +18,8 @@ from src.utils import magic_tab_show_on_awakened_status
 
 """Idea: CalculatedGear items for things that depend on rating brackets"""
 DEBUG = False
+
+# TODO update the schema for ammo and accessories
 
 # TODO implement name/string variables for items, like Activesoft (skill)
 
@@ -109,7 +113,7 @@ def main():
     attributes_tab = AttributesTab(app_data.window)
     background_tab = BackgroundTab(app_data.window)
     skills_tab = SkillsTab(app_data.window)
-    gear_tab = GearTab(app_data.window, "Buy", "Sell")
+    gear_tab = GearTab(app_data.window)#ItemsTab(app_data.window)
     magic_tab = MagicTab(app_data.window)
     augments_tab = AugmentsTab(app_data.window)
     decking_tab = DeckingTab(app_data.window)

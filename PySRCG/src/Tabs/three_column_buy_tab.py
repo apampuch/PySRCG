@@ -30,8 +30,12 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     def __init__(self, parent,
                  buy_button_text="Buy",
                  sell_button_text="Sell",
-                 treeview_get_make_copy=True):
+                 treeview_get_make_copy=True,
+                 show_quantity=False,
+                 show_race_mods=False,
+                 buy_from_list=False):  # allow buying the selected object from the inventory list
         super().__init__(parent)
+        self.buy_from_list = buy_from_list
         self.treeview_get_make_copy = treeview_get_make_copy
 
         # used to validate input
@@ -61,6 +65,23 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         self.variables_frame = Frame(self)
         self.variables_dict = {}
 
+        # spinbox for amounts
+        amount_container = Frame(self)
+        amount_label = Label(amount_container, text="Quantity:")
+        self.amount_spinbox = Spinbox(amount_container, from_=1, to=float('inf'))
+
+        # race mods
+        self.race_mod_var = StringVar(value="None")
+
+        self.race_mods_frame = ttk.LabelFrame(self, text="Race Mods")
+        self.no_race_mod = Radiobutton(self.race_mods_frame, text="None", variable=self.race_mod_var, value="None")
+        self.dwarf_race_mod = Radiobutton(self.race_mods_frame, text="Dwarf", variable=self.race_mod_var, value="Dwarf")
+        self.troll_race_mod = Radiobutton(self.race_mods_frame, text="Troll", variable=self.race_mod_var, value="Troll")
+
+        self.no_race_mod.pack(side=LEFT)
+        self.dwarf_race_mod.pack(side=LEFT)
+        self.troll_race_mod.pack(side=LEFT)
+
         # bind events and shit
         self.object_library.bind("<<TreeviewSelect>>", self.on_tree_item_click)
         self.object_library["yscrollcommand"] = self.object_library_scroll.set
@@ -80,10 +101,19 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         self.inventory_list.grid                (column=6, row=0, sticky=(N, S), columnspan=2)
         self.inventory_list_scroll.grid         (column=8, row=0, sticky=(N, S))
 
-        self.buy_button.grid(column=0, row=1, sticky=N)
-        self.sell_button.grid(column=6, row=1, sticky=N)
+        self.buy_button.grid(column=0, row=1, sticky=N, columnspan=2)
+        self.sell_button.grid(column=6, row=1, sticky=N, columnspan=2)
 
         self.variables_frame.grid(column=0, row=2)
+
+        amount_label.pack(side=LEFT)
+        self.amount_spinbox.pack(side=LEFT)
+
+        if show_quantity:
+            amount_container.grid(column=3, row=1)
+
+        if show_race_mods:
+            self.race_mods_frame.grid(column=3, row=2)
 
     @property
     @abstractmethod
@@ -177,6 +207,9 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             return False
 
     def on_inv_item_click(self, event):
+        # clear the treeview selection
+        self.object_library.selection_remove(self.object_library.selection())
+
         # for some reason this gets called when you swap the combobox with something selected on ProgramsTab
         # this shit exists just so we don't throw an error
         if len(self.inventory_list.curselection()) == 0:
@@ -186,57 +219,74 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         item_report = self.statblock_inventory[self.inventory_list.curselection()[-1]].report()
         self.fill_description_box(item_report)
 
-    def on_buy_click(self):
-        # make copy of the item from the dict
+    def on_tree_item_click(self, event):
+        # removing things from the selection causes these events to fire so we need to add this check
+        # on the selection length to make sure we're not throwing errors
         if len(self.object_library.selection()) > 0:
-            if self.library_selected is not None:
+            # only select the last one selected if we've selected multiple things
+            selected = self.object_library.selection()[-1]
 
-                # make copy of item and calculate variables we input
-                # TODO try baleeting this
-                item = copy(self.library_selected)
-                var_dict = {}
-                for key in self.variables_dict.keys():
-                    var_dict[key] = self.variables_dict[key].get()
+            if selected in self.tree_item_dict.keys():
+                selected_item = self.tree_item_dict[selected]
+                # destroy all variable objects
+                self.variables_dict = {}
+                for child in self.variables_frame.winfo_children():
+                    child.destroy()
 
-                # calculate any arithmetic expressions we have
-                calculate_attributes(item, var_dict, self.attributes_to_calculate)
+                # get any variables in the item
+                self.variables_dict = get_variables(selected_item, self.attributes_to_calculate)
 
-                self.buy_callback(item)
-            else:
-                print("Can't buy that!")
+                self.fill_description_box(selected_item.report())
+
+            # make variable objects if any
+            i = 0
+            for var in self.variables_dict.keys():
+                var_frame = Frame(self.variables_frame)
+                Label(var_frame, text="{}:".format(var)).grid(column=0, row=0)  # label
+                Entry(var_frame, textvariable=self.variables_dict[var], validate="key", validatecommand=self.vcmd) \
+                    .grid(column=1, row=0)
+                var_frame.grid(column=0, row=i)
+                i += 1
+
+            # deselect everything from the list
+            self.inventory_list.selection_clear(0, END)
+
+    def on_buy_click(self):
+        if len(self.object_library.selection()) > 0:
+            selected_object = self.library_selected
+        elif self.buy_from_list and len(self.inventory_list.curselection()) > 0:
+            selected_object = self.statblock_inventory[self.inv_selected_item]
         else:
             print("Nothing is selected!")
+            return
+
+        if selected_object is not None:
+            # make copy of item and calculate variables we input
+            # TODO try baleeting this
+            item = copy(selected_object)
+            var_dict = {}
+            for key in self.variables_dict.keys():
+                var_dict[key] = self.variables_dict[key].get()
+
+            # calculate any arithmetic expressions we have
+            calculate_attributes(item, var_dict, self.attributes_to_calculate)
+
+            self.buy_callback(item)
+        else:
+            print("Can't buy that!")
 
     def on_sell_click(self):
         # don't do anything if nothing is selected
         if len(self.inventory_list.curselection()) > 0:
             self.sell_callback(self.inv_selected_item)
 
-    def on_tree_item_click(self, event):
-        # only select the last one selected if we've selected multiple things
-        selected = self.object_library.selection()[-1]
+    def update_inventory_text_at_index(self, index, text):
+        was_selected = self.inventory_list.selection_includes(index)
 
-        if selected in self.tree_item_dict.keys():
-            selected_item = self.tree_item_dict[selected]
-            # destroy all variable objects
-            self.variables_dict = {}
-            for child in self.variables_frame.winfo_children():
-                child.destroy()
-
-            # get any variables in the item
-            self.variables_dict = get_variables(selected_item, self.attributes_to_calculate)
-
-            self.fill_description_box(selected_item.report())
-
-        # make variable objects if any
-        i = 0
-        for var in self.variables_dict.keys():
-            var_frame = Frame(self.variables_frame)
-            Label(var_frame, text="{}:".format(var)).grid(column=0, row=0)  # label
-            Entry(var_frame, textvariable=self.variables_dict[var], validate="key", validatecommand=self.vcmd) \
-                .grid(column=1, row=0)
-            var_frame.grid(column=0, row=i)
-            i += 1
+        self.inventory_list.delete(index)
+        self.inventory_list.insert(index, text)
+        if was_selected:
+            self.inventory_list.selection_set(index)
 
     @abstractmethod
     def on_switch(self):

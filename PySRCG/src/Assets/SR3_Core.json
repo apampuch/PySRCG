@@ -842,508 +842,6 @@
           }
         }
       },
-      "Ammunition": {
-        "Rockets": {
-          "Anti-Personnel": {
-            "intelligence": "NA",
-            "damage": "16D",
-            "blast": "-1/.5m",
-            "weight": 2,
-            "availability_rating": 8,
-            "availability_time": 14,
-            "availability_unit": "days",
-            "cost": 1000,
-            "street_index": 2,
-            "legality": "1-K",
-            "page": 281
-          },
-          "Anti-Vehicle": {
-            "intelligence": "NA",
-            "damage": "16D",
-            "blast": "-8/m",
-            "weight": 3,
-            "availability_rating": 8,
-            "availability_time": 14,
-            "availability_unit": "days",
-            "cost": 2000,
-            "street_index": 2,
-            "legality": "1-K",
-            "page": 281
-          },
-          "High-Explosive": {
-            "intelligence": "NA",
-            "damage": "16D",
-            "blast": "-1/m",
-            "weight": 2,
-            "availability_rating": 8,
-            "availability_time": 14,
-            "availability_unit": "days",
-            "cost": 1500,
-            "street_index": 2,
-            "legality": "1-K",
-            "page": 281
-          }
-        },
-        "Missiles": {
-          "Anti-Personnel": {
-            "intelligence": 3,
-            "damage": "16D",
-            "blast": "-1/.5m",
-            "weight": 2.25,
-            "availability_rating": 12,
-            "availability_time": 14,
-            "availability_unit": "days",
-            "cost": 2500,
-            "street_index": 3,
-            "legality": "1-K",
-            "page": 281
-          },
-          "Anti-Vehicle": {
-            "intelligence": 4,
-            "damage": "16D",
-            "blast": "-8/m",
-            "weight": 3.25,
-            "availability_rating": 12,
-            "availability_time": 14,
-            "availability_unit": "days",
-            "cost": 5000,
-            "street_index": 3,
-            "legality": "1-K",
-            "page": 281
-          },
-          "High-Explosive": {
-            "intelligence": 3,
-            "damage": "16D",
-            "blast": "-1/m",
-            "weight": 2.25,
-            "availability_rating": 8,
-            "availability_time": 14,
-            "availability_unit": "days",
-            "cost": 3750,
-            "street_index": 3,
-            "legality": "1-K",
-            "page": 281
-          }
-        },
-        "Ammunition, Per shot": {
-          "APDS": {
-            "concealability": 8,
-            "damage": "See rules",
-            "weight": 0.025,
-            "availability_rating": 14,
-            "availability_time": 14,
-            "availability_unit": "days",
-            "cost": 7,
-            "street_index": 4,
-            "legality": "3-M",
-            "page": 281
-          },
-          "Assault Cannon": {
-            "concealability": 3,
-            "damage": "As weapon",
-            "weight": 0.125,
-            "availability_rating": 5,
-            "availability_time": 3,
-            "availability_unit": "days",
-            "cost": 45,
-            "street_index": 2,
-            "legality": "As weapon",
-            "page": 281
-          },
-          "Assault Cannon, Belt 100": {
-            "concealability": "yeah, right",
-            "damage": "As weapon",
-            "weight": 12.5,
-            "availability_rating": 6,
-            "availability_time": 3,
-            "availability_unit": "days",
-            "cost": 4250,
-            "street_index": 2,
-            "legality": "As weapon",
-            "page": 281
-          },
-          "Explosive Rounds": {
-            "concealability": 8,
-            "damage": "See rules",
-            "weight": 0.075,
-            "availability_rating": 3,
-            "availability_time": 36,
-            "availability_unit": "hours",
-            "cost": 5,
-            "street_index": 0.8,
-            "legality": "As weapon",
-            "page": 281
-          },
-          "EX Explosive": {
-            "concealability": 8,
-            "damage": "See rules",
-            "weight": 0.075,
-            "availability_rating": 6,
-            "availability_time": 72,
-            "availability_unit": "hours",
-            "cost": 10,
-            "street_index": 1.5,
-            "legality": "As weapon",
-            "page": 281
-          },
-          "Flechette Rounds": {
-            "concealability": 8,
-            "damage": "See rules",
-            "weight": 0.05,
-            "availability_rating": 3,
-            "availability_time": 36,
-            "availability_unit": "hours",
-            "cost": 10,
-            "street_index": 0.8,
-            "legality": "As weapon",
-            "page": 281
-          },
-          "Gel Rounds": {
-            "concealability": 8,
-            "damage": "See rules",
-            "weight": 0.025,
-            "availability_rating": 4,
-            "availability_time": 48,
-            "availability_unit": "hours",
-            "cost": 3,
-            "street_index": 1,
-            "legality": "As weapon",
-            "page": 281
-          },
-          "Regular Ammo": {
-            "concealability": 8,
-            "damage": "As weapon",
-            "weight": 0.05,
-            "availability_rating": 2,
-            "availability_time": 24,
-            "availability_unit": "hours",
-            "cost": 2,
-            "street_index": 0.75,
-            "legality": "As weapon",
-            "page": 281
-          },
-          "Tracer": {
-            "concealability": 8,
-            "damage": "See rules",
-            "weight": 0.05,
-            "availability_rating": 3,
-            "availability_time": 24,
-            "availability_unit": "hours",
-            "cost": 7.5,
-            "street_index": 1,
-            "legality": "As weapon",
-            "page": 281
-          },
-          "Taser Dart": {
-            "concealability": 3,
-            "damage": "Special",
-            "weight": 0.05,
-            "availability_rating": 6,
-            "availability_time": 36,
-            "availability_unit": "hours",
-            "cost": 5,
-            "street_index": 1.5,
-            "legality": "As weapon",
-            "page": 281
-          }
-        }
-      },
-      "Firearm and Weapon Accessories": {
-        "General": {
-          "Bipod": {
-            "mount": "Under",
-            "conceal": "NA",
-            "rating": 2,
-            "weight": 2,
-            "availability_rating": 6,
-            "availability_time": 12,
-            "availability_unit": "hrs",
-            "cost": 400,
-            "street_index": 1,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Concealable Holster": {
-            "mount": "NA",
-            "conceal": "+2",
-            "rating": "NA",
-            "weight": 0.1,
-            "availability_rating": 2,
-            "availability_time": 24,
-            "availability_unit": "hrs",
-            "cost": 100,
-            "street_index": 0.75,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Silencer": {
-            "mount": "Barrel",
-            "conceal": "-2",
-            "rating": "NA",
-            "weight": 0.2,
-            "availability_rating": 4,
-            "availability_time": 48,
-            "availability_unit": "hrs",
-            "cost": 500,
-            "street_index": 2,
-            "legality": "As weapon",
-            "page": 282
-          },
-          "Sound Suppresser": {
-            "mount": "Barrel",
-            "conceal": "-2",
-            "rating": "NA",
-            "weight": 0.5,
-            "availability_rating": 6,
-            "availability_time": 48,
-            "availability_unit": "hrs",
-            "cost": 750,
-            "street_index": 2,
-            "legality": "As weapon",
-            "page": 282
-          },
-          "Spare Clips": {
-            "mount": "NA",
-            "conceal": "NA",
-            "rating": "NA",
-            "weight": 0.75,
-            "availability_rating": 2,
-            "availability_time": 24,
-            "availability_unit": "hrs",
-            "cost": 5,
-            "street_index": 0.75,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Tripod": {
-            "mount": "Under",
-            "conceal": "NA",
-            "rating": 6,
-            "weight": 8,
-            "availability_rating": 10,
-            "availability_time": 12,
-            "availability_unit": "hrs",
-            "cost": 600,
-            "street_index": 1,
-            "legality": "Legal",
-            "page": 282
-          }
-        },
-        "Recoil Compensators and Gyros": {
-          "Gas Vent II": {
-            "mount": "Barrel",
-            "conceal": "-1",
-            "rating": 2,
-            "weight": 0.5,
-            "availability_rating": 2,
-            "availability_time": 24,
-            "availability_unit": "hrs",
-            "cost": 450,
-            "street_index": 0.8,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Gas Vent III": {
-            "mount": "Barrel",
-            "conceal": "-2",
-            "rating": 3,
-            "weight": 0.75,
-            "availability_rating": 2,
-            "availability_time": 24,
-            "availability_unit": "hrs",
-            "cost": 700,
-            "street_index": 1,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Gyro Mount, Deluxe": {
-            "mount": "Under",
-            "conceal": "-6",
-            "rating": 6,
-            "weight": 8,
-            "availability_rating": 4,
-            "availability_time": 48,
-            "availability_unit": "hrs",
-            "cost": 6000,
-            "street_index": 1,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Gyro Mount, Standard": {
-            "mount": "Under",
-            "conceal": "-5",
-            "rating": 5,
-            "weight": 6,
-            "availability_rating": 4,
-            "availability_time": 48,
-            "availability_unit": "hrs",
-            "cost": 2500,
-            "street_index": 1,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Shock Pads": {
-            "mount": "NA",
-            "conceal": "NA",
-            "rating": 1,
-            "weight": 0.25,
-            "availability_rating": 2,
-            "availability_time": 24,
-            "availability_unit": "hrs",
-            "cost": 200,
-            "street_index": 0.75,
-            "legality": "Legal",
-            "page": 282
-          }
-        },
-        "Imaging Systems": {
-          "Low-Light Scope": {
-            "mount": "Top",
-            "conceal": "-2",
-            "rating": "NA",
-            "weight": 0.25,
-            "availability_rating": 3,
-            "availability_time": 36,
-            "availability_unit": "hrs",
-            "cost": 1500,
-            "street_index": 0.8,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Magnification 1 Scope": {
-            "mount": "Top",
-            "conceal": "-1",
-            "rating": 1,
-            "weight": 0.25,
-            "availability_rating": 3,
-            "availability_time": 36,
-            "availability_unit": "hrs",
-            "cost": 500,
-            "street_index": 0.8,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Magnification 2 Scope": {
-            "mount": "Top",
-            "conceal": "-1",
-            "rating": 2,
-            "weight": 0.25,
-            "availability_rating": 3,
-            "availability_time": 36,
-            "availability_unit": "hrs",
-            "cost": 800,
-            "street_index": 0.9,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Magnification 3 Scope": {
-            "mount": "Top",
-            "conceal": "-1",
-            "rating": 3,
-            "weight": 0.25,
-            "availability_rating": 3,
-            "availability_time": 36,
-            "availability_unit": "hrs",
-            "cost": 1200,
-            "street_index": 1,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Thermographic Scope": {
-            "mount": "Top",
-            "conceal": "-2",
-            "rating": "NA",
-            "weight": 0.25,
-            "availability_rating": 3,
-            "availability_time": 36,
-            "availability_unit": "hrs",
-            "cost": 1500,
-            "street_index": 0.8,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Laser Sights": {
-            "mount": "Top/under",
-            "conceal": "-1",
-            "rating": "NA",
-            "weight": 0.25,
-            "availability_rating": 6,
-            "availability_time": 36,
-            "availability_unit": "hrs",
-            "cost": 500,
-            "street_index": 0.9,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Ultrasound Sight": {
-            "mount": "Top/under",
-            "conceal": "-2",
-            "rating": "NA",
-            "weight": 0.25,
-            "availability_rating": 8,
-            "availability_time": 4,
-            "availability_unit": "days",
-            "cost": 1300,
-            "street_index": 0.8,
-            "legality": "Legal",
-            "page": 282
-          },
-          "Ultrasound Goggles": {
-            "mount": "NA",
-            "conceal": "NA",
-            "rating": "NA",
-            "weight": 0.25,
-            "availability_rating": 3,
-            "availability_time": 36,
-            "availability_unit": "hrs",
-            "cost": 1100,
-            "street_index": 1,
-            "legality": "Legal",
-            "page": 282
-          }
-        },
-        "SmartLink": {
-          "Smart Goggles": {
-            "mount": "NA",
-            "conceal": "NA",
-            "rating": 0,
-            "weight": 0.1,
-            "availability_rating": 3,
-            "availability_time": 36,
-            "availability_unit": "hrs",
-            "cost": 3000,
-            "street_index": 1,
-            "legality": "4P-N",
-            "page": 282
-          },
-          "Smartgun, internal": {
-            "mount": "NA",
-            "conceal": "NA",
-            "rating": "NA",
-            "weight": 0.5,
-            "availability_rating": 0,
-            "availability_time": 0,
-            "availability_unit": "Weapon",
-            "cost": "+100%",
-            "street_index": "Weapon",
-            "legality": "4P-N",
-            "page": 282
-          },
-          "Smartgun, external": {
-            "mount": "Top/under",
-            "conceal": "-2",
-            "rating": "NA",
-            "weight": 1,
-            "availability_rating": 4,
-            "availability_time": 48,
-            "availability_unit": "hrs",
-            "cost": 600,
-            "street_index": 1,
-            "legality": "4P-N",
-            "page": 282
-          }
-        }
-      },
       "Explosives": {
         "Grenades": {
           "Offensive (HE)": {
@@ -4010,6 +3508,212 @@
       }
     }
   },
+  "Ammunition": {
+    "Rockets": {
+      "Anti-Personnel": {
+        "intelligence": "NA",
+        "damage": "16D",
+        "blast": "-1/.5m",
+        "weight": 2,
+        "availability_rating": 8,
+        "availability_time": 14,
+        "availability_unit": "days",
+        "cost": 1000,
+        "street_index": 2,
+        "legality": "1-K",
+        "page": 281
+      },
+      "Anti-Vehicle": {
+        "intelligence": "NA",
+        "damage": "16D",
+        "blast": "-8/m",
+        "weight": 3,
+        "availability_rating": 8,
+        "availability_time": 14,
+        "availability_unit": "days",
+        "cost": 2000,
+        "street_index": 2,
+        "legality": "1-K",
+        "page": 281
+      },
+      "High-Explosive": {
+        "intelligence": "NA",
+        "damage": "16D",
+        "blast": "-1/m",
+        "weight": 2,
+        "availability_rating": 8,
+        "availability_time": 14,
+        "availability_unit": "days",
+        "cost": 1500,
+        "street_index": 2,
+        "legality": "1-K",
+        "page": 281
+      }
+    },
+    "Missiles": {
+      "Anti-Personnel": {
+        "intelligence": 3,
+        "damage": "16D",
+        "blast": "-1/.5m",
+        "weight": 2.25,
+        "availability_rating": 12,
+        "availability_time": 14,
+        "availability_unit": "days",
+        "cost": 2500,
+        "street_index": 3,
+        "legality": "1-K",
+        "page": 281
+      },
+      "Anti-Vehicle": {
+        "intelligence": 4,
+        "damage": "16D",
+        "blast": "-8/m",
+        "weight": 3.25,
+        "availability_rating": 12,
+        "availability_time": 14,
+        "availability_unit": "days",
+        "cost": 5000,
+        "street_index": 3,
+        "legality": "1-K",
+        "page": 281
+      },
+      "High-Explosive": {
+        "intelligence": 3,
+        "damage": "16D",
+        "blast": "-1/m",
+        "weight": 2.25,
+        "availability_rating": 8,
+        "availability_time": 14,
+        "availability_unit": "days",
+        "cost": 3750,
+        "street_index": 3,
+        "legality": "1-K",
+        "page": 281
+      }
+    },
+    "Ammunition, Per shot": {
+      "APDS": {
+        "concealability": 8,
+        "damage": "See rules",
+        "weight": 0.025,
+        "availability_rating": 14,
+        "availability_time": 14,
+        "availability_unit": "days",
+        "cost": 7,
+        "street_index": 4,
+        "legality": "3-M",
+        "page": 281
+      },
+      "Assault Cannon": {
+        "concealability": 3,
+        "damage": "As weapon",
+        "weight": 0.125,
+        "availability_rating": 5,
+        "availability_time": 3,
+        "availability_unit": "days",
+        "cost": 45,
+        "street_index": 2,
+        "legality": "As weapon",
+        "page": 281
+      },
+      "Assault Cannon, Belt 100": {
+        "concealability": "yeah, right",
+        "damage": "As weapon",
+        "weight": 12.5,
+        "availability_rating": 6,
+        "availability_time": 3,
+        "availability_unit": "days",
+        "cost": 4250,
+        "street_index": 2,
+        "legality": "As weapon",
+        "page": 281
+      },
+      "Explosive Rounds": {
+        "concealability": 8,
+        "damage": "See rules",
+        "weight": 0.075,
+        "availability_rating": 3,
+        "availability_time": 36,
+        "availability_unit": "hours",
+        "cost": 5,
+        "street_index": 0.8,
+        "legality": "As weapon",
+        "page": 281
+      },
+      "EX Explosive": {
+        "concealability": 8,
+        "damage": "See rules",
+        "weight": 0.075,
+        "availability_rating": 6,
+        "availability_time": 72,
+        "availability_unit": "hours",
+        "cost": 10,
+        "street_index": 1.5,
+        "legality": "As weapon",
+        "page": 281
+      },
+      "Flechette Rounds": {
+        "concealability": 8,
+        "damage": "See rules",
+        "weight": 0.05,
+        "availability_rating": 3,
+        "availability_time": 36,
+        "availability_unit": "hours",
+        "cost": 10,
+        "street_index": 0.8,
+        "legality": "As weapon",
+        "page": 281
+      },
+      "Gel Rounds": {
+        "concealability": 8,
+        "damage": "See rules",
+        "weight": 0.025,
+        "availability_rating": 4,
+        "availability_time": 48,
+        "availability_unit": "hours",
+        "cost": 3,
+        "street_index": 1,
+        "legality": "As weapon",
+        "page": 281
+      },
+      "Regular Ammo": {
+        "concealability": 8,
+        "damage": "As weapon",
+        "weight": 0.05,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hours",
+        "cost": 2,
+        "street_index": 0.75,
+        "legality": "As weapon",
+        "page": 281
+      },
+      "Tracer": {
+        "concealability": 8,
+        "damage": "See rules",
+        "weight": 0.05,
+        "availability_rating": 3,
+        "availability_time": 24,
+        "availability_unit": "hours",
+        "cost": 7.5,
+        "street_index": 1,
+        "legality": "As weapon",
+        "page": 281
+      },
+      "Taser Dart": {
+        "concealability": 3,
+        "damage": "Special",
+        "weight": 0.05,
+        "availability_rating": 6,
+        "availability_time": 36,
+        "availability_unit": "hours",
+        "cost": 5,
+        "street_index": 1.5,
+        "legality": "As weapon",
+        "page": 281
+      }
+    }
+  },
   "Skills": {
     "Active Skills": {
       "Combat Skills": {
@@ -4221,8 +3925,8 @@
         "Earth",
         "Air"
       ],
-      "focus_name": "Element",
-      "always_has_focus": false
+      "always_has_focus": false,
+      "focus_name": "Element"
     },
     "Shamanic": {
       "allowed_aspects": [
@@ -4249,16 +3953,16 @@
         "Snake",
         "Wolf"
       ],
-      "focus_name": "Totem",
-      "always_has_focus": true
+      "always_has_focus": true,
+      "focus_name": "Totem"
     },
     "Adept": {
       "allowed_aspects": [
         "Physical Adept"
       ],
       "allowed_foci": [],
-      "focus_name": "Path",
-      "always_has_focus": false
+      "always_has_focus": false,
+      "focus_name": "Path"
     }
   },
   "Spells": {
@@ -7032,7 +6736,6 @@
       },
       "Water Cannon": {
         "availability_rating": "gm_sets_AR",
-        "availability_time": "gm_sets_AT",
         "availability_unit": "gm_sets_AU",
         "street_index": "gm_sets_SI",
         "legality": "gm_sets_lg",
@@ -7042,7 +6745,304 @@
         "mode": "\"SA\"",
         "damage": "6M Stun",
         "weight": 12,
-        "cost": 20000
+        "cost": 20000,
+        "availability_time": "gm_sets_AT"
+      }
+    }
+  },
+  "Weapon Accessories": {
+    "General": {
+      "Bipod": {
+        "mount": "Under",
+        "conceal": "NA",
+        "rating": 2,
+        "weight": 2,
+        "availability_rating": 6,
+        "availability_time": 12,
+        "availability_unit": "hrs",
+        "cost": 400,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Concealable Holster": {
+        "mount": "NA",
+        "conceal": "+2",
+        "rating": "NA",
+        "weight": 0.1,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "cost": 100,
+        "street_index": 0.75,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Silencer": {
+        "mount": "Barrel",
+        "conceal": "-2",
+        "rating": "NA",
+        "weight": 0.2,
+        "availability_rating": 4,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "cost": 500,
+        "street_index": 2,
+        "legality": "As weapon",
+        "page": 282
+      },
+      "Sound Suppresser": {
+        "mount": "Barrel",
+        "conceal": "-2",
+        "rating": "NA",
+        "weight": 0.5,
+        "availability_rating": 6,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "cost": 750,
+        "street_index": 2,
+        "legality": "As weapon",
+        "page": 282
+      },
+      "Spare Clips": {
+        "mount": "NA",
+        "conceal": "NA",
+        "rating": "NA",
+        "weight": 0.75,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "cost": 5,
+        "street_index": 0.75,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Tripod": {
+        "mount": "Under",
+        "conceal": "NA",
+        "rating": 6,
+        "weight": 8,
+        "availability_rating": 10,
+        "availability_time": 12,
+        "availability_unit": "hrs",
+        "cost": 600,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 282
+      }
+    },
+    "Recoil Compensators and Gyros": {
+      "Gas Vent II": {
+        "mount": "Barrel",
+        "conceal": "-1",
+        "rating": 2,
+        "weight": 0.5,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "cost": 450,
+        "street_index": 0.8,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Gas Vent III": {
+        "mount": "Barrel",
+        "conceal": "-2",
+        "rating": 3,
+        "weight": 0.75,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "cost": 700,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Gyro Mount, Deluxe": {
+        "mount": "Under",
+        "conceal": "-6",
+        "rating": 6,
+        "weight": 8,
+        "availability_rating": 4,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "cost": 6000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Gyro Mount, Standard": {
+        "mount": "Under",
+        "conceal": "-5",
+        "rating": 5,
+        "weight": 6,
+        "availability_rating": 4,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "cost": 2500,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Shock Pads": {
+        "mount": "NA",
+        "conceal": "NA",
+        "rating": 1,
+        "weight": 0.25,
+        "availability_rating": 2,
+        "availability_time": 24,
+        "availability_unit": "hrs",
+        "cost": 200,
+        "street_index": 0.75,
+        "legality": "Legal",
+        "page": 282
+      }
+    },
+    "Imaging Systems": {
+      "Low-Light Scope": {
+        "mount": "Top",
+        "conceal": "-2",
+        "rating": "NA",
+        "weight": 0.25,
+        "availability_rating": 3,
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "cost": 1500,
+        "street_index": 0.8,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Magnification 1 Scope": {
+        "mount": "Top",
+        "conceal": "-1",
+        "rating": 1,
+        "weight": 0.25,
+        "availability_rating": 3,
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "cost": 500,
+        "street_index": 0.8,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Magnification 2 Scope": {
+        "mount": "Top",
+        "conceal": "-1",
+        "rating": 2,
+        "weight": 0.25,
+        "availability_rating": 3,
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "cost": 800,
+        "street_index": 0.9,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Magnification 3 Scope": {
+        "mount": "Top",
+        "conceal": "-1",
+        "rating": 3,
+        "weight": 0.25,
+        "availability_rating": 3,
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "cost": 1200,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Thermographic Scope": {
+        "mount": "Top",
+        "conceal": "-2",
+        "rating": "NA",
+        "weight": 0.25,
+        "availability_rating": 3,
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "cost": 1500,
+        "street_index": 0.8,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Laser Sights": {
+        "mount": "Top/under",
+        "conceal": "-1",
+        "rating": "NA",
+        "weight": 0.25,
+        "availability_rating": 6,
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "cost": 500,
+        "street_index": 0.9,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Ultrasound Sight": {
+        "mount": "Top/under",
+        "conceal": "-2",
+        "rating": "NA",
+        "weight": 0.25,
+        "availability_rating": 8,
+        "availability_time": 4,
+        "availability_unit": "days",
+        "cost": 1300,
+        "street_index": 0.8,
+        "legality": "Legal",
+        "page": 282
+      },
+      "Ultrasound Goggles": {
+        "mount": "NA",
+        "conceal": "NA",
+        "rating": "NA",
+        "weight": 0.25,
+        "availability_rating": 3,
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "cost": 1100,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 282
+      }
+    },
+    "SmartLink": {
+      "Smart Goggles": {
+        "mount": "NA",
+        "conceal": "NA",
+        "rating": 0,
+        "weight": 0.1,
+        "availability_rating": 3,
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "cost": 3000,
+        "street_index": 1,
+        "legality": "4P-N",
+        "page": 282
+      },
+      "Smartgun, internal": {
+        "mount": "NA",
+        "conceal": "NA",
+        "rating": "NA",
+        "weight": 0.5,
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "Weapon",
+        "cost": "+100%",
+        "street_index": "Weapon",
+        "legality": "4P-N",
+        "page": 282
+      },
+      "Smartgun, external": {
+        "mount": "Top/under",
+        "conceal": "-2",
+        "rating": "NA",
+        "weight": 1,
+        "availability_rating": 4,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "cost": 600,
+        "street_index": 1,
+        "legality": "4P-N",
+        "page": 282
       }
     }
   }

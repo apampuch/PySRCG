@@ -42,6 +42,9 @@ Legality is simply given as a string. Letters should be capitalized. This may ch
 Items are gear, things like weapons and armor and security devices.
 Damage codes for weapons should be written as a string.
 
+Ammo and weapon accessories should go in their own sections.
+Ammo should have a "count" property in other_fields.
+
 Skills are input as objects with their name as the key, and two attributes: the (in-game) attribute the skill is tied to,
 and the type of skill it is: "active", "knowledge", or "language".
 

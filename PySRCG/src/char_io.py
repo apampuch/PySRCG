@@ -98,6 +98,10 @@ def load(tabs):
                 item_obj = find_gear_by_dict_load(item)
                 new_character.statblock.inventory.append(item_obj)
 
+            for ammo in d["statblock"]["ammunition"]:
+                ammo_obj = find_gear_by_dict_load(ammo)
+                new_character.statblock.ammunition.append(ammo_obj)
+
             # add skills
             for skill in d["statblock"]["skills"]:
                 skill_obj = Skill(**skill)

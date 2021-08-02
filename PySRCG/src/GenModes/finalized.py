@@ -87,12 +87,12 @@ class Finalized(GenMode, ABC):
         from src.Tabs.augments_tab import AugmentsTab
         from src.Tabs.background_tab import BackgroundTab
         from src.Tabs.decking_tab import DeckingTab
-        from src.Tabs.gear_tab import GearTab
+        from src.Tabs.items_tab import ItemsTab
         from src.Tabs.rigging_tab import RiggingTab
         from src.Tabs.setup_tab import SetupTab
         from src.Tabs.magic_tab import MagicTab
 
-        blank_set_types = (GearTab, SetupTab, BackgroundTab, DeckingTab, RiggingTab)
+        blank_set_types = (ItemsTab, SetupTab, BackgroundTab, DeckingTab, RiggingTab)
 
         if type(tab) in blank_set_types:
             blank_set()
