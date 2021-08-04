@@ -19,8 +19,6 @@ from src.utils import magic_tab_show_on_awakened_status
 """Idea: CalculatedGear items for things that depend on rating brackets"""
 DEBUG = False
 
-# TODO update the schema for ammo and accessories
-
 # TODO implement name/string variables for items, like Activesoft (skill)
 
 # TODO try to implement Improved Concealability (SR3, p291) for Surveillance Measures items. You'll need to be able to
