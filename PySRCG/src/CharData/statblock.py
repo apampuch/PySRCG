@@ -59,6 +59,9 @@ class Statblock(object):
         # setup ammo
         self.ammunition = []
 
+        # setup weapon accessories
+        self.misc_weapon_accessories = []
+
         # setup skills
         self.skills = []
 
@@ -88,8 +91,8 @@ class Statblock(object):
         # setup vehicles
         self.vehicles = []
             
-        # setup accessories
-        self.other_accessories = []
+        # setup vehicle accessories
+        self.misc_vehicle_accessories = []
 
         # setup miscellaneous programs
         self.other_programs = []
@@ -248,8 +251,8 @@ class Statblock(object):
 
     def make_fit_dict(self):
         """
-        Makes the fit dict. This is for things like cybereyes and cyberears that can hold amounts of mods themselves.
-        Fit dict is as follows:
+        Makes the fit _dict. This is for things like cybereyes and cyberears that can hold amounts of mods themselves.
+        Fit _dict is as follows:
         SLOT_NAME: [AMOUNT_HOLDS, TOTAL_FIT]
         :return: A dictionary containing the values of free essence by slot.
         """
@@ -257,17 +260,17 @@ class Statblock(object):
 
         for cyber in self.cyberware:
             # track things that cyberware holds
-            if cyber.holds is not None:
-                # cyber.holds["type"] is the type of mod it holds, ["essence"] is the cost
-                add_if_not_there(fit_dict, cyber.holds["type"])
-                fit_dict[cyber.holds["type"]][0] += cyber.holds["essence"]
+            if "holds" in cyber.properties:
+                # cyber.properties["holds"]["type"] is the type of mod it holds, ["essence"] is the cost
+                add_if_not_there(fit_dict, cyber.properties["holds"]["type"])
+                fit_dict[cyber.properties["holds"]["type"]][0] += cyber.properties["holds"]["essence"]
 
             # track things that cyberware fits
-            if cyber.fits is not None:
-                add_if_not_there(fit_dict, cyber.fits)
-                fit_dict[cyber.fits][1] += cyber.essence
+            if "fits" in cyber.properties:
+                add_if_not_there(fit_dict, cyber.properties["fits"])
+                fit_dict[cyber.properties["fits"]][1] += cyber.properties["essence"]
             else:
-                fit_dict[None][1] += cyber.essence
+                fit_dict[None][1] += cyber.properties["essence"]
 
         return fit_dict
 
@@ -289,7 +292,7 @@ class Statblock(object):
     def power_points(self):
         total = 0
         for power in self.powers:
-            total += power.cost
+            total += power.properties["cost"]
 
         return total
 
@@ -299,7 +302,7 @@ class Statblock(object):
 
     def serialize(self):
         """
-        Serializes this into a dict for turning into a json.
+        Serializes this into a _dict for turning into a json.
         """
         inventory = list(map(lambda x: x.serialize(), self.inventory))
         ammunition = list(map(lambda x: x.serialize(), self.ammunition))
@@ -313,7 +316,7 @@ class Statblock(object):
         powers = list(map(lambda x: x.serialize(), self.powers))
         decks = list(map(lambda x: x.serialize(), self.decks))
         vehicles = list(map(lambda x: x.serialize(), self.vehicles))
-        other_accessories = list(map(lambda x: x.serialize(), self.other_accessories))
+        other_accessories = list(map(lambda x: x.serialize(), self.misc_vehicle_accessories))
         other_programs = list(map(lambda x: x.serialize(), self.other_programs))
         return {
             "race": self.__race.name,
@@ -334,7 +337,7 @@ class Statblock(object):
             "decks": decks,
             "vehicles": vehicles,
             "other_programs": other_programs,
-            "other_accessories": other_accessories
+            "misc_vehicle_accessories": other_accessories
         }
 
     def pay_cash(self, amount, *args) -> bool:

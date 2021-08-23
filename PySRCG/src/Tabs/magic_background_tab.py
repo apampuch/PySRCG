@@ -9,7 +9,7 @@ class MagicBackgroundTab(NotebookTab):
     def __init__(self, parent):
         super().__init__(parent)
 
-        # setup and populate tradition dict
+        # setup and populate tradition _dict
         self.traditions_dict = {}
         for tradition in self.parent.game_data["Traditions"]:
             self.traditions_dict[tradition] = Tradition(tradition, **self.parent.game_data["Traditions"][tradition])

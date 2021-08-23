@@ -1,7 +1,9 @@
 from tkinter import *
 from tkinter import ttk
 
-from copy import copy
+from copy import copy, deepcopy
+from typing import List, Callable
+
 from src.Tabs.notebook_tab import NotebookTab
 from src.utils import recursive_treeview_fill, treeview_get, get_variables, calculate_attributes
 
@@ -30,11 +32,22 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     def __init__(self, parent,
                  buy_button_text="Buy",
                  sell_button_text="Sell",
+                 add_inv_callbacks: List[Callable] = None,      # callback functions when adding to inventory
+                 remove_inv_callbacks: List[Callable] = None,   # callback functions when removing from inventory
                  treeview_get_make_copy=True,
                  show_quantity=False,
                  show_race_mods=False,
                  buy_from_list=False):  # allow buying the selected object from the inventory list
+
+        if add_inv_callbacks is None:
+            add_inv_callbacks = []
+
+        if remove_inv_callbacks is None:
+            remove_inv_callbacks = []
+
         super().__init__(parent)
+        self.add_inv_callbacks = add_inv_callbacks
+        self.remove_inv_callbacks = remove_inv_callbacks
         self.buy_from_list = buy_from_list
         self.treeview_get_make_copy = treeview_get_make_copy
 
@@ -168,11 +181,18 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         for i in range(count):
             self.statblock_inventory.append(item)
             self.inventory_list.insert(END, listbox_string(item))
+        # callback functions
+        for cb in self.add_inv_callbacks:
+            cb()
 
     def remove_inv_item(self, index):
         """Removes an item at index from the inventory this tab is linked to."""
         del self.statblock_inventory[index]
         self.inventory_list.delete(index)
+
+        # callback functions
+        for cb in self.remove_inv_callbacks:
+            cb()
 
     def int_validate(self, action, index, value_if_allowed,
                      prior_value, text, validation_type, trigger_type, widget_name):
@@ -261,17 +281,15 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             return
 
         if selected_object is not None:
-            # make copy of item and calculate variables we input
-            # TODO try baleeting this
-            item = copy(selected_object)
+            # item = copy(selected_object)
             var_dict = {}
             for key in self.variables_dict.keys():
                 var_dict[key] = self.variables_dict[key].get()
 
             # calculate any arithmetic expressions we have
-            calculate_attributes(item, var_dict, self.attributes_to_calculate)
+            calculate_attributes(selected_object, var_dict, self.attributes_to_calculate)
 
-            self.buy_callback(item)
+            self.buy_callback(selected_object)
         else:
             print("Can't buy that!")
 

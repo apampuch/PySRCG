@@ -3,11 +3,11 @@ from tkinter import *
 from tkinter import ttk
 
 from src import app_data
-from src.CharData.accessory import *
-from src.CharData.vehicle import Vehicle
+from src.CharData.vehicle_accessory import *
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 
 
+# TODO figure out this Mount shit
 class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent, buy_button_text, sell_button_text):
         super().__init__(parent, buy_button_text, sell_button_text)
@@ -22,12 +22,12 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
 
         self.accessory_things_box.bind("<<ComboboxSelected>>", self.get_accobj)
 
-        self.accessory_things_box.grid(column=2, row=1)
+        self.accessory_things_box.grid(column=3, row=1)
 
     def fill_combobox(self):
         self.accobj_dict = {}
         self.fill_stuff_with_accessories(self.statblock.vehicles)
-        self.accobj_dict["Unattached Accessories"] = self.statblock.other_accessories
+        self.accobj_dict["Unattached Accessories"] = self.statblock.misc_vehicle_accessories
         self.accessory_things_box["values"] = list(self.accobj_dict.keys())
 
         self.accessory_things_box.set("Unattached Accessories")
@@ -53,7 +53,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
             if dupe_count > 1:
                 key += " ({})".format(dupe_count)
 
-            if hasattr(node, "accessories"):
+            if "accessories" in node.properties:
                 self.accobj_dict[key] = node  # .accessories
 
     def get_accobj(self, event):
@@ -61,8 +61,10 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
         # clear list box
         self.inventory_list.delete(0, END)
 
+        # bug is here, what is obj
+        print(type(self.statblock_inventory))
         for obj in self.statblock_inventory:
-            self.inventory_list.insert(END, obj.name)
+            self.inventory_list.insert(END, obj.properties["name"])
 
     @property
     def library_source(self):
@@ -73,13 +75,13 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
         # return self.accobj_dict[self.accessory_things_box.get()]
 
         # this one is done differently
-        # we store the entire vehicle in the dict instead of the inventory unless it's other_accessories
+        # we store the entire vehicle in the _dict instead of the inventory unless it's misc_vehicle_accessories
         # so if it's an actual vehicle we need to get the accessories property from it and return that
         key = self.accessory_things_box.get()
         if key == "Unattached Accessories":
             return self.accobj_dict[key]
         else:
-            return self.accobj_dict[key].accessories
+            return self.accobj_dict[key].properties["accessories"]
 
     @property
     def selected_vehicle(self):
@@ -95,48 +97,48 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
 
     def buy_callback(self, item):
         enough_cargo = True
-        if hasattr(item, "cf_cost"):
+        if "cf_cost" in item.properties:
             enough_cargo = self.has_cargo(item)
 
         can_mount = True
-        if type(item) == Mount:
+        if "body_cost" in item.properties:
             can_mount = self.mount_callback(item)
 
-        if app_data.pay_cash(item.cost, can_mount, enough_cargo):
+        if app_data.pay_cash(item.properties["cost"], can_mount, enough_cargo):
             self.add_inv_item(item)
 
     def has_cargo(self, new_item):
         """Checks the accessories on the vehicle, returns true if we can fit the new one, false if we can't."""
         v = self.selected_vehicle
 
-        # return true if not a vehicle, should only be true if it's other_accessories
+        # return true if not a vehicle, should only be true if it's misc_vehicle_accessories
         if v is None:
             return True
 
         cargo_total = 0
         for item in self.statblock_inventory:
-            if hasattr(item, "cf_cost"):
-                cargo_total += item.cf_cost
+            if "cf_cost" in item.properties:
+                cargo_total += item.properties["cf_cost"]
 
-        return cargo_total + new_item.cf_cost <= v.cargo
+        return cargo_total + new_item.properties["cf_cost"] <= v.cargo
 
     def mount_callback(self, new_mount) -> bool:
         """Checks the mounts already on the vehicle, returns true if we can fit the new mount, false if we can't."""
         v = self.selected_vehicle
 
-        # return true if not a vehicle, should only be true if it's other_accessories
+        # return true if not a vehicle, should only be true if it's misc_vehicle_accessories
         if v is None:
             return True
 
         mount_total = 0
         for item in self.statblock_inventory:
-            if type(item) == Mount:
-                mount_total += item.body_cost
+            if "body_cost" in item.properties:
+                mount_total += item.properties["body_cost"]
 
-        return mount_total + new_mount.body_cost <= v.body
+        return mount_total + new_mount.properties["body_cost"] <= v.body
 
     def sell_callback(self, item_index):
-        self.statblock.cash += self.statblock_inventory[item_index].cost
+        self.statblock.cash += self.statblock_inventory[item_index].properties["cost"]
         self.remove_inv_item(item_index)
 
     @property
@@ -150,12 +152,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
     def recurse_end_func(self):
         def recurse_end_callback(key, val, iid):
             try:
-                if "recoil_compensation" in val.keys():
-                    self.tree_item_dict[iid] = Mount(name=key, **val)
-                elif "damage" in val.keys():
-                    self.tree_item_dict[iid] = VehicleWeapon(name=key, **val)
-                else:
-                    self.tree_item_dict[iid] = Accessory(name=key, **val)
+                self.tree_item_dict[iid] = VehicleAccessory(name=key, **val)
             except TypeError as e:
                 print("Error with {}:".format(key))
                 print(e)

@@ -3,7 +3,9 @@ import re
 from copy import deepcopy
 from operator import add, sub, mul, truediv
 from tkinter import IntVar
-from typing import List, Any
+from typing import Dict, List
+
+from src.CharData.reportable import Reportable
 
 DEBUG = False
 STRINGS_THAT_ARE_NOT_VARIABLES = ["See", "rules", "yeah,", "right", "As", "weapon", "Special"]
@@ -55,7 +57,7 @@ def recursive_treeview_fill(_dict, parent_iid, treeview, recurse_check, recurse_
 
 
 def treeview_get(treeview, helper_dict, make_copy=True):
-    """Used by treeviews with a helper dict for entries where only some are supposed to have functionality."""
+    """Used by treeviews with a helper _dict for entries where only some are supposed to have functionality."""
     selection = treeview.selection()
     ret_val = None
     if type(helper_dict) is dict:
@@ -83,7 +85,7 @@ some items like the data lock will probably require some field to call a specifi
 """
 
 
-def get_variables(obj, attributes):
+def get_variables(obj: Reportable, attributes):
     """
     Gets the variables from the expressions of the listed properties of an object,
     puts them in a dictionary, and returns it.
@@ -99,9 +101,9 @@ def get_variables(obj, attributes):
     for attr in attributes:
         # do this if we have the attribute we're iterating through and if it's a string
         # this is probably just a simple expression
-        if hasattr(obj, attr) and type(getattr(obj, attr)) is str:
+        if attr in obj.properties and type(obj.properties[attr]) is str:
             # split by spaces
-            expression = getattr(obj, attr)
+            expression = obj.properties[attr]
             split_exp = expression.split()
 
             # look for anything that begins with a letter, that's a variable
@@ -112,9 +114,9 @@ def get_variables(obj, attributes):
                     var_dict[substr] = IntVar()
                     var_dict[substr].set(1)
 
-        # if it's a dict, it should have only one key with another dict as its values
-        elif hasattr(obj, attr) and type(getattr(obj, attr)) is dict:
-            tiered_dict = getattr(obj, attr)
+        # if it's a _dict, it should have only one key with another _dict as its values
+        elif attr in obj.properties and type(obj.properties[attr]) is dict:
+            tiered_dict = obj.properties[attr]
 
             # validate that it's key and values are valid
             keys = list(tiered_dict.keys())
@@ -122,7 +124,7 @@ def get_variables(obj, attributes):
             if len(keys) != 1 or type(keys[0]) != str or type(values[0]) != dict:
                 if attr in optional_attributes:
                     continue
-                elif hasattr(obj, "name"):
+                elif attr in obj.properties:
                     raise ValueError("Invalid setup for " + obj.name + ".")
                 else:
                     raise ValueError("Invalid setup for nameless object.")
@@ -133,31 +135,26 @@ def get_variables(obj, attributes):
     return var_dict
 
 
-def calculate_attributes(obj, var_dict, attributes):
+def calculate_attributes(obj: Reportable, var_dict: Dict, attributes: List[str]):
     """
     Performs parse_arithmetic on obj for each attribute given in the list attributes if they exist on obj.
-    Do this only if said property is a string or dict.
-    :type obj: object
-    :type var_dict: dict
-    :type attributes: list
+    Do this only if said property is a string or _dict.
     :param obj: The object to run calculations on.
     :param var_dict: The list of variables for parse_arithmetic to use.
     :param attributes: The list of attributes to check for on obj.
     """
 
     for attr in attributes:
-        if hasattr(obj, attr):
-            o = getattr(obj, attr)
-        elif hasattr(obj, "other_fields") and attr in obj.other_fields.keys():
-            o = obj.other_fields[attr]
+        if attr in obj.properties:
+            o = obj.properties[attr]
         else:
             continue
 
         if type(o) is str:
             result = parse_arithmetic(o, var_dict)
-            set_calculated_value(obj, attr, result)
+            obj.properties[attr] = result
 
-        # do this if we have the attribute and if it's a dict and if it's not empty
+        # do this if we have the attribute and if it's a _dict and if it's not empty
         # this is probably one of those stupid things where the cost multipliers are "tiered"
         # e.g. rating 1-4 costs rating * 1000; rating 5-7 costs rating * 2000
         # in this case it'll be formatted as "rating 1-4:rating*1000"
@@ -173,12 +170,12 @@ def calculate_attributes(obj, var_dict, attributes):
 
             not_one_root =  len(keys) != 1              # there should only be one root value
             root_not_string = type(keys[0]) != str      # root value should be a string
-            value_not_dict = type(values[0]) != dict    # value should be a dict
+            value_not_dict = type(values[0]) != dict    # value should be a _dict
             if not_one_root or root_not_string or value_not_dict:
                 # if the attribute we're looking at is "mods" and the thing isn't valid, just skip this
                 if attr == "mods":
                     continue
-                elif hasattr(obj, "name"):
+                elif "name" in obj.properties:
                     raise ValueError("Invalid setup for " + obj.name + ".")
                 else:
                     raise ValueError("Invalid setup for nameless object.")
@@ -191,22 +188,13 @@ def calculate_attributes(obj, var_dict, attributes):
             variable: str = keys[0]
             if variable in var_dict:
                 result = parse_between_expression(var_dict, var_dict[variable], values[0])
-                set_calculated_value(obj, attr, result)
+                obj.properties[attr] = result
 
             else:
-                if hasattr(obj, "name"):
+                if "name" in obj.properties:
                     raise ValueError("Key " + variable + " not in " + obj.name + ".")
                 else:
                     raise ValueError("Key " + variable + " not in nameless object.")
-
-
-def set_calculated_value(obj, attr, result):
-    if hasattr(obj, "other_fields") and attr in obj.other_fields.keys():
-        obj.other_fields[attr] = result
-    elif hasattr(obj, attr):
-        setattr(obj, attr, result)
-    else:
-        raise ValueError("{} does not have attribute {}.".format(obj.name, attr))
 
 
 def parse_between_expression(var_dict, variable, expression_dict):
@@ -260,7 +248,7 @@ def parse_between_expression(var_dict, variable, expression_dict):
     elif type(expression) is str:
         return parse_arithmetic(expression, var_dict)
     elif type(expression) is dict:
-        # If the type of the "expression" is a dict, we're probably dealing with mods for things like attributes.
+        # If the type of the "expression" is a _dict, we're probably dealing with mods for things like attributes.
         # In that case, we need to parse the expression in each child
         for key in expression.keys():
             if type(expression[key]) is str:

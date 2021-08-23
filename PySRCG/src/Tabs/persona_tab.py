@@ -64,8 +64,6 @@ class PersonaTab(NotebookTab, ABC):
 
         self.current_row += 1
 
-
-
     @property
     def current_deck(self) -> Deck:
         if not self.deck_list:  # if empty
@@ -85,13 +83,6 @@ class PersonaTab(NotebookTab, ABC):
     def deck_list_names(self):
         return list(map(lambda x: x.name, self.deck_list))
 
-    @property
-    def deck_persona_max(self):
-        if self.current_deck is None:
-            return 0
-
-        return self.current_deck.mpcp * 3
-
     def on_set_slider_value(self, key, value):
         value = int(value)
 
@@ -108,12 +99,12 @@ class PersonaTab(NotebookTab, ABC):
         slider_total -= 1
 
         # check if purchase is allowed
-        if slider_total >= self.deck_persona_max:
+        if slider_total >= self.current_deck.total_persona_points():
             value = self.slider_old_vals[key].get()
             self.sliders[key].set(value)
         else:
             self.slider_old_vals[key].set(value)
-            self.current_deck.persona[key] = value
+            self.current_deck.properties["persona"][key] = value
 
         # set label values
         self.value_labels[key].config(text=self.sliders[key].get())
@@ -128,17 +119,17 @@ class PersonaTab(NotebookTab, ABC):
 
         for key in self.sliders.keys():
             # set slider maxmimums
-            self.sliders[key].config(to=self.current_deck.mpcp)
-            self.sliders[key].set(self.current_deck.persona[key])
+            self.sliders[key].config(to=self.current_deck.properties["mpcp"])
+            self.sliders[key].set(self.current_deck.properties["persona"][key])
 
             # set slider values
-            # self.sliders[key].set(self.current_deck.persona[key])
+            # self.sliders[key].set(self.current_deck.properties["persona"][key])
 
-            # self.on_set_slider_value(key, self.current_deck.persona[key])
+            # self.on_set_slider_value(key, self.current_deck.properties["persona"][key])
 
         # setup top progress bar
         progress_bar = app_data.top_bar.karma_bar
-        progress_bar.configure(maximum=self.deck_persona_max, variable=self.persona_total)
+        progress_bar.configure(maximum=self.current_deck.total_persona_points(), variable=self.persona_total)
 
         self.calculate_total()
 
@@ -168,4 +159,4 @@ class PersonaTab(NotebookTab, ABC):
 
         self.persona_total.set(total)
 
-        app_data.top_bar.update_karma_bar(total, self.deck_persona_max, "Persona Tab")
+        app_data.top_bar.update_karma_bar(total, self.current_deck.total_persona_points(), "Persona Tab")

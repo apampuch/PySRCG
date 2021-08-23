@@ -71,7 +71,7 @@ class SpellsTab(NotebookTab):
 
         def magic_tab_recurse_end_callback(key, val, iid):
             # key is a string
-            # val is a dict from a json
+            # val is a _dict from a json
             self.tree_library_dict[iid] = Spell(name=key, **val, force=0)
 
         recursive_treeview_fill(self.parent.game_data["Spells"], "", self.magic_library,

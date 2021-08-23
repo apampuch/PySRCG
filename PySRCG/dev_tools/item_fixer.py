@@ -29,7 +29,7 @@ def fix_availability(json_object, new_json_object):
                 if child_key == "availability":
                     split_availability(new_json_object)
 
-                # recurse through if it's a dict
+                # recurse through if it's a _dict
                 elif type(child_value) is dict:
                     result = fix_availability(child_value, new_child_value)
                     new_json_object[child_key] = result

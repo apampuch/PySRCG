@@ -24,7 +24,7 @@ class ProgramsTab(ThreeColumnBuyTab):
 
         self.memory_things_box.bind("<<ComboboxSelected>>", self.get_memobj_memory)
 
-        self.memory_things_box.grid(column=2, row=1)
+        self.memory_things_box.grid(column=3, row=1)
 
     def fill_combobox(self):
         self.memobj_dict = {}
@@ -57,8 +57,8 @@ class ProgramsTab(ThreeColumnBuyTab):
             if dupe_count > 1:
                 key += " ({})".format(dupe_count)
 
-            if hasattr(node, "stored_memory"):
-                self.memobj_dict[key] = node.stored_memory
+            if "stored_memory" in node.properties:
+                self.memobj_dict[key] = node.properties["stored_memory"]
 
     def get_memobj_memory(self, event):
         """Fills the inventory box with software from the selected memobj"""
@@ -82,11 +82,11 @@ class ProgramsTab(ThreeColumnBuyTab):
         return ["rating"]
 
     def buy_callback(self, item):
-        if app_data.pay_cash(item.cost):
+        if app_data.pay_cash(item.properties["cost"]):
             self.add_inv_item(item, lambda x: x.name_and_rating)
 
     def sell_callback(self, item_index):
-        self.statblock.cash += self.statblock_inventory[item_index].cost
+        self.statblock.cash += self.statblock_inventory[item_index].properties["cost"]
         self.remove_inv_item(item_index)
 
     @property

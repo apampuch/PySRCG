@@ -2,11 +2,11 @@ import src.app_data as app_data
 import json
 import os.path
 
-from src.CharData.accessory import Accessory
+from src.CharData.vehicle_accessory import VehicleAccessory
 from src.CharData.augment import Cyberware
 from src.CharData.character import *
 from src.CharData.deck import Deck
-from src.CharData.gear import find_gear_by_dict_load
+from src.CharData.gear import Gear
 from src.CharData.power import Power
 from src.CharData.program import Program
 from src.CharData.race import all_races
@@ -14,6 +14,7 @@ from src.CharData.skill import Skill
 from src.CharData.tradition import Tradition
 from src.GenModes.priority import Priority
 from src.GenModes.finalized import Finalized
+from src.save_version_upgrade import upgrade_funcs
 from src.utils import magic_tab_show_on_awakened_status
 from tkinter import filedialog
 from typing import TextIO
@@ -70,7 +71,7 @@ def __write_file(file, character: Character):
     # file.encoding = "utf-8"  # set encoding to utf-8 so things work everywhere
     character.file_path = file.name
     serialized_character = character.serialize()
-    serialized_character["save_version"] = 0.1
+    serialized_character["save_version"] = 0.2
     json.dump(serialized_character, file, indent=2)
 
 
@@ -95,11 +96,11 @@ def load(tabs):
 
             # convert dicts to item objects and add to inventory
             for item in d["statblock"]["inventory"]:
-                item_obj = find_gear_by_dict_load(item)
+                item_obj = Gear(**item)
                 new_character.statblock.inventory.append(item_obj)
 
             for ammo in d["statblock"]["ammunition"]:
-                ammo_obj = find_gear_by_dict_load(ammo)
+                ammo_obj = Gear(**ammo)
                 new_character.statblock.ammunition.append(ammo_obj)
 
             # add skills
@@ -116,7 +117,7 @@ def load(tabs):
             for cyber in d["statblock"]["cyberware"]:
                 cyber_obj = Cyberware(**cyber)
                 # check for mods
-                if len(cyber_obj.mods.keys()) > 0:
+                if len(cyber_obj.properties["mods"].keys()) > 0:
                     print("stop here")
                 new_character.statblock.cyberware.append(cyber_obj)
 
@@ -138,10 +139,10 @@ def load(tabs):
                 new_character.statblock.vehicles.append(vehicle_obj)
                 
             # add accessories
-            for accessory in d["statblock"]["other_accessories"]:
+            for vehicle_accessory in d["statblock"]["misc_vehicle_accessories"]:
                 # may need to recurse and add programs and parts
-                accessory_obj = Accessory(**accessory)
-                new_character.statblock.other_accessories.append(accessory_obj)
+                accessory_obj = VehicleAccessory(**vehicle_accessory)
+                new_character.statblock.misc_vehicle_accessories.append(accessory_obj)
 
             # add programs
             # TODO make it add stuff from all program containers
@@ -186,3 +187,5 @@ def load(tabs):
             print("Nothing opened")
         else:
             raise e
+
+

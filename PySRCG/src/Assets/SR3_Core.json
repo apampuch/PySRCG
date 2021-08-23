@@ -5103,7 +5103,7 @@
             }
           },
           "availability_rating": {
-            "rating ": {
+            "rating": {
               "1;2": 8,
               "3;3": 14
             }
@@ -5145,7 +5145,7 @@
             }
           },
           "availability_rating": {
-            "rating ": {
+            "rating": {
               "1;2": 8,
               "3;3": 14
             }
@@ -5886,7 +5886,7 @@
   "Vehicles": {
     "Cars": {
       "Chrysler-Nissan Jackrabbit (Electric)": {
-        "handling_normal": 3,
+        "handling": 3,
         "handling_offroad": 8,
         "speed": 80,
         "accel": 5,
@@ -5908,7 +5908,7 @@
         "page": 307
       },
       "Chrysler-Nissan Jackrabbit (Methane)": {
-        "handling_normal": 3,
+        "handling": 3,
         "handling_offroad": 8,
         "speed": 90,
         "accel": 6,
@@ -5930,7 +5930,7 @@
         "page": 307
       },
       "Eurocar Westwind 2000": {
-        "handling_normal": 3,
+        "handling": 3,
         "handling_offroad": 8,
         "speed": 210,
         "accel": 10,
@@ -5955,7 +5955,7 @@
         "page": 308
       },
       "Eurocar Westwind 2000 (Turbo)": {
-        "handling_normal": 3,
+        "handling": 3,
         "handling_offroad": 8,
         "speed": 210,
         "accel": 14,
@@ -5981,7 +5981,7 @@
         "page": 308
       },
       "Ford Americar": {
-        "handling_normal": 4,
+        "handling": 4,
         "handling_offroad": 8,
         "speed": 105,
         "accel": 8,
@@ -6005,7 +6005,7 @@
     },
     "Bikes": {
       "Dodge Scoot": {
-        "handling_normal": 3,
+        "handling": 3,
         "handling_offroad": 4,
         "speed": 60,
         "accel": 3,
@@ -6030,7 +6030,7 @@
         "page": 308
       },
       "Harley-Davidson Scorpion": {
-        "handling_normal": 4,
+        "handling": 4,
         "handling_offroad": 5,
         "speed": 120,
         "accel": 6,
@@ -6052,7 +6052,7 @@
         "page": 308
       },
       "Yamaha Rapier": {
-        "handling_normal": 3,
+        "handling": 3,
         "handling_offroad": 6,
         "speed": 195,
         "accel": 10,
@@ -6076,7 +6076,7 @@
     },
     "Trucks": {
       "Ares Roadmaster": {
-        "handling_normal": 4,
+        "handling": 4,
         "handling_offroad": 10,
         "speed": 90,
         "accel": 3,
@@ -6098,7 +6098,7 @@
         "page": 309
       },
       "Ford-Canada Bison": {
-        "handling_normal": 4,
+        "handling": 4,
         "handling_offroad": 3,
         "speed": 135,
         "accel": 6,
@@ -6126,8 +6126,7 @@
     },
     "Hovercraft": {
       "Chrysler-Nissan G12A (Passenger)": {
-        "handling_normal": 4,
-        "handling_offroad": null,
+        "handling": 4,
         "speed": 120,
         "accel": 5,
         "body": 4,
@@ -6148,8 +6147,7 @@
         "page": 309
       },
       "Chrysler-Nissan G12A (Cargo)": {
-        "handling_normal": 4,
-        "handling_offroad": null,
+        "handling": 4,
         "speed": 120,
         "accel": 5,
         "body": 4,
@@ -6172,8 +6170,7 @@
     },
     "Boats": {
       "Samuvani Criscraft Otter": {
-        "handling_normal": 3,
-        "handling_offroad": null,
+        "handling": 3,
         "speed": 45,
         "accel": 6,
         "body": 5,
@@ -6193,8 +6190,8 @@
         "page": 309
       },
       "Sendanko Marlin": {
-        "handling_normal": 3,
-        "handling_offroad": null,
+        "handling": 3,
+
         "speed": 30,
         "accel": 3,
         "body": 3,
@@ -6216,8 +6213,8 @@
     },
     "Winged Planes": {
       "Cessna C750 (standard)": {
-        "handling_normal": 5,
-        "handling_offroad": null,
+        "handling": 5,
+
         "min_speed": 135,
         "speed": 340,
         "accel": 22,
@@ -6240,8 +6237,8 @@
         "page": 310
       },
       "Cessna C750 (passenger)": {
-        "handling_normal": 5,
-        "handling_offroad": null,
+        "handling": 5,
+
         "min_speed": 135,
         "speed": 340,
         "accel": 22,
@@ -6266,8 +6263,8 @@
     },
     "Rotorcraft": {
       "Ares Dragon": {
-        "handling_normal": 5,
-        "handling_offroad": null,
+        "handling": 5,
+
         "speed": 260,
         "accel": 10,
         "body": 7,
@@ -6288,8 +6285,8 @@
         "page": 310
       },
       "Hughes WK-2 Stallion": {
-        "handling_normal": 5,
-        "handling_offroad": null,
+        "handling": 5,
+
         "speed": 190,
         "accel": 14,
         "body": 4,
@@ -6312,7 +6309,7 @@
     },
     "Security Vehicles": {
       "Ares Citymaster": {
-        "handling_normal": 5,
+        "handling": 5,
         "handling_offroad": 11,
         "speed": 120,
         "accel": 3,
@@ -6339,7 +6336,7 @@
         "page": 310
       },
       "Chrysler Nissan Patrol-1": {
-        "handling_normal": 4,
+        "handling": 4,
         "handling_offroad": 8,
         "speed": 120,
         "accel": 12,
@@ -6367,8 +6364,8 @@
         "page": 310
       },
       "GMC Banshee": {
-        "handling_normal": 6,
-        "handling_offroad": null,
+        "handling": 6,
+
         "min_speed": 250,
         "speed": 1000,
         "accel": 50,
@@ -6400,8 +6397,8 @@
         "page": 311
       },
       "GMC Beachcraft Patroller": {
-        "handling_normal": 4,
-        "handling_offroad": null,
+        "handling": 4,
+
         "speed": 165,
         "accel": 9,
         "body": 4,
@@ -6425,8 +6422,8 @@
         "page": 311
       },
       "Doc Wagon Osprey II": {
-        "handling_normal": 5,
-        "handling_offroad": null,
+        "handling": 5,
+
         "speed": 380,
         "accel": 10,
         "body": 5,
@@ -6453,8 +6450,8 @@
         "page": 311
       },
       "Northrup Wasp (PRC-42B Variant)": {
-        "handling_normal": 3,
-        "handling_offroad": null,
+        "handling": 3,
+
         "speed": 130,
         "accel": 15,
         "body": 3,
@@ -6482,7 +6479,7 @@
     },
     "Drones": {
       "GM-Nissan Doberman": {
-        "handling_normal": 3,
+        "handling": 3,
         "handling_offroad": 5,
         "speed": 70,
         "accel": 8,
@@ -6509,7 +6506,7 @@
         "page": 312
       },
       "Gaz-Niki GNRD-71 Bis Snooper": {
-        "handling_normal": 4,
+        "handling": 4,
         "handling_offroad": 3,
         "speed": 75,
         "accel": 3,
@@ -6534,8 +6531,7 @@
         "page": 312
       },
       "Generic Surveillance Drone": {
-        "handling_normal": 3,
-        "handling_offroad": null,
+        "handling": 3,
         "speed": 70,
         "accel": 9,
         "body": 1,
@@ -6560,8 +6556,7 @@
         "page": 311
       },
       "MCT-Nissan Roto-Drone": {
-        "handling_normal": 4,
-        "handling_offroad": null,
+        "handling": 4,
         "speed": 70,
         "accel": 6,
         "body": 2,
@@ -6586,8 +6581,7 @@
         "page": 312
       },
       "Cyberspace Designs Dalmatian": {
-        "handling_normal": 3,
-        "handling_offroad": null,
+        "handling": 3,
         "speed": 105,
         "accel": 8,
         "body": 2,

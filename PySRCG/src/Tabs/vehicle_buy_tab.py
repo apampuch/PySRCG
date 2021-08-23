@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import ttk
 
 from src import app_data
-from src.CharData.accessory import Accessory
+from src.CharData.vehicle_accessory import VehicleAccessory
 from src.CharData.vehicle import Vehicle
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 
@@ -23,7 +23,7 @@ class VehicleBuyTab(ThreeColumnBuyTab, ABC):
         self.dwarf_race_mod.pack(side=LEFT)
         self.troll_race_mod.pack(side=LEFT)
 
-        self.race_mods_frame.grid(row=1, column=2)
+        self.race_mods_frame.grid(row=1, column=3)
 
     @property
     def library_source(self):
@@ -40,30 +40,30 @@ class VehicleBuyTab(ThreeColumnBuyTab, ABC):
     def buy_callback(self, item):
         # modify the item for any racial mods that have been selected
         if self.race_mod_var.get() == "Dwarf":
-            item.cost *= 1.1
-            item.cost = int(item.cost)
+            item.properties["cost"] *= 1.1
+            item.properties["cost"] = int(item.properties["cost"])
             item.optionals["race_mod"] = "Dwarf"
         elif self.race_mod_var.get() == "Troll":
-            item.cost *= 1.25
-            item.cost = int(item.cost)
+            item.properties["cost"] *= 1.25
+            item.properties["cost"] = int(item.properties["cost"])
             item.optionals["race_mod"] = "Troll"
 
-        if app_data.pay_cash(item.cost):
+        if app_data.pay_cash(item.properties["cost"]):
             self.add_inv_item(item)
 
     def sell_callback(self, item_index):
         # sell all attached accessories
         vehicle: Vehicle = self.statblock_inventory[item_index]
-        accessory: Accessory
-        for accessory in vehicle.accessories:
-            self.statblock.cash += accessory.cost
-        self.statblock.cash += self.statblock_inventory[item_index].cost
+        accessory: VehicleAccessory
+        for accessory in vehicle.properties["accessories"]:
+            self.statblock.cash += accessory.properties["cost"]
+        self.statblock.cash += self.statblock_inventory[item_index].properties["cost"]
         self.remove_inv_item(item_index)
 
     @property
     def recurse_check_func(self):
         def recurse_check(val):
-            return "handling_normal" not in val.keys()
+            return "handling" not in val.keys()
 
         return recurse_check
 

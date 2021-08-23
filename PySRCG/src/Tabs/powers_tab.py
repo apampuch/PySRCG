@@ -92,10 +92,10 @@ class PowersTab(NotebookTab):
             power = copy(self.library_selected)
 
             # make sure we have enough power points remaining
-            if total_power_points + power.cost * power.level <= self.statblock.total_power_points:
+            if total_power_points + power.properties["cost"] * power.level <= self.statblock.total_power_points:
                 # if so, add to the character's statblock and UI
                 self.statblock.powers.append(power)
-                self.powers_list.insert("", END, text=power.name, values=(power.cost, power.level, power.page))
+                self.powers_list.insert("", END, text=power.name, values=(power.properties["cost"], power.level, power.page))
 
                 # fix internal variable shit
                 self.calculate_total()
@@ -127,17 +127,17 @@ class PowersTab(NotebookTab):
         if selected is None:
             return
 
-        base_cost = selected.cost / selected.level
+        base_cost = selected.properties["cost"] / selected.level
 
         # TODO if max_levels == null pretend max_levels == magic attribute
 
         # TODO check if we're under max_levels
 
         if self.statblock.power_points + base_cost <= self.statblock.magic:
-            selected.cost += base_cost
+            selected.properties["cost"] += base_cost
             selected.level += 1
 
-            self.powers_list.set(self.powers_list.focus(), "cost", selected.cost)
+            self.powers_list.set(self.powers_list.focus(), "cost", selected.properties["cost"])
             self.powers_list.set(self.powers_list.focus(), "level", selected.level)
 
             self.calculate_total()
@@ -150,13 +150,13 @@ class PowersTab(NotebookTab):
         if selected is None:
             return
 
-        base_cost = selected.cost / selected.level
+        base_cost = selected.properties["cost"] / selected.level
 
         if selected.level > 1:
-            selected.cost -= base_cost
+            selected.properties["cost"] -= base_cost
             selected.level -= 1
 
-            self.powers_list.set(self.powers_list.focus(), "cost", selected.cost)
+            self.powers_list.set(self.powers_list.focus(), "cost", selected.properties["cost"])
             self.powers_list.set(self.powers_list.focus(), "level", selected.level)
 
             self.calculate_total()
@@ -175,6 +175,6 @@ class PowersTab(NotebookTab):
         self.powers_list.delete(*self.powers_list.get_children())
 
         for power in self.statblock.powers:
-            self.powers_list.insert("", END, text=power.name, values=(power.cost, power.level, power.page))
+            self.powers_list.insert("", END, text=power.name, values=(power.properties["cost"], power.level, power.page))
 
         self.calculate_total()

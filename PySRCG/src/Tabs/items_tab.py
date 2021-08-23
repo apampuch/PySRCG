@@ -1,17 +1,12 @@
 from abc import ABC
 
-from tkinter import *
-from tkinter import ttk
-
 from src.app_data import pay_cash
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.CharData.gear import *
 
-ATTRIBUTES_TO_CALCULATE = ["cost", "weight", "availability_rating", "availability_time", "street_index", "rating",
-                           "transaction_limit"]  # find a better way to do this, maybe per-item?
-
 
 class ItemsTab(ThreeColumnBuyTab, ABC):
+    # TODO check if we need this still
     @property
     def inv_selected_item(self):
         """ID of the index of the selected item"""
@@ -33,25 +28,27 @@ class ItemsTab(ThreeColumnBuyTab, ABC):
     @property
     def recurse_end_func(self):
         def gear_tab_recurse_end_callback(key, val, iid):
-            self.tree_item_dict[iid] = find_gear_by_dict(key, val)
+            # add name to dict
+            val["name"] = key
+            self.tree_item_dict[iid] = Gear(**val)
 
         return gear_tab_recurse_end_callback
 
     def buy_callback(self, selected):
         # modify the item for any racial mods that have been selected
         if self.race_mod_var.get() == "Dwarf":
-            selected.cost *= 1.1
-            selected.cost = int(selected.cost)
-            selected.other_fields["race_mod"] = "Dwarf"
+            selected.properties["cost"] *= 1.1
+            selected.properties["cost"] = int(selected.properties["cost"])
+            selected.properties["race_mod"] = "Dwarf"
         elif self.race_mod_var.get() == "Troll":
-            selected.cost *= 1.25
-            selected.cost = int(selected.cost)
-            selected.other_fields["race_mod"] = "Troll"
+            selected.properties["cost"] *= 1.25
+            selected.properties["cost"] = int(selected.properties["cost"])
+            selected.properties["race_mod"] = "Troll"
 
         # get the amount by getting the value of the spinbox (always a string) and converting to int
         count = int(self.amount_spinbox.get())
 
-        if pay_cash(selected.cost * count):
+        if pay_cash(selected.properties["cost"] * count):
             self.add_inv_item(selected, count=count)
         else:
             print("Not enough money!")
@@ -60,7 +57,7 @@ class ItemsTab(ThreeColumnBuyTab, ABC):
         selected_item = self.statblock.inventory[self.inv_selected_item]
 
         # return cash value
-        self.statblock.cash += selected_item.cost
+        self.statblock.cash += selected_item.properties["cost"]
 
         self.remove_inv_item(self.inv_selected_item)
 

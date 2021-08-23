@@ -2,7 +2,7 @@ from abc import ABC
 
 from tkinter import *
 
-from src.CharData.gear import find_gear_by_dict
+from src.CharData.gear import find_gear_by_dict, Gear
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.app_data import pay_cash
 
@@ -28,41 +28,41 @@ class AmmoTab(ThreeColumnBuyTab, ABC):
         count = int(self.amount_spinbox.get())
 
         # add count property to the item if it doesn't exist yet
-        if "count" not in selected.other_fields.keys():
-            selected.other_fields["count"] = count
+        if "count" not in selected.properties.keys():
+            selected.properties["count"] = count
 
-        if pay_cash(selected.cost * count):
+        if pay_cash(selected.properties["cost"] * count):
             exists_index = -1
             for i in range(0, len(self.statblock_inventory)):
                 if self.statblock_inventory[i].name == selected.name:
                     exists_index = i
                     break
             if exists_index >= 0:
-                self.statblock_inventory[exists_index].other_fields["count"] += count
+                self.statblock_inventory[exists_index].properties["count"] += count
                 # update label and report box
-                self.update_inventory_text_at_index(exists_index, f"{selected.name} ({self.statblock_inventory[exists_index].other_fields['count']})")
+                self.update_inventory_text_at_index(exists_index, f"{selected.name} ({self.statblock_inventory[exists_index].properties['count']})")
                 self.fill_description_box(self.statblock_inventory[exists_index].report())
             else:
-                self.add_inv_item(selected, listbox_string=lambda x: f"{x.name} ({x.other_fields['count']})")
+                self.add_inv_item(selected, listbox_string=lambda x: f"{x.name} ({x.properties['count']})")
         else:
             print("Not enough money!")
 
     def sell_callback(self, selected_index):
         selected_item = self.statblock.ammunition[selected_index]
-        count = min(selected_item.other_fields["count"], int(self.amount_spinbox.get()))
+        count = min(selected_item.properties["count"], int(self.amount_spinbox.get()))
 
         # return cash value
-        self.statblock.cash += selected_item.cost * count
+        self.statblock.cash += selected_item.properties["cost"] * count
 
         # remove amount or delete if all would be removed
-        if count == selected_item.other_fields["count"]:
+        if count == selected_item.properties["count"]:
             self.remove_inv_item(self.inv_selected_item)
-        elif count < selected_item.other_fields["count"]:
-            selected_item.other_fields["count"] -= count
-            self.update_inventory_text_at_index(selected_index, f"{selected_item.name} ({self.statblock_inventory[selected_index].other_fields['count']})")
+        elif count < selected_item.properties["count"]:
+            selected_item.properties["count"] -= count
+            self.update_inventory_text_at_index(selected_index, f"{selected_item.name} ({self.statblock_inventory[selected_index].properties['count']})")
             self.fill_description_box(self.statblock_inventory[selected_index].report())
         else:
-            item_count = selected_item.other_fields["count"]
+            item_count = selected_item.properties["count"]
             raise ValueError(f"{selected_item.name} has count of {item_count}, trying to remove {count}.")
 
     @property
@@ -75,7 +75,9 @@ class AmmoTab(ThreeColumnBuyTab, ABC):
     @property
     def recurse_end_func(self):
         def gear_tab_recurse_end_callback(key, val, iid):
-            self.tree_item_dict[iid] = find_gear_by_dict(key, val)
+            # add name to val
+            val["name"] = key
+            self.tree_item_dict[iid] = Gear(**val)
 
         return gear_tab_recurse_end_callback
 
@@ -85,4 +87,4 @@ class AmmoTab(ThreeColumnBuyTab, ABC):
     def load_character(self):
         self.inventory_list.delete(0, END)
         for item in self.statblock_inventory:
-            self.inventory_list.insert(END, f"{item.name} ({item.other_fields['count']})")
+            self.inventory_list.insert(END, f"{item.name} ({item.properties['count']})")

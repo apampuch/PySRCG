@@ -29,7 +29,7 @@ def v0_2_to_v0_3(save_file):
 
 
 """
-Use an ordered dict to store these. 
+Use an ordered _dict to store these. 
 """
 upgrade_funcs = OrderedDict()
 upgrade_funcs[0.1] = v0_1_to_v0_2

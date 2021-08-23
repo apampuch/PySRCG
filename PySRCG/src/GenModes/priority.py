@@ -26,7 +26,7 @@ class Priority(GenMode, ABC):
         else:
             self.priority_order = priority_order
 
-        # this dict corresponds to the value of the priority of each option
+        # this _dict corresponds to the value of the priority of each option
         # e.g. magic C would be priority_value_dict["magic"][2]
         self.priority_value_dict = {
             "resources": [1000000, 400000, 90000, 20000, 5000],

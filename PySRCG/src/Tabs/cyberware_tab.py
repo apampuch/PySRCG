@@ -112,7 +112,7 @@ class CyberwareTab(NotebookTab):
 
         def augment_tab_recurse_end_callback(key, val, iid):
             # key is a string
-            # val is a dict from a json
+            # val is a _dict from a json
             try:
                 self.tree_library_dict[iid] = Cyberware(name=key, **val)
             except TypeError as e:
@@ -128,11 +128,11 @@ class CyberwareTab(NotebookTab):
         if self.library_selected is not None:
             current_essence = self.statblock.essence
 
-            # make copies of info we need to copy from the dict
-            cyber = copy(self.library_selected)
-            cyber.grade = str(self.grade_var.get())
+            # make copies of info we need to copy from the _dict
+            cyber: Cyberware = self.library_selected
+            cyber.add_field("grade", str(self.grade_var.get()))
 
-            # make a new dict from the variables dict that we can pass into parse_arithmetic()
+            # make a new _dict from the variables _dict that we can pass into parse_arithmetic()
             # because parse_arithmetic() can't take IntVars
             var_dict = {}
             for key in self.variables_dict.keys():
@@ -141,13 +141,13 @@ class CyberwareTab(NotebookTab):
             # calculate any arithmetic expressions we have
             calculate_attributes(cyber, var_dict, ATTRIBUTES_TO_CALCULATE)
 
-            cyber.essence = self.calc_essence_cost(cyber, cyber.grade)
-            cyber.cost = int(self.calc_yen_cost(cyber, cyber.grade))
+            cyber.properties["essence"] = self.calc_essence_cost(cyber, cyber.properties["grade"])
+            cyber.properties["cost"] = int(self.calc_yen_cost(cyber, cyber.properties["grade"]))
 
             # if we have enough essence
-            if cyber.essence < current_essence:
+            if cyber.properties["essence"] < current_essence:
                 # if we have enough money
-                if app_data.pay_cash(cyber.cost):
+                if app_data.pay_cash(cyber.properties["cost"]):
                     self.add_cyberware_item(cyber)
                     self.calculate_total()
             else:
@@ -162,7 +162,7 @@ class CyberwareTab(NotebookTab):
             return
 
         # return cash value
-        self.statblock.cash += self.statblock.cyberware[self.list_selected_index].cost
+        self.statblock.cash += self.statblock.cyberware[self.list_selected_index].properties["cost"]
 
         self.remove_cyberware_item(self.list_selected_index)
         self.calculate_total()
@@ -172,23 +172,24 @@ class CyberwareTab(NotebookTab):
 
         :type cyber: Cyberware
         """
-        for key in cyber.mods.keys():
-            value = cyber.mods[key]
+        for key in cyber.properties["mods"].keys():
+            value = cyber.properties["mods"][key]
             StatMod.add_mod(key, value)
         self.statblock.cyberware.append(cyber)
         self.cyberware_list.insert(END, cyber.name)
 
     def remove_cyberware_item(self, index):
         cyber = self.statblock.cyberware[index]
-        for key in cyber.mods.keys():
-            value = cyber.mods[key]
-            StatMod.remove_mod(key, value)
+        if "mods" in cyber.properties:
+            for key in cyber.properties["mods"].keys():
+                value = cyber.properties["mods"][key]
+                StatMod.remove_mod(key, value)
 
         del self.statblock.cyberware[index]
         self.cyberware_list.delete(index)
 
     def calc_essence_cost(self, cyber, grade):
-        essence = cyber.essence
+        essence = cyber.properties["essence"]
 
         if grade == "standard":
             pass
@@ -201,12 +202,13 @@ class CyberwareTab(NotebookTab):
         else:
             raise ValueError("Invalid grade {}.".format(grade))
 
-        if cyber.fits is None:
+        # check if we have the "fits" property at all
+        if "fits" not in cyber.properties:
             return essence
         fit_dict = self.statblock.make_fit_dict()
-        if cyber.fits in fit_dict.keys():
-            hold_amount = fit_dict[cyber.fits][0]
-            fit_amount = fit_dict[cyber.fits][1]
+        if cyber.properties["fits"] in fit_dict.keys():
+            hold_amount = fit_dict[cyber.properties["fits"]][0]
+            fit_amount = fit_dict[cyber.properties["fits"]][1]
             # subtract fit amount from held amount to get
             subtotal = max(hold_amount - fit_amount, 0)
             total =  max(essence - subtotal, 0)
@@ -215,7 +217,7 @@ class CyberwareTab(NotebookTab):
             return essence
 
     def calc_yen_cost(self, cyber, grade):
-        cost = cyber.cost
+        cost = cyber.properties["cost"]
 
         if grade == "standard":
             pass
