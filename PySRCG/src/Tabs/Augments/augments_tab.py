@@ -1,7 +1,7 @@
 from tkinter import ttk
 
-from src.Tabs.bioware_tab import BiowareTab
-from src.Tabs.cyberware_tab import CyberwareTab
+from src.Tabs.Augments.bioware_tab import BiowareTab
+from src.Tabs.Augments.cyberware_tab import CyberwareTab
 
 # list of attributes that we need to look for variables in, eg "Cost: rating * 500"
 ATTRIBUTES_TO_CALCULATE = ["essence", "cost", "availability_rating", "availability_time"]

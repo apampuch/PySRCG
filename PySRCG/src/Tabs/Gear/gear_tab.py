@@ -1,8 +1,8 @@
 from tkinter import ttk
 
 from src import app_data
-from src.Tabs.ammo_tab import AmmoTab
-from src.Tabs.items_tab import ItemsTab
+from src.Tabs.Gear.ammo_tab import AmmoTab
+from src.Tabs.Gear.items_tab import ItemsTab
 
 
 class GearTab(ttk.Notebook):

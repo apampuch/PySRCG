@@ -1,9 +1,8 @@
-from tkinter import *
 from tkinter import ttk
 
 from src import app_data
-from src.Tabs.vehicle_accessories_tab import VehicleAccessoriesTab
-from src.Tabs.vehicle_buy_tab import VehicleBuyTab
+from src.Tabs.Rigging.vehicle_accessories_tab import VehicleAccessoriesTab
+from src.Tabs.Rigging.vehicle_buy_tab import VehicleBuyTab
 
 
 class RiggingTab(ttk.Notebook):

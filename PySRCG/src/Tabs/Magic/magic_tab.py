@@ -1,9 +1,9 @@
 from tkinter import ttk
 
 from src import app_data
-from src.Tabs.magic_background_tab import MagicBackgroundTab
-from src.Tabs.powers_tab import PowersTab
-from src.Tabs.spells_tab import SpellsTab
+from src.Tabs.Magic.magic_background_tab import MagicBackgroundTab
+from src.Tabs.Magic.powers_tab import PowersTab
+from src.Tabs.Magic.spells_tab import SpellsTab
 
 
 class MagicTab(ttk.Notebook):

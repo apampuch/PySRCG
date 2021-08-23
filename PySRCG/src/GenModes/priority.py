@@ -1,17 +1,15 @@
 from abc import ABC
-from tkinter import IntVar
 
 from tkinter import *
-from tkinter import ttk
 
 from src import app_data
 from src.CharData.race import all_races
 from src.GenModes.gen_mode import GenMode
-from src.Tabs.attributes_tab import AttributesTab
-from src.Tabs.augments_tab import AugmentsTab
-from src.Tabs.decking_tab import DeckingTab
-from src.Tabs.magic_tab import MagicTab
-from src.Tabs.skills_tab import SkillsTab
+from src.Tabs.Attributes.attributes_tab import AttributesTab
+from src.Tabs.Augments.augments_tab import AugmentsTab
+from src.Tabs.Decking.decking_tab import DeckingTab
+from src.Tabs.Magic.magic_tab import MagicTab
+from src.Tabs.Skills.skills_tab import SkillsTab
 from src.utils import magic_tab_show_on_awakened_status
 
 

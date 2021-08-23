@@ -2,17 +2,17 @@
 import json
 
 from src.CharData.character import *
-from src.Tabs.attributes_tab import *
-from src.Tabs.augments_tab import *
-from src.Tabs.background_tab import *
-from src.Tabs.decking_tab import *
-from src.Tabs.gear_tab import GearTab
-from src.Tabs.items_tab import *
-from src.Tabs.karma_tab import KarmaTab
-from src.Tabs.magic_tab import *
-from src.Tabs.rigging_tab import RiggingTab
-from src.Tabs.setup_tab import *
-from src.Tabs.skills_tab import SkillsTab
+from src.Tabs.Attributes.attributes_tab import *
+from src.Tabs.Augments.augments_tab import *
+from src.Tabs.Background.background_tab import *
+from src.Tabs.Decking.decking_tab import *
+from src.Tabs.Gear.gear_tab import GearTab
+from src.Tabs.Gear.items_tab import *
+from src.Tabs.Rigging.karma_tab import KarmaTab
+from src.Tabs.Magic.magic_tab import *
+from src.Tabs.Rigging.rigging_tab import RiggingTab
+from src.Tabs.Setup.setup_tab import *
+from src.Tabs.Skills.skills_tab import SkillsTab
 from src.Tabs.top_menu import *
 from src.utils import magic_tab_show_on_awakened_status
 

@@ -84,13 +84,13 @@ class Finalized(GenMode, ABC):
             progress_bar.configure(maximum=10000000, variable=0)
 
         # do these imports here to avoid circular import bullshit
-        from src.Tabs.augments_tab import AugmentsTab
-        from src.Tabs.background_tab import BackgroundTab
-        from src.Tabs.decking_tab import DeckingTab
-        from src.Tabs.items_tab import ItemsTab
-        from src.Tabs.rigging_tab import RiggingTab
-        from src.Tabs.setup_tab import SetupTab
-        from src.Tabs.magic_tab import MagicTab
+        from src.Tabs.Augments.augments_tab import AugmentsTab
+        from src.Tabs.Background.background_tab import BackgroundTab
+        from src.Tabs.Decking.decking_tab import DeckingTab
+        from src.Tabs.Gear.items_tab import ItemsTab
+        from src.Tabs.Rigging.rigging_tab import RiggingTab
+        from src.Tabs.Setup.setup_tab import SetupTab
+        from src.Tabs.Magic.magic_tab import MagicTab
 
         blank_set_types = (ItemsTab, SetupTab, BackgroundTab, DeckingTab, RiggingTab)
 

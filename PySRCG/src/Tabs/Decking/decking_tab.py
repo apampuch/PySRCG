@@ -1,10 +1,6 @@
-from src.CharData.deck import Deck
-from src.Tabs.deck_buy_tab import DeckBuyTab
-from src.Tabs.notebook_tab import NotebookTab
-from src.Tabs.persona_tab import PersonaTab
-from src.Tabs.programs_tab import ProgramsTab
-from src.utils import recursive_treeview_fill, treeview_get, get_variables, calculate_attributes
-from tkinter import *
+from src.Tabs.Decking.deck_buy_tab import DeckBuyTab
+from src.Tabs.Decking.persona_tab import PersonaTab
+from src.Tabs.Decking.programs_tab import ProgramsTab
 from tkinter import ttk
 
 import src.app_data as app_data

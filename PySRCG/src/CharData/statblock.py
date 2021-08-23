@@ -3,7 +3,7 @@ from typing import Dict
 
 from src.GenModes.priority import Priority
 from src.app_data import on_cash_updated
-from src.Tabs.attributes_tab import AttributesTab
+from src.Tabs.Attributes.attributes_tab import AttributesTab
 from src.CharData.race import Race
 from src.statblock_modifier import StatMod
 
