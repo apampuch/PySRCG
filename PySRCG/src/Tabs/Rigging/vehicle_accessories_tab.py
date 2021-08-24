@@ -61,8 +61,6 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
         # clear list box
         self.inventory_list.delete(0, END)
 
-        # bug is here, what is obj
-        print(type(self.statblock_inventory))
         for obj in self.statblock_inventory:
             self.inventory_list.insert(END, obj.properties["name"])
 
