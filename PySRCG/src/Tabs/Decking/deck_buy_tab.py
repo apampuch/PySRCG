@@ -2,9 +2,6 @@ from abc import ABC
 
 from src.CharData.deck import Deck
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
-from src.utils import recursive_treeview_fill, treeview_get, get_variables, calculate_attributes
-from tkinter import *
-from tkinter import ttk
 
 import src.app_data as app_data
 
