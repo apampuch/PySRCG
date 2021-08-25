@@ -1,7 +1,7 @@
 from src.CharData.reportable import Reportable
 
 
-class VehicleAccessory(Reportable):
+class FirearmAccessory(Reportable):
     def __init__(self, **kwargs):
         super().__init__()
 

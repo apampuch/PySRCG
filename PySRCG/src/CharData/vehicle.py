@@ -14,26 +14,26 @@ class Vehicle(Reportable):
         self.fill_necessary_fields(necessary_fields, kwargs)
 
         # add accessories property no matter what
-        self.properties["accessories"] = []
+        self.properties["vehicle_accessories"] = []
 
-        if "accessories" in kwargs:
+        if "vehicle_accessories" in kwargs:
             # TODO add reporting for these
-            for accessory in kwargs["accessories"]:
+            for accessory in kwargs["vehicle_accessories"]:
                 try:
-                    self.properties["accessories"].append(VehicleAccessory(**accessory))
+                    self.properties["vehicle_accessories"].append(VehicleAccessory(**accessory))
                 except TypeError as e:
-                    print("Error with {}:".format(kwargs["accessories"].name))
+                    print("Error with {}:".format(kwargs["vehicle_accessories"].name))
                     print(e)
                     print()
 
-            del kwargs["accessories"]
+            del kwargs["vehicle_accessories"]
 
         # optional parts, like takeoff/seating
         self.fill_miscellaneous_fields(kwargs)
 
     def serialize(self):
         ret_dict = self.properties.copy()
-        ret_dict["accessories"] = []
-        for obj in self.properties["accessories"]:
-            ret_dict["accessories"].append(obj.serialize())
+        ret_dict["vehicle_accessories"] = []
+        for obj in self.properties["vehicle_accessories"]:
+            ret_dict["vehicle_accessories"].append(obj.serialize())
         return ret_dict

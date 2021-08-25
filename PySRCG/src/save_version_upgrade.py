@@ -19,12 +19,12 @@ def v0_1_to_v0_2(save_file):
 # TODO test
 def v0_2_to_v0_3(save_file):
     """
-    v0.2 -> v0.3: add misc_weapon_accessories section, move accessories from items to weapon accessories as a test
+    v0.2 -> v0.3: add misc_firearm_accessories section, move accessories from items to weapon accessories as a test
     change other_accessories to misc_vehicle_accessories
     """
     save_file["misc_vehicle_accessories"] = deepcopy(save_file["other_accessories"])
     del save_file["other_accessories"]
-    save_file["misc_weapon_accessories"] = []
+    save_file["misc_firearm_accessories"] = []
     save_file["save_version"] = 0.3
 
 

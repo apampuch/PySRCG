@@ -1,4 +1,5 @@
 from src.CharData.reportable import Reportable
+from src.CharData.firearm_accessory import FirearmAccessory
 
 
 class Gear(Reportable):
@@ -10,11 +11,30 @@ class Gear(Reportable):
         # add the necessary fields
         self.fill_necessary_fields(necessary_fields, kwargs)
 
+        # add accessories property if it's a weapon
+        if "firearm_accessories" in kwargs:
+            self.properties["firearm_accessories"] = []
+            # TODO add reporting for these
+            for accessory in kwargs["firearm_accessories"]:
+                try:
+                    self.properties["firearm_accessories"].append(FirearmAccessory(**accessory))
+                except TypeError as e:
+                    print("Error with {}:".format(kwargs["firearm_accessories"].name))
+                    print(e)
+                    print()
+
+            del kwargs["firearm_accessories"]
+
         # add the other fields
         self.fill_miscellaneous_fields(kwargs)
 
     def serialize(self):
-        return self.properties.copy()
+        ret_dict = self.properties.copy()
+        if "firearm_accessories" in self.properties:
+            ret_dict["firearm_accessories"] = []
+            for obj in self.properties["firearm_accessories"]:
+                ret_dict["firearm_accessories"].append(obj.serialize())
+        return ret_dict
 
 
 def find_gear_by_dict_load(_dict):

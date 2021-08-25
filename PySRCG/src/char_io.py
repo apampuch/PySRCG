@@ -103,6 +103,10 @@ def load(tabs):
                 ammo_obj = Gear(**ammo)
                 new_character.statblock.ammunition.append(ammo_obj)
 
+            for firearm_accessory in d["statblock"]["misc_firearm_accessories"]:
+                firearm_accessory_obj = Gear(**firearm_accessory)
+                new_character.statblock.misc_firearm_accessories.append(firearm_accessory_obj)
+
             # add skills
             for skill in d["statblock"]["skills"]:
                 skill_obj = Skill(**skill)
@@ -138,14 +142,13 @@ def load(tabs):
                 vehicle_obj = Vehicle(**vehicle)
                 new_character.statblock.vehicles.append(vehicle_obj)
                 
-            # add accessories
+            # add vehicle accessories
             for vehicle_accessory in d["statblock"]["misc_vehicle_accessories"]:
                 # may need to recurse and add programs and parts
-                accessory_obj = VehicleAccessory(**vehicle_accessory)
-                new_character.statblock.misc_vehicle_accessories.append(accessory_obj)
+                vehicle_accessory_obj = VehicleAccessory(**vehicle_accessory)
+                new_character.statblock.misc_vehicle_accessories.append(vehicle_accessory_obj)
 
             # add programs
-            # TODO make it add stuff from all program containers
             for other_program in d["statblock"]["other_programs"]:
                 # may need to recurse and add programs and parts
                 program_obj = Program(**other_program)

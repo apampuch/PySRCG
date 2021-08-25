@@ -1,7 +1,7 @@
 {
   "book_abbr": "sr3",
-  "file_version": "1.1",
-  "schema_version": "1.1",
+  "file_version": "1.2",
+  "schema_version": "1.2",
   "book": "Shadowrun 3 Core (FASA 7001)",
   "Items": {
     "Weapons": {
@@ -11,10 +11,10 @@
             "concealability": 12,
             "reach": 0,
             "damage": "(STR + 2)L",
-            "weight": "NA",
-            "cost": "NA",
-            "street_index": "NA",
-            "legality": "NA",
+            "weight": null,
+            "cost": 0,
+            "street_index": null,
+            "legality": null,
             "page": 275,
             "availability_rating": 0,
             "availability_time": 0,
@@ -267,7 +267,7 @@
             "availability_unit": "hrs"
           },
           "Heavy Crossbow": {
-            "concealability": "NA",
+            "concealability": null,
             "str_min": 5,
             "damage": "6S",
             "weight": 4,
@@ -297,7 +297,7 @@
           "Non-Aerodynamic": {
             "Throwing Knife": {
               "concealability": 9,
-              "str_min": "NA",
+              "str_min": null,
               "damage": "(STR)L",
               "weight": 0.25,
               "cost": 20,
@@ -312,7 +312,7 @@
           "Aerodynamic": {
             "Shuriken": {
               "concealability": 8,
-              "str_min": "NA",
+              "str_min": null,
               "damage": "(STR)L",
               "weight": 0.25,
               "cost": 30,
@@ -342,7 +342,8 @@
               "page": 276,
               "availability_time": 12,
               "availability_rating": 2,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             },
             "Walther Palm Pistol": {
               "concealability": 9,
@@ -357,7 +358,8 @@
               "page": 277,
               "availability_time": 12,
               "availability_rating": 3,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             }
           },
           "Light": {
@@ -374,7 +376,8 @@
               "page": 277,
               "availability_time": 12,
               "availability_rating": 3,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             },
             "Colt American L36": {
               "concealability": 6,
@@ -389,7 +392,8 @@
               "page": 277,
               "availability_time": 12,
               "availability_rating": 3,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             },
             "Fichetti Security 500": {
               "concealability": 7,
@@ -404,7 +408,8 @@
               "page": 277,
               "availability_time": 12,
               "availability_rating": 3,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             },
             "Fichetti Security 500a": {
               "concealability": 6,
@@ -419,7 +424,8 @@
               "page": 277,
               "availability_time": 12,
               "availability_rating": 3,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             }
           },
           "Machine": {
@@ -436,7 +442,8 @@
               "page": 277,
               "availability_time": 36,
               "availability_rating": 5,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             }
           },
           "Heavy": {
@@ -453,7 +460,8 @@
               "page": 277,
               "availability_time": 24,
               "availability_rating": 3,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             },
             "Ares Viper Silvergun": {
               "concealability": 6,
@@ -468,7 +476,8 @@
               "page": 277,
               "availability_time": 48,
               "availability_rating": 3,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             },
             "Browning Max-Power": {
               "concealability": 6,
@@ -483,7 +492,8 @@
               "page": 277,
               "availability_time": 24,
               "availability_rating": 3,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             },
             "Remington Roomsweeper": {
               "concealability": 6,
@@ -498,7 +508,8 @@
               "page": 277,
               "availability_time": 24,
               "availability_rating": 3,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             },
             "Ruger Super Warhawk": {
               "concealability": 4,
@@ -513,7 +524,8 @@
               "page": 277,
               "availability_time": 24,
               "availability_rating": 3,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             }
           },
           "Special": {
@@ -530,7 +542,8 @@
               "page": 277,
               "availability_time": 24,
               "availability_rating": 5,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             }
           }
         },
@@ -548,7 +561,8 @@
             "page": 278,
             "availability_time": 3,
             "availability_rating": 5,
-            "availability_unit": "days"
+            "availability_unit": "days",
+            "firearm_accessories": []
           },
           "Heckler & Koch HK227": {
             "concealability": 4,
@@ -563,7 +577,8 @@
             "page": 277,
             "availability_time": 24,
             "availability_rating": 4,
-            "availability_unit": "hrs"
+            "availability_unit": "hrs",
+            "firearm_accessories": []
           },
           "HK227-S": {
             "concealability": 5,
@@ -578,7 +593,8 @@
             "page": 277,
             "availability_time": 7,
             "availability_rating": 10,
-            "availability_unit": "days"
+            "availability_unit": "days",
+            "firearm_accessories": []
           },
           "Ingram Smartgun": {
             "concealability": 5,
@@ -593,7 +609,8 @@
             "page": 277,
             "availability_time": 24,
             "availability_rating": 4,
-            "availability_unit": "hrs"
+            "availability_unit": "hrs",
+            "firearm_accessories": []
           },
           "Uzi III": {
             "concealability": 5,
@@ -608,7 +625,8 @@
             "page": 277,
             "availability_time": 24,
             "availability_rating": 4,
-            "availability_unit": "hrs"
+            "availability_unit": "hrs",
+            "firearm_accessories": []
           }
         },
         "Rifles": {
@@ -626,7 +644,8 @@
               "page": 278,
               "availability_time": 24,
               "availability_rating": 3,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             },
             "Remington 950": {
               "concealability": 2,
@@ -641,7 +660,8 @@
               "page": 278,
               "availability_time": 24,
               "availability_rating": 3,
-              "availability_unit": "hrs"
+              "availability_unit": "hrs",
+              "firearm_accessories": []
             }
           },
           "Sniper": {
@@ -658,7 +678,8 @@
               "page": 278,
               "availability_time": 7,
               "availability_rating": 12,
-              "availability_unit": "days"
+              "availability_unit": "days",
+              "firearm_accessories": []
             }
           }
         },
@@ -676,7 +697,8 @@
             "page": 279,
             "availability_time": 24,
             "availability_rating": 3,
-            "availability_unit": "hrs"
+            "availability_unit": "hrs",
+            "firearm_accessories": []
           },
           "Einfeld AS-7": {
             "concealability": 3,
@@ -691,7 +713,8 @@
             "page": 279,
             "availability_time": 8,
             "availability_rating": 8,
-            "availability_unit": "days"
+            "availability_unit": "days",
+            "firearm_accessories": []
           }
         },
         "Assault Rifles": {
@@ -708,7 +731,8 @@
             "page": 278,
             "availability_time": 36,
             "availability_rating": 3,
-            "availability_unit": "hrs"
+            "availability_unit": "hrs",
+            "firearm_accessories": []
           },
           "AK-98": {
             "concealability": 2,
@@ -723,7 +747,8 @@
             "page": 278,
             "availability_time": 4,
             "availability_rating": 8,
-            "availability_unit": "days"
+            "availability_unit": "days",
+            "firearm_accessories": []
           },
           "FN HAR": {
             "concealability": 2,
@@ -738,7 +763,8 @@
             "page": 277,
             "availability_time": 48,
             "availability_rating": 4,
-            "availability_unit": "hrs"
+            "availability_unit": "hrs",
+            "firearm_accessories": []
           }
         }
       },
@@ -757,7 +783,8 @@
             "page": 279,
             "availability_time": 5,
             "availability_rating": 6,
-            "availability_unit": "days"
+            "availability_unit": "days",
+            "firearm_accessories": []
           }
         },
         "Heavy Weapons": {
@@ -774,7 +801,8 @@
             "page": 279,
             "availability_time": 18,
             "availability_rating": 18,
-            "availability_unit": "days"
+            "availability_unit": "days",
+            "firearm_accessories": []
           },
           "Ultimax MMG": {
             "concealability": null,
@@ -789,7 +817,8 @@
             "page": 279,
             "availability_time": 14,
             "availability_rating": 14,
-            "availability_unit": "days"
+            "availability_unit": "days",
+            "firearm_accessories": []
           },
           "Vigorous Assault Cannon": {
             "concealability": null,
@@ -804,7 +833,8 @@
             "page": 279,
             "availability_time": 14,
             "availability_rating": 16,
-            "availability_unit": "days"
+            "availability_unit": "days",
+            "firearm_accessories": []
           }
         },
         "Grenade Launchers": {
@@ -821,7 +851,8 @@
             "page": 279,
             "availability_time": 4,
             "availability_rating": 8,
-            "availability_unit": "days"
+            "availability_unit": "days",
+            "firearm_accessories": []
           }
         },
         "Missile/Rocket Launchers": {
@@ -838,7 +869,8 @@
             "page": 279,
             "availability_time": 14,
             "availability_rating": 12,
-            "availability_unit": "days"
+            "availability_unit": "days",
+            "firearm_accessories": []
           }
         }
       },
@@ -1602,7 +1634,7 @@
     "Electronics": {
       "Telecom": {
         "weight": 5,
-        "concealability": "NA",
+        "concealability": null,
         "cost": "memory_cost * 1.5",
         "availability_rating": 0,
         "availability_time": 0,
@@ -3511,7 +3543,7 @@
   "Ammunition": {
     "Rockets": {
       "Anti-Personnel": {
-        "intelligence": "NA",
+        "intelligence": null,
         "damage": "16D",
         "blast": "-1/.5m",
         "weight": 2,
@@ -3524,7 +3556,7 @@
         "page": 281
       },
       "Anti-Vehicle": {
-        "intelligence": "NA",
+        "intelligence": null,
         "damage": "16D",
         "blast": "-8/m",
         "weight": 3,
@@ -3537,7 +3569,7 @@
         "page": 281
       },
       "High-Explosive": {
-        "intelligence": "NA",
+        "intelligence": null,
         "damage": "16D",
         "blast": "-1/m",
         "weight": 2,
@@ -5894,7 +5926,7 @@
         "armor": 0,
         "sig": 5,
         "autonav": 1,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 0,
         "cargo": 1,
         "load": 100,
@@ -5916,7 +5948,7 @@
         "armor": 0,
         "sig": 4,
         "autonav": 1,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 0,
         "cargo": 1,
         "load": 100,
@@ -5938,7 +5970,7 @@
         "armor": 0,
         "sig": 2,
         "autonav": 3,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 1,
         "cargo": 5,
         "load": 45,
@@ -5963,7 +5995,7 @@
         "armor": 0,
         "sig": 2,
         "autonav": 3,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 1,
         "cargo": 5,
         "load": 45,
@@ -5989,7 +6021,7 @@
         "armor": 0,
         "sig": 2,
         "autonav": 2,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 1,
         "cargo": 12,
         "load": 110,
@@ -6013,7 +6045,7 @@
         "armor": 0,
         "sig": 5,
         "autonav": 0,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": null,
         "cargo": 1,
         "load": 10,
@@ -6038,7 +6070,7 @@
         "armor": 1,
         "sig": 2,
         "autonav": 2,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 0,
         "cargo": 4,
         "load": 60,
@@ -6060,7 +6092,7 @@
         "armor": 0,
         "sig": 2,
         "autonav": 1,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 0,
         "cargo": 1,
         "load": 40,
@@ -6084,7 +6116,7 @@
         "armor": 0,
         "sig": 2,
         "autonav": 2,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 0,
         "cargo": 80,
         "load": 2000,
@@ -6106,7 +6138,7 @@
         "armor": 4,
         "sig": 2,
         "autonav": 3,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 1,
         "cargo": 67,
         "load": 1918,
@@ -6133,7 +6165,7 @@
         "armor": 0,
         "sig": 2,
         "autonav": 2,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 0,
         "cargo": 12,
         "load": 250,
@@ -6154,7 +6186,7 @@
         "armor": 0,
         "sig": 2,
         "autonav": 2,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 0,
         "cargo": 66,
         "load": 1000,
@@ -6177,7 +6209,7 @@
         "armor": 0,
         "sig": 3,
         "autonav": 2,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 1,
         "cargo": 48,
         "load": 650,
@@ -6198,7 +6230,7 @@
         "armor": 0,
         "sig": 6,
         "autonav": 0,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 0,
         "cargo": 12,
         "load": 150,
@@ -6222,7 +6254,7 @@
         "armor": 0,
         "sig": 4,
         "autonav": 2,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 1,
         "cargo": 48,
         "load": 1100,
@@ -6246,7 +6278,7 @@
         "armor": 0,
         "sig": 4,
         "autonav": 2,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 1,
         "cargo": 36,
         "load": 500,
@@ -6271,7 +6303,7 @@
         "armor": 0,
         "sig": 3,
         "autonav": 3,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 1,
         "cargo": 95,
         "load": 3250,
@@ -6293,7 +6325,7 @@
         "armor": 0,
         "sig": 3,
         "autonav": 3,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 1,
         "cargo": 72,
         "load": 1250,
@@ -6317,7 +6349,7 @@
         "armor": 10,
         "sig": 1,
         "autonav": 3,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 0,
         "cargo": 41,
         "load": 530,
@@ -6344,7 +6376,7 @@
         "armor": 2,
         "sig": 1,
         "autonav": 3,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 0,
         "cargo": 11,
         "load": 40,
@@ -6373,7 +6405,7 @@
         "armor": 18,
         "sig": 5,
         "autonav": 2,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 7,
         "cargo": 29,
         "load": 805,
@@ -6405,7 +6437,7 @@
         "armor": 6,
         "sig": 1,
         "autonav": 2,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 0,
         "cargo": 65,
         "load": 510,
@@ -6430,7 +6462,7 @@
         "armor": 3,
         "sig": 2,
         "autonav": 3,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 1,
         "cargo": 12,
         "load": 300,
@@ -6458,7 +6490,7 @@
         "armor": 0,
         "sig": 3,
         "autonav": 0,
-        "pilot": "NA",
+        "pilot": null,
         "sensor": 2,
         "cargo": 2,
         "load": 68,
@@ -6537,7 +6569,7 @@
         "body": 1,
         "armor": 0,
         "sig": 5,
-        "autonav": "NA",
+        "autonav": null,
         "pilot": 2,
         "sensor": 1,
         "cargo": 0,
@@ -6744,11 +6776,11 @@
       }
     }
   },
-  "Weapon Accessories": {
+  "Firearm Accessories": {
     "General": {
       "Bipod": {
         "mount": "Under",
-        "conceal": "NA",
+        "conceal": 0,
         "rating": 2,
         "weight": 2,
         "availability_rating": 6,
@@ -6760,9 +6792,9 @@
         "page": 282
       },
       "Concealable Holster": {
-        "mount": "NA",
-        "conceal": "+2",
-        "rating": "NA",
+        "mount": null,
+        "conceal": 2,
+        "rating": null,
         "weight": 0.1,
         "availability_rating": 2,
         "availability_time": 24,
@@ -6774,8 +6806,8 @@
       },
       "Silencer": {
         "mount": "Barrel",
-        "conceal": "-2",
-        "rating": "NA",
+        "conceal": -2,
+        "rating": null,
         "weight": 0.2,
         "availability_rating": 4,
         "availability_time": 48,
@@ -6788,7 +6820,7 @@
       "Sound Suppresser": {
         "mount": "Barrel",
         "conceal": "-2",
-        "rating": "NA",
+        "rating": null,
         "weight": 0.5,
         "availability_rating": 6,
         "availability_time": 48,
@@ -6799,9 +6831,9 @@
         "page": 282
       },
       "Spare Clips": {
-        "mount": "NA",
-        "conceal": "NA",
-        "rating": "NA",
+        "mount": null,
+        "conceal": 0,
+        "rating": null,
         "weight": 0.75,
         "availability_rating": 2,
         "availability_time": 24,
@@ -6813,7 +6845,7 @@
       },
       "Tripod": {
         "mount": "Under",
-        "conceal": "NA",
+        "conceal": 0,
         "rating": 6,
         "weight": 8,
         "availability_rating": 10,
@@ -6828,7 +6860,7 @@
     "Recoil Compensators and Gyros": {
       "Gas Vent II": {
         "mount": "Barrel",
-        "conceal": "-1",
+        "conceal": -1,
         "rating": 2,
         "weight": 0.5,
         "availability_rating": 2,
@@ -6841,7 +6873,7 @@
       },
       "Gas Vent III": {
         "mount": "Barrel",
-        "conceal": "-2",
+        "conceal": -2,
         "rating": 3,
         "weight": 0.75,
         "availability_rating": 2,
@@ -6854,7 +6886,7 @@
       },
       "Gyro Mount, Deluxe": {
         "mount": "Under",
-        "conceal": "-6",
+        "conceal": -6,
         "rating": 6,
         "weight": 8,
         "availability_rating": 4,
@@ -6867,7 +6899,7 @@
       },
       "Gyro Mount, Standard": {
         "mount": "Under",
-        "conceal": "-5",
+        "conceal": -5,
         "rating": 5,
         "weight": 6,
         "availability_rating": 4,
@@ -6879,8 +6911,8 @@
         "page": 282
       },
       "Shock Pads": {
-        "mount": "NA",
-        "conceal": "NA",
+        "mount": null,
+        "conceal": 0,
         "rating": 1,
         "weight": 0.25,
         "availability_rating": 2,
@@ -6895,8 +6927,8 @@
     "Imaging Systems": {
       "Low-Light Scope": {
         "mount": "Top",
-        "conceal": "-2",
-        "rating": "NA",
+        "conceal": -2,
+        "rating": null,
         "weight": 0.25,
         "availability_rating": 3,
         "availability_time": 36,
@@ -6908,7 +6940,7 @@
       },
       "Magnification 1 Scope": {
         "mount": "Top",
-        "conceal": "-1",
+        "conceal": -1,
         "rating": 1,
         "weight": 0.25,
         "availability_rating": 3,
@@ -6921,7 +6953,7 @@
       },
       "Magnification 2 Scope": {
         "mount": "Top",
-        "conceal": "-1",
+        "conceal": -1,
         "rating": 2,
         "weight": 0.25,
         "availability_rating": 3,
@@ -6934,7 +6966,7 @@
       },
       "Magnification 3 Scope": {
         "mount": "Top",
-        "conceal": "-1",
+        "conceal": -1,
         "rating": 3,
         "weight": 0.25,
         "availability_rating": 3,
@@ -6947,8 +6979,8 @@
       },
       "Thermographic Scope": {
         "mount": "Top",
-        "conceal": "-2",
-        "rating": "NA",
+        "conceal": -2,
+        "rating": null,
         "weight": 0.25,
         "availability_rating": 3,
         "availability_time": 36,
@@ -6960,8 +6992,8 @@
       },
       "Laser Sights": {
         "mount": "Top/under",
-        "conceal": "-1",
-        "rating": "NA",
+        "conceal": -1,
+        "rating": null,
         "weight": 0.25,
         "availability_rating": 6,
         "availability_time": 36,
@@ -6973,8 +7005,8 @@
       },
       "Ultrasound Sight": {
         "mount": "Top/under",
-        "conceal": "-2",
-        "rating": "NA",
+        "conceal": -2,
+        "rating": null,
         "weight": 0.25,
         "availability_rating": 8,
         "availability_time": 4,
@@ -6985,9 +7017,9 @@
         "page": 282
       },
       "Ultrasound Goggles": {
-        "mount": "NA",
-        "conceal": "NA",
-        "rating": "NA",
+        "mount": null,
+        "conceal": 0,
+        "rating": null,
         "weight": 0.25,
         "availability_rating": 3,
         "availability_time": 36,
@@ -7000,8 +7032,8 @@
     },
     "SmartLink": {
       "Smart Goggles": {
-        "mount": "NA",
-        "conceal": "NA",
+        "mount": null,
+        "conceal": 0,
         "rating": 0,
         "weight": 0.1,
         "availability_rating": 3,
@@ -7013,9 +7045,9 @@
         "page": 282
       },
       "Smartgun, internal": {
-        "mount": "NA",
-        "conceal": "NA",
-        "rating": "NA",
+        "mount": null,
+        "conceal": 0,
+        "rating": null,
         "weight": 0.5,
         "availability_rating": 0,
         "availability_time": 0,
@@ -7028,7 +7060,7 @@
       "Smartgun, external": {
         "mount": "Top/under",
         "conceal": "-2",
-        "rating": "NA",
+        "rating": null,
         "weight": 1,
         "availability_rating": 4,
         "availability_time": 48,

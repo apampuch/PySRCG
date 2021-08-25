@@ -53,7 +53,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
             if dupe_count > 1:
                 key += " ({})".format(dupe_count)
 
-            if "accessories" in node.properties:
+            if "vehicle_accessories" in node.properties:
                 self.accobj_dict[key] = node  # .accessories
 
     def get_accobj(self, event):
@@ -79,7 +79,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
         if key == "Unattached Accessories":
             return self.accobj_dict[key]
         else:
-            return self.accobj_dict[key].properties["accessories"]
+            return self.accobj_dict[key].properties["vehicle_accessories"]
 
     @property
     def selected_vehicle(self):
