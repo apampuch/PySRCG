@@ -6,15 +6,6 @@ from src.CharData.gear import *
 
 
 class ItemsTab(ThreeColumnBuyTab, ABC):
-    # TODO check if we need this still
-    @property
-    def inv_selected_item(self):
-        """ID of the index of the selected item"""
-        selection = self.inventory_list.curselection()
-        if len(selection) is 0:
-            return None
-        return selection[-1]
-
     def __init__(self, parent):
         super().__init__(parent, show_quantity=True, show_race_mods=True)
 
