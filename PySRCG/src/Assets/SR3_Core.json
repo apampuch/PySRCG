@@ -1,6 +1,6 @@
 {
   "book_abbr": "sr3",
-  "file_version": "1.2",
+  "file_version": "1.2.1",
   "schema_version": "1.2",
   "book": "Shadowrun 3 Core (FASA 7001)",
   "Items": {
@@ -3878,19 +3878,19 @@
       },
       "Technical Skills": {
         "Biotech": {
-          "attribute": "Ingelligence",
+          "attribute": "intelligence",
           "skill_type": "active"
         },
         "Computer": {
-          "attribute": "Ingelligence",
+          "attribute": "intelligence",
           "skill_type": "active"
         },
         "Demolitions": {
-          "attribute": "Ingelligence",
+          "attribute": "intelligence",
           "skill_type": "active"
         },
         "Electronics": {
-          "attribute": "Ingelligence",
+          "attribute": "intelligence",
           "skill_type": "active"
         }
       },
