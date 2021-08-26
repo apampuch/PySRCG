@@ -86,14 +86,15 @@ class MagicBackgroundTab(NotebookTab):
             self.focus_labelframe.grid_forget()
 
     def load_character(self):
-        # TODO setup the loaded character's tradition
         if self.statblock.tradition is not None:
             self.fill_aspects()
             self.check_focus_box()
 
             self.tradition_box.set(self.statblock.tradition.name)
-            self.aspects_box.set(self.statblock.aspect)
-            self.focus_box.set(self.statblock.focus)
+            if self.statblock.aspect is not None:
+                self.aspects_box.set(self.statblock.aspect)
+            if self.statblock.focus is not None:
+                self.focus_box.set(self.statblock.focus)
         else:
             self.aspects_box.configure(values=None)
             self.focus_box.configure(values=None)

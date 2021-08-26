@@ -21,6 +21,11 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     def library_selected(self):  # returns a deck OR a program
         return treeview_get(self.object_library, self.tree_item_dict, self.treeview_get_make_copy)
 
+    # TODO depreciate inv_selected_item and use this
+    @property
+    def list_selected(self):
+        return self.statblock_inventory[self.inv_selected_item]
+
     @property
     def inv_selected_item(self):
         """ID of the index of the selected item"""
@@ -272,6 +277,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             self.inventory_list.selection_clear(0, END)
 
     def on_buy_click(self):
+        # make sure we have something selected
         if len(self.object_library.selection()) > 0:
             selected_object = self.library_selected
         elif self.buy_from_list and len(self.inventory_list.curselection()) > 0:
@@ -280,8 +286,9 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             print("Nothing is selected!")
             return
 
+        # make sure what we have selected isn't None
         if selected_object is not None:
-            # item = copy(selected_object)
+            # setup the dict for calculating attributes
             var_dict = {}
             for key in self.variables_dict.keys():
                 var_dict[key] = self.variables_dict[key].get()
