@@ -1,31 +1,16 @@
-class Spell:
-    def __init__(self, name, type, target, duration, drain, force, page):
-        self.name = name
-        self.type = type
-        self.target = target
-        self.duration = duration
-        self.drain = drain
-        self.force = force  # this only shows up on characters
-        self.page = page
+from src.CharData.reportable import Reportable
 
-    def report(self) -> str:
-        return "{}\n\n" \
-               "Type: {}\n" \
-               "Target: {}\n" \
-               "Duration: {}\n" \
-               "Cost: {}\n" \
-               "Force: {}\n" \
-               "Page: {}\n" \
-            .format(self.name,
-                    self.type,
-                    self.target,
-                    self.duration,
-                    self.drain,
-                    self.force,
-                    self.page)
+
+class Spell(Reportable):
+    def __init__(self, **kwargs):
+        super().__init__()
+        necessary_fields = ("name", "type", "target", "duration", "drain", "force", "page")
+        
+        self.fill_necessary_fields(necessary_fields, kwargs)
+        self.fill_miscellaneous_fields(kwargs)
 
     def force_and_name(self):
-        return "[{}] {}".format(self.force, self.name)
+        return "[{}] {}".format(self.properties["force"], self.properties["name"])
 
     def serialize(self):
-        return self.__dict__
+        return self.properties.copy()
