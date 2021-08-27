@@ -82,12 +82,12 @@ class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
             print("Not enough money!")
 
     def sell_callback(self, selected_index):
-        selected_item = self.statblock.inventory[self.inv_selected_item]
+        selected_item = self.statblock.inventory[self.inv_selected_index]
 
         # return cash value
         self.statblock.cash += selected_item.properties["cost"]
 
-        self.remove_inv_item(self.inv_selected_item)
+        self.remove_inv_item(self.inv_selected_index)
 
     @property
     def recurse_check_func(self):

@@ -45,12 +45,12 @@ class ItemsTab(ThreeColumnBuyTab, ABC):
             print("Not enough money!")
 
     def sell_callback(self, selected_index):
-        selected_item = self.statblock_inventory[self.inv_selected_item]
+        selected_item = self.statblock_inventory[self.inv_selected_index]
 
         # return cash value
         self.statblock.cash += selected_item.properties["cost"]
 
-        self.remove_inv_item(self.inv_selected_item)
+        self.remove_inv_item(self.inv_selected_index)
 
     @property
     def attributes_to_calculate(self):

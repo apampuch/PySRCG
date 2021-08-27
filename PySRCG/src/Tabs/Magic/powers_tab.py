@@ -87,7 +87,7 @@ class PowersTab(ThreeColumnBuyTab, ABC):
             self.list_selected.properties["cost"] += base_cost
             self.list_selected.properties["level"] += 1
 
-            self.update_inventory_text_at_index(self.inv_selected_item,
+            self.update_inventory_text_at_index(self.inv_selected_index,
                                                 f"{self.list_selected.properties['name']} level "
                                                 f"{self.list_selected.properties['level']}: "
                                                 f"{self.list_selected.properties['cost']}")
@@ -107,7 +107,7 @@ class PowersTab(ThreeColumnBuyTab, ABC):
             self.list_selected.properties["cost"] -= base_cost
             self.list_selected.properties["level"] -= 1
 
-            self.update_inventory_text_at_index(self.inv_selected_item,
+            self.update_inventory_text_at_index(self.inv_selected_index,
                                                 f"{self.list_selected.properties['name']} level "
                                                 f"{self.list_selected.properties['level']}: "
                                                 f"{self.list_selected.properties['cost']}")

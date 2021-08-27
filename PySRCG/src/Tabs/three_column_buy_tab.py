@@ -20,13 +20,15 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     def library_selected(self):  # returns a deck OR a program
         return treeview_get(self.object_library, self.tree_item_dict, self.treeview_get_make_copy)
 
-    # TODO depreciate inv_selected_item and use this
     @property
     def list_selected(self):
-        return self.statblock_inventory[self.inv_selected_item]
+        return self.statblock_inventory[self.inv_selected_index]
 
+    """
+    The reason sell uses index (this) and buy uses the item itself is because listboxes are based on index.
+    """
     @property
-    def inv_selected_item(self):
+    def inv_selected_index(self):
         """ID of the index of the selected item"""
         selection = self.inventory_list.curselection()
         if len(selection) is 0:
@@ -280,7 +282,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         if len(self.object_library.selection()) > 0:
             selected_object = self.library_selected
         elif self.buy_from_list and len(self.inventory_list.curselection()) > 0:
-            selected_object = self.statblock_inventory[self.inv_selected_item]
+            selected_object = self.statblock_inventory[self.inv_selected_index]
         else:
             print("Nothing is selected!")
             return
@@ -302,7 +304,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     def on_sell_click(self):
         # don't do anything if nothing is selected
         if len(self.inventory_list.curselection()) > 0:
-            self.sell_callback(self.inv_selected_item)
+            self.sell_callback(self.inv_selected_index)
 
     def update_inventory_text_at_index(self, index, text):
         was_selected = self.inventory_list.selection_includes(index)

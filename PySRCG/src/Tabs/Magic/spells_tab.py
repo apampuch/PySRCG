@@ -78,17 +78,17 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
             self.calculate_total()
 
     def sell_callback(self, selected_index):
-        selected_spell: Spell = self.statblock.spells[self.inv_selected_item]
+        selected_spell: Spell = self.statblock.spells[self.inv_selected_index]
 
         if type(self.gen_mode) == Finalized:
             if self.gen_mode.remove_by_adjustment_type(selected_spell, "add_spell_", "increase_spell_"):
                 self.gen_mode.undo("add_spell_" + selected_spell.name)
-                self.remove_inv_item(self.inv_selected_item)
+                self.remove_inv_item(self.inv_selected_index)
             else:
                 print("Can't remove that!")
 
         else:
-            self.remove_inv_item(self.inv_selected_item)
+            self.remove_inv_item(self.inv_selected_index)
         self.calculate_total()
 
     def plus_spell(self):
@@ -97,14 +97,14 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
 
         if self.list_selected is not None and \
                 self.statblock.gen_mode.point_purchase_allowed(check_val, "magic"):
-            selected_spell = self.statblock.spells[self.inv_selected_item]
+            selected_spell = self.statblock.spells[self.inv_selected_index]
             max_force = 99 if type(self.gen_mode) == Finalized else 6
 
             if selected_spell.force < max_force:
                 selected_spell.force += 1
 
                 # update UI by removing the old one and inserting a new one at the same index
-                i = self.inv_selected_item
+                i = self.inv_selected_index
                 self.inventory_list.delete(i)
                 self.inventory_list.insert(i, selected_spell.force_and_name())
                 self.inventory_list.selection_set(i)
@@ -121,7 +121,7 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
 
     def minus_spell(self):
         if self.list_selected is not None:
-            selected_spell = self.statblock.spells[self.inv_selected_item]
+            selected_spell = self.statblock.spells[self.inv_selected_index]
 
             if selected_spell.force > 1:
                 if type(self.gen_mode) is Finalized:
@@ -131,7 +131,7 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
                     selected_spell.force -= 1
 
                 # update UI by removing the old one and inserting a new one at the same index
-                i = self.inv_selected_item
+                i = self.inv_selected_index
                 self.inventory_list.delete(i)
                 self.inventory_list.insert(i, selected_spell.force_and_name())
                 self.inventory_list.selection_set(i)

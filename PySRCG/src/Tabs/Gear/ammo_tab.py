@@ -56,7 +56,7 @@ class AmmoTab(ThreeColumnBuyTab, ABC):
 
         # remove amount or delete if all would be removed
         if count == selected_item.properties["count"]:
-            self.remove_inv_item(self.inv_selected_item)
+            self.remove_inv_item(self.inv_selected_index)
         elif count < selected_item.properties["count"]:
             selected_item.properties["count"] -= count
             self.update_inventory_text_at_index(selected_index, f"{selected_item.name} ({self.statblock_inventory[selected_index].properties['count']})")
