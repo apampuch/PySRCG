@@ -12,13 +12,7 @@ from tkinter import ttk
 
 class PowersTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent)
-
-        self.plus_button = Button(self, text="+", command=self.on_plus_click)
-        self.minus_button = Button(self, text="-", command=self.on_minus_click)
-
-        self.plus_button.grid(column=2, row=1, sticky=W)
-        self.minus_button.grid(column=3, row=1, sticky=W)
+        super().__init__(parent, buy_button_text="Learn", sell_button_text="Unlearn", plus_and_minus=True)
 
     @property
     def library_source(self):
@@ -73,7 +67,7 @@ class PowersTab(ThreeColumnBuyTab, ABC):
     def sell_callback(self, selected_index):
         self.remove_inv_item(selected_index)
 
-    def on_plus_click(self):
+    def plus_callback(self):
         if self.list_selected is None:
             return
 
@@ -97,7 +91,7 @@ class PowersTab(ThreeColumnBuyTab, ABC):
         else:
             print("Not enough magic remaining!")
 
-    def on_minus_click(self):
+    def minus_callback(self):
         if self.list_selected is None:
             return
 

@@ -43,7 +43,8 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                  treeview_get_make_copy=True,
                  show_quantity=False,
                  show_race_mods=False,
-                 buy_from_list=False):  # allow buying the selected object from the inventory list
+                 buy_from_list=False,
+                 plus_and_minus=False):  # allow buying the selected object from the inventory list
 
         if add_inv_callbacks is None:
             add_inv_callbacks = []
@@ -77,8 +78,15 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         # buy button
         self.buy_button = Button(self, text=buy_button_text, command=self.on_buy_click)
 
+        # container for sell, plus, and minus buttons
+        self.sell_plus_minus_container = Frame(self)
+
         # sell button
-        self.sell_button = Button(self, text=sell_button_text, command=self.on_sell_click)
+        self.sell_button = Button(self.sell_plus_minus_container, text=sell_button_text, command=self.on_sell_click)
+
+        # plus and minus buttons
+        self.plus_button = Button(self.sell_plus_minus_container, text="+", command=self.plus_callback)
+        self.minus_button = Button(self.sell_plus_minus_container, text="-", command=self.minus_callback)
 
         # variable objects frame and list, things like rating usually
         self.variables_frame = Frame(self)
@@ -120,8 +128,13 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         self.inventory_list.grid                (column=6, row=0, sticky=(N, S), columnspan=2)
         self.inventory_list_scroll.grid         (column=8, row=0, sticky=(N, S))
 
+        self.sell_button.grid(column=0, row=0, sticky=N, padx=50)
+        if plus_and_minus:
+            self.plus_button.grid(column=1, row=0, sticky=N, padx=10, ipadx=3)
+            self.minus_button.grid(column=2, row=0, sticky=N, padx=10, ipadx=3)
+
         self.buy_button.grid(column=0, row=1, sticky=N, columnspan=2)
-        self.sell_button.grid(column=6, row=1, sticky=N, columnspan=2)
+        self.sell_plus_minus_container.grid(column=6, row=1, columnspan=2)
 
         self.variables_frame.grid(column=0, row=2)
 
@@ -172,6 +185,13 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         """Needs to return a function like this:
          def recurse_end_callback(key, val, iid):
             # self.tree_item_dict[iid] = SOMETHING(name=key, **val)"""
+        pass
+
+    # these two should only be overridden if they're actually used
+    def plus_callback(self):
+        pass
+
+    def minus_callback(self):
         pass
 
     def fill_description_box(self, contents):

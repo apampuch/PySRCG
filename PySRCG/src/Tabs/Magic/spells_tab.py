@@ -11,14 +11,7 @@ from tkinter import *
 
 class SpellsTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent)
-
-        # plus, minus buttons
-        self.plus_button = Button(self, text="+", command=self.plus_spell)
-        self.minus_button = Button(self, text="-", command=self.minus_spell)
-
-        self.plus_button.grid(column=5, row=2, sticky=N)
-        self.minus_button.grid(column=6, row=2, sticky=N)
+        super().__init__(parent, buy_button_text="Learn", sell_button_text="Unlearn", plus_and_minus=True)
 
     @property
     def recurse_check_func(self):
@@ -91,7 +84,7 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
             self.remove_inv_item(self.inv_selected_index)
         self.calculate_total()
 
-    def plus_spell(self):
+    def plus_callback(self):
         # set the check value based on the generation mode
         check_val = 1 if type(self.gen_mode) == Finalized else self.get_total()
 
@@ -119,7 +112,7 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
 
                 self.calculate_total()
 
-    def minus_spell(self):
+    def minus_callback(self):
         if self.list_selected is not None:
             selected_spell = self.statblock.spells[self.inv_selected_index]
 
