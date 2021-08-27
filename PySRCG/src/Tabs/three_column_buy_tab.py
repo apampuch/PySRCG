@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import ttk
 
-from copy import copy, deepcopy
 from typing import List, Callable
 
 from src.Tabs.notebook_tab import NotebookTab
