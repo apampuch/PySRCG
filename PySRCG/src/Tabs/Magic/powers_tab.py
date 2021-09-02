@@ -41,13 +41,37 @@ class PowersTab(ThreeColumnBuyTab, ABC):
     def attributes_to_calculate(self):
         return []
 
+    def power_already_known(self, new_power):
+        # a big fuckin' messy logic tree because fuck doing it the leetcode way
+        for old_power in self.statblock.powers:
+            if old_power.name == new_power.name:
+                if "options" in old_power.properties:
+                    # already known if properties match exactly
+                    # don't check if the option keys are different, they should always be the same for stuff with the
+                    # same name
+                    for option in old_power.properties["options"]:
+                        try:
+                            # if they don't match, we don't know the power
+                            if old_power.properties["options"][option] != new_power.properties["options"][option]:
+                                return False
+                        except KeyError:
+                            print("WARNING: they don't match")
+                            return False
+                    # if this for loop doesn't trigger, the powers are the same
+                    return True
+
+                else:
+                    # already known if we have something with the same name and no options
+                    return True
+
+        # if nothing else triggers, then we don't know the power
+        return False
+
     def buy_callback(self, selected):
         # check to make sure the power is not already there
-        # TODO make this allow the same power with different aspects, like the extra skill dice power
-        for power in self.statblock.powers:
-            if power.name == self.library_selected.name:
-                print("Already known!")
-                return
+        if self.power_already_known(selected):
+            print("Already known!")
+            return
 
         total_power_points = self.statblock.power_points
 
@@ -57,7 +81,18 @@ class PowersTab(ThreeColumnBuyTab, ABC):
         # make sure we have enough power points remaining
         if total_power_points + selected.properties["cost"] * selected.properties["level"] <= \
                 self.statblock.total_power_points:
-            self.add_inv_item(selected, lambda x: f"{x.properties['name']} level {x.properties['level']}: {x.properties['cost']}")
+
+            # setup the print string
+            def print_str(x):
+                ret = f"{x.properties['name']} "
+                if "options" in x.properties:
+                    for option in x.properties["options"].values():
+                        ret += f"({option}) "
+
+                ret += f"level {x.properties['level']}: {x.properties['cost']}"
+                return ret
+
+            self.add_inv_item(selected, print_str)
             # fix internal variable shit
             self.calculate_total()
 
@@ -121,3 +156,35 @@ class PowersTab(ThreeColumnBuyTab, ABC):
     def load_character(self):
         super().load_character()
         self.calculate_total()
+
+
+if __name__ == "__main__":
+    class EqNormal:
+        def __init__(self, x):
+            self.x = x
+
+    class EqAlways:
+        def __init__(self, x):
+            self.x = x
+
+        def __eq__(self, other):
+            return True
+
+    class EqX:
+        def __init__(self, x):
+            self.x = x
+
+        def __eq__(self, other):
+            return self.x == other.x
+
+    fooNorm = EqNormal(2)
+    barNorm = EqNormal(2)
+    print(f"fooNorm == barNorm: {fooNorm == barNorm}")
+
+    fooAlways = EqAlways(2)
+    barAlways = EqAlways(2)
+    print(f"fooAlways == barAlways: {fooAlways == barAlways}")
+
+    fooX = EqX(2)
+    barX = EqX(2)
+    print(f"fooX == barX: {fooX == barX}")

@@ -2,6 +2,10 @@ from src.calculable_ordered_dict import CalculableOrderedDict
 
 
 def report_dict(field_name, field_value):
+    # if it's "options" just skip it
+    if field_name == "options":
+        return ""
+
     # format field_name
     field_name = field_name.replace("_", " ")
     field_name = field_name.capitalize()

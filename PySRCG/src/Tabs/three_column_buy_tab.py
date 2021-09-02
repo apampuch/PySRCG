@@ -1,3 +1,5 @@
+from copy import copy
+
 from tkinter import *
 from tkinter import ttk
 
@@ -317,7 +319,50 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             # calculate any arithmetic expressions we have
             calculate_attributes(selected_object, var_dict, self.attributes_to_calculate)
 
-            self.buy_callback(selected_object)
+            # find any "options" the item has and prompt the user to set them
+            if "options" in selected_object.properties:
+                option_entries = {}
+
+                # define functions for ok and cancel
+                def ok_func():
+                    # set all of the options
+                    for entry in option_entries:
+                        selected_object.properties["options"][entry] = option_entries[entry].get()
+
+                    self.buy_callback(selected_object)
+                    temp_window.destroy()
+
+                # if the user presses "cancel" then don't buy it
+                def cancel_func():
+                    temp_window.destroy()
+
+                # setup new window
+                temp_window = Toplevel(self.parent)
+                temp_window.grab_set()
+                temp_window.resizable(0, 0)
+
+                # setup option labels and entries
+                for option in selected_object.properties["options"]:
+                    option_value = selected_object.properties["options"][option]
+                    f = Frame(temp_window)
+                    f.pack(side=TOP)
+                    Label(f, text=option).pack(side=LEFT)
+                    e = StringVar()
+                    # make a combobox if it's a list
+                    if type(option_value) is list:
+                        ttk.Combobox(f, textvariable=e, state="readonly",
+                                     values=copy(option_value))\
+                            .pack(side=RIGHT, fill=X)
+                    # make an entry if it's not
+                    else:
+                        Entry(f, textvariable=e).pack(side=RIGHT, fill=X)
+                    option_entries[option] = e
+
+                Button(temp_window, text="OK", command=ok_func).pack(side=LEFT)
+                Button(temp_window, text="Cancel", command=cancel_func).pack(side=RIGHT)
+
+            else:
+                self.buy_callback(selected_object)
         else:
             print("Can't buy that!")
 

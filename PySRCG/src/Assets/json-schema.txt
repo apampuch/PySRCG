@@ -11,7 +11,7 @@ At the top level of each json should be the following keys and values:
 ALL ITEMS SHOULD HAVE A PAGE NUMBER. IF SOMETHING DOES NOT HAVE A PAGE NUMBER, PYSRCG WILL CRASH. THIS IS INTENTIONAL.
 If a field is not specified in this document, it should be input as a string, or a number if purely numerical.
 
-Anything that's "NA" or — should be null in the json.
+Anything that's "NA" or — in the books should be null in the json.
 
 Weapons that are firearms, or can have firearm accessories added to them, must have a blank array property called
 "firearm_accessories". This is to mark it as an object that can have firearm accessories attached.
@@ -41,6 +41,13 @@ For example, a Credstick Verification Reader's (sr3, p287) transaction limit val
             "8;": 1000000
           }
         },
+
+Some items and powers will have an "options" dict. These are string keys with values that need to be set by the player.
+This is an optional property with "aspects" as its key and a tuple of strings as its values. Those values will be turned
+into keys by the application itself.
+If options should be chosen from a set list of sub-options (like attributes to boost), the value for each option should
+be a list of allowed options. Otherwise, if the player can enter anything they want in (like a skill), then simply put
+its value as null.
 
 Legality is simply given as a string. Letters should be capitalized. This may change in the future.
 
