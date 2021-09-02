@@ -4564,7 +4564,7 @@
     },
     "Attribute Boost": {
       "cost": 0.25,
-      "options": {"Attribute": ["Body", "Quickness", "Strength", "Intelligence", "Charisma", "Willpower"]},
+      "options": {"Attribute": ["Body", "Quickness", "Strength"]},
       "max_levels": null,
       "page": 168
     },
@@ -4597,13 +4597,13 @@
     },
     "Improved Physical Attribute": {
       "cost": 0.5,
-      "options": {"Attribute": ["Body", "Quickness", "Strength", "Intelligence", "Charisma", "Willpower"]},
+      "options": {"Attribute": ["Body", "Quickness", "Strength"]},
       "max_levels": null,
       "page": 169
     },
     "Improved Physical Attribute (beyond racial limit)": {
       "cost": 0.5,
-      "options": {"Attribute": ["Body", "Quickness", "Strength", "Intelligence", "Charisma", "Willpower"]},
+      "options": {"Attribute": ["Body", "Quickness", "Strength"]},
       "max_levels": null,
       "page": 169
     },
