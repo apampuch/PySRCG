@@ -11,15 +11,6 @@ from src.utils import recursive_treeview_fill, treeview_get, get_variables, calc
 from abc import ABC, abstractmethod
 
 
-def print_name_and_options(x):
-    ret = f"{x.properties['name']} "
-    if "options" in x.properties:
-        for option in x.properties["options"].values():
-            ret += f"({option}) "
-
-    return ret.rstrip()
-
-
 class ThreeColumnBuyTab(NotebookTab, ABC):
     """
     This is a generic class for a tab that has three columns:
@@ -197,6 +188,16 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
          def recurse_end_callback(key, val, iid):
             # self.tree_item_dict[iid] = SOMETHING(name=key, **val)"""
         pass
+
+    # noinspection PyMethodMayBeStatic
+    def print_name_and_options(self, x):
+        """This should be overridden in some cases."""
+        ret = f"{x.properties['name']} "
+        if "options" in x.properties:
+            for option in x.properties["options"].values():
+                ret += f"({option}) "
+
+        return ret.rstrip()
 
     # these two should only be overridden if they're actually used
     def plus_callback(self):
@@ -396,5 +397,5 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     def load_character(self):
         self.inventory_list.delete(0, END)
         for item in self.statblock_inventory:
-            insert_value = print_name_and_options(item)
+            insert_value = self.print_name_and_options(item)
             self.inventory_list.insert(END, insert_value)

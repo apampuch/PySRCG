@@ -41,6 +41,15 @@ class PowersTab(ThreeColumnBuyTab, ABC):
     def attributes_to_calculate(self):
         return []
 
+    def print_name_and_options(self, x):
+        ret = f"{x.properties['name']} "
+        if "options" in x.properties:
+            for option in x.properties["options"].values():
+                ret += f"({option}) "
+
+        ret += f"level {x.properties['level']}: {x.properties['cost']}"
+        return ret
+
     def power_already_known(self, new_power):
         # a big fuckin' messy logic tree because fuck doing it the leetcode way
         for old_power in self.statblock.powers:
@@ -82,17 +91,7 @@ class PowersTab(ThreeColumnBuyTab, ABC):
         if total_power_points + selected.properties["cost"] * selected.properties["level"] <= \
                 self.statblock.total_power_points:
 
-            # setup the print string
-            def print_str(x):
-                ret = f"{x.properties['name']} "
-                if "options" in x.properties:
-                    for option in x.properties["options"].values():
-                        ret += f"({option}) "
-
-                ret += f"level {x.properties['level']}: {x.properties['cost']}"
-                return ret
-
-            self.add_inv_item(selected, print_str)
+            self.add_inv_item(selected)
             # fix internal variable shit
             self.calculate_total()
 
