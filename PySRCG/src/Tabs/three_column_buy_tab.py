@@ -11,6 +11,15 @@ from src.utils import recursive_treeview_fill, treeview_get, get_variables, calc
 from abc import ABC, abstractmethod
 
 
+def print_name_and_options(x):
+    ret = f"{x.properties['name']} "
+    if "options" in x.properties:
+        for option in x.properties["options"].values():
+            ret += f"({option}) "
+
+    return ret.rstrip()
+
+
 class ThreeColumnBuyTab(NotebookTab, ABC):
     """
     This is a generic class for a tab that has three columns:
@@ -204,7 +213,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         self.desc_box.insert(END, contents)
         self.desc_box.config(state=DISABLED)
 
-    def add_inv_item(self, item, listbox_string=lambda x: x.name, count=1):
+    def add_inv_item(self, item, listbox_string=print_name_and_options, count=1):
         """Adds item to the inventory this tab is linked to."""
         for i in range(count):
             self.statblock_inventory.append(item)
@@ -387,4 +396,5 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     def load_character(self):
         self.inventory_list.delete(0, END)
         for item in self.statblock_inventory:
-            self.inventory_list.insert(END, item.name)
+            insert_value = print_name_and_options(item)
+            self.inventory_list.insert(END, insert_value)
