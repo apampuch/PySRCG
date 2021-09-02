@@ -172,9 +172,10 @@ class CyberwareTab(NotebookTab):
 
         :type cyber: Cyberware
         """
-        for key in cyber.properties["mods"].keys():
-            value = cyber.properties["mods"][key]
-            StatMod.add_mod(key, value)
+        if "mods" in cyber.properties:
+            for key in cyber.properties["mods"].keys():
+                value = cyber.properties["mods"][key]
+                StatMod.add_mod(key, value)
         self.statblock.cyberware.append(cyber)
         self.cyberware_list.insert(END, cyber.name)
 
@@ -298,9 +299,12 @@ class CyberwareTab(NotebookTab):
             return False
 
     def on_inv_item_click(self, event):
-        curselection_ = self.cyberware_list.curselection()[-1]
-        item_report = self.statblock.cyberware[curselection_].report()
-        self.fill_description_box(item_report)
+        # this gets called when changing races sometimes
+        # this condition should shut it up
+        if len(self.cyberware_list.curselection()) > 0:
+            curselection_ = self.cyberware_list.curselection()[-1]
+            item_report = self.statblock.cyberware[curselection_].report()
+            self.fill_description_box(item_report)
 
     def calculate_total(self):
         # unlike the other tabs places we directly manipulate the top bar
