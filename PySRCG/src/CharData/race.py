@@ -1,3 +1,6 @@
+from math import ceil
+
+
 class Race(object):
     def __init__(self, name, **kwargs):
         self.name = name
@@ -25,8 +28,15 @@ class Race(object):
         """Used to set the minimum for the attributes tab."""
         return max(1, 1 - self.racial_attributes[key])
 
-    def racial_max(self, key):
+    # NOTE: there may be edges and flaws that affect racial limits and maximums
+
+    def racial_limit(self, key):
+        """The soft limit of an attribute, going beyond this costs more karma and requires GM permission."""
         return max(1, min(6, 6 + self.racial_attributes[key]))
+
+    def racial_max(self, key):
+        """The hard maximum that an attribute can reach naturally."""
+        return ceil(self.racial_limit(key) * 1.5)
 
 
 all_races = {}

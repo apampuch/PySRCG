@@ -1,4 +1,3 @@
-from src import app_data
 from src.GenModes.finalized import Finalized
 from src.Tabs.notebook_tab import NotebookTab
 from tkinter import *
@@ -189,6 +188,12 @@ class AttributesTab(NotebookTab):
         else:
             racial_slider_minimum = self.race.racial_slider_minimum(key)
 
+        # DEBUG DELETE THIS WHEN YOU FORGET WHAT IT'S FOR
+        print(f"{key}: {racial_slider_minimum}")
+
+        # The from_ and to values on the sliders themselves are different from
+        # what the actual values are.
+        # TODO make it not be like this.
         self.sliders[key] = Scale(adjustment_container_frame,
                                   from_=racial_slider_minimum, to=6,
                                   variable=self.slider_vars[key],
@@ -252,7 +257,16 @@ class AttributesTab(NotebookTab):
         self.astral_combat_pool_val.set(self.statblock.astral_combat_pool)
 
     def plus_button_func(self, key):
-        karma_cost = (self.statblock.calculate_natural_attribute(key) + 1) * 2
+        # check if we're at the absolute maximum
+        if self.statblock.base_attributes[key] >= self.statblock.race.racial_max(key):
+            print(f"{key} already at maximum!")
+            return
+
+        if self.statblock.base_attributes[key] >= self.statblock.race.racial_limit(key):
+            karma_cost = (self.statblock.calculate_natural_attribute(key) + 1) * 3
+        else:
+            karma_cost = (self.statblock.calculate_natural_attribute(key) + 1) * 2
+
         # check if point purchase is allowed
         if self.statblock.gen_mode.point_purchase_allowed(karma_cost, None):
             self.statblock.base_attributes[key] += 1  # increment it by 1
@@ -376,7 +390,6 @@ class AttributesTab(NotebookTab):
 
     def calculate_total(self):
         """Totals all attributes' point values and updates the top karma bar."""
-        total = 0
 
         self.statblock.gen_mode.update_total(self.get_total(), "attributes")
 
