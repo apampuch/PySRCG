@@ -218,7 +218,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         """Adds item to the inventory this tab is linked to."""
         for i in range(count):
             self.statblock_inventory.append(item)
-            self.inventory_list.insert(END, listbox_string(item))
+            self.inventory_list.insert(END, listbox_string(self, item))
         # callback functions
         for cb in self.add_inv_callbacks:
             cb()
