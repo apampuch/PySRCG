@@ -42,6 +42,11 @@ For example, a Credstick Verification Reader's (sr3, p287) transaction limit val
           }
         },
 
+Note: some items have a "memory cost", this is megapulses * 20
+
+Finally, include a property called "attributes_to_calculate" whose value is a list of the attributes that should be calculated,
+including simple ones like "rating": "rating"
+
 Some items and powers will have an "options" dict. These are string keys with values that need to be set by the player.
 This is an optional property with "aspects" as its key and a tuple of strings as its values. Those values will be turned
 into keys by the application itself.
