@@ -1,5 +1,4 @@
 from collections import OrderedDict
-from copy import deepcopy
 
 """
 These are all of the functions that should be used to upgrade a save file from one version to the next.
@@ -7,33 +6,41 @@ When a save from an older version is loaded, the current version should be found
 called consecutively until the save is upgraded to the latest version.
 """
 
-# TODO test
+
+# TODO test more
 def v0_1_to_v0_2(save_file):
     """
-    v0.1 -> v0.2: add Ammunition section
-    don't bother moving ammo from items to ammo since nobody's actually using this yet
+    v0.1 -> v0.2 gets rid of the attributes_to_calculate property
     """
-    save_file["ammunition"] = []
+
     save_file["save_version"] = 0.2
 
-# TODO test
-def v0_2_to_v0_3(save_file):
-    """
-    v0.2 -> v0.3: add misc_firearm_accessories section, move accessories from items to weapon accessories as a test
-    change other_accessories to misc_vehicle_accessories
-    """
-    save_file["misc_vehicle_accessories"] = deepcopy(save_file["other_accessories"])
-    del save_file["other_accessories"]
-    save_file["misc_firearm_accessories"] = []
-    save_file["save_version"] = 0.3
+    recurse_delete_attributes_to_calculate(save_file)
+
+
+def recurse_delete_attributes_to_calculate(dict_):
+    """Used by v0_1_to_v0_2"""
+
+    if "attributes_to_calculate" in dict_:
+        del dict_["attributes_to_calculate"]
+
+    for child_key in dict_:
+        child_val = dict_[child_key]
+
+        if type(child_val) is dict:
+            recurse_delete_attributes_to_calculate(child_val)
+        elif type(child_val) == list:
+            for item in child_val:
+                if type(item) is dict:
+                    recurse_delete_attributes_to_calculate(item)
 
 
 """
 Use an ordered _dict to store these. 
 """
 upgrade_funcs = OrderedDict()
+
 upgrade_funcs[0.1] = v0_1_to_v0_2
-upgrade_funcs[0.2] = v0_2_to_v0_3
 
 
 def upgrade_from_version(save_file):
