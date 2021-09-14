@@ -188,12 +188,8 @@ class AttributesTab(NotebookTab):
         else:
             racial_slider_minimum = self.race.racial_slider_minimum(key)
 
-        # DEBUG DELETE THIS WHEN YOU FORGET WHAT IT'S FOR
-        print(f"{key}: {racial_slider_minimum}")
-
         # The from_ and to values on the sliders themselves are different from
         # what the actual values are.
-        # TODO make it not be like this.
         self.sliders[key] = Scale(adjustment_container_frame,
                                   from_=racial_slider_minimum, to=6,
                                   variable=self.slider_vars[key],
