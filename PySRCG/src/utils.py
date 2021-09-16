@@ -154,7 +154,7 @@ def calculate_attributes(obj: Reportable, var_dict: Dict, attributes: List[str])
             result = parse_arithmetic(o, var_dict)
             obj.properties[attr] = result
 
-        # do this if we have the attribute and if it's a _dict and if it's not empty
+        # do this if we have the attribute and if it's a dict and if it's not empty
         # this is probably one of those stupid things where the cost multipliers are "tiered"
         # e.g. rating 1-4 costs rating * 1000; rating 5-7 costs rating * 2000
         # in this case it'll be formatted as "rating 1-4:rating*1000"
@@ -172,8 +172,9 @@ def calculate_attributes(obj: Reportable, var_dict: Dict, attributes: List[str])
             root_not_string = type(keys[0]) != str      # root value should be a string
             value_not_dict = type(values[0]) != dict    # value should be a _dict
             if not_one_root or root_not_string or value_not_dict:
-                # if the attribute we're looking at is "mods" and the thing isn't valid, just skip this
+                # if the attribute we're looking at is "mods" and the thing isn't valid, we need to do something special
                 if attr == "mods":
+                    obj.properties[attr] = calculate_mods(tiered_dict_root, var_dict, obj.properties["name"])
                     continue
                 elif "name" in obj.properties:
                     raise ValueError("Invalid setup for " + obj.name + ".")
@@ -195,6 +196,40 @@ def calculate_attributes(obj: Reportable, var_dict: Dict, attributes: List[str])
                     raise ValueError("Key " + variable + " not in " + obj.name + ".")
                 else:
                     raise ValueError("Key " + variable + " not in nameless object.")
+
+
+def calculate_mods(mods_dict, var_dict, name="NAMELESS"):
+    for key in mods_dict.keys():
+        val = mods_dict[key]
+        if type(val) is str:
+            mods_dict[key] = parse_arithmetic(val, var_dict)
+        elif type(val) is dict:
+            # blah blah blah DRY principle, whatever
+
+            # validate that it's key and values are valid
+            keys: List[str] = list(val.keys())
+            values: List[dict] = list(val.values())
+
+            not_one_root =  len(keys) != 1              # there should only be one root value
+            root_not_string = type(keys[0]) != str      # root value should be a string
+            value_not_dict = type(values[0]) != dict    # value should be a _dict
+            if not_one_root or root_not_string or value_not_dict:
+                # if the attribute we're looking at is "mods" and the thing isn't valid, we need to do something special
+                raise ValueError(f"Invalid setup for mods dict for {name}.")
+
+            # the children of the root node should be "key value pairs", where the "key" is a statement as a
+            # specifically-formatted string that represents a statement that can be evaluated to true or false
+            # e.g. "x <= 4"
+            # find the one that matches, then calculate the attribute that's the value of that "key"
+            # if there's no matching key then throw an error
+            variable: str = keys[0]
+            if variable in var_dict:
+                result = parse_between_expression(var_dict, var_dict[variable], values[0])
+                mods_dict[key] = result
+        else:
+            raise ValueError("Mods dict is not working.")
+
+    return mods_dict
 
 
 def parse_between_expression(var_dict, variable, expression_dict):
