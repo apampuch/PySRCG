@@ -7,8 +7,8 @@ class Program(Reportable):  # might end up having to extend something like Stora
         necessary_fields = ("name", "rating", "cost", "street_index", "availability_rating", "availability_time",
                             "availability_unit", "size", "multiplier", "page")
         
-        if "options" not in kwargs:
-            kwargs["options"] = {}  # should be a list of a TBD object, this is NYI
+        # if "options" not in kwargs:
+        #     kwargs["options"] = {}  # should be a list of a TBD object, this is NYI
 
         kwargs["cost"] = self.cost
         kwargs["street_index"] = self.street_index
@@ -22,11 +22,8 @@ class Program(Reportable):  # might end up having to extend something like Stora
             raise ValueError("Rating must be at least 1")
         
         self.fill_necessary_fields(necessary_fields, kwargs)
-        self.properties["options"] = kwargs["options"]
-
-    @property
-    def name_and_rating(self):
-        return"{}: Rating {}".format(self.properties["name"], self.properties["rating"])
+        self.fill_miscellaneous_fields(kwargs)
+        # self.properties["options"] = kwargs["options"]
 
     def size(self):
         if self.properties["rating"] == "rating":

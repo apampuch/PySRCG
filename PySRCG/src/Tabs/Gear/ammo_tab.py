@@ -19,9 +19,6 @@ class AmmoTab(ThreeColumnBuyTab, ABC):
     def statblock_inventory(self):
         return self.statblock.ammunition
 
-    @property
-    def attributes_to_calculate(self):
-        return []
 
     def buy_callback(self, selected):
         # get the amount by getting the value of the spinbox (always a string) and converting to int

@@ -31,10 +31,6 @@ class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
         else:
             return self.gunobj_dict[key].properties["firearm_accessories"]
 
-    @property
-    def attributes_to_calculate(self):
-        return []
-
     def fill_combobox(self):
         self.gunobj_dict = {}
         self.fill_stuff_with_accessories(self.statblock.inventory)

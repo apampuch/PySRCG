@@ -5936,46 +5936,55 @@
     "Operational Utilities": {
       "Analyze": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 3,
         "page": 220
       },
       "Browse": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 1,
         "page": 220
       },
       "Commlink": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 1,
         "page": 220
       },
       "Deception": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 2,
         "page": 220
       },
       "Decrypt": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 1,
         "page": 220
       },
       "Read/Write": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 2,
         "page": 220
       },
       "Relocate": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 2,
         "page": 220
       },
       "Scanner": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 3,
         "page": 220
       },
       "Spoof": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 3,
         "page": 220
       }
@@ -5983,11 +5992,13 @@
     "Special Utilities": {
       "Sleaze": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 3,
         "page": 221
       },
       "Track": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 8,
         "page": 221
       }
@@ -5995,36 +6006,43 @@
     "Offensive Utilities": {
       "Attack (L)": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 2,
         "page": 221
       },
       "Attack (M)": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 3,
         "page": 221
       },
       "Attack (S)": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 4,
         "page": 221
       },
       "Attack (D)": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 5,
         "page": 221
       },
       "Black Hammer": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 20,
         "page": 221
       },
       "Killjoy": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 10,
         "page": 221
       },
       "Slow": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 4,
         "page": 222
       }
@@ -6032,21 +6050,25 @@
     "Defensive Utilities": {
       "Armor": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 3,
         "page": 222
       },
       "Cloak": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 3,
         "page": 222
       },
       "Lock-On": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 3,
         "page": 222
       },
       "Medic": {
         "rating": "rating",
+        "attributes_to_calculate": ["rating"],
         "multiplier": 4,
         "page": 222
       }

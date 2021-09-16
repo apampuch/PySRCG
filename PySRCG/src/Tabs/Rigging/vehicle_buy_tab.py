@@ -33,10 +33,6 @@ class VehicleBuyTab(ThreeColumnBuyTab, ABC):
     def statblock_inventory(self):
         return self.statblock.vehicles
 
-    @property
-    def attributes_to_calculate(self):
-        return []
-
     def buy_callback(self, item):
         # modify the item for any racial mods that have been selected
         if self.race_mod_var.get() == "Dwarf":

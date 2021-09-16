@@ -139,7 +139,8 @@ class CyberwareTab(NotebookTab):
                 var_dict[key] = self.variables_dict[key].get()
 
             # calculate any arithmetic expressions we have
-            calculate_attributes(cyber, var_dict, ATTRIBUTES_TO_CALCULATE)
+            if "attributes_to_calculate" in cyber.properties:
+                calculate_attributes(cyber, var_dict, cyber.properties["attributes_to_calculate"])
 
             cyber.properties["essence"] = self.calc_essence_cost(cyber, cyber.properties["grade"])
             cyber.properties["cost"] = int(self.calc_yen_cost(cyber, cyber.properties["grade"]))

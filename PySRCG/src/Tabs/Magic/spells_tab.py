@@ -31,10 +31,6 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
         return spell_tab_recurse_end_callback
 
     @property
-    def attributes_to_calculate(self):
-        return []
-
-    @property
     def library_source(self):
         return self.parent.game_data["Spells"]
 

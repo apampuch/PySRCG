@@ -1,5 +1,4 @@
 from src.CharData.program import Program
-from src.utils import recursive_treeview_fill, treeview_get, get_variables, calculate_attributes
 from tkinter import *
 from tkinter import ttk
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
@@ -66,7 +65,7 @@ class ProgramsTab(ThreeColumnBuyTab):
         self.inventory_list.delete(0, END)
 
         for soft in self.statblock_inventory:
-            self.inventory_list.insert(END, soft.name_and_rating)
+            self.inventory_list.insert(END, self.name_for_list(soft))
 
     @property
     def library_source(self):
@@ -77,13 +76,13 @@ class ProgramsTab(ThreeColumnBuyTab):
         """This one should return the currently selected thing we're storing programs on."""
         return self.memobj_dict[self.memory_things_box.get()]
 
-    @property
-    def attributes_to_calculate(self):
-        return ["rating"]
+    @staticmethod
+    def name_for_list(x):
+        return "{}: Rating {}".format(x.properties["name"], x.properties["rating"])
 
     def buy_callback(self, item):
         if app_data.pay_cash(item.properties["cost"]):
-            self.add_inv_item(item, lambda x: x.name_and_rating)
+            self.add_inv_item(item)
 
     def sell_callback(self, item_index):
         self.statblock.cash += self.statblock_inventory[item_index].properties["cost"]

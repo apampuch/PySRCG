@@ -37,11 +37,8 @@ class PowersTab(ThreeColumnBuyTab, ABC):
 
         return power_recurse_end
 
-    @property
-    def attributes_to_calculate(self):
-        return []
-
-    def print_name_and_options(self, x):
+    @staticmethod
+    def name_for_list(x):
         ret = f"{x.properties['name']} "
         if "options" in x.properties:
             for option in x.properties["options"].values():

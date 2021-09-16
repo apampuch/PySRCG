@@ -53,11 +53,6 @@ class ItemsTab(ThreeColumnBuyTab, ABC):
         self.remove_inv_item(self.inv_selected_index)
 
     @property
-    def attributes_to_calculate(self):
-        return ["cost", "weight", "availability_rating", "availability_time",
-                "street_index", "rating", "transaction_limit"]
-
-    @property
     def library_source(self):
         return self.parent.game_data["Items"]
 

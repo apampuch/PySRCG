@@ -89,10 +89,6 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
         else:
             return self.accobj_dict[key]
 
-    @property
-    def attributes_to_calculate(self):
-        return ["cost"]
-
     def buy_callback(self, item):
         enough_cargo = True
         if "cf_cost" in item.properties:

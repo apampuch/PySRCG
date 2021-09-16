@@ -281,7 +281,11 @@ def parse_between_expression(var_dict, variable, expression_dict):
     if type(expression) is int or type(expression) is float:
         return expression
     elif type(expression) is str:
-        return parse_arithmetic(expression, var_dict)
+        try:
+            return parse_arithmetic(expression, var_dict)
+        # if it's not able to be parsed, assume we should just return it as-is
+        except ValueError:
+            return expression
     elif type(expression) is dict:
         # If the type of the "expression" is a _dict, we're probably dealing with mods for things like attributes.
         # In that case, we need to parse the expression in each child

@@ -160,12 +160,6 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     def statblock_inventory(self):
         pass
 
-    @property
-    @abstractmethod
-    def attributes_to_calculate(self):
-        """List of variables to look for."""
-        pass
-
     @abstractmethod
     def buy_callback(self, selected):
         """Called on clicking a buy button. All variable calculations should have been performed."""
@@ -189,8 +183,8 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             # self.tree_item_dict[iid] = SOMETHING(name=key, **val)"""
         pass
 
-    # noinspection PyMethodMayBeStatic
-    def print_name_and_options(self, x):
+    @staticmethod
+    def name_for_list(x):
         """This should be overridden in some cases."""
         ret = f"{x.properties['name']} "
         if "options" in x.properties:
@@ -214,11 +208,11 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         self.desc_box.insert(END, contents)
         self.desc_box.config(state=DISABLED)
 
-    def add_inv_item(self, item, listbox_string=print_name_and_options, count=1):
+    def add_inv_item(self, item, count=1):
         """Adds item to the inventory this tab is linked to."""
         for i in range(count):
             self.statblock_inventory.append(item)
-            self.inventory_list.insert(END, listbox_string(self, item))
+            self.inventory_list.insert(END, self.name_for_list(item))
         # callback functions
         for cb in self.add_inv_callbacks:
             cb()
@@ -292,7 +286,11 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                     child.destroy()
 
                 # get any variables in the item
-                self.variables_dict = get_variables(selected_item, self.attributes_to_calculate)
+                if "attributes_to_calculate" in selected_item.properties:
+                    self.variables_dict = get_variables(selected_item,
+                                                        selected_item.properties["attributes_to_calculate"])
+                else:
+                    self.variables_dict = {}
 
                 self.fill_description_box(selected_item.report())
 
@@ -327,7 +325,8 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                 var_dict[key] = self.variables_dict[key].get()
 
             # calculate any arithmetic expressions we have
-            calculate_attributes(selected_object, var_dict, self.attributes_to_calculate)
+            if "attributes_to_calculate" in selected_object.properties:
+                calculate_attributes(selected_object, var_dict, selected_object.properties["attributes_to_calculate"])
 
             # find any "options" the item has and prompt the user to set them
             if "options" in selected_object.properties:
@@ -397,5 +396,5 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     def load_character(self):
         self.inventory_list.delete(0, END)
         for item in self.statblock_inventory:
-            insert_value = self.print_name_and_options(item)
+            insert_value = self.name_for_list(item)
             self.inventory_list.insert(END, insert_value)

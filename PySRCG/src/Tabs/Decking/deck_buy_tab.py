@@ -19,10 +19,6 @@ class DeckBuyTab(ThreeColumnBuyTab, ABC):
         return self.statblock.decks
 
     @property
-    def attributes_to_calculate(self):
-        return []
-
-    @property
     def recurse_check_func(self):
         def decking_tab_recurse_check(val):
             return "cost" not in val.keys()
