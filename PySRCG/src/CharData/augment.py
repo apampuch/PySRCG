@@ -16,7 +16,7 @@ class Cyberware(Reportable):
                             "street_index", "legality", "page")
 
         # fields that should be added but not reported like holds/fits
-        do_not_report = ("holds", "fits", "mods")
+        do_not_report = ["holds", "fits", "mods"]
 
         # add the necessary fields
         self.fill_necessary_fields(necessary_fields, kwargs)

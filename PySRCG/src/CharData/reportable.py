@@ -63,12 +63,18 @@ class Reportable:
         if report:
             self.reported_fields.append(field)
 
-    def fill_miscellaneous_fields(self, _dict, do_not_report=()):
+    def fill_miscellaneous_fields(self, _dict, do_not_report=None):
         """
         Fills in non-necessary fields.
         :param _dict: Dict of things to add.
-        :param do_not_report: Tuple of fields that should not appear in the report.
+        :param do_not_report: List of fields that should not appear in the report.
         """
+        if do_not_report is None:
+            do_not_report = []
+
+        # never report attributes_to_calculate
+        do_not_report.append("attributes_to_calculate")
+
         for key in _dict:
             self.properties[key] = _dict[key]
             if key not in do_not_report:
