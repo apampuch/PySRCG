@@ -5,15 +5,14 @@ from src.CharData.character import *
 from src.Tabs.Attributes.attributes_tab import *
 from src.Tabs.Augments.augments_tab import *
 from src.Tabs.Background.background_tab import *
-from src.Tabs.Decking.decking_tab import *
+from src.Tabs.Decking.decking_tab import *  # imports app_data
 from src.Tabs.Gear.gear_tab import GearTab
-from src.Tabs.Gear.items_tab import *
 from src.Tabs.Rigging.karma_tab import KarmaTab
-from src.Tabs.Magic.magic_tab import *
+from src.Tabs.Magic.magic_tab import *  # imports app_data
 from src.Tabs.Rigging.rigging_tab import RiggingTab
 from src.Tabs.Setup.setup_tab import *
 from src.Tabs.Skills.skills_tab import SkillsTab
-from src.Tabs.top_menu import *
+from src.Tabs.top_menu import *  # imports app_data
 from src.utils import magic_tab_show_on_awakened_status
 
 """Idea: CalculatedGear items for things that depend on rating brackets"""
@@ -56,7 +55,7 @@ class App(ttk.Notebook):
 class TopBar(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
-        self.cash_label = ttk.Label(self, text=app_data.app_character.statblock.cash_str)
+        self.cash_label = ttk.Label(self)
 
         # setup update events
         app_data.cash_update_events.append(self.update_cash_text)
@@ -95,8 +94,8 @@ def post_setup(attri_tab):
 
 def main():
     app_data.root = Tk()
+
     # setup top menu
-    app_data.app_character = Character()
     menu = TopMenu(app_data.root)
     app_data.root.configure(menu=menu)
 
@@ -107,11 +106,19 @@ def main():
     app_data.top_bar = top_bar
     app_data.window = App(app_data.root, top_bar)
 
+    # setup character
+    # this has to be done after setting up the window
+    # if it's done before, the character will think that there is no window
+    app_data.app_character = Character()
+
+    # update top bar cash text
+    top_bar.update_cash_text()
+
     setup_tab = SetupTab(app_data.window)
     attributes_tab = AttributesTab(app_data.window)
     background_tab = BackgroundTab(app_data.window)
     skills_tab = SkillsTab(app_data.window)
-    gear_tab = GearTab(app_data.window)#ItemsTab(app_data.window)
+    gear_tab = GearTab(app_data.window)
     magic_tab = MagicTab(app_data.window)
     augments_tab = AugmentsTab(app_data.window)
     decking_tab = DeckingTab(app_data.window)

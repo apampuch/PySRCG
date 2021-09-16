@@ -1,6 +1,7 @@
 from tkinter import IntVar
 from typing import Dict
 
+from src import app_data
 from src.GenModes.priority import Priority
 from src.app_data import on_cash_updated
 from src.Tabs.Attributes.attributes_tab import AttributesTab
@@ -26,6 +27,26 @@ class Statblock(object):
         self.__cash = value
         self.cash_str = "¥{}".format(self.__cash)
         on_cash_updated()
+
+    @property
+    def awakened(self):
+        return self.__awakened
+    @awakened.setter
+    def awakened(self, value):
+        self.__awakened = value
+
+        # callback magic tab
+        app_data.window.nametowidget(".!app.!magictab").show_hide_tabs(self.awakened, self.tradition)
+
+    @property
+    def tradition(self):
+        return self.__tradition
+    @tradition.setter
+    def tradition(self, value):
+        self.__tradition = value
+
+        # callback magic tab
+        app_data.window.nametowidget(".!app.!magictab").show_hide_tabs(self.awakened, self.tradition)
 
     def __init__(self, race):
         self.__race = race
@@ -72,8 +93,8 @@ class Statblock(object):
         """
 
         # setup awakened status
-        self.awakened = None
-        self.tradition = None
+        self.__awakened = None
+        self.__tradition = None
         self.aspect = None
         self.focus = None
         self.spells = []

@@ -206,9 +206,10 @@ class Priority(GenMode, ABC):
         self.max_attribute_points.set(self.get_generated_value("attributes"))
         self.max_magic_points.set(self.magic_val_from_string())
         self.max_skill_points.set(self.get_generated_value("skills"))
-        app_data.app_character.statblock.awakened = self.get_generated_value("magic")
+
 
         # breaking scope like this is SO hacky but fuck it
+        # set money
         money_diff = self.get_generated_value("resources") - old_money
         app_data.app_character.statblock.cash += money_diff
 
@@ -216,9 +217,14 @@ class Priority(GenMode, ABC):
         if app_data.app_character.statblock.race.name not in self.get_generated_value("race"):
             app_data.app_character.statblock.race = all_races["Human"]
 
+        # set magic
+        awakened_val = self.get_generated_value("magic")
+        app_data.app_character.statblock.awakened = awakened_val
         # set aspect to Full Mage if magic is top priority
-        magic_val = self.get_generated_value("magic")
-        app_data.app_character.statblock.awakened = magic_val
+        if awakened_val == "Full":
+            app_data.app_character.statblock.aspect = "Full Mage"
+
+        app_data.app_character.statblock.awakened = awakened_val
 
         magic_tab_show_on_awakened_status(app_data)
 

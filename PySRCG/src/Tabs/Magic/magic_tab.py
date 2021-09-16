@@ -8,6 +8,7 @@ from src.Tabs.Magic.spells_tab import SpellsTab
 
 class MagicTab(ttk.Notebook):
     def __init__(self, parent):
+
         super().__init__(parent)
         self.background_tab = MagicBackgroundTab(parent)
         self.spells_tab = SpellsTab(parent)
@@ -18,6 +19,28 @@ class MagicTab(ttk.Notebook):
         self.add(self.background_tab, text="Background")
         self.add(self.spells_tab, text="Spells")
         self.add(self.powers_tab, text="Powers")
+
+    def show_hide_tabs(self, awakened, tradition):
+        # if no tradition, hide both tabs
+        if tradition is None:
+            self.tab(".!app.!powerstab", state="hidden")
+            self.tab(".!app.!spellstab", state="hidden")
+        # if an adept, always show powers
+        elif tradition.name == "Adept":
+            self.tab(".!app.!powerstab", state="normal")
+
+            # if aspected, hide spells
+            if awakened == "Aspected":
+                self.tab(".!app.!spellstab", state="hidden")
+
+            # otherwise, show spells
+            else:
+                self.tab(".!app.!spellstab", state="normal")
+
+        # otherwise, hide powers and show spells
+        else:
+            self.tab(".!app.!powerstab", state="hidden")
+            self.tab(".!app.!spellstab", state="normal")
 
     def on_switch(self):
         self.background_tab.on_switch()
