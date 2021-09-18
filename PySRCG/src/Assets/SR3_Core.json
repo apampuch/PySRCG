@@ -4924,6 +4924,10 @@
           "availability_unit": "hrs"
         },
         "Muscle Replacement": {
+          "mods": {
+            "cyber_strength": "rating",
+            "cyber_quickness": "rating"
+          },
           "essence": "rating",
           "cost": "rating * 20000",
           "street_index": 1,
@@ -4933,7 +4937,7 @@
           "availability_time": 4,
           "availability_rating": 4,
           "availability_unit": "days",
-          "attributes_to_calculate": ["essence", "cost", "rating"]
+          "attributes_to_calculate": ["mods", "essence", "cost", "rating"]
         },
         "Smartlink": {
           "essence": 0.5,
@@ -5322,7 +5326,7 @@
           "availability_time": 6,
           "availability_rating": 7,
           "availability_unit": "days",
-          "attributes_to_calculate": ["mods", "essence", "cost", "rating", "legality"]
+          "attributes_to_calculate": ["mods", "essence", "cost", "rating"]
         }
       },
       "Headware": {
