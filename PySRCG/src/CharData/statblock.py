@@ -121,34 +121,37 @@ class Statblock(object):
     def calculate_attribute(self, key):
         # take care of magic keys
         if key == "reaction":
-            return self.reaction
+            total = self.base_reaction
         elif key == "magic":
-            return self.magic
+            total = self.magic
         elif key == "essence":
             # for cyber in self.cyberware:
-            return self.essence
+            total = self.essence
+        elif key == "initiative":
+            total = 1
         else:
             total = self.base_attributes[key]
             
-            # add racial attribute bonus
+        # add racial attribute bonus
+        if key in self.race.racial_attributes:
             total += self.race.racial_attributes[key]
-            
-            # add cyber bonus
-            cyber_key = "cyber_" + key
-            total += StatMod.get_mod_total(cyber_key)
 
-            # add bio bonus
-            bio_key = "bio_" + key
-            total += StatMod.get_mod_total(bio_key)
+        # add cyber bonus
+        cyber_key = "cyber_" + key
+        total += StatMod.get_mod_total(cyber_key)
 
-            # add other bonus
-            other_key = "other_" + key
-            total += StatMod.get_mod_total(other_key)
-            
-            # can't be less than 1
-            total = max(total, 1)
+        # add bio bonus
+        bio_key = "bio_" + key
+        total += StatMod.get_mod_total(bio_key)
 
-            return total
+        # add other bonus
+        other_key = "other_" + key
+        total += StatMod.get_mod_total(other_key)
+
+        # can't be less than 1
+        total = max(total, 1)
+
+        return total
 
     def calculate_natural_attribute(self, key):
         # take care of magic keys
@@ -295,14 +298,18 @@ class Statblock(object):
 
         return fit_dict
 
+    @property
+    def base_reaction(self):
+        return (self.quickness + self.intelligence) // 2
+
     # calculated attributes
     @property
     def reaction(self):
-        return (self.quickness + self.intelligence) // 2
+        return self.calculate_attribute("reaction")
 
     @property
     def initiative(self):
-        return 1  # TODO factor cyberware and stuff
+        return self.calculate_attribute("initiative")
 
     @property
     def magic(self):

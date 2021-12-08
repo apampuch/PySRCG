@@ -240,10 +240,16 @@ class AttributesTab(NotebookTab):
         self.current_row += 1
 
     def set_pool_vals(self):
+        # setting reaction slider gives proper value, setting initiative slider does not
+        # yet both call on_set_attribute_value, test this
+        
         # set reaction
-        self.sliders["reaction"].set(self.statblock.reaction)
+        self.sliders["reaction"].set(self.statblock.base_reaction)
+        # set initiative, maybe find a better place to do this?
+        # self.sliders["initiative"].set(self.statblock.initiative)
         # manually set reaction values
         self.on_set_attribute_value("reaction", self.statblock.reaction, False, False)
+        self.on_set_attribute_value("initiative", self.statblock.initiative, False, False)
         # set dice pool values
         self.combat_pool_val.set(self.statblock.combat_pool)
         self.control_pool_val.set(self.statblock.control_pool)
@@ -328,7 +334,8 @@ class AttributesTab(NotebookTab):
             self.adjust_disallowed_purchase(key, value)
 
         # we need to int(float(value)) because passes the value in as a string of a floating point number
-        self.statblock.base_attributes[key] = value
+        if key in self.statblock.base_attributes:
+            self.statblock.base_attributes[key] = value
         # self.mod_labels["slider"][key].config(text=str(self.sliders[key].get()))
 
         # set slider value column
@@ -336,7 +343,7 @@ class AttributesTab(NotebookTab):
         self.mod_labels["slider"][key].config(text=str(slider_val))
 
         # set the racial bonus column
-        if key == "reaction":  # fuck it hardcode this exception
+        if key == "reaction" or key == "initiative":  # fuck it hardcode this exception
             race_val = 0
         else:
             race_val = self.race.racial_attributes[key]
@@ -401,6 +408,7 @@ class AttributesTab(NotebookTab):
             value = self.statblock.base_attributes[key]
             self.sliders[key].set(value)
             self.on_set_attribute_value(key, value)
+        # TODO check if we need to load derived attributes too
         self.on_switch()
 
     def get_progress_bar_info(self):
@@ -448,8 +456,12 @@ class AttributesTab(NotebookTab):
             # this way races like trolls and orks will buy up new shit
             slider_set_val = max(self.sliders[key].get(), racial_slider_minimum)
             self.sliders[key].set(slider_set_val)
+
             self.on_set_attribute_value(key, slider_set_val)
 
         self.setup_derived_attribute("essence", self.statblock.essence)
         self.setup_derived_attribute("magic", self.statblock.magic)
-        self.setup_derived_attribute("reaction", self.statblock.reaction)
+        self.setup_derived_attribute("reaction", self.statblock.base_reaction)
+
+        # this is done so that we update reaction properly when we switch to this tab
+        self.on_set_attribute_value("reaction", self.statblock.base_reaction)
