@@ -133,9 +133,11 @@ def load(tabs):
             # add cyberware
             for cyber in character_dict["statblock"]["cyberware"]:
                 cyber_obj = Cyberware(**cyber)
-                # check for mods
-                if len(cyber_obj.properties["mods"].keys()) > 0:
-                    print("stop here")
+                # add mods
+                if "mods" in cyber_obj.properties:
+                    for key in cyber_obj.properties["mods"].keys():
+                        value = cyber_obj.properties["mods"][key]
+                        StatMod.add_mod(key, value)
                 new_character.statblock.cyberware.append(cyber_obj)
 
             # add powers

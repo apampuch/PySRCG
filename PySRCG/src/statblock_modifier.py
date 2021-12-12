@@ -52,3 +52,7 @@ class StatMod:
             total += mod
 
         return total
+
+    @staticmethod
+    def mod_count():
+        return len(StatMod._all_stat_mods)

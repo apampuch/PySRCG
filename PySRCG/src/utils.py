@@ -97,6 +97,7 @@ def get_variables(obj: Reportable, attributes):
 
     # a list of optional attributes that can be ignored, like direct stat mods on cyberware
     optional_attributes = ["mods"]
+    variable_match = r'^[a-zA-Z]'
 
     for attr in attributes:
         # do this if we have the attribute we're iterating through and if it's a string
@@ -108,7 +109,7 @@ def get_variables(obj: Reportable, attributes):
 
             # look for anything that begins with a letter, that's a variable
             for substr in split_exp:
-                match = re.match(r'^[a-zA-Z]', substr)
+                match = re.match(variable_match, substr)
                 # don't do it if it's in our strings to ignore
                 if match and substr not in STRINGS_THAT_ARE_NOT_VARIABLES:
                     var_dict[substr] = IntVar()
@@ -285,6 +286,9 @@ def parse_between_expression(var_dict, variable, expression_dict):
             return parse_arithmetic(expression, var_dict)
         # if it's not able to be parsed, assume we should just return it as-is
         except ValueError:
+            return expression
+        # if the expression has a variable that can't be filled, assume we should just return it as-is
+        except KeyError:
             return expression
     elif type(expression) is dict:
         # If the type of the "expression" is a _dict, we're probably dealing with mods for things like attributes.

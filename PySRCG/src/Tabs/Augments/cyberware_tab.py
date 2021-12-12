@@ -124,7 +124,6 @@ class CyberwareTab(NotebookTab):
                                 augment_tab_recurse_check, augment_tab_recurse_end_callback)
 
     def on_buy_click(self):
-        # TODO make this set rating value
         if self.library_selected is not None:
             current_essence = self.statblock.essence
 
@@ -170,7 +169,7 @@ class CyberwareTab(NotebookTab):
 
     def add_cyberware_item(self, cyber):
         """
-
+        Adds a cyberware item to the character, applies any mods the cyberware has.
         :type cyber: Cyberware
         """
         if "mods" in cyber.properties:
@@ -255,7 +254,11 @@ class CyberwareTab(NotebookTab):
                 child.destroy()
 
             # get any variables in the item
-            self.variables_dict = get_variables(selected_cyberware, ATTRIBUTES_TO_CALCULATE)
+            if "attributes_to_calculate" in selected_cyberware.properties:
+                self.variables_dict = get_variables(selected_cyberware,
+                                                    selected_cyberware.properties["attributes_to_calculate"])
+            else:
+                self.variables_dict = {}
 
             # make variable objects if any
             i = 0
