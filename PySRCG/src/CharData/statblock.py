@@ -61,6 +61,13 @@ class Statblock(object):
         # I may be wrong on where this needs to go though
         StatMod.reset_all_mods()
 
+        # setup armor
+        self.ballistic_armor = 0
+        self.impact_armor = 0
+        self.armor_quickness_penalty = 0
+        self.armor_combat_pool_penalty = 0  # TODO make this affect combat pool
+
+
         # always start with 6 essence
         self.base_attributes["essence"] = 6.0
         self.ess_ui_var = IntVar()  # this only exists so we can control the progress bar with the essence value
@@ -179,6 +186,55 @@ class Statblock(object):
             total = max(total, 1)
 
             return total
+
+    def calculate_armor_and_penalties(self, equipped_armors, equipped_helmet, equipped_shield):
+
+        def extract_val_from_armor(armor, prop):
+            return armor.properties[prop]
+
+        # sorted by ballistic
+        sorted_ballistic = sorted(equipped_armors, key=lambda x: extract_val_from_armor(x, "ballistic"), reverse=True)
+        sorted_impact = sorted(equipped_armors, key=lambda x: extract_val_from_armor(x, "impact"), reverse=True)
+
+        ballistic_combat_pool_penalty = 0
+        impact_combat_pool_penalty = 0
+
+        # pop the highest values for the inital values
+        if len(sorted_ballistic) > 0:
+            self.ballistic_armor = \
+                self.armor_quickness_penalty = \
+                ballistic_combat_pool_penalty = sorted_ballistic.pop(0).properties["ballistic"]
+        else:
+            self.ballistic_armor = \
+                self.armor_quickness_penalty = 0
+
+        if len(sorted_impact) > 0:
+            self.impact_armor = \
+                impact_combat_pool_penalty = sorted_impact.pop(0).properties["impact"]
+        else:
+            self.impact_armor = 0
+
+        # iterate through the list of armor indices and add half
+        # to get the rest for the quickness and combat pool penalties
+        for i in sorted_ballistic:
+            self.ballistic_armor += i.properties["ballistic"] // 2
+            self.armor_quickness_penalty += i.properties["ballistic"]
+            ballistic_combat_pool_penalty += i.properties["ballistic"]
+
+        # add helmet and shield
+        for i in sorted_ballistic:
+            self.impact_armor += i.properties["impact"] // 2
+            impact_combat_pool_penalty += i.properties["impact"]
+
+        # calculate combat pool penalty
+        ballistic_combat_pool_penalty = max(0, (ballistic_combat_pool_penalty - self.quickness))
+        impact_combat_pool_penalty = max(0, (impact_combat_pool_penalty - self.quickness))
+
+        self.armor_combat_pool_penalty = (ballistic_combat_pool_penalty + impact_combat_pool_penalty) // 2
+
+        # calculate armor penalty
+        self.armor_quickness_penalty = \
+            max(0, self.armor_quickness_penalty - self.quickness)
 
     @property
     def race(self):

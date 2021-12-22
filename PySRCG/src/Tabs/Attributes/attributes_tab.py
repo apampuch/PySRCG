@@ -92,6 +92,14 @@ class AttributesTab(NotebookTab):
         self.task_pool_val = StringVar()
         self.astral_combat_pool_val = StringVar()
 
+        # armor variables
+        self.ballistic_armor_val = StringVar()
+        self.ballistic_armor_val.set("0")
+        self.impact_armor_val = StringVar()
+        self.impact_armor_val.set("0")
+        self.quickness_penalty_val = StringVar()
+        self.quickness_penalty_val.set("0")
+
         # set dice pool values
         self.set_pool_vals()
 
@@ -162,6 +170,42 @@ class AttributesTab(NotebookTab):
 
         # setup the other attributes
         self.sliders["essence"].set(6)
+
+        # setup armor labelframe
+        self.armor_labelframe = ttk.LabelFrame(self, text="Armor")
+        self.armor_labelframe.grid(column=8, row=6, rowspan=2)
+
+        # armor label
+        self.ballistic_armor_label = ttk.Label(self.armor_labelframe, text="Ballistic: ")
+        self.ballistic_armor_label.grid(column=0, row=0)
+
+        self.impact_armor_label = ttk.Label(self.armor_labelframe, text="Impact: ")
+        self.impact_armor_label.grid(column=0, row=1)
+
+        self.quickness_penalty_label = ttk.Label(self.armor_labelframe, text="Quickness Penalty: ")
+        self.quickness_penalty_label.grid(column=0, row=2)
+
+        # armor values
+        self.ballistic_armor_val_label = ttk.Label(
+            self.armor_labelframe,
+            style="Red.TLabel",
+            textvar=self.ballistic_armor_val
+        )
+        self.ballistic_armor_val_label.grid(column=1, row=0)
+
+        self.impact_armor_val_label = ttk.Label(
+            self.armor_labelframe,
+            style="Red.TLabel",
+            textvar=self.impact_armor_val
+        )
+        self.impact_armor_val_label.grid(column=1, row=1)
+
+        self.quickness_penalty_val_label = ttk.Label(
+            self.armor_labelframe,
+            style="Red.TLabel",
+            textvar=self.quickness_penalty_val
+        )
+        self.quickness_penalty_val_label.grid(column=1, row=2)
 
     def setup_slider_and_label(self, key, other_attribute=False):
         """Initial setup. Should only be run once per attribute."""
@@ -346,26 +390,26 @@ class AttributesTab(NotebookTab):
         if key == "reaction" or key == "initiative":  # fuck it hardcode this exception
             race_val = 0
         else:
-            race_val = self.race.racial_attributes[key]
+            race_val = int(self.race.racial_attributes[key])
         self.mod_labels["race"][key].config(text=race_val)
 
         # set the bio bonus column
         bio_key = "bio_" + key
-        bio_val = StatMod.get_mod_total(bio_key)
+        bio_val = int(StatMod.get_mod_total(bio_key))
         self.mod_labels["bio"][key].config(text=bio_val)
 
         # set the cyber bonus column
         cyber_key = "cyber_" + key
-        cyber_val = StatMod.get_mod_total(cyber_key)
+        cyber_val = int(StatMod.get_mod_total(cyber_key))
         self.mod_labels["cyber"][key].config(text=cyber_val)
 
         # set the other bonus column
         other_key = "other_" + key
-        other_val = StatMod.get_mod_total(other_key)
+        other_val = int(StatMod.get_mod_total(other_key))
         self.mod_labels["other"][key].config(text=other_val)
 
-        # set the total
-        total_val = slider_val + race_val + bio_val + cyber_val + other_val
+        # set the total, force it to be an integer
+        total_val = int(slider_val + race_val + bio_val + cyber_val + other_val)
         self.mod_labels["total"][key].config(text=total_val)
 
         if set_pool:
@@ -408,7 +452,6 @@ class AttributesTab(NotebookTab):
             value = self.statblock.base_attributes[key]
             self.sliders[key].set(value)
             self.on_set_attribute_value(key, value)
-        # TODO check if we need to load derived attributes too
         self.on_switch()
 
     def get_progress_bar_info(self):
