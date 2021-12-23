@@ -65,8 +65,10 @@ class Statblock(object):
         self.ballistic_armor = 0
         self.impact_armor = 0
         self.armor_quickness_penalty = 0
-        self.armor_combat_pool_penalty = 0  # TODO make this affect combat pool
+        self.armor_combat_pool_penalty = 0
 
+        # list of currently equipped armors
+        self.equipped_armors: list = []
 
         # always start with 6 essence
         self.base_attributes["essence"] = 6.0
@@ -256,7 +258,7 @@ class Statblock(object):
     ######################################
     @property
     def combat_pool(self):
-        return (self.quickness + self.intelligence + self.willpower) // 2
+        return (self.quickness + self.intelligence + self.willpower) // 2 - self.armor_combat_pool_penalty
 
     @property
     def astral_combat_pool(self):

@@ -24,15 +24,15 @@ class ArmorEquipTab(NotebookTab, ABC):
         self.instruction_label = ttk.Label(self, text="Highlighted armors are equipped. You may layer armors as per SR3 rules on page 285.")
 
         self.armor_listbox = Listbox(self, selectmode=MULTIPLE, activestyle=NONE, height=20)
-        self.armor_listbox.bind("<<ListboxSelect>>", self.recalculate_armor)
+        self.armor_listbox.bind("<<ListboxSelect>>", self.on_click_armor)
         self.armor_scroll_bar = Scrollbar(self, orient=VERTICAL, command=self.armor_listbox.yview)
 
         self.shield_listbox = Listbox(self, selectmode=SINGLE, activestyle=NONE, height=20)
-        self.shield_listbox.bind("<<ListboxSelect>>", self.recalculate_armor)
+        self.shield_listbox.bind("<<ListboxSelect>>", self.on_click_armor)
         self.shield_scroll_bar = Scrollbar(self, orient=VERTICAL, command=self.shield_listbox.yview)
 
         self.helmet_listbox = Listbox(self, selectmode=SINGLE, activestyle=NONE, height=20)
-        self.helmet_listbox.bind("<<ListboxSelect>>", self.recalculate_armor)
+        self.helmet_listbox.bind("<<ListboxSelect>>", self.on_click_armor)
         self.helmet_scroll_bar = Scrollbar(self, orient=VERTICAL, command=self.helmet_listbox.yview)
 
         # labels for armor values
@@ -80,7 +80,7 @@ class ArmorEquipTab(NotebookTab, ABC):
         """
         return self.armor_list[index].properties[prop]
 
-    def recalculate_armor(self, event):
+    def on_click_armor(self, event):
         """
         Recalculates all armor values
         :param event: Does nothing
@@ -94,11 +94,13 @@ class ArmorEquipTab(NotebookTab, ABC):
         # TODO make it recalculate when quickness is changed in attributes tab too
 
         # convert equipped armors from a list of indices to a list of armors
-        equipped_armors = list(self.armor_listbox.curselection())
-        for i in range(0, len(equipped_armors)):
-            armor_index = equipped_armors[i]
-            equipped_armors[i] = self.armor_list[armor_index]
-        self.statblock.calculate_armor_and_penalties(equipped_armors, None, None)
+        self.statblock.equipped_armors = list(self.armor_listbox.curselection())
+        for i in range(0, len(self.statblock.equipped_armors)):
+            armor_index = self.statblock.equipped_armors[i]
+            # add to equipped armors
+            self.statblock.equipped_armors[i] = self.armor_list[armor_index]
+
+        self.statblock.calculate_armor_and_penalties(self.statblock.equipped_armors, None, None)
 
         self.ballistic_armor_val_label.configure(text=self.statblock.ballistic_armor)
         self.impact_armor_val_label.configure(text=self.statblock.impact_armor)
@@ -126,8 +128,10 @@ class ArmorEquipTab(NotebookTab, ABC):
 
         for armor in self.armor_list:
             self.armor_listbox.insert(END, armor.name)
+            if armor in self.statblock.equipped_armors:
+                self.armor_listbox.selection_set(END)
 
-        self.recalculate_armor(None)
+        self.on_click_armor(None)
 
     def load_character(self):
         self.on_switch()

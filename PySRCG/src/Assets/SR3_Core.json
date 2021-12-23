@@ -1180,6 +1180,7 @@
           "cost": 1500,
           "street_index": 2,
           "legality": "legal",
+          "armor_type": "shield",
           "page": 284
         },
         "Riot Shield, Large": {
@@ -1193,6 +1194,7 @@
           "cost": 1500,
           "street_index": 2,
           "legality": "legal",
+          "armor_type": "shield",
           "page": 284
         },
         "Riot Shield, Ballistic": {
@@ -1206,6 +1208,7 @@
           "cost": 1500,
           "street_index": 2,
           "legality": "legal",
+          "armor_type": "shield",
           "page": 284
         }
       },
@@ -1411,17 +1414,18 @@
           "legality": "4P-L",
           "page": 284
         },
-        "Light Security (with helmet)": {
+          "Security Helmet (Light)": {
           "concealability": null,
-          "ballistic": 7,
-          "impact": 6,
-          "weight": "9 + body",
+          "ballistic": 1,
+          "impact": 2,
+          "weight": 0,
           "availability_rating": 12,
           "availability_time": 14,
           "availability_unit": "days",
-          "cost": 7750,
-          "street_index": 2,
-          "legality": "3P-L",
+          "cost": 250,
+          "street_index": 3,
+          "legality": "2P-L",
+          "armor_type": "helmet",
           "page": 284
         },
         "Medium Security": {
@@ -1437,17 +1441,18 @@
           "legality": "3P-L",
           "page": 284
         },
-        "Medium Security (with helmet)": {
+        "Security Helmet (Medium)": {
           "concealability": null,
-          "ballistic": 7,
-          "impact": 7,
-          "weight": "11 + body",
-          "availability_rating": 14,
+          "ballistic": 1,
+          "impact": 2,
+          "weight": 0,
+          "availability_rating": 12,
           "availability_time": 14,
           "availability_unit": "days",
-          "cost": 9250,
-          "street_index": 2.5,
+          "cost": 250,
+          "street_index": 3,
           "legality": "2P-L",
+          "armor_type": "helmet",
           "page": 284
         },
         "Heavy Security": {
@@ -1460,20 +1465,21 @@
           "availability_unit": "days",
           "cost": 12000,
           "street_index": 3,
-          "legality": "2P-L",
+          "legality": "1P-L",
           "page": 284
         },
-        "Heavy Security (with helmet": {
+        "Security Helmet (Heavy)": {
           "concealability": null,
-          "ballistic": 8,
-          "impact": 7,
-          "weight": "13 + body",
-          "availability_rating": 16,
+          "ballistic": 1,
+          "impact": 2,
+          "weight": 0,
+          "availability_rating": 12,
           "availability_time": 14,
           "availability_unit": "days",
-          "cost": 12250,
+          "cost": 250,
           "street_index": 3,
-          "legality": "1P-L",
+          "legality": "2P-L",
+          "armor_type": "helmet",
           "page": 284
         }
       }

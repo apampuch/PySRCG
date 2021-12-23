@@ -16,6 +16,8 @@ Anything that's "NA" or — in the books should be null in the json.
 Weapons that are firearms, or can have firearm accessories added to them, must have a blank array property called
 "firearm_accessories". This is to mark it as an object that can have firearm accessories attached.
 
+Armor that isn't body armor should have an "armor_type" attribute which explains its type.
+
 Availability must be described in three variables: availability_rating, availability_time, and availability_unit.
 availability_rating is the numerical value of the rating itself. e.g: 4/7 days would be availability_rating 4.
 availability_time is the numerical value of the time to check again for availability. e.g 4/7 days would be availability_time 7.
