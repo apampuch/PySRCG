@@ -508,3 +508,8 @@ class AttributesTab(NotebookTab):
 
         # this is done so that we update reaction properly when we switch to this tab
         self.on_set_attribute_value("reaction", self.statblock.base_reaction)
+
+        # setup armor
+        self.ballistic_armor_val.set(self.statblock.ballistic_armor)
+        self.impact_armor_val.set(self.statblock.impact_armor)
+        self.quickness_penalty_val.set(self.statblock.armor_quickness_penalty)
