@@ -88,19 +88,17 @@ class ArmorEquipTab(NotebookTab, ABC):
         """
 
         # TODO keep track of and save equipped armors
-            # mark equipped items
-            # separate list of equipped items
-                # will need to check the equipped list for it every time we delete
+            # save equipped item list
         # TODO make it recalculate when quickness is changed in attributes tab too
 
-        # convert equipped armors from a list of indices to a list of armors
-        self.statblock.equipped_armors = list(self.armor_listbox.curselection())
-        for i in range(0, len(self.statblock.equipped_armors)):
-            armor_index = self.statblock.equipped_armors[i]
-            # add to equipped armors
-            self.statblock.equipped_armors[i] = self.armor_list[armor_index]
+        # mark all equipped armors and unmark all unequipped armors
+        size = self.armor_listbox.size()
+        for i in range(0, size):
+            self.armor_list[i].properties["equipped"] = self.armor_listbox.selection_includes(i)
 
-        self.statblock.calculate_armor_and_penalties(self.statblock.equipped_armors, None, None)
+        # get all equipped armors
+        equipped_armors = list(filter(lambda x: x.properties["equipped"] is True, self.armor_list))
+        self.statblock.calculate_armor_and_penalties(equipped_armors, None, None)
 
         self.ballistic_armor_val_label.configure(text=self.statblock.ballistic_armor)
         self.impact_armor_val_label.configure(text=self.statblock.impact_armor)
@@ -126,9 +124,10 @@ class ArmorEquipTab(NotebookTab, ABC):
                 else:
                     self.armor_list.append(item)
 
+        # highlight anything equipped
         for armor in self.armor_list:
             self.armor_listbox.insert(END, armor.name)
-            if armor in self.statblock.equipped_armors:
+            if armor.properties["equipped"]:
                 self.armor_listbox.selection_set(END)
 
         self.on_click_armor(None)

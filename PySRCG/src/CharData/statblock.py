@@ -67,9 +67,6 @@ class Statblock(object):
         self.armor_quickness_penalty = 0
         self.armor_combat_pool_penalty = 0
 
-        # list of currently equipped armors
-        self.equipped_armors: list = []
-
         # always start with 6 essence
         self.base_attributes["essence"] = 6.0
         self.ess_ui_var = IntVar()  # this only exists so we can control the progress bar with the essence value

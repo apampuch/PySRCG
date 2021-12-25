@@ -17,6 +17,7 @@ Weapons that are firearms, or can have firearm accessories added to them, must h
 "firearm_accessories". This is to mark it as an object that can have firearm accessories attached.
 
 Armor that isn't body armor should have an "armor_type" attribute which explains its type.
+All armor should have an "equipped" property that should be set to False. In saves, this property might be True or False.
 
 Availability must be described in three variables: availability_rating, availability_time, and availability_unit.
 availability_rating is the numerical value of the rating itself. e.g: 4/7 days would be availability_rating 4.
