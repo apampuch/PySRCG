@@ -1,17 +1,18 @@
+from src.CharData.gear import Gear
 from src.GenModes.finalized import Finalized
 from src.Tabs.notebook_tab import NotebookTab
 from tkinter import *
 from tkinter import ttk
-from typing import Dict
+from typing import Dict, List, Any
 
 from src.adjustment import Adjustment
 from src.statblock_modifier import StatMod
 
 
 class AttributesTab(NotebookTab):
+    equipped_armors: List[Gear]
     sliders: Dict[str, Scale]
     slider_vars: Dict[str, IntVar]
-    # slider_absolute_vars: Dict[str, int]
     attribute_labels: Dict[str, ttk.Label]
     mod_labels: Dict[str, Dict[str, ttk.Label]]
 
@@ -20,6 +21,8 @@ class AttributesTab(NotebookTab):
 
     def __init__(self, parent):
         super().__init__(parent)
+
+        self.equipped_armors = []
 
         self.minus_buttons = {}
         self.plus_buttons = {}
@@ -419,6 +422,11 @@ class AttributesTab(NotebookTab):
             # recalculate the karma/points/priority/whatever total
             self.calculate_total()
 
+        # recalculate armor penalties and shit when we change quickness
+        if key is "quickness":
+            self.statblock.calculate_armor_and_penalties(self.equipped_armors, None, None)
+            self.quickness_penalty_val.set(self.statblock.armor_quickness_penalty)
+
     def setup_derived_attribute(self, key, val):
         self.sliders[key].set(val)
         if key == "essence":
@@ -468,9 +476,14 @@ class AttributesTab(NotebookTab):
                     + list(self.mod_labels["slider"].values()):
             item.pack_forget()
 
+        # get name of current race and set the label
         self.race_label.config(text=self.race.name)
-        for key in AttributesTab.base_attributes:
 
+        # get a list of equipped armors
+        self.equipped_armors = list(filter(lambda x: "equipped" in x.properties and x.properties["equipped"] is True,
+                                           self.statblock.inventory))
+
+        for key in AttributesTab.base_attributes:
             if type(self.statblock.gen_mode) != Finalized:
                 # pack the slider
                 self.sliders[key].pack(side=LEFT)

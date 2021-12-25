@@ -87,10 +87,6 @@ class ArmorEquipTab(NotebookTab, ABC):
         :return: Nothing
         """
 
-        # TODO keep track of and save equipped armors
-            # save equipped item list
-        # TODO make it recalculate when quickness is changed in attributes tab too
-
         # mark all equipped armors and unmark all unequipped armors
         size = self.armor_listbox.size()
         for i in range(0, size):

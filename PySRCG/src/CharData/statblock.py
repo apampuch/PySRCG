@@ -255,7 +255,8 @@ class Statblock(object):
     ######################################
     @property
     def combat_pool(self):
-        return (self.quickness + self.intelligence + self.willpower) // 2 - self.armor_combat_pool_penalty
+        # it shouldn't be possible to go below 0 combat pool
+        return max(0, (self.quickness + self.intelligence + self.willpower) // 2 - self.armor_combat_pool_penalty)
 
     @property
     def astral_combat_pool(self):
