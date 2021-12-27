@@ -1,6 +1,7 @@
 import src.app_data as app_data
 import json
 import os.path
+import tempfile
 
 from src.CharData.vehicle_accessory import VehicleAccessory
 from src.CharData.augment import Cyberware
@@ -53,28 +54,40 @@ def save(character: Character):
     if not os.path.exists(character.file_path):
         save_as(character)
     else:
-        with open(character.file_path, "w") as file:
-            __write_file(file, character)
+        with __make_dummy(character) as dummy:
+            with open(character.file_path, "w") as file:
+                dummy.seek(0)
+                file.write(dummy.read())
 
 
 def save_as(character: Character):
     file: TextIO
-    try:
-        file_types = [("JSON", ".json"), ("All Files", ".*")]
-        with filedialog.asksaveasfile(filetypes=file_types, defaultextension=".json") as file:
-            __write_file(file, character)
-    except AttributeError:
-        print("Nothing saved")
-        return
+    with __make_dummy(character) as dummy:
+        try:
+            file_types = [("JSON", ".json"), ("All Files", ".*")]
+            with filedialog.asksaveasfile(filetypes=file_types, defaultextension=".json") as file:
+                # if it crashes here you will lose your save
+                # there should be no reason for that barring hardware issues
+                dummy.seek(0)
+                file.write(dummy.read())
+        except AttributeError:
+            print("Nothing saved.")
+        except Exception:
+            print("Nothing saved, now throwing error")
+            raise
 
 
-def __write_file(file, character: Character):
-    print(file.name)
-    # file.encoding = "utf-8"  # set encoding to utf-8 so things work everywhere
-    character.file_path = file.name
+def __make_dummy(character: Character):
+    """
+    Makes a dummy file. ALWAYS CALL WITH WITH AS
+    :param character: character to write
+    :return: dummy file
+    """
+    dummy = tempfile.NamedTemporaryFile("w+")
     serialized_character = character.serialize()
     serialized_character["save_version"] = SAVE_VERSION
-    json.dump(serialized_character, file, indent=2)
+    json.dump(serialized_character, dummy, indent=2)
+    return dummy
 
 
 # def load(set_character: 'function', tabs: 'function'):
