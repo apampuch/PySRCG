@@ -203,19 +203,7 @@ class CyberwareTab(NotebookTab):
         else:
             raise ValueError("Invalid grade {}.".format(grade))
 
-        # check if we have the "fits" property at all
-        if "fits" not in cyber.properties:
-            return essence
-        fit_dict = self.statblock.make_fit_dict()
-        if cyber.properties["fits"] in fit_dict.keys():
-            hold_amount = fit_dict[cyber.properties["fits"]][0]
-            fit_amount = fit_dict[cyber.properties["fits"]][1]
-            # subtract fit amount from held amount to get
-            subtotal = max(hold_amount - fit_amount, 0)
-            total =  max(essence - subtotal, 0)
-            return total
-        else:
-            return essence
+        return essence
 
     def calc_yen_cost(self, cyber, grade):
         cost = cyber.properties["cost"]

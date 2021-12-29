@@ -331,8 +331,8 @@ class Statblock(object):
 
     def make_fit_dict(self):
         """
-        Makes the fit _dict. This is for things like cybereyes and cyberears that can hold amounts of mods themselves.
-        Fit _dict is as follows:
+        Makes the fit dict. This is for things like cybereyes and cyberears that can hold amounts of mods themselves.
+        Fit dict is as follows:
         SLOT_NAME: [AMOUNT_HOLDS, TOTAL_FIT]
         :return: A dictionary containing the values of free essence by slot.
         """
