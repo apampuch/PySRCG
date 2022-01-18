@@ -3,6 +3,8 @@ import json
 import os.path
 import tempfile
 
+from src.CharData.WirelessAccessory import WirelessAccessory
+from src.CharData.firearm_accessory import FirearmAccessory
 from src.CharData.vehicle_accessory import VehicleAccessory
 from src.CharData.augment import Cyberware
 from src.CharData.character import *
@@ -23,7 +25,7 @@ from typing import TextIO
 from src.CharData.spell import Spell
 from src.CharData.vehicle import Vehicle
 
-SAVE_VERSION = 0.2
+SAVE_VERSION = 0.3
 
 gen_mode_dict = {
     "priority": Priority,
@@ -130,8 +132,12 @@ def load(tabs):
                 new_character.statblock.ammunition.append(ammo_obj)
 
             for firearm_accessory in character_dict["statblock"]["misc_firearm_accessories"]:
-                firearm_accessory_obj = Gear(**firearm_accessory)
+                firearm_accessory_obj = FirearmAccessory(**firearm_accessory)
                 new_character.statblock.misc_firearm_accessories.append(firearm_accessory_obj)
+
+            for wireless_accessory in character_dict["statblock"]["misc_wireless_accessories"]:
+                wireless_accessory_obj = WirelessAccessory(**wireless_accessory)
+                new_character.statblock.misc_wireless_accessories.append(wireless_accessory_obj)
 
             # add skills
             for skill in character_dict["statblock"]["skills"]:

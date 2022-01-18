@@ -2094,20 +2094,6 @@
           "rating": "rating",
           "flux": "rating"
         },
-        "Signal Amplifier": {
-          "concealability": 3,
-          "weight": "rating",
-          "availability_rating": "rating + ECCM - 1",
-          "availability_time": "rating * 12",
-          "availability_unit": "hrs",
-          "legality": "10P-U",
-          "cost": "rating * 250 + ECCM * 1000 - 1000",
-          "street_index": "1.5 + ECCM * 0.5 - 0.5",
-          "ECCM_rating": "ECCM",
-          "attributes_to_calculate": ["cost", "weight", "street_index", "availability_rating", "availability_time", "rating", "ECCM_rating"],
-          "page": 289,
-          "rating": "rating"
-        },
         "Signal Repeater": {
           "concealability": null,
           "weight": "rating * 2",
@@ -2180,55 +2166,6 @@
           "rating": "rating",
           "flux": "rating"
         }
-      },
-      "Broadcast Encryption": {
-        "concealability": null,
-        "weight": null,
-        "cost": {
-          "rating": {
-            ";4": "rating * 1000",
-            "5;7": "rating * 2000",
-            "8;9": "rating * 4000",
-            "10;": "rating * 5000"
-          }
-        },
-        "street_index": 1,
-        "legality": {
-          "rating": {
-            ";7": "8P-V",
-            "8; <= rating": "8P-W"
-          }
-        },
-        "page": 290,
-        "availability_time": 0,
-        "availability_rating": 0,
-        "availability_unit": "always",
-        "rating": "rating",
-        "attributes_to_calculate": ["cost", "rating", "legality"]
-      },
-      "Broadcast Decryption": {
-        "concealability": null,
-        "weight": null,
-        "cost": {
-          "rating": {
-            ";4": "rating * 2000",
-            "5;7": "rating * 4000",
-            "8;": "rating * 5000"
-          }
-        },
-        "street_index": 1,
-        "legality": {
-          "rating": {
-            ";4": "8P-V",
-            "5; <= rating": "8P-W"
-          }
-        },
-        "page": 290,
-        "availability_time": 0,
-        "availability_rating": 0,
-        "availability_unit": "always",
-        "rating": "rating",
-        "attributes_to_calculate": ["cost", "rating", "legality"]
       }
     },
     "Surveillance Measures": {
@@ -2480,7 +2417,8 @@
         "street_index": 1.5,
         "page": 291,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": ["availability_rating", "cost", "rating", "flux"],
+        "flux": "rating * 3 / 2"
       },
       "Voice Mask": {
         "concealability": 6,
@@ -7395,6 +7333,70 @@
         "legality": "4P-N",
         "page": 282
       }
+    }
+  },
+  "Wireless Accessories": {
+    "Broadcast Encryption": {
+      "concealability": null,
+      "weight": null,
+      "cost": {
+        "rating": {
+          ";4": "rating * 1000",
+          "5;7": "rating * 2000",
+          "8;9": "rating * 4000",
+          "10;": "rating * 5000"
+        }
+      },
+      "street_index": 1,
+      "legality": {
+        "rating": {
+          ";7": "8P-V",
+          "8; <= rating": "8P-W"
+        }
+      },
+      "page": 290,
+      "availability_time": 0,
+      "availability_rating": 0,
+      "availability_unit": "always",
+      "rating": "rating",
+      "attributes_to_calculate": ["cost", "rating", "legality"]
+    },
+    "Broadcast Decryption": {
+      "concealability": null,
+      "weight": null,
+      "cost": {
+        "rating": {
+          ";4": "rating * 2000",
+          "5;7": "rating * 4000",
+          "8;": "rating * 5000"
+        }
+      },
+      "street_index": 1,
+      "legality": {
+        "rating": {
+          ";4": "8P-V",
+          "5; <= rating": "8P-W"
+        }
+      },
+      "page": 290,
+      "availability_time": 0,
+      "availability_rating": 0,
+      "availability_unit": "always",
+      "rating": "rating",
+      "attributes_to_calculate": ["cost", "rating", "legality"]
+    },
+    "Signal Amplifier": {
+      "concealability": 3,
+      "weight": "rating",
+      "availability_rating": "rating",
+      "availability_time": "rating * 12",
+      "availability_unit": "hrs",
+      "legality": "10P-U",
+      "cost": "rating * 250",
+      "street_index": "1.5",
+      "attributes_to_calculate": ["cost", "weight", "street_index", "availability_rating", "availability_time", "rating"],
+      "page": 289,
+      "rating": "rating"
     }
   }
 }

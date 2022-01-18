@@ -89,6 +89,9 @@ class Statblock(object):
         # setup weapon accessories
         self.misc_firearm_accessories = []
 
+        # setup wireless accessories
+        self.misc_wireless_accessories = []
+
         # setup skills
         self.skills = []
 
@@ -391,6 +394,7 @@ class Statblock(object):
         inventory = list(map(lambda x: x.serialize(), self.inventory))
         ammunition = list(map(lambda x: x.serialize(), self.ammunition))
         misc_firearm_accessories = list(map(lambda x: x.serialize(), self.misc_firearm_accessories))
+        misc_wireless_accessories = list(map(lambda x: x.serialize(), self.misc_wireless_accessories))
         gen_mode = self.gen_mode.serialize()
         skills = list(map(lambda x: x.serialize(), self.skills))
         tradition = self.tradition.serialize() if self.tradition is not None else None
@@ -409,6 +413,7 @@ class Statblock(object):
             "inventory": inventory,
             "ammunition": ammunition,
             "misc_firearm_accessories": misc_firearm_accessories,
+            "misc_wireless_accessories": misc_wireless_accessories,
             "gen_mode": gen_mode,
             "skills": skills,
             "spells": spells,

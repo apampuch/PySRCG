@@ -1,3 +1,4 @@
+from src.CharData.WirelessAccessory import WirelessAccessory
 from src.CharData.reportable import Reportable
 from src.CharData.firearm_accessory import FirearmAccessory
 
@@ -24,6 +25,20 @@ class Gear(Reportable):
                     print()
 
             del kwargs["firearm_accessories"]
+            
+        # add accessories property if it's a weapon
+        if "wireless_accessories" in kwargs:
+            self.properties["wireless_accessories"] = []
+            # TODO add reporting for these
+            for accessory in kwargs["wireless_accessories"]:
+                try:
+                    self.properties["wireless_accessories"].append(WirelessAccessory(**accessory))
+                except TypeError as e:
+                    print("Error with {}:".format(kwargs["wireless_accessories"].name))
+                    print(e)
+                    print()
+
+            del kwargs["wireless_accessories"]
 
         # add the other fields
         self.fill_miscellaneous_fields(kwargs)
@@ -34,6 +49,12 @@ class Gear(Reportable):
             ret_dict["firearm_accessories"] = []
             for obj in self.properties["firearm_accessories"]:
                 ret_dict["firearm_accessories"].append(obj.serialize())
+                
+        if "wireless_accessories" in self.properties:
+            ret_dict["wireless_accessories"] = []
+            for obj in self.properties["wireless_accessories"]:
+                ret_dict["wireless_accessories"].append(obj.serialize())
+                
         return ret_dict
 
 
