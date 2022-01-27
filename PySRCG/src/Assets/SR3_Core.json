@@ -6929,7 +6929,8 @@
         "street_index": 2,
         "legality": "Legal",
         "page": 312,
-        "attributes_to_calculate": ["cost"]
+        "attributes_to_calculate": ["cost"],
+        "flux": 2
       },
       "Vehicle Control Gear": {
         "availability_rating": 4,

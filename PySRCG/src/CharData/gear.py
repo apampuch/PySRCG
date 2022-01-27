@@ -1,4 +1,4 @@
-from src.CharData.WirelessAccessory import WirelessAccessory
+from src.CharData.wireless_accesory import WirelessAccessory
 from src.CharData.reportable import Reportable
 from src.CharData.firearm_accessory import FirearmAccessory
 
@@ -26,7 +26,7 @@ class Gear(Reportable):
 
             del kwargs["firearm_accessories"]
             
-        # add accessories property if it's a weapon
+        # add wireless accessories property if it's a wireless accessory
         if "wireless_accessories" in kwargs:
             self.properties["wireless_accessories"] = []
             # TODO add reporting for these

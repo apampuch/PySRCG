@@ -2,7 +2,7 @@ import re
 from abc import ABC
 from tkinter import ttk, END
 
-from src.CharData.WirelessAccessory import WirelessAccessory
+from src.CharData.wireless_accesory import WirelessAccessory
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.app_data import pay_cash
 
@@ -43,20 +43,40 @@ class WirelessTab(ThreeColumnBuyTab):
     def fill_combobox(self):
         self.wireless_obj_dict = {}
         self.fill_stuff_with_accessories(self.statblock.inventory)
+        self.fill_stuff_with_accessories(self.statblock.cyberware)
+
+        # get drones
+        drones = []
+        drone_names = []
+        for vehicle in self.statblock.vehicles:
+            for accessory in vehicle.properties["vehicle_accessories"]:
+                if accessory.name == 'Remote Control Gear':
+                    drones.append(accessory)
+
+                    custom_name = vehicle.properties["name"]
+                    drone_names.append(custom_name)
+
+        self.fill_stuff_with_accessories(drones, drone_names)
+
         self.wireless_obj_dict["Misc Accessories"] = self.statblock.misc_wireless_accessories
         self.wireless_box["values"] = list(self.wireless_obj_dict.keys())
 
         self.wireless_box.set("Misc Accessories")
 
-    def fill_stuff_with_accessories(self, char_list):
+    def fill_stuff_with_accessories(self, char_list, custom_names=None):
         """
         Searches entire character looking for wireless shit.
-        :param char_list: Basically the character's inventory, theoretically other things.
+        :param char_list: An inventory of gear or other things that can have a flux rating.
+        :param custom_names: A list of custom names to use, should be the same length as char_list. Any None entry will use the regular name.
         :return: A list of the found things.
         """
-        for node in char_list:
+        for i in range(0, len(char_list)):
+            node = char_list[i]
             # check for duplicate names
-            key = node.name
+            if custom_names is not None and custom_names[i] is None:
+                key = node.name
+            else:
+                key = custom_names[i]
 
             # count names that contain the key we want to use
             # we use regex to strip any dupe counts that
@@ -88,7 +108,7 @@ class WirelessTab(ThreeColumnBuyTab):
             print("Not enough money!")
 
     def sell_callback(self, selected_index):
-        selected_item = self.statblock.inventory[self.inv_selected_index]
+        selected_item = self.statblock_inventory[self.inv_selected_index]
 
         # return cash value
         self.statblock.cash += selected_item.properties["cost"]

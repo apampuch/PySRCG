@@ -3,7 +3,7 @@ import json
 import os.path
 import tempfile
 
-from src.CharData.WirelessAccessory import WirelessAccessory
+from src.CharData.wireless_accesory import WirelessAccessory
 from src.CharData.firearm_accessory import FirearmAccessory
 from src.CharData.vehicle_accessory import VehicleAccessory
 from src.CharData.augment import Cyberware
