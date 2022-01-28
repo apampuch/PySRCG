@@ -9,8 +9,8 @@ from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 
 
 class VehicleBuyTab(ThreeColumnBuyTab, ABC):
-    def __init__(self, parent, buy_button_text, sell_button_text):
-        super().__init__(parent, buy_button_text, sell_button_text)
+    def __init__(self, parent,):
+        super().__init__(parent, "Buy", "Sell")
 
         self.race_mod_var = StringVar(value="None")
 

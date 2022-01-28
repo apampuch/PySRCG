@@ -3,6 +3,8 @@ from tkinter import IntVar
 
 from src import app_data
 from src.GenModes.gen_mode import GenMode
+from src.Tabs.Rigging.vehicle_accessories_tab import VehicleAccessoriesTab
+from src.Tabs.Rigging.vehicle_buy_tab import VehicleBuyTab
 from src.adjustment import AdjustmentsContainer, Adjustment
 
 
@@ -85,14 +87,15 @@ class Finalized(GenMode, ABC):
 
         # do these imports here to avoid circular import bullshit
         from src.Tabs.Augments.augments_tab import AugmentsTab
-        from src.Tabs.Background.background_tab import BackgroundTab
+        from src.Tabs.Background.personal_info_tab import PersonalInfoTab
         from src.Tabs.Decking.decking_tab import DeckingTab
         from src.Tabs.Gear.items_tab import ItemsTab
         from src.Tabs.Rigging.rigging_tab import RiggingTab
         from src.Tabs.Setup.setup_tab import SetupTab
         from src.Tabs.Magic.magic_tab import MagicTab
 
-        blank_set_types = (ItemsTab, SetupTab, BackgroundTab, DeckingTab, RiggingTab)
+        # list of types of tabs that should be set the top bar to blank
+        blank_set_types = (ItemsTab, SetupTab, PersonalInfoTab, DeckingTab, VehicleBuyTab, VehicleAccessoriesTab)
 
         if type(tab) in blank_set_types:
             blank_set()

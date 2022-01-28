@@ -4,14 +4,21 @@ import json
 from src.CharData.character import *
 from src.Tabs.Attributes.attributes_tab import *
 from src.Tabs.Augments.augments_tab import *
-from src.Tabs.Background.background_tab import *
+from src.Tabs.Background.edges_flaws_tab import EdgesFlawsTab
+from src.Tabs.Background.personal_info_tab import *
 from src.Tabs.Decking.decking_tab import *  # imports app_data
-from src.Tabs.Gear.gear_tab import GearTab
-from src.Tabs.Rigging.karma_tab import KarmaTab
+from src.Tabs.Gear.ammo_tab import AmmoTab
+from src.Tabs.Gear.armor_equip_tab import ArmorEquipTab
+from src.Tabs.Gear.firearm_accessories_tab import FirearmAccessoriesTab
+from src.Tabs.Gear.items_tab import ItemsTab
+from src.Tabs.Gear.wireless_tab import WirelessTab
+from src.Tabs.Rigging.vehicle_accessories_tab import VehicleAccessoriesTab
+from src.Tabs.Rigging.vehicle_buy_tab import VehicleBuyTab
+from src.Tabs.karma_tab import KarmaTab
 from src.Tabs.Magic.magic_tab import *  # imports app_data
-from src.Tabs.Rigging.rigging_tab import RiggingTab
 from src.Tabs.Setup.setup_tab import *
 from src.Tabs.Skills.skills_tab import SkillsTab
+from src.Tabs.container_tab import ContainerTab
 from src.Tabs.top_menu import *  # imports app_data
 from src.utils import magic_tab_show_on_awakened_status
 
@@ -40,7 +47,6 @@ class App(ttk.Notebook):
             # print(type(self.game_data))
             # print(self.game_data.keys())
 
-    """Find a way to call this when loading"""
     def on_tab_changed(self, event):
         # overly complicated way to get the current tab
         # because everything in tkinter is overly complicated the more I look at it
@@ -92,6 +98,35 @@ def post_setup(attri_tab):
     attri_tab.calculate_total()
 
 
+def make_tab(tab_type, name, container_types=None, container_names=None):
+    """
+    Creates a tab and adds it to the window.
+
+    :type tab_type: type
+    :type name: string
+    :type container_types: List(type)
+    :type container_names: List(str)
+    """
+    if container_types is None:
+        container_types = []
+    if container_names is None:
+        container_names = []
+
+    new_tab = tab_type(app_data.window)
+
+    if hasattr(new_tab, "add_tabs"):
+        child_tabs = []
+
+        # make new tabs from types, assign new_tab as parent
+        for type in container_types:
+            child_tabs.append(type(app_data.window))
+
+        new_tab.add_tabs(child_tabs, container_names)
+
+    app_data.window.add(new_tab, text=name)
+    return new_tab
+
+
 def main():
     app_data.root = Tk()
 
@@ -114,28 +149,26 @@ def main():
     # update top bar cash text
     top_bar.update_cash_text()
 
-    setup_tab = SetupTab(app_data.window)
-    attributes_tab = AttributesTab(app_data.window)
-    background_tab = BackgroundTab(app_data.window)
-    skills_tab = SkillsTab(app_data.window)
-    gear_tab = GearTab(app_data.window)
-    magic_tab = MagicTab(app_data.window)
-    augments_tab = AugmentsTab(app_data.window)
-    decking_tab = DeckingTab(app_data.window)
-    rigging_tab = RiggingTab(app_data.window)
-    karma_tab = KarmaTab(app_data.window)
+    setup_tab = make_tab(SetupTab, "Character Setup")
+    attributes_tab = make_tab(AttributesTab, "Attributes")
+    background_tab = make_tab(ContainerTab, "Background",
+                              [PersonalInfoTab, EdgesFlawsTab],
+                              ["Personal Info", "Edges & Flaws"])
+    skills_tab = make_tab(SkillsTab, "Skills")
+    gear_tab = make_tab(ContainerTab, "Gear",
+                        [ItemsTab, AmmoTab, FirearmAccessoriesTab, ArmorEquipTab, WirelessTab],
+                        ["Items", "Ammo", "Firearm Accessories", "Armor", "Wireless"])
+    magic_tab = make_tab(MagicTab, "Magic")     # this one has its own tab because it needs to do special things
+    augments_tab = make_tab(ContainerTab, "Augments",
+                            [CyberwareTab, BiowareTab],
+                            ["Cyberware", "Bioware"])
+    decking_tab = make_tab(DeckingTab, "Decking")
+    rigging_tab = make_tab(ContainerTab, "Rigging",
+                           [VehicleBuyTab, VehicleAccessoriesTab],
+                           ["Vehicles", "Accessories"])
+    karma_tab = make_tab(KarmaTab, "Karma")
 
     top_bar.pack(fill=X)
-    app_data.window.add(setup_tab, text="Character Setup")
-    app_data.window.add(attributes_tab, text="Attributes")
-    app_data.window.add(background_tab, text="Background")
-    app_data.window.add(skills_tab, text="Skills")
-    app_data.window.add(gear_tab, text="Gear")
-    app_data.window.add(magic_tab, text="Magic")
-    app_data.window.add(augments_tab, text="Augments")
-    app_data.window.add(decking_tab, text="Decking")
-    app_data.window.add(rigging_tab, text="Rigging")
-    app_data.window.add(karma_tab, text="Karma")
     app_data.window.pack(fill=BOTH, expand=YES)
 
     magic_tab_show_on_awakened_status(app_data)

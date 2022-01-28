@@ -9,8 +9,8 @@ from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 
 # TODO figure out this Mount shit
 class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
-    def __init__(self, parent, buy_button_text, sell_button_text):
-        super().__init__(parent, buy_button_text, sell_button_text)
+    def __init__(self, parent):
+        super().__init__(parent, "Buy", "Sell")
 
         # acc is a vehcile with accessories, so any vehicle really
         # key is name, value is matching thing with it
