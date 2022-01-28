@@ -71,26 +71,31 @@ class WirelessTab(ThreeColumnBuyTab):
         :return: A list of the found things.
         """
         for i in range(0, len(char_list)):
+
             node = char_list[i]
-            # check for duplicate names
-            if custom_names is not None and custom_names[i] is None:
-                key = node.name
-            else:
-                key = custom_names[i]
-
-            # count names that contain the key we want to use
-            # we use regex to strip any dupe counts that
-            dupe_count = 1
-            for k in self.wireless_obj_dict.keys():
-                k = re.sub(r"\s*\(\d+\)", "", k)
-                if k == key:
-                    dupe_count += 1
-
-            # if we have more than one of the thing we want, add the dupe count to the key
-            if dupe_count > 1:
-                key += " ({})".format(dupe_count)
-
             if "flux" in node.properties:
+                # use a custom name unless custom_names is None
+                # if it isn't None but an entry is None, use normal name
+                if custom_names is None:
+                    key = node.name
+                elif custom_names[i] is None:
+                    key = node.name
+                else:
+                    key = custom_names[i]
+
+                # check for duplicate names
+                # count names that contain the key we want to use
+                # we use regex to strip any dupe counts that
+                dupe_count = 1
+                for k in self.wireless_obj_dict.keys():
+                    k = re.sub(r"\s*\(\d+\)", "", k)
+                    if k == key:
+                        dupe_count += 1
+
+                # if we have more than one of the thing we want, add the dupe count to the key
+                if dupe_count > 1:
+                    key += " ({})".format(dupe_count)
+
                 self.wireless_obj_dict[key] = node  # .accessories
 
     def get_accobj(self, event):
