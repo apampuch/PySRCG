@@ -1,0 +1,458 @@
+{
+  "book_abbr": "sr3comp",
+  "file_version": "1.0",
+  "schema_version": "1.3",
+  "Edges/Flaws": {
+    "Attribute": {
+      "Bonus Attribute Point": {
+        "cost": 2,
+        "mods": {}
+      },
+      "Exceptional Attribute": {
+        "cost": 2,
+        "mods": {}
+      }
+    },
+    "Skill": {
+      "Aptitude": {
+        "cost": 4
+      },
+      "Incompetence": {
+        "cost": -2
+      },
+      "Computer Illiterate": {
+        "cost": -3
+      },
+      "Home Ground": {
+        "cost": 2
+      }
+    },
+    "Physical": {
+      "Adrenaline Surge": {
+        "cost": 2
+      },
+      "Allergy (common, minor)": {
+        "cost": -3
+      },
+      "Allergy (common, moderate)": {
+        "cost": -4
+      },
+      "Allergy (common, severe)": {
+        "cost": -5
+      },
+      "Allergy (uncommon, minor)": {
+        "cost": -2
+      },
+      "Allergy (uncommon, moderate)": {
+        "cost": -3
+      },
+      "Allergy (uncommon, severe)": {
+        "cost": -4
+      },
+      "Bio-Rejection": {
+        "cost": -5,
+        "mods": {}
+      },
+      "Bio-Rejection (awakened)": {
+        "cost": -2,
+        "mods": {}
+      },
+      "Blind": {
+        "cost": -6
+      },
+      "Blind (awakened)": {
+        "cost": -2
+      },
+      "Borrowed Time": {
+        "cost": -6
+      },
+      "Color Blind": {
+        "cost": -1
+      },
+      "Deaf": {
+        "cost": -3
+      },
+      "Double Jointed": {
+        "cost": 1
+      },
+      "High Pain Tolerance": {
+        "cost": "1 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Infirm": {
+        "cost": "0 - 1 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ],
+        "mods": {}
+      },
+      "Lightning Reflexes": {
+        "cost": "2 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ],
+        "mods": {}
+      },
+      "Low Pain Tolerance": {
+        "cost": -4
+      },
+      "Natural Immunity (natural)": {
+        "cost": 1
+      },
+      "Natural Immunity (artificial)": {
+        "cost": 3
+      },
+      "Night Blindness": {
+        "cost": -2
+      },
+      "Night Blindness (riggers/deckers)": {
+        "cost": -1
+      },
+      "Night Vision": {
+        "cost": 2
+      },
+      "Night Vision (riggers/deckers)": {
+        "cost": 1
+      },
+      "Paraplegic": {
+        "cost": -3
+      },
+      "Quadriplegic": {
+        "cost": -6
+      },
+      "Quick Healer": {
+        "cost": 2
+      },
+      "Resistance to Pathogens": {
+        "cost": 1
+      },
+      "Resistance to Toxins": {
+        "cost": 1
+      },
+      "Sensitive System": {
+        "cost": -3
+      },
+      "Sensitive System (awakened)": {
+        "cost": -2
+      },
+      "Toughness": {
+        "cost": 3
+      },
+      "Water Sprite (breath holding)": {
+        "cost": "1 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Water Sprite (swimming distance)": {
+        "cost": "1 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Water Sprite (swimming fatigue)": {
+        "cost": "1 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Water Sprite (treading water fatigue)": {
+        "cost": "1 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Water Sprite (taking damage)": {
+        "cost": "1 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Water Sprite (floating success)": {
+        "cost": "1 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Water Sprite (floating time)": {
+        "cost": "1 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Weak Immune System": {
+        "cost": -1
+      },
+      "Will to Live": {
+        "cost": "1 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      }
+    },
+    "Mental": {
+      "Amnesia": {
+        "cost": "0 - 1 - value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Bravery": {
+        "cost": 1
+      },
+      "College Education": {
+        "cost": 1
+      },
+      "Combat Monster": {
+        "cost": -1
+      },
+      "Combat Paralysis": {
+        "cost": -4
+      },
+      "Common Sense": {
+        "cost": 2
+      },
+      "Compulsive": {
+        "cost": "0 - value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Flashbacks": {
+        "cost": -4
+      },
+      "Impulsive": {
+        "cost": -2
+      },
+      "Illiterate": {
+        "cost": -3
+      },
+      "Oblivious": {
+        "cost": -2
+      },
+      "Pacifist": {
+        "cost": -2
+      },
+      "Perceptive": {
+        "cost": 3
+      },
+      "Perfect Time": {
+        "cost": 1
+      },
+      "Phobia": {
+        "cost": "0 - 1 - value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Photographic Memory": {
+        "cost": 3
+      },
+      "Sea Legs": {
+        "cost": -2
+      },
+      "Sea Madness": {
+        "cost": -4
+      },
+      "Sense of Direction": {
+        "cost": 1
+      },
+      "Sensitive Neural Structure": {
+        "cost": "0 - 2 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Simsense Vertigo": {
+        "cost": -2
+      },
+      "Simsense Vertigo (riggers/deckers)": {
+        "cost": -4
+      },
+      "Spike Resistance": {
+        "cost": "2 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Technical School Education": {
+        "cost": 1
+      },
+      "Total Pacifist": {
+        "cost": -5
+      },
+      "Uneducated": {
+        "cost": -2
+      },
+      "Vindictive": {
+        "cost": -2
+      }
+    },
+    "Social": {
+      "Animal Empathy": {
+        "cost": 2
+      },
+      "Bad Reputation": {
+        "cost": "0 - value",
+        "attributes_to_calculate": {
+          "cost": []
+        }
+      },
+      "Blandness": {
+        "cost": 2
+      },
+      "Braggart": {
+        "cost": -1
+      },
+      "Connected": {
+        "cost": 3
+      },
+      "Connected (buy and sell)": {
+        "cost": 5
+      },
+      "Dark Secret": {
+        "cost": -2
+      },
+      "Day Job": {
+        "cost": "0 - value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Dependent": {
+        "cost": "0 - value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Distinctive Style": {
+        "cost": -1
+      },
+      "Elf Poser": {
+        "cost": -1
+      },
+      "Extra Contact": {
+        "cost": 1
+      },
+      "Extra Enemy": {
+        "cost": -1
+      },
+      "Friendly Face": {
+        "cost": 1
+      },
+      "Friends Abroad": {
+        "cost": 3
+      },
+      "Friends in High Places": {
+        "cost": 2
+      },
+      "Human-Looking": {
+        "cost": 1
+      },
+      "Hung Out to Dry": {
+        "cost": -4
+      },
+      "Good Reputation": {
+        "cost": "value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Liar": {
+        "cost": -2
+      },
+      "Uncouth": {
+        "cost": -2
+      }
+    },
+    "Magical": {
+      "Astral Chameleon": {
+        "cost": 2
+      },
+      "Astral Impressions": {
+        "cost": -2
+      },
+      "Focused Concentration": {
+        "cost": 2
+      },
+      "Magic Resistance": {
+        "cost": "value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Poor Link": {
+        "cost": 2
+      },
+      "Spirit Affinity": {
+        "cost": 2
+      },
+      "Spirit Bane": {
+        "cost": -2
+      }
+    },
+    "Matrix": {
+      "Codeblock": {
+        "cost": -1
+      },
+      "Codeslinger": {
+        "cost": 2
+      },
+      "Choker": {
+        "cost": -2
+      },
+      "Cracker": {
+        "cost": 4
+      },
+      "Jack Itch": {
+        "cost": -1
+      },
+      "Natural Hardening": {
+        "cost": 4
+      },
+      "Scorched": {
+        "cost": -1
+      }
+    },
+    "Miscellaneous": {
+      "Bad Karma": {
+        "cost": -5
+      },
+      "Cranial Bomb": {
+        "cost": -6
+      },
+      "Daredevil": {
+        "cost": 3
+      },
+      "Gremlins": {
+        "cost": "0 - value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Hunted": {
+        "cost": "0 - 2 * value",
+        "attributes_to_calculate": [
+          "cost"
+        ]
+      },
+      "Mysterious Cyberware": {
+        "cost": -3
+      },
+      "Pirate Family": {
+        "cost": 3
+      },
+      "Pirate Family (creative GM)": {
+        "cost": 1
+      },
+      "Police Record": {
+        "cost": -6
+      },
+      "Vehicle Empathy": {
+        "cost": 2
+      }
+    }
+  }
+}
