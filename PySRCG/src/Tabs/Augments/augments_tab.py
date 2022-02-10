@@ -21,6 +21,10 @@ class AugmentsTab(ttk.Notebook):
         self.cyberware_tab.on_switch()
         self.bioware_tab.on_switch()
 
+    def reload_data(self):
+        self.cyberware_tab.reload_data()
+        self.bioware_tab.reload_data()
+
     def load_character(self):
         self.cyberware_tab.load_character()
         self.bioware_tab.load_character()

@@ -1,3 +1,5 @@
+from abc import ABC
+
 from src.Tabs.notebook_tab import NotebookTab
 from src.CharData.tradition import Tradition
 
@@ -5,20 +7,19 @@ from tkinter import *
 from tkinter import ttk
 
 
-class MagicBackgroundTab(NotebookTab):
+class MagicBackgroundTab(NotebookTab, ABC):
     def __init__(self, parent):
         super().__init__(parent)
 
-        # setup and populate tradition _dict
-        self.traditions_dict = {}
-        for tradition in self.parent.game_data["Traditions"]:
-            self.traditions_dict[tradition] = Tradition(tradition, **self.parent.game_data["Traditions"][tradition])
-
         # the tradition box should be unchanging
         self.traditions_labelframe = ttk.LabelFrame(self, text="Tradition")
-        self.tradition_box = ttk.Combobox(self.traditions_labelframe, values=list(self.traditions_dict.keys()), state="readonly")
+        self.tradition_box = ttk.Combobox(self.traditions_labelframe, state="readonly")
         self.tradition_box.bind("<<ComboboxSelected>>", self.on_change_tradition)
         self.tradition_box.grid(column=0, row=0)
+
+        # setup and populate tradition _dict
+        self.traditions_dict = None
+        self.reload_data()
 
         # aspects combobox
         self.focus_aspects = []
@@ -84,6 +85,18 @@ class MagicBackgroundTab(NotebookTab):
             self.focus_labelframe.configure(text=self.statblock.tradition.focus_name)
         else:
             self.focus_labelframe.grid_forget()
+
+    def reload_data(self):
+        self.traditions_dict = {}
+        try:
+            tradition_data = self.parent.game_data["Traditions"]
+        except KeyError:
+            tradition_data = {}
+
+        for tradition in tradition_data:
+            self.traditions_dict[tradition] = Tradition(tradition, **self.parent.game_data["Traditions"][tradition])
+
+        self.tradition_box.configure(values=list(self.traditions_dict.keys()))
 
     def load_character(self):
         if self.statblock.tradition is not None:

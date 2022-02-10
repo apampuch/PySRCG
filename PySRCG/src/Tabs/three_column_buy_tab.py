@@ -149,6 +149,12 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         if show_race_mods:
             self.race_mods_frame.grid(column=3, row=2)
 
+    def reload_data(self):
+        children = self.object_library.get_children()
+        self.object_library.delete(*children)
+        recursive_treeview_fill(self.library_source, "", self.object_library,
+                                self.recurse_check_func, self.recurse_end_func)
+
     @property
     @abstractmethod
     def library_source(self):

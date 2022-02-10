@@ -16,7 +16,10 @@ class PowersTab(ThreeColumnBuyTab, ABC):
 
     @property
     def library_source(self):
-        return self.parent.game_data["Powers"]
+        try:
+            return self.parent.game_data["Powers"]
+        except KeyError:
+            return {}
 
     @property
     def statblock_inventory(self):

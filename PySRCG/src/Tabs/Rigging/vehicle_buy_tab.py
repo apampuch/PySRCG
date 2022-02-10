@@ -9,7 +9,7 @@ from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 
 
 class VehicleBuyTab(ThreeColumnBuyTab, ABC):
-    def __init__(self, parent,):
+    def __init__(self, parent):
         super().__init__(parent, "Buy", "Sell")
 
         self.race_mod_var = StringVar(value="None")
@@ -27,7 +27,10 @@ class VehicleBuyTab(ThreeColumnBuyTab, ABC):
 
     @property
     def library_source(self):
-        return self.parent.game_data["Vehicles"]
+        try:
+            return self.parent.game_data["Vehicles"]
+        except KeyError:
+            return {}
 
     @property
     def statblock_inventory(self):

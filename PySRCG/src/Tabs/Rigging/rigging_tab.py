@@ -8,8 +8,8 @@ from src.Tabs.Rigging.vehicle_buy_tab import VehicleBuyTab
 class RiggingTab(ttk.Notebook):
     def __init__(self, parent):
         super().__init__(parent)
-        self.vehicle_buy_tab = VehicleBuyTab(parent, "Buy", "Sell")
-        self.vehicle_accessories_tab = VehicleAccessoriesTab(parent, "Buy", "Sell")
+        self.vehicle_buy_tab = VehicleBuyTab(parent)
+        self.vehicle_accessories_tab = VehicleAccessoriesTab(parent)
         # self.vehicle_custom_tab = None
 
         self.bind("<<NotebookTabChanged>>", app_data.window.on_tab_changed)

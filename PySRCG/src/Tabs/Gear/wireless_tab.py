@@ -21,7 +21,10 @@ class WirelessTab(ThreeColumnBuyTab):
 
     @property
     def library_source(self):
-        return self.parent.game_data["Wireless Accessories"]
+        try:
+            return self.parent.game_data["Wireless Accessories"]
+        except KeyError:
+            return {}
 
     @property
     def statblock_inventory(self):

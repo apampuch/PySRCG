@@ -32,7 +32,10 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
 
     @property
     def library_source(self):
-        return self.parent.game_data["Spells"]
+        try:
+            return self.parent.game_data["Spells"]
+        except KeyError:
+            return {}
 
     @property
     def statblock_inventory(self):

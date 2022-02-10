@@ -24,6 +24,10 @@ class ContainerTab(ttk.Notebook):
             self.tabs.append(tab_list[i])
             self.add(self.tabs[i], text=name_list[i])
 
+    def reload_data(self):
+        for tab in self.tabs:
+            tab.reload_data()
+
     def on_switch(self):
         for tab in self.tabs:
             tab.on_switch()

@@ -21,7 +21,10 @@ class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
 
     @property
     def library_source(self):
-        return self.parent.game_data["Firearm Accessories"]
+        try:
+            return self.parent.game_data["Firearm Accessories"]
+        except KeyError:
+            return {}
 
     @property
     def statblock_inventory(self):

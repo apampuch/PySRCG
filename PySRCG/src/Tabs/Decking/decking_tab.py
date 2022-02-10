@@ -28,6 +28,10 @@ class DeckingTab(ttk.Notebook):
     def calculate_total(self):
         self.persona_tab.calculate_total()
 
+    def reload_data(self):
+        self.deck_tab.reload_data()
+        self.programs_tab.reload_data()
+
     def load_character(self):
         self.deck_tab.load_character()
         self.programs_tab.load_character()

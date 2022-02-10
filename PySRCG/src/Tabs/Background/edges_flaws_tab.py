@@ -9,7 +9,10 @@ class EdgesFlawsTab(ThreeColumnBuyTab, ABC):
 
     @property
     def library_source(self):
-        return {}
+        try:
+            return {}
+        except KeyError:
+            return {}
 
     @property
     def statblock_inventory(self):

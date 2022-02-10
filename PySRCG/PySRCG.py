@@ -1,5 +1,8 @@
 # noinspection PyUnresolvedReferences
 import json
+import pprint
+
+from pathlib import Path
 
 from src.CharData.character import *
 from src.Tabs.Attributes.attributes_tab import *
@@ -22,7 +25,6 @@ from src.Tabs.container_tab import ContainerTab
 from src.Tabs.top_menu import *  # imports app_data
 from src.utils import magic_tab_show_on_awakened_status
 
-"""Idea: CalculatedGear items for things that depend on rating brackets"""
 DEBUG = False
 
 # TODO implement name/string variables for items, like Activesoft (skill)
@@ -40,12 +42,10 @@ class App(ttk.Notebook):
         self.bind("<<NotebookTabChanged>>", self.on_tab_changed)
 
         self.top_bar = top_bar
+        self.game_data = None
+        self.LOAD_DEBUG = False
 
-        with open("src/Assets/SR3_Core.json", "r") as json_file:
-            self.game_data = json.load(json_file)
-            # pprint.pprint(self.game_data)
-            # print(type(self.game_data))
-            # print(self.game_data.keys())
+        self.load_game_data()
 
     def on_tab_changed(self, event):
         # overly complicated way to get the current tab
@@ -56,6 +56,26 @@ class App(ttk.Notebook):
         current_tab.on_switch()
 
         app_data.app_character.statblock.gen_mode.update_karma_label(current_tab)
+
+    def load_game_data(self):
+        self.game_data = {}
+
+        for filename in SourcesWindow.selected_source_files:
+            full_path = SourcesWindow.source_directory / filename
+            with open(full_path, "r") as json_file:
+                self.game_data.update(json.load(json_file))
+
+                # load debug flag
+                if self.LOAD_DEBUG:
+                    pprint.pprint(self.game_data)
+                    print(type(self.game_data))
+                    print(self.game_data.keys())
+
+        # cleanup unnecessary data
+        clean_tags = ["book_abbr", "file_version", "schema_version", "book"]
+        for tag in clean_tags:
+            if tag in self.game_data:
+                del self.game_data[tag]
 
 
 class TopBar(ttk.Frame):
@@ -131,10 +151,11 @@ def main():
     app_data.root = Tk()
 
     # setup top menu
-    menu = TopMenu(app_data.root)
-    app_data.root.configure(menu=menu)
+    app_data.menu = TopMenu(app_data.root)
+    app_data.root.configure(menu=app_data.menu)
 
-    print("Setting the character!")
+    # setup config and stuff
+    SourcesWindow.first_setup()
 
     # setup main window
     top_bar = TopBar(app_data.root)

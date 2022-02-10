@@ -26,6 +26,10 @@ class NotebookTab(ttk.Frame):
         return self.statblock.race
 
     @abc.abstractmethod
+    def reload_data(self):
+        pass
+
+    @abc.abstractmethod
     def on_switch(self):
         """Called on tab switch."""
         pass

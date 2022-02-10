@@ -54,7 +54,10 @@ class ItemsTab(ThreeColumnBuyTab, ABC):
 
     @property
     def library_source(self):
-        return self.parent.game_data["Items"]
+        try:
+            return self.parent.game_data["Items"]
+        except KeyError:
+            return {}
 
     @property
     def statblock_inventory(self):

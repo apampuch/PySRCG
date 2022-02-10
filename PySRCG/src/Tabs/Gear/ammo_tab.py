@@ -13,12 +13,14 @@ class AmmoTab(ThreeColumnBuyTab, ABC):
 
     @property
     def library_source(self):
-        return self.parent.game_data["Ammunition"]
+        try:
+            return self.parent.game_data["Ammunition"]
+        except KeyError:
+            return {}
 
     @property
     def statblock_inventory(self):
         return self.statblock.ammunition
-
 
     def buy_callback(self, selected):
         # get the amount by getting the value of the spinbox (always a string) and converting to int

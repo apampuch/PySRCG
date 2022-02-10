@@ -107,9 +107,18 @@ class CyberwareTab(NotebookTab):
 
         self.variables_frame.grid(column=0, row=3)
 
+        recursive_treeview_fill(self.library_source, "", self.cyberware_library,
+                                self.recurse_check_func, self.recurse_end_func)
+
+    @property
+    def recurse_check_func(self):
         def augment_tab_recurse_check(val):
             return "essence" not in val.keys()
 
+        return augment_tab_recurse_check
+
+    @property
+    def recurse_end_func(self):
         def augment_tab_recurse_end_callback(key, val, iid):
             # key is a string
             # val is a _dict from a json
@@ -120,8 +129,14 @@ class CyberwareTab(NotebookTab):
                 print(e)
                 print()
 
-        recursive_treeview_fill(self.parent.game_data["Augments"]["Cyberware"], "", self.cyberware_library,
-                                augment_tab_recurse_check, augment_tab_recurse_end_callback)
+        return augment_tab_recurse_end_callback
+
+    @property
+    def library_source(self):
+        try:
+            return self.parent.game_data["Augments"]["Cyberware"]
+        except KeyError:
+            return {}
 
     def on_buy_click(self):
         if self.library_selected is not None:
@@ -306,6 +321,12 @@ class CyberwareTab(NotebookTab):
                                           "Augments Tab")
         # app_data.top_bar.karma_fraction.set(("{}/{}".format("{:.2f}".format(self.statblock.essence),
         #                                     self.statblock.base_attributes["essence"])))
+
+    def reload_data(self):
+        children = self.cyberware_library.get_children()
+        self.cyberware_library.delete(*children)
+        recursive_treeview_fill(self.library_source, "", self.cyberware_library,
+                                self.recurse_check_func, self.recurse_end_func)
 
     def on_switch(self):
         self.calculate_total()

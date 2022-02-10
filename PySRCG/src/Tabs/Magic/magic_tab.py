@@ -42,6 +42,11 @@ class MagicTab(ttk.Notebook):
             self.tab(".!app.!powerstab", state="hidden")
             self.tab(".!app.!spellstab", state="normal")
 
+    def reload_data(self):
+        self.background_tab.reload_data()
+        self.spells_tab.reload_data()
+        self.powers_tab.reload_data()
+
     def on_switch(self):
         self.background_tab.on_switch()
         self.spells_tab.on_switch()

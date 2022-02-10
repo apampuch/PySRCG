@@ -17,7 +17,7 @@ class SkillsTab(NotebookTab):
 
     @property
     def library_selected(self):
-        return treeview_get(self.skills_library, self.tree_library_dict)
+        return treeview_get(self.object_library, self.tree_library_dict)
 
     @property
     def list_selected(self) -> Skill:
@@ -31,8 +31,8 @@ class SkillsTab(NotebookTab):
         # self.tree_spec_dict = {}  # specializations of each skill (iid, specialization name)
 
         # frame to hold the list of skills
-        self.skills_library = ttk.Treeview(self, height=20, show="tree")
-        self.skills_library_scroll = ttk.Scrollbar(self, orient=VERTICAL, command=self.skills_library.yview)
+        self.object_library = ttk.Treeview(self, height=20, show="tree")
+        self.skills_library_scroll = ttk.Scrollbar(self, orient=VERTICAL, command=self.object_library.yview)
 
         # frame to hold the player's skills
         self.skills_list = ttk.Treeview(self, height=20, columns=["Rank", "Attribute"])
@@ -51,11 +51,11 @@ class SkillsTab(NotebookTab):
         self.minus_button = Button(self, text="-", command=self.minus_skill)
 
         # bind events
-        self.skills_library["yscrollcommand"] = self.skills_library_scroll.set
+        self.object_library["yscrollcommand"] = self.skills_library_scroll.set
         self.skills_list["yscrollcommand"] = self.skills_list_scroll.set
 
         # grids
-        self.skills_library.grid(column=0, row=0, sticky=(N, S), columnspan=2)
+        self.object_library.grid(column=0, row=0, sticky=(N, S), columnspan=2)
         self.skills_library_scroll.grid(column=2, row=0, sticky=(N, S))
 
         self.skills_list.grid(column=4, row=0, sticky=(N, S), columnspan=3)
@@ -67,17 +67,32 @@ class SkillsTab(NotebookTab):
         self.plus_button.grid(column=5, row=1)
         self.minus_button.grid(column=6, row=1)
 
+        # fill skills library
+        recursive_treeview_fill(self.library_source, "", self.object_library,
+                                self.recurse_check_func, self.recurse_end_func)
+
+    @property
+    def recurse_check_func(self):
         def skills_tab_recurse_check(val):
             return "attribute" not in val.keys()
 
+        return skills_tab_recurse_check
+
+    @property
+    def recurse_end_func(self):
         def skills_tab_recurse_end_callback(key, val, iid):
             # rank is 0 since it's not real in the library
             self.tree_library_dict[iid] = Skill(name=key, rank=0, **val)
-            self.skills_library.item(iid, text="{} ({})".format(key, val))
+            self.object_library.item(iid, text="{} ({})".format(key, val))
 
-        # fill skills library
-        recursive_treeview_fill(self.parent.game_data["Skills"], "", self.skills_library,
-                                skills_tab_recurse_check, skills_tab_recurse_end_callback)
+        return skills_tab_recurse_end_callback
+
+    @property
+    def library_source(self):
+        try:
+            return self.parent.game_data["Skills"]
+        except KeyError:
+            return {}
 
     def add_skill(self):
         if self.library_selected is not None:
@@ -431,6 +446,12 @@ class SkillsTab(NotebookTab):
         :return: The iid of the selected skill UI item
         """
         return self.skills_list.selection()[-1]
+
+    def reload_data(self):
+        children = self.object_library.get_children()
+        self.object_library.delete(*children)
+        recursive_treeview_fill(self.library_source, "", self.object_library,
+                                self.recurse_check_func, self.recurse_end_func)
 
     def load_character(self):
         # clear everything
