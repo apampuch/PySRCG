@@ -164,6 +164,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     @property
     @abstractmethod
     def statblock_inventory(self):
+        """The inventory in the statblock that contains this."""
         pass
 
     @abstractmethod
