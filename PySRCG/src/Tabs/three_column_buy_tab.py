@@ -366,9 +366,9 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                     e = StringVar()
                     # make a combobox if it's a list
                     if type(option_value) is list:
-                        ttk.Combobox(f, textvariable=e, state="readonly",
-                                     values=copy(option_value))\
-                            .pack(side=RIGHT, fill=X)
+                        new_box = ttk.Combobox(f, textvariable=e, state="readonly", values=copy(option_value))
+                        new_box.current(0)
+                        new_box.pack(side=RIGHT, fill=X)
                     # make an entry if it's not
                     else:
                         Entry(f, textvariable=e).pack(side=RIGHT, fill=X)

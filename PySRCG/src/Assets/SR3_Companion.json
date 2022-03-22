@@ -8,12 +8,12 @@
       "Bonus Attribute Point": {
         "cost": 2,
         "mods": {},
-        "options": {"Attribute":  ["Body", "Strength", "Quickness", "Intelligence", "Willpower", "Charisma"]}
+        "options": {"Attribute":  ["Body", "Quickness", "Strength", "Charisma", "Intelligence", "Willpower"]}
       },
       "Exceptional Attribute": {
         "cost": 2,
         "mods": {},
-        "options": {"Attribute":  ["Body", "Strength", "Quickness", "Intelligence", "Willpower", "Charisma"]}
+        "options": {"Attribute":  ["Body", "Quickness", "Strength", "Charisma", "Intelligence", "Willpower"]}
       }
     },
     "Skill": {
