@@ -3,6 +3,7 @@ import json
 import os.path
 import tempfile
 
+from src.CharData.edge_flaw import EdgeFlaw
 from src.CharData.wireless_accesory import WirelessAccessory
 from src.CharData.firearm_accessory import FirearmAccessory
 from src.CharData.vehicle_accessory import VehicleAccessory
@@ -74,6 +75,7 @@ def save_as(character: Character):
                 file.write(dummy.read())
         except AttributeError:
             print("Nothing saved.")
+            raise
         except Exception:
             print("Nothing saved, now throwing error")
             raise
@@ -138,6 +140,10 @@ def load(tabs):
             for wireless_accessory in character_dict["statblock"]["misc_wireless_accessories"]:
                 wireless_accessory_obj = WirelessAccessory(**wireless_accessory)
                 new_character.statblock.misc_wireless_accessories.append(wireless_accessory_obj)
+
+            for edge_flaw in character_dict["statblock"]["edges_flaws"]:
+                edge_flaw_obj = EdgeFlaw(**edge_flaw)
+                new_character.statblock.edges_flaws.append(edge_flaw_obj)
 
             # add skills
             for skill in character_dict["statblock"]["skills"]:

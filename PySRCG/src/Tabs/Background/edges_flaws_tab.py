@@ -1,6 +1,8 @@
 from abc import ABC
 
+from src import app_data
 from src.CharData.edge_flaw import EdgeFlaw
+from src.GenModes.finalized import Finalized
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 
 
@@ -21,9 +23,11 @@ class EdgesFlawsTab(ThreeColumnBuyTab, ABC):
 
     def buy_callback(self, selected):
         self.add_inv_item(selected)
+        self.calculate_total()
 
     def sell_callback(self, selected_index):
         self.remove_inv_item(selected_index)
+        self.calculate_total()
 
     @property
     def recurse_check_func(self):
@@ -41,8 +45,20 @@ class EdgesFlawsTab(ThreeColumnBuyTab, ABC):
 
         return end_func
 
+    def calculate_total(self):
+        if type(self.gen_mode) is not Finalized:
+            total = 0
+            for edge_flaw in self.statblock_inventory:
+                total += edge_flaw.properties["cost"]
+
+            self.gen_mode.cur_edge_flaw_points.set(total)
+
+            app_data.top_bar.karma_fraction.set("{}".format(self.statblock.gen_mode.cur_edge_flaw_points.get()))
+
     def on_switch(self):
         pass
 
     def load_character(self):
-        pass
+        super().load_character()
+        self.calculate_total()
+        self.on_switch()

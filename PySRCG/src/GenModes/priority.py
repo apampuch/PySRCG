@@ -7,6 +7,8 @@ from src.CharData.race import all_races
 from src.GenModes.gen_mode import GenMode
 from src.Tabs.Attributes.attributes_tab import AttributesTab
 from src.Tabs.Augments.augments_tab import AugmentsTab
+from src.Tabs.Background.background_tab import BackgroundTab
+from src.Tabs.Background.edges_flaws_tab import EdgesFlawsTab
 from src.Tabs.Decking.decking_tab import DeckingTab
 from src.Tabs.Magic.magic_tab import MagicTab
 from src.Tabs.Skills.skills_tab import SkillsTab
@@ -48,6 +50,7 @@ class Priority(GenMode, ABC):
         self.cur_skill_points = IntVar()
         self.cur_magic_points = IntVar()
         self.cur_attribute_points = IntVar()
+        self.cur_edge_flaw_points = IntVar()
 
         self.max_skill_points = IntVar()
         self.max_magic_points = IntVar()
@@ -119,6 +122,12 @@ class Priority(GenMode, ABC):
             current_tab_index = tab.index("current")
             if current_tab_index != PERSONA_TAB_INDEX:
                 blank_set()
+        elif type(tab) is BackgroundTab:
+            EDGES_FLAWS_INDEX = 1
+            current_tab_index = tab.index("current")
+            if current_tab_index == EDGES_FLAWS_INDEX:
+                progress_text.set("{}".format(self.cur_edge_flaw_points.get()))
+                progress_bar.configure(maximum=10000000, variable=0)
         else:
             blank_set()
 
@@ -206,7 +215,6 @@ class Priority(GenMode, ABC):
         self.max_attribute_points.set(self.get_generated_value("attributes"))
         self.max_magic_points.set(self.magic_val_from_string())
         self.max_skill_points.set(self.get_generated_value("skills"))
-
 
         # breaking scope like this is SO hacky but fuck it
         # set money

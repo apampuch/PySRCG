@@ -95,6 +95,9 @@ class Statblock(object):
         # setup skills
         self.skills = []
 
+        # setup edges and flaws
+        self.edges_flaws = []
+
         """
         self.awakened: Can either be None, "aspected", or "full"
         self.tradition: Shamanism, Hermetic, or Adept (in core)
@@ -397,6 +400,7 @@ class Statblock(object):
         misc_wireless_accessories = list(map(lambda x: x.serialize(), self.misc_wireless_accessories))
         gen_mode = self.gen_mode.serialize()
         skills = list(map(lambda x: x.serialize(), self.skills))
+        edges_flaws = list(map(lambda x: x.serialize(), self.edges_flaws))
         tradition = self.tradition.serialize() if self.tradition is not None else None
         spells = list(map(lambda x: x.serialize(), self.spells))
         cyberware = list(map(lambda x: x.serialize(), self.cyberware))
@@ -415,6 +419,7 @@ class Statblock(object):
             "misc_firearm_accessories": misc_firearm_accessories,
             "misc_wireless_accessories": misc_wireless_accessories,
             "gen_mode": gen_mode,
+            "edges_flaws": edges_flaws,
             "skills": skills,
             "spells": spells,
             "cyberware": cyberware,

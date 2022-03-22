@@ -65,7 +65,6 @@ class SetupTab(NotebookTab):
         self.on_switch()
 
     def on_switch(self):
-        print("Switched to setup tab")
         race_name = self.race.name
         race_index = self.race_vals.index(race_name)
         self.race_box.current(race_index)
