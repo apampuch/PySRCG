@@ -7,25 +7,30 @@
     "Attribute": {
       "Bonus Attribute Point": {
         "cost": 2,
-        "mods": {}
+        "mods": {},
+        "options": {"Attribute":  ["Body", "Strength", "Quickness", "Intelligence", "Willpower", "Charisma"]}
       },
       "Exceptional Attribute": {
         "cost": 2,
-        "mods": {}
+        "mods": {},
+        "options": {"Attribute":  ["Body", "Strength", "Quickness", "Intelligence", "Willpower", "Charisma"]}
       }
     },
     "Skill": {
       "Aptitude": {
-        "cost": 4
+        "cost": 4,
+        "options": {"Skill": null}
       },
       "Incompetence": {
-        "cost": -2
+        "cost": -2,
+        "options": {"Skill": null}
       },
       "Computer Illiterate": {
         "cost": -3
       },
       "Home Ground": {
-        "cost": 2
+        "cost": 2,
+        "options": {"Location": null}
       }
     },
     "Physical": {
@@ -33,22 +38,28 @@
         "cost": 2
       },
       "Allergy (common, minor)": {
-        "cost": -3
+        "cost": -3,
+        "options": {"Substance": null}
       },
       "Allergy (common, moderate)": {
-        "cost": -4
+        "cost": -4,
+        "options": {"Substance": null}
       },
       "Allergy (common, severe)": {
-        "cost": -5
+        "cost": -5,
+        "options": {"Substance": null}
       },
       "Allergy (uncommon, minor)": {
-        "cost": -2
+        "cost": -2,
+        "options": {"Substance": null}
       },
       "Allergy (uncommon, moderate)": {
-        "cost": -3
+        "cost": -3,
+        "options": {"Substance": null}
       },
       "Allergy (uncommon, severe)": {
-        "cost": -4
+        "cost": -4,
+        "options": {"Substance": null}
       },
       "Bio-Rejection": {
         "cost": -5,
@@ -246,7 +257,8 @@
         "cost": "0 - 1 - value",
         "attributes_to_calculate": [
           "cost"
-        ]
+        ],
+        "options": {"Trigger": null}
       },
       "Photographic Memory": {
         "cost": 3
