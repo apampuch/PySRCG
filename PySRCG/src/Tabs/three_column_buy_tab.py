@@ -1,7 +1,7 @@
 from copy import copy
 
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, messagebox
 
 from typing import List, Callable
 
@@ -342,6 +342,12 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                 # define functions for ok and cancel
                 def ok_func():
                     # set all of the options
+                    for entry in option_entries:
+                        if option_entries[entry].get() == "":
+                            messagebox.showerror(title="Error", message="No blank options allowed!")
+                            temp_window.destroy()
+                            return
+
                     for entry in option_entries:
                         selected_object.properties["options"][entry] = option_entries[entry].get()
 
