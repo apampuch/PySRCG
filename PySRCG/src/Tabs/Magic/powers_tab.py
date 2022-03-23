@@ -13,6 +13,7 @@ from tkinter import ttk
 class PowersTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
         super().__init__(parent, buy_button_text="Learn", sell_button_text="Unlearn", plus_and_minus=True)
+        self.no_duplicates = True
 
     @property
     def library_source(self):
@@ -50,38 +51,7 @@ class PowersTab(ThreeColumnBuyTab, ABC):
         ret += f"level {x.properties['level']}: {x.properties['cost']}"
         return ret
 
-    def power_already_known(self, new_power):
-        # a big fuckin' messy logic tree because fuck doing it the leetcode way
-        for old_power in self.statblock.powers:
-            if old_power.name == new_power.name:
-                if "options" in old_power.properties:
-                    # already known if properties match exactly
-                    # don't check if the option keys are different, they should always be the same for stuff with the
-                    # same name
-                    for option in old_power.properties["options"]:
-                        try:
-                            # if they don't match, we don't know the power
-                            if old_power.properties["options"][option] != new_power.properties["options"][option]:
-                                return False
-                        except KeyError:
-                            print("WARNING: they don't match")
-                            return False
-                    # if this for loop doesn't trigger, the powers are the same
-                    return True
-
-                else:
-                    # already known if we have something with the same name and no options
-                    return True
-
-        # if nothing else triggers, then we don't know the power
-        return False
-
     def buy_callback(self, selected):
-        # check to make sure the power is not already there
-        if self.power_already_known(selected):
-            print("Already known!")
-            return
-
         total_power_points = self.statblock.power_points
 
         # print("Library Selected: " + self.library_selected.name)

@@ -1,7 +1,7 @@
 from copy import copy
 from math import floor
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from typing import Dict, Any, Optional
 
 from src.CharData.skill import Skill, Specialization
@@ -25,6 +25,7 @@ class SkillsTab(NotebookTab):
 
     def __init__(self, parent):
         super().__init__(parent)
+        # TODO add an implementation of no_duplicates
 
         self.tree_library_dict = {}  # maps library terminal children iids to (skill name, skill attribute) tuple
         self.tree_list_dict = {}  # same but for player skills AND specializations
@@ -100,6 +101,12 @@ class SkillsTab(NotebookTab):
                 skills_total = 1
             else:
                 skills_total = self.get_total()
+
+            # disallow duplicates
+            for skill in self.statblock.skills:
+                if skill.name == self.library_selected.name:
+                    messagebox.showerror(title="Error", message="No duplicate skills allowed.")
+                    return
 
             if self.gen_mode.point_purchase_allowed(skills_total, "skills"):
                 # make a skill object, then add to the player's skills treeview, then hook them together
@@ -225,7 +232,7 @@ class SkillsTab(NotebookTab):
 
             # don't do it if we're already specialized
             if len(self.list_selected.specializations) > 0:
-                print("Already specialized")
+                messagebox.showerror(title="Error", message="Already specialized.")
                 return
         # check if we have enough karma if we're finalized
         else:

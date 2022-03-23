@@ -48,6 +48,9 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                  buy_from_list=False,
                  plus_and_minus=False):  # allow buying the selected object from the inventory list
 
+        # allow purchasing of duplicate items if False, set True in subclass init to disallow
+        self.no_duplicates = False
+
         if add_inv_callbacks is None:
             add_inv_callbacks = []
 
@@ -233,6 +236,16 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         for cb in self.remove_inv_callbacks:
             cb()
 
+    def check_for_duplicates(self, to_buy):
+        if not self.no_duplicates:
+            return True
+
+        # convert to set for sweet O(1) lookups
+        setList = set(self.statblock_inventory)
+
+        # return True if no duplicates were found
+        return to_buy not in setList
+
     def int_validate(self, action, index, value_if_allowed,
                      prior_value, text, validation_type, trigger_type, widget_name):
         """
@@ -344,12 +357,16 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                     # set all of the options
                     for entry in option_entries:
                         if option_entries[entry].get() == "":
-                            messagebox.showerror(title="Error", message="No blank options allowed!")
+                            messagebox.showerror(title="Error", message="No blank options allowed.")
                             temp_window.destroy()
                             return
 
                     for entry in option_entries:
                         selected_object.properties["options"][entry] = option_entries[entry].get()
+
+                    if not self.check_for_duplicates(selected_object):
+                        messagebox.showerror(title="Error", message="No duplicates allowed.")
+                        return
 
                     self.buy_callback(selected_object)
                     temp_window.destroy()
@@ -384,6 +401,9 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                 Button(temp_window, text="Cancel", command=cancel_func).pack(side=RIGHT)
 
             else:
+                if not self.check_for_duplicates(selected_object):
+                    messagebox.showerror(title="Error", message="No duplicates allowed.")
+                    return
                 self.buy_callback(selected_object)
         else:
             print("Can't buy that!")
