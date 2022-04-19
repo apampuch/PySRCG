@@ -47,6 +47,10 @@ For example, a Credstick Verification Reader's (sr3, p287) transaction limit val
 
 Note: some items have a "memory cost", this is megapulses * 20
 
+Add an "augment_tag" to mark any augments that should only have one copy of their kind, like Bone Lacing.
+Add an "exclusion_tags" list to list any kinds of augments that shouldn't be compatible. Exclusion tags don't have to be complete on all ends.
+If object A has no exclusion tags, but object B excludes object A, B and A will remain mutually exclusive regardless of which order they're taken in.
+
 Finally, include a property called "attributes_to_calculate" whose value is a list of the attributes that should be calculated,
 including simple ones like "rating": "rating"
 
