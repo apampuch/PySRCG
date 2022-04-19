@@ -6,9 +6,20 @@ from tkinter import ttk, messagebox
 from typing import List, Callable
 
 from src.Tabs.notebook_tab import NotebookTab
+from src.statblock_modifier import StatMod
 from src.utils import recursive_treeview_fill, treeview_get, get_variables, calculate_attributes
 
 from abc import ABC, abstractmethod
+
+"""
+Some mods will have incomplete strings like cyber_ATTRIBUTE.
+These will also have options corresponding to these. These all-caps strings are replaced with the selection
+for that option. e.g. cyber_ATTRIBUTE will have an "Attribute": ["Strength", "Body", "Quickness"] property.
+The user will choose one of those three (e.g. Body), and it will become "cyber_body".
+Always lowercase the chosen option.
+In the future, as things get more and more fucked, we may need to replace this with a separate list that
+corresponds to the options 1:1 with their indices.
+"""
 
 
 class ThreeColumnBuyTab(NotebookTab, ABC):
@@ -220,9 +231,34 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
     def add_inv_item(self, item, count=1):
         """Adds item to the inventory this tab is linked to."""
+
+        # warning if adding more than 1 count and it has mods
+        if "mods" in item.properties and count > 1:
+            messagebox.showwarning(title="Warning",
+                                   message=f"Adding {count} copies of an item with mods. This may cause bugs.")
+
         for i in range(count):
             self.statblock_inventory.append(item)
             self.inventory_list.insert(END, self.name_for_list(item))
+
+            # add mods from item into global StatMod container
+            # TODO fix it so armor is added too
+            # TODO fix it so powers are added too
+            if "mods" in item.properties:
+                for key in item.properties["mods"].keys():
+                    value = item.properties["mods"][key]
+
+                    # check if value is a string, if so, it should be a key in item.properties that resolves to a number
+                    if type(value) is str:
+                        if value not in item.properties:
+                            messagebox.showerror(title="Error", message=f"{value} not in {item.properties['name']}!")
+                        elif type(item.properties[value]) is not int:
+                            messagebox.showerror(title="Error",
+                                                 message=f"{value} in {item.properties['name']} is not an integer!")
+                        else:
+                            value = item.properties[value]
+                    StatMod.add_mod(key, value)
+
         # callback functions
         for cb in self.add_inv_callbacks:
             cb()
@@ -344,10 +380,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             for key in self.variables_dict.keys():
                 var_dict[key] = self.variables_dict[key].get()
 
-            # calculate any arithmetic expressions we have
-            if "attributes_to_calculate" in selected_object.properties:
-                calculate_attributes(selected_object, var_dict, selected_object.properties["attributes_to_calculate"])
-
+            # TODO unfuck this by doing the window check at the start and making the ok func call this again but not open the window, add a force_ignore_window arg maybe?
             # find any "options" the item has and prompt the user to set them
             if "options" in selected_object.properties:
                 option_entries = {}
@@ -363,10 +396,27 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
                     for entry in option_entries:
                         selected_object.properties["options"][entry] = option_entries[entry].get()
+                        chosen_option_key = str.upper(entry)
+                        chosen_option_val = str.lower(selected_object.properties["options"][entry])
+
+                        # if we have mods, replace any ambiguities in mods with the chosen option
+                        if "mods" in selected_object.properties:
+                            for old_key in selected_object.properties["mods"]:
+                                # replace "attribute" with the correct attribute in something like "cyber_attribute"
+                                if chosen_option_key in old_key:
+                                    val = selected_object.properties["mods"][old_key]
+                                    new_key = old_key.replace(chosen_option_key, chosen_option_val)
+                                    selected_object.properties["mods"][new_key] = val
+                                    del selected_object.properties["mods"][old_key]
 
                     if not self.check_for_duplicates(selected_object):
                         messagebox.showerror(title="Error", message="No duplicates allowed.")
                         return
+
+                    # calculate any arithmetic expressions we have
+                    if "attributes_to_calculate" in selected_object.properties:
+                        calculate_attributes(selected_object, var_dict,
+                                             selected_object.properties["attributes_to_calculate"])
 
                     self.buy_callback(selected_object)
                     temp_window.destroy()
@@ -401,6 +451,11 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                 Button(temp_window, text="Cancel", command=cancel_func).pack(side=RIGHT)
 
             else:
+                # calculate any arithmetic expressions we have
+                if "attributes_to_calculate" in selected_object.properties:
+                    calculate_attributes(selected_object, var_dict,
+                                         selected_object.properties["attributes_to_calculate"])
+
                 if not self.check_for_duplicates(selected_object):
                     messagebox.showerror(title="Error", message="No duplicates allowed.")
                     return

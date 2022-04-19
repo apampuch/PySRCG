@@ -91,7 +91,7 @@ def get_variables(obj: Reportable, attributes):
     puts them in a dictionary, and returns it.
     :param obj: Object to get variables from.
     :param attributes: List of attributes to check for.
-    :return: Dictionary with variable as key and 1 as value.
+    :return: Dictionary with variable as key and IntVar set to 1 as value.
     """
     var_dict = {}
 

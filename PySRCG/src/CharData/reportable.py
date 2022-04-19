@@ -73,7 +73,7 @@ class Reportable:
             do_not_report = []
 
         # never report attributes_to_calculate
-        do_not_report.append("attributes_to_calculate")
+        do_not_report.extend(["attributes_to_calculate", "mods", "calculated_mods"])
 
         for key in _dict:
             self.properties[key] = _dict[key]

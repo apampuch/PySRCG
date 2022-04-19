@@ -1,6 +1,3 @@
-from typing import List, Any
-
-
 class StatMod:
     """
     Just about anything in the chargen could theoretically have a StatMod.
@@ -9,6 +6,7 @@ class StatMod:
     """
     # do not ever fucking directly manipulate this
     # key should be a string formatted as "TYPE_ATTRIBUTE", attributes can be things like armor too
+    # e.g "cyber_reaction" or "edge_strength"
     # value should be a list of integers
     _all_stat_mods = {}
 
@@ -18,6 +16,7 @@ class StatMod:
         if key not in StatMod._all_stat_mods.keys():
             StatMod._all_stat_mods[key] = []
         StatMod._all_stat_mods[key].append(value)
+        print(StatMod._all_stat_mods)
 
     @staticmethod
     def add_mods(item):
