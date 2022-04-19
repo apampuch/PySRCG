@@ -4797,6 +4797,7 @@
     "Improved Physical Attribute": {
       "cost": 0.5,
       "options": {"Attribute": ["Body", "Quickness", "Strength"]},
+      "mods": {"magical_ATTRIBUTE":  "level"},
       "max_levels": null,
       "page": 169
     },
@@ -4904,7 +4905,8 @@
           "mods": {
             "cyber_encumbrance": 5,
             "cyber_body": 1,
-            "cyber_unarmed": "(STR + 2)M Stun"
+            "cyber_unarmed": "(STR + 2)M Stun",
+            "source": "cyber"
           },
           "essence": 0.5,
           "cost": 7500,
@@ -4913,7 +4915,8 @@
           "page": 302,
           "availability_time": 14,
           "availability_rating": 5,
-          "availability_unit": "days"
+          "availability_unit": "days",
+          "augment_tag": "bone_lacing"
         },
         "Bone Lacing (Aluminum)": {
           "mods": {
@@ -4929,7 +4932,8 @@
           "page": 302,
           "availability_time": 14,
           "availability_rating": 5,
-          "availability_unit": "days"
+          "availability_unit": "days",
+          "augment_tag": "bone_lacing"
         },
         "Bone Lacing (Titanium)": {
           "mods": {
@@ -4946,7 +4950,8 @@
           "page": 302,
           "availability_time": 14,
           "availability_rating": 5,
-          "availability_unit": "days"
+          "availability_unit": "days",
+          "augment_tag": "bone_lacing"
         },
         "Fingertip Compartment": {
           "essence": 0.1,
@@ -5032,7 +5037,8 @@
           "availability_time": 4,
           "availability_rating": 4,
           "availability_unit": "days",
-          "attributes_to_calculate": ["mods", "essence", "cost", "rating"]
+          "attributes_to_calculate": ["mods", "essence", "cost", "rating"],
+          "augment_tag": "muscle_replacement"
         },
         "Smartlink": {
           "essence": 0.5,
@@ -5042,7 +5048,8 @@
           "page": 302,
           "availability_time": 3,
           "availability_rating": 36,
-          "availability_unit": "hrs"
+          "availability_unit": "hrs",
+          "augment_tag": "smartlink"
         },
         "Spur": {
           "essence": 0.1,
@@ -5164,7 +5171,8 @@
           "availability_time": 3,
           "availability_rating": 24,
           "availability_unit": "hrs",
-          "attributes_to_calculate": ["mods", "essence", "cost", "street_index", "legality", "rating"]
+          "attributes_to_calculate": ["mods", "essence", "cost", "street_index", "legality", "rating"],
+          "augment_tag": "boosted_reflexes"
         },
         "Dermal Plating": {
           "mods": {
@@ -5190,7 +5198,8 @@
           "availability_time": 4,
           "availability_rating": 12,
           "availability_unit": "days",
-          "attributes_to_calculate": ["mods", "essence", "cost", "legality", "rating"]
+          "attributes_to_calculate": ["mods", "essence", "cost", "legality", "rating"],
+          "augment_tag": "dermal_plating"
         },
         "Filtration Systems": {
           "Air Filtration System": {
@@ -5275,7 +5284,8 @@
           "availability_time": "rating",
           "availability_rating": 10,
           "availability_unit": "days",
-            "attributes_to_calculate": ["essence", "max_mp", "cost", "rating"]
+          "attributes_to_calculate": ["essence", "max_mp", "cost", "rating"],
+          "augment_tag": "skillwires"
         },
         "Vehicle Control Rig": {
           "mods": {
@@ -5319,7 +5329,9 @@
           },
           "availability_rating": 48,
           "availability_unit": "hrs",
-          "attributes_to_calculate": ["mods", "essence", "cost", "street_index", "rating", "legality", "availability_time"]
+          "attributes_to_calculate": ["mods", "essence", "cost", "street_index", "rating", "legality", "availability_time"],
+          "augment_tag": "vehicle_control_rig",
+          "exclusion_tags": ["wired_reflexes", "boosted_reflexes"]
         },
         "Wired Reflexes": {
           "mods": {
@@ -5363,7 +5375,9 @@
             }
           },
           "availability_unit": "days",
-          "attributes_to_calculate": ["mods", "essence", "cost", "rating", "legality", "availability_time", "availability_rating"]
+          "attributes_to_calculate": ["mods", "essence", "cost", "rating", "legality", "availability_time", "availability_rating"],
+          "augment_tag": "wired_reflexes",
+          "exclusion_tags": ["vehicle_control_rig", "boosted_reflexes"]
         },
         "Wired Reflexes with Trigger": {
           "mods": {
@@ -5406,7 +5420,9 @@
             }
           },
           "availability_unit": "days",
-          "attributes_to_calculate": ["mods", "essence", "cost", "rating", "legality", "availability_time", "availability_rating"]
+          "attributes_to_calculate": ["mods", "essence", "cost", "rating", "legality", "availability_time", "availability_rating"],
+          "augment_tag": "wired_reflexes",
+          "exclusion_tags": ["vehicle_control_rig", "boosted_reflexes"]
         },
         "Reaction Enhancer": {
           "mods": {
@@ -5421,7 +5437,8 @@
           "availability_time": 6,
           "availability_rating": 7,
           "availability_unit": "days",
-          "attributes_to_calculate": ["mods", "essence", "cost", "rating"]
+          "attributes_to_calculate": ["mods", "essence", "cost", "rating"],
+          "augment_tag": "reaction_enhancer"
         }
       },
       "Headware": {
@@ -5572,7 +5589,8 @@
             "page": 299,
             "availability_time": 24,
             "availability_rating": 2,
-            "availability_unit": "hrs"
+            "availability_unit": "hrs",
+            "augment_tag": "cyberears"
           },
           "Cosmetic Modification": {
             "essence": 0,
@@ -5667,7 +5685,8 @@
             "page": 299,
             "availability_time": 24,
             "availability_rating": 2,
-            "availability_unit": "hrs"
+            "availability_unit": "hrs",
+            "augment_tag": "cybereyes"
           },
           "Cosmetic Modification": {
             "essence": 0,
