@@ -1,3 +1,6 @@
+import re
+
+
 class StatMod:
     """
     Just about anything in the chargen could theoretically have a StatMod.
@@ -10,9 +13,48 @@ class StatMod:
     # value should be a list of integers
     _all_stat_mods = {}
 
+    # if it's one of these:
+    # Race
+    # Cyber
+    # Bio
+    # put it in the correct column
+    # otherwise put it in the other column
+
+    @staticmethod
+    def correct_key(key):
+        # this checks that it matches two words separated by a single underscore
+        # e.g. magic_body
+        regex_check = r"^[^_]+_{1}[^_]+$"
+
+        # this is used to substitute the first word
+        regex_sub = r"^[^_]+_{1}"
+
+        if not re.match(regex_check, key):
+            raise ValueError(f"{key} is not a valid key.")
+
+        # correct the key
+        legit_prefixes = ("race_", "cyber_", "bio_")
+
+        for prefix in legit_prefixes:
+            if key.startswith(prefix):
+                return key
+
+        # replace prefix if not legit
+        key = re.sub(regex_sub, "other_", key)
+
+        return key
+
     @staticmethod
     def add_mod(key, value):
-        """If the key does not exist, add a blank list. Then append to the list."""
+        """
+        IF the key doesn't start with "race_", "cyber_", or "bio_", change the start to "other_"
+        If the key does not exist, add a blank list.
+        Then append to the list.
+        """
+
+        # correct the key so that anything that isn't a column in attributes_tab is "other"
+        key = StatMod.correct_key(key)
+
         if key not in StatMod._all_stat_mods.keys():
             StatMod._all_stat_mods[key] = []
         StatMod._all_stat_mods[key].append(value)
