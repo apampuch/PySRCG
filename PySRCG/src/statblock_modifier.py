@@ -58,7 +58,7 @@ class StatMod:
         if key not in StatMod._all_stat_mods.keys():
             StatMod._all_stat_mods[key] = []
         StatMod._all_stat_mods[key].append(value)
-        print(StatMod._all_stat_mods)
+        # print(StatMod._all_stat_mods)
 
     @staticmethod
     def add_mods(item):
@@ -69,6 +69,8 @@ class StatMod:
     @staticmethod
     def remove_mod(key, value):
         """Remove value from list if it exists."""
+        key = StatMod.correct_key(key)
+
         if key not in StatMod._all_stat_mods.keys():
             return
         try:

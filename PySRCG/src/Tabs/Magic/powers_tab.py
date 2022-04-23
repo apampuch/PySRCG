@@ -4,6 +4,7 @@ from copy import copy
 from src import app_data
 from src.CharData.power import Power
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
+from src.statblock_modifier import StatMod
 from src.utils import treeview_get, recursive_treeview_fill
 
 from tkinter import *
@@ -69,7 +70,16 @@ class PowersTab(ThreeColumnBuyTab, ABC):
             print("Not enough magic remaining!")
 
     def sell_callback(self, selected_index):
+        if "mods" in self.list_selected.properties.keys():
+            for mod_key in self.list_selected.properties["mods"]:
+                mod_val = self.list_selected.properties['mods'][mod_key]
+
+                # remove each mod
+                StatMod.remove_mod(mod_key, mod_val)
+
         self.remove_inv_item(selected_index)
+
+        self.calculate_total()
 
     def plus_callback(self):
         if self.list_selected is None:
@@ -84,6 +94,27 @@ class PowersTab(ThreeColumnBuyTab, ABC):
         if self.statblock.power_points + base_cost <= self.statblock.magic:
             self.list_selected.properties["cost"] += base_cost
             self.list_selected.properties["level"] += 1
+
+            # adjust mods if it has any
+            if "mods" in self.list_selected.properties.keys():
+                for mod_key in self.list_selected.properties["mods"]:
+                    mod_val = self.list_selected.properties['mods'][mod_key]
+
+                    # remove each mod
+                    StatMod.remove_mod(mod_key, mod_val)
+
+                    # find base value by dividing by previous level
+                    if mod_val / (self.list_selected.properties["level"] - 1) % 1.0 > 0:
+                        print("WARNING: Mod value divided by previous level is not an integer.")
+
+                    base_value = mod_val // (self.list_selected.properties["level"] - 1)
+
+                    # increase by one increment of base value
+                    self.list_selected.properties['mods'][mod_key] += base_value
+                    mod_val += base_value
+
+                    # put adjusted mod back
+                    StatMod.add_mod(mod_key, mod_val)
 
             self.update_inventory_text_at_index(self.inv_selected_index,
                                                 f"{self.list_selected.properties['name']} level "
@@ -104,6 +135,27 @@ class PowersTab(ThreeColumnBuyTab, ABC):
         if self.list_selected.properties["level"] > 1:
             self.list_selected.properties["cost"] -= base_cost
             self.list_selected.properties["level"] -= 1
+
+            # adjust mods if it has any
+            if "mods" in self.list_selected.properties.keys():
+                for mod_key in self.list_selected.properties["mods"]:
+                    mod_val = self.list_selected.properties['mods'][mod_key]
+
+                    # remove each mod
+                    StatMod.remove_mod(mod_key, mod_val)
+
+                    # find base value by dividing by previous level
+                    if mod_val / (self.list_selected.properties["level"] + 1) % 1.0 > 0:
+                        print("WARNING: Mod value divided by previous level is not an integer.")
+
+                    base_value = mod_val // (self.list_selected.properties["level"] + 1)
+
+                    # decrease by one increment of base value
+                    self.list_selected.properties['mods'][mod_key] -= base_value
+                    mod_val -= base_value
+
+                    # put adjusted mod back
+                    StatMod.add_mod(mod_key, mod_val)
 
             self.update_inventory_text_at_index(self.inv_selected_index,
                                                 f"{self.list_selected.properties['name']} level "

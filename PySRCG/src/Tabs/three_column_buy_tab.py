@@ -5,6 +5,7 @@ from tkinter import ttk, messagebox
 
 from typing import List, Callable
 
+from src.CharData.power import Power
 from src.Tabs.notebook_tab import NotebookTab
 from src.statblock_modifier import StatMod
 from src.utils import recursive_treeview_fill, treeview_get, get_variables, calculate_attributes
@@ -243,7 +244,6 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
             # add mods from item into global StatMod container
             # TODO fix it so armor is added too
-            # TODO fix it so powers are added too
             if "mods" in item.properties:
                 for key in item.properties["mods"].keys():
                     value = item.properties["mods"][key]
@@ -383,6 +383,10 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             for key in self.variables_dict.keys():
                 var_dict[key] = self.variables_dict[key].get()
 
+            # manually add power level to var_dict if it's an adept power
+            if type(selected_object) is Power:
+                var_dict["power_level"] = 1
+
             # TODO unfuck this by doing the window check at the start and making the ok func call this again but not open the window, add a force_ignore_window arg maybe?
             # find any "options" the item has and prompt the user to set them
             if "options" in selected_object.properties:
@@ -415,7 +419,6 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                     if not self.check_for_duplicates(selected_object):
                         messagebox.showerror(title="Error", message="No duplicates allowed.")
                         raise ValueError("No duplicates allowed.")
-                        return
 
                     # calculate any arithmetic expressions we have
                     # TODO get level into var_dict somehow
@@ -464,7 +467,6 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                 if not self.check_for_duplicates(selected_object):
                     messagebox.showerror(title="Error", message="No duplicates allowed.")
                     raise ValueError("No duplicates allowed.")
-                    return
                 self.buy_callback(selected_object)
         else:
             print("Can't buy that!")
