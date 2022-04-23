@@ -252,9 +252,12 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                     if type(value) is str:
                         if value not in item.properties:
                             messagebox.showerror(title="Error", message=f"{value} not in {item.properties['name']}!")
+                            raise ValueError(f"{value} not in {item.properties['name']}!")
                         elif type(item.properties[value]) is not int:
                             messagebox.showerror(title="Error",
                                                  message=f"{value} in {item.properties['name']} is not an integer!")
+
+                            raise ValueError(f"{value} in {item.properties['name']} is not an integer!")
                         else:
                             value = item.properties[value]
                     StatMod.add_mod(key, value)
@@ -411,9 +414,11 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
                     if not self.check_for_duplicates(selected_object):
                         messagebox.showerror(title="Error", message="No duplicates allowed.")
+                        raise ValueError("No duplicates allowed.")
                         return
 
                     # calculate any arithmetic expressions we have
+                    # TODO get level into var_dict somehow
                     if "attributes_to_calculate" in selected_object.properties:
                         calculate_attributes(selected_object, var_dict,
                                              selected_object.properties["attributes_to_calculate"])
@@ -458,6 +463,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
                 if not self.check_for_duplicates(selected_object):
                     messagebox.showerror(title="Error", message="No duplicates allowed.")
+                    raise ValueError("No duplicates allowed.")
                     return
                 self.buy_callback(selected_object)
         else:
