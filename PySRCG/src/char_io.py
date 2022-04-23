@@ -167,7 +167,11 @@ def load(tabs):
 
             # add powers
             for power in character_dict["statblock"]["powers"]:
-                power_obj = Power(**power)
+                power_obj = Power(**power)                # add mods
+                if "mods" in power_obj.properties:
+                    for key in power_obj.properties["mods"].keys():
+                        value = power_obj.properties["mods"][key]
+                        StatMod.add_mod(key, value)
                 new_character.statblock.powers.append(power_obj)
 
             # add decks
