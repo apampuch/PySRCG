@@ -87,11 +87,16 @@ class PowersTab(ThreeColumnBuyTab, ABC):
 
         base_cost = self.list_selected.properties["cost"] / self.list_selected.properties["level"]
 
-        # TODO if max_levels == null pretend max_levels == magic attribute
+        # if max_levels == null pretend max_levels == magic attribute
+        if self.list_selected.properties["max_levels"] is None:
+            max_levels = self.statblock.magic
+        else:
+            max_levels = self.list_selected.properties["max_levels"]
 
-        # TODO check if we're under max_levels
+        # check if we're under max_levels and have enough points to buy the power
+        if self.statblock.power_points + base_cost <= self.statblock.magic and \
+                self.list_selected.properties["level"] < max_levels:
 
-        if self.statblock.power_points + base_cost <= self.statblock.magic:
             self.list_selected.properties["cost"] += base_cost
             self.list_selected.properties["level"] += 1
 
@@ -124,7 +129,7 @@ class PowersTab(ThreeColumnBuyTab, ABC):
             self.calculate_total()
 
         else:
-            print("Not enough magic remaining!")
+            print("Not enough magic remaining, or at level cap.")
 
     def minus_callback(self):
         if self.list_selected is None:
