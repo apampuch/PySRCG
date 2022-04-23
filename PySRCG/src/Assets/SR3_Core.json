@@ -4797,14 +4797,17 @@
     "Improved Physical Attribute": {
       "cost": 0.5,
       "options": {"Attribute": ["Body", "Quickness", "Strength"]},
-      "mods": {"magical_ATTRIBUTE":  "level"},
+      "mods": {"magical_ATTRIBUTE":  "power_level"},
       "max_levels": null,
+      "attributes_to_calculate": ["mods"],
       "page": 169
     },
     "Improved Physical Attribute (beyond racial limit)": {
       "cost": 0.5,
       "options": {"Attribute": ["Body", "Quickness", "Strength"]},
+      "mods": {"magical_ATTRIBUTE":  "power_level"},
       "max_levels": null,
+      "attributes_to_calculate": ["mods"],
       "page": 169
     },
     "Improved Reflexes 1": {
