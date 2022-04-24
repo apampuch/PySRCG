@@ -70,13 +70,6 @@ class PowersTab(ThreeColumnBuyTab, ABC):
             print("Not enough magic remaining!")
 
     def sell_callback(self, selected_index):
-        if "mods" in self.list_selected.properties.keys():
-            for mod_key in self.list_selected.properties["mods"]:
-                mod_val = self.list_selected.properties['mods'][mod_key]
-
-                # remove each mod
-                StatMod.remove_mod(mod_key, mod_val)
-
         self.remove_inv_item(selected_index)
 
         self.calculate_total()

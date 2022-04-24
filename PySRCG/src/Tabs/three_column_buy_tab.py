@@ -268,6 +268,15 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
     def remove_inv_item(self, index):
         """Removes an item at index from the inventory this tab is linked to."""
+        item = self.statblock_inventory[index]
+
+        # delete mods if they exist
+        if "mods" in item.properties.keys():
+            for key in item.properties["mods"].keys():
+                value = item.properties["mods"][key]
+
+                StatMod.remove_mod(key, value)
+
         del self.statblock_inventory[index]
         self.inventory_list.delete(index)
 
