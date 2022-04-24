@@ -143,6 +143,10 @@ def load(tabs):
 
             for edge_flaw in character_dict["statblock"]["edges_flaws"]:
                 edge_flaw_obj = EdgeFlaw(**edge_flaw)
+                if "mods" in edge_flaw_obj.properties:
+                    for key in edge_flaw_obj.properties["mods"].keys():
+                        value = edge_flaw_obj.properties["mods"][key]
+                        StatMod.add_mod(key, value)
                 new_character.statblock.edges_flaws.append(edge_flaw_obj)
 
             # add skills
