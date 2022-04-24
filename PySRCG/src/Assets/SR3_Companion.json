@@ -7,12 +7,12 @@
     "Attribute": {
       "Bonus Attribute Point": {
         "cost": 2,
-        "mods": {},
+        "mods": {"edge_ATTRIBUTE": 1},
         "options": {"Attribute":  ["Body", "Quickness", "Strength", "Charisma", "Intelligence", "Willpower"]}
       },
       "Exceptional Attribute": {
         "cost": 2,
-        "mods": {},
+        "mods": {"edge_ATTRIBUTE": 1},
         "options": {"Attribute":  ["Body", "Quickness", "Strength", "Charisma", "Intelligence", "Willpower"]}
       }
     },
