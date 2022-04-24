@@ -289,7 +289,7 @@ class AttributesTab(NotebookTab):
     def set_pool_vals(self):
         # setting reaction slider gives proper value, setting initiative slider does not
         # yet both call on_set_attribute_value, test this
-        
+
         # set reaction
         self.sliders["reaction"].set(self.statblock.base_reaction)
         # set initiative, maybe find a better place to do this?
@@ -523,6 +523,14 @@ class AttributesTab(NotebookTab):
         self.on_set_attribute_value("reaction", self.statblock.base_reaction)
 
         # setup armor
-        self.ballistic_armor_val.set(self.statblock.ballistic_armor)
-        self.impact_armor_val.set(self.statblock.impact_armor)
+        bal_total = self.statblock.ballistic_armor + StatMod.get_mod_total("race_ballistic") \
+                    + StatMod.get_mod_total("bio_ballistic") + StatMod.get_mod_total("cyber_ballistic") \
+                    + StatMod.get_mod_total("other_ballistic")
+        self.ballistic_armor_val.set(bal_total)
+
+        imp_total = self.statblock.impact_armor + StatMod.get_mod_total("race_impact") \
+                    + StatMod.get_mod_total("bio_impact") + StatMod.get_mod_total("cyber_impact") \
+                    + StatMod.get_mod_total("other_impact")
+        self.impact_armor_val.set(imp_total)
+
         self.quickness_penalty_val.set(self.statblock.armor_quickness_penalty)

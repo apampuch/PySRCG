@@ -243,7 +243,6 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             self.inventory_list.insert(END, self.name_for_list(item))
 
             # add mods from item into global StatMod container
-            # TODO fix it so armor is added too
             if "mods" in item.properties:
                 for key in item.properties["mods"].keys():
                     value = item.properties["mods"][key]
