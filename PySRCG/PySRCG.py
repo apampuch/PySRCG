@@ -8,6 +8,7 @@ from src.CharData.character import *
 from src.Tabs.Attributes.attributes_tab import *
 from src.Tabs.Augments.augments_tab import *
 from src.Tabs.Background.background_tab import BackgroundTab
+from src.Tabs.Background.banking_tab import BankingTab
 from src.Tabs.Background.edges_flaws_tab import EdgesFlawsTab
 from src.Tabs.Background.personal_info_tab import *
 from src.Tabs.Decking.decking_tab import *  # imports app_data
@@ -174,8 +175,8 @@ def main():
     setup_tab = make_tab(SetupTab, "Character Setup")
     attributes_tab = make_tab(AttributesTab, "Attributes")
     background_tab = make_tab(BackgroundTab, "Background",
-                              [PersonalInfoTab, EdgesFlawsTab],
-                              ["Personal Info", "Edges & Flaws"])
+                              [PersonalInfoTab, EdgesFlawsTab, BankingTab],
+                              ["Personal Info", "Edges & Flaws", "Banking"])
     skills_tab = make_tab(SkillsTab, "Skills")
     gear_tab = make_tab(ContainerTab, "Gear",
                         [ItemsTab, AmmoTab, FirearmAccessoriesTab, ArmorEquipTab, WirelessTab],

@@ -4904,7 +4904,7 @@
   "Augments": {
     "Cyberware": {
       "Bodyware": {
-        "Bone Lacing (Plastic)": {
+        "   Lacing (Plastic)": {
           "mods": {
             "cyber_encumbrance": 5,
             "cyber_body": 1,
