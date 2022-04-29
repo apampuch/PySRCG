@@ -4908,8 +4908,7 @@
           "mods": {
             "cyber_encumbrance": 5,
             "cyber_body": 1,
-            "cyber_unarmed": "(STR + 2)M Stun",
-            "source": "cyber"
+            "cyber_unarmed": "(STR + 2)M Stun"
           },
           "essence": 0.5,
           "cost": 7500,
