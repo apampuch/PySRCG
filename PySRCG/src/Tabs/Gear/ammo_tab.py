@@ -11,6 +11,10 @@ class AmmoTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
         super().__init__(parent, show_quantity=True, buy_from_list=True)
 
+    @staticmethod
+    def name_for_list(x):
+        return f"{x.properties['name']} ({x.properties['count']})"
+
     @property
     def library_source(self):
         try:
@@ -42,7 +46,7 @@ class AmmoTab(ThreeColumnBuyTab, ABC):
                 self.update_inventory_text_at_index(exists_index, f"{selected.name} ({self.statblock_inventory[exists_index].properties['count']})")
                 self.fill_description_box(self.statblock_inventory[exists_index].report())
             else:
-                self.add_inv_item(selected, listbox_string=lambda x: f"{x.name} ({x.properties['count']})")
+                self.add_inv_item(selected)
         else:
             print("Not enough money!")
 
