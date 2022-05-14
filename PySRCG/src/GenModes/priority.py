@@ -219,7 +219,8 @@ class Priority(GenMode, ABC):
         # breaking scope like this is SO hacky but fuck it
         # set money
         money_diff = self.get_generated_value("resources") - old_money
-        app_data.app_character.statblock.cash += money_diff
+        # app_data.app_character.statblock.cash += money_diff
+        app_data.app_character.statblock.add_cash(money_diff)
 
         # reset to human if race isn't valid
         if app_data.app_character.statblock.race.name not in self.get_generated_value("race"):

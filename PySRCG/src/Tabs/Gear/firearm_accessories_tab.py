@@ -81,10 +81,10 @@ class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
             print("Not enough money!")
 
     def sell_callback(self, selected_index):
-        selected_item = self.statblock.inventory[self.inv_selected_index]
+        selected_item = self.statblock.misc_firearm_accessories[self.inv_selected_index]
 
         # return cash value
-        self.statblock.cash += selected_item.properties["cost"]
+        self.statblock.add_cash(selected_item.properties["cost"])
 
         self.remove_inv_item(self.inv_selected_index)
 

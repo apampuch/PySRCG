@@ -117,7 +117,7 @@ def load(tabs):
             race_str = character_dict["statblock"]["race"]
             new_character.statblock.race = all_races[race_str]
             new_character.statblock.base_attributes = character_dict["statblock"]["base_attributes"]
-            new_character.statblock.cash = character_dict["statblock"]["cash"]
+            #new_character.statblock.cash = character_dict["statblock"]["cash"]
 
             # set genmode
             gen_mode_key = character_dict["statblock"]["gen_mode"]["type"]
@@ -125,6 +125,10 @@ def load(tabs):
             new_character.statblock.gen_mode = gen_mode_dict[gen_mode_key](character_dict["statblock"]["gen_mode"]["data"], all_races[race_str])
 
             # convert dicts to item objects and add to inventory
+            for currency in character_dict["statblock"]["currencies"]:
+                currency_obj = Gear(**currency)
+                new_character.statblock.currencies.append(currency_obj)
+
             for item in character_dict["statblock"]["inventory"]:
                 item_obj = Gear(**item)
                 new_character.statblock.inventory.append(item_obj)

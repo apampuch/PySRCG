@@ -45,7 +45,7 @@ class DeckBuyTab(ThreeColumnBuyTab, ABC):
     def sell_callback(self, selected_index):
         selected_item = self.statblock_inventory[self.inv_selected_index]
 
-        self.statblock.cash += selected_item.properties["cost"]
+        self.statblock.add_cash(selected_item.properties["cost"])
 
         self.remove_inv_item(selected_index)
 

@@ -257,7 +257,8 @@ class KarmaTab(NotebookTab, ABC):
             print("Can't sell any more karma back!")
         else:
             self.karma_for_cash_var.set(self.karma_for_cash_var.get() - 1)
-            self.statblock.cash += 1000
+            # self.statblock.cash += 1000
+            self.statblock.add_cash(1000)
             self.statblock.gen_mode.sub_karma(1, self.statblock.race)
             self.statblock.gen_mode.update_total()
 
@@ -274,7 +275,8 @@ class KarmaTab(NotebookTab, ABC):
             adjustment = Adjustment(1, "buy_cash_with_karma",  undo)
             self.gen_mode.add_adjustment(adjustment)
             self.cash_for_karma_var.set(self.cash_for_karma_var.get() + 250)
-            self.statblock.cash += 250
+            # self.statblock.cash += 250
+            self.statblock.add_cash(250)
         else:
             print("Not enough karma!")
 

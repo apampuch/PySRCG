@@ -177,7 +177,8 @@ class CyberwareTab(NotebookTab):
             return
 
         # return cash value
-        self.statblock.cash += self.statblock.cyberware[self.list_selected_index].properties["cost"]
+        # self.statblock.cash += self.statblock.cyberware[self.list_selected_index].properties["cost"]
+        self.statblock.add_cash(self.statblock.cyberware[self.list_selected_index].properties["cost"])
 
         self.remove_cyberware_item(self.list_selected_index)
         self.calculate_total()

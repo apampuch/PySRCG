@@ -135,7 +135,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
         return mount_total + new_mount.properties["body_cost"] <= v.body
 
     def sell_callback(self, item_index):
-        self.statblock.cash += self.statblock_inventory[item_index].properties["cost"]
+        self.statblock.add_cash(self.statblock_inventory[item_index].properties["cost"])
         self.remove_inv_item(item_index)
 
     @property

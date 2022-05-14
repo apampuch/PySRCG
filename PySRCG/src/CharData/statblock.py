@@ -1,7 +1,9 @@
+from functools import reduce
 from tkinter import IntVar
 from typing import Dict
 
 from src import app_data
+from src.CharData.currency import Currency
 from src.GenModes.priority import Priority
 from src.app_data import on_cash_updated
 from src.Tabs.Attributes.attributes_tab import AttributesTab
@@ -19,14 +21,35 @@ class Statblock(object):
     base_attributes: Dict[str, int]
     __race: Race
 
+    # interface to make adding/subtracting cash work with Currencies
     @property
     def cash(self):
-        return self.__cash
-    @cash.setter
-    def cash(self, value):
-        self.__cash = value
-        self.cash_str = "¥{}".format(self.__cash)
+        return reduce(lambda a, b: a + b.properties["balance"], self.currencies, 0)
+    def add_cash(self, amount):
+        self.currencies[0].properties["balance"] += amount
+        self.cash_str = "¥{}".format(self.cash)
         on_cash_updated()
+    def sub_cash(self, amount):
+        # TODO test the looping with multiple currencies
+        # loop through all currencies, bring to no less than 0, keep going if there's anything left
+        # stop if we reach the last currency
+        i = 0
+        while amount > 0 and i < len(self.currencies):
+            sub_amount = min(amount, self.currencies[i].properties["balance"])
+            self.currencies[i].properties["balance"] -= sub_amount
+            amount -= sub_amount
+            i += 1
+
+        # if we subbed from all currencies and there's still some remaining, just put the permanent one into debt
+        self.misc_cash.properties["balance"] -= amount
+
+        self.cash_str = "¥{}".format(self.cash)
+        on_cash_updated()
+    # @cash.setter
+    # def cash(self, value):
+    #     self.misc_cash = value
+    #     self.cash_str = "¥{}".format(self.misc_cash)
+    #     on_cash_updated()
 
     @property
     def awakened(self):
@@ -47,6 +70,22 @@ class Statblock(object):
 
         # callback magic tab
         app_data.window.nametowidget(".!app.!magictab").show_hide_tabs(self.awakened, self.tradition)
+
+    @property
+    def misc_cash(self):
+        count = 0
+        r = None
+        for c in self.currencies:
+            if c.properties["permanent"]:
+                count += 1
+                r = c
+
+        if count == 0:
+            raise ValueError("No miscellaneous cash currency present.")
+        elif count < 1:
+            raise ValueError("Multiple miscellaneous cash currencies present.")
+        else:
+            return r
 
     def __init__(self, race):
         self.__race = race
@@ -76,9 +115,16 @@ class Statblock(object):
         # setup gen mode
         self.gen_mode = Priority()
 
-        # setup cash
-        self.__cash = self.gen_mode.get_generated_value("resources")
-        self.cash_str = "¥{}".format(self.__cash)
+        # setup cash and currencies
+        self.currencies = [Currency("Miscellaneous Currency",
+                                    "Other",
+                                    "Miscellaneous",
+                                    False,
+                                    balance=self.gen_mode.get_generated_value("resources"),
+                                    permanent=True)]
+
+        # this is the amount of cash that isn't in a Currency
+        self.cash_str = "¥{}".format(self.cash)
 
         # setup inventory
         self.inventory = []
@@ -120,10 +166,10 @@ class Statblock(object):
 
         # setup decks
         self.decks = []
-            
+
         # setup vehicles
         self.vehicles = []
-            
+
         # setup vehicle accessories
         self.misc_vehicle_accessories = []
 
@@ -143,7 +189,7 @@ class Statblock(object):
             total = 1
         else:
             total = self.base_attributes[key]
-            
+
         # add racial attribute bonus
         if key in self.race.racial_attributes:
             total += self.race.racial_attributes[key]
@@ -394,6 +440,7 @@ class Statblock(object):
         """
         Serializes this into a _dict for turning into a json.
         """
+        currencies = list(map(lambda x: x.serialize(), self.currencies))
         inventory = list(map(lambda x: x.serialize(), self.inventory))
         ammunition = list(map(lambda x: x.serialize(), self.ammunition))
         misc_firearm_accessories = list(map(lambda x: x.serialize(), self.misc_firearm_accessories))
@@ -413,7 +460,7 @@ class Statblock(object):
         return {
             "race": self.__race.name,
             "base_attributes": self.base_attributes,
-            "cash": self.__cash,
+            "currencies": currencies,
             "inventory": inventory,
             "ammunition": ammunition,
             "misc_firearm_accessories": misc_firearm_accessories,
@@ -447,8 +494,8 @@ class Statblock(object):
         for b in args:
             will_pay = will_pay and b
 
-        if amount <= self.__cash and will_pay:
-            self.cash -= amount
+        if amount <= self.cash and will_pay:
+            self.sub_cash(amount)
             return True
         else:
             return False

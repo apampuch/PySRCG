@@ -9,15 +9,16 @@ class BankingTab(NotebookTab, ABC):
     def __init__(self, parent):
         super().__init__(parent)
 
-        # listbox for currencies
         """
         This is a listbox for currencies. When a currency is clicked, the other boxes will auto-populate.
         Editing them will edit the currency.
         Pressing the "new currency" button will populate this box with a new currency that can be edited.
+        Each item in the listbox maps to one Currency object in self.statblock.currencies
+        The listbox will always be populated with a single "Miscellaneous Cash" object that does not map
+        to a Currency, it instead represenes the misc_cash variable in the statblock.
         """
-
         self.treasury_frame = LabelFrame(self, text="Treasury", padx=5, pady=5)
-        self.all_currencies = Listbox(self.treasury_frame, width=50)
+        self.all_currencies = Listbox(self.treasury_frame, width=50, selectmode=SINGLE)
 
         self.data_entry_frame = LabelFrame(self, text="Selected Item", padx=5, pady=5)
         # name entry
@@ -71,6 +72,11 @@ class BankingTab(NotebookTab, ABC):
         # checkbox for do_not_spend
         self.do_not_spend_box = Checkbutton(self.data_entry_frame, text="Do not spend")
 
+        self.all_currencies.insert(END, "Miscellaneous Currency")
+
+        # TODO add button for new item
+        # TODO add button to transfer funds + new window for that
+
         # grids
         self.treasury_frame.grid(column=0, row=0, sticky=(N, S))
         self.data_entry_frame.grid(column=1, row=0, sticky=(N, S))
@@ -107,3 +113,16 @@ class BankingTab(NotebookTab, ABC):
         else:
             self.rating_label.grid_forget()
             self.rating_spinbox.grid_forget()
+
+    def reload_data(self):
+        pass
+
+    def on_switch(self):
+        pass
+
+    def load_character(self):
+        for c in self.statblock.currencies:
+            self.all_currencies.insert(END, c.properties["name"])
+
+        self.all_currencies.insert(END, "Miscellaneous Currency")
+

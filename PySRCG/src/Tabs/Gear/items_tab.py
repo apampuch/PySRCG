@@ -48,7 +48,7 @@ class ItemsTab(ThreeColumnBuyTab, ABC):
         selected_item = self.statblock_inventory[self.inv_selected_index]
 
         # return cash value
-        self.statblock.cash += selected_item.properties["cost"]
+        self.statblock.add_cash(selected_item.properties["cost"])
 
         self.remove_inv_item(self.inv_selected_index)
 

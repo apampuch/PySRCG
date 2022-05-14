@@ -55,7 +55,7 @@ class AmmoTab(ThreeColumnBuyTab, ABC):
         count = min(selected_item.properties["count"], int(self.amount_spinbox.get()))
 
         # return cash value
-        self.statblock.cash += selected_item.properties["cost"] * count
+        self.statblock.add_cash(selected_item.properties["cost"] * count)
 
         # remove amount or delete if all would be removed
         if count == selected_item.properties["count"]:

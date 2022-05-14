@@ -55,11 +55,11 @@ class VehicleBuyTab(ThreeColumnBuyTab, ABC):
         vehicle: Vehicle = self.statblock_inventory[item_index]
         accessory: VehicleAccessory
         for accessory in vehicle.properties["vehicle_accessories"]:
-            self.statblock.cash += accessory.properties["cost"]
+            self.statblock.add_cash(accessory.properties["cost"])
             if "wireless_accessories" in accessory.properties:
                 for wireless_accessory in accessory.properties["wireless_accessories"]:
-                    self.statblock.cash += wireless_accessory.properties["cost"]
-        self.statblock.cash += self.statblock_inventory[item_index].properties["cost"]
+                    self.statblock.add_cash(wireless_accessory.properties["cost"])
+        self.statblock.add_cash(self.statblock_inventory[item_index].properties["cost"])
         self.remove_inv_item(item_index)
 
     @property
