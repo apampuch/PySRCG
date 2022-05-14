@@ -74,13 +74,25 @@ class BankingTab(NotebookTab, ABC):
 
         self.all_currencies.insert(END, "Miscellaneous Currency")
 
-        # TODO add button for new item
-        # TODO add button to transfer funds + new window for that
+        # buttons
+        self.buttons_frame = Frame(self)
+        # button for new item + new window
+        self.new_currency_button = Button(self.buttons_frame, text="New Currency")
+        # button to transfer funds + new window
+        self.transfer_currency_button = Button(self.buttons_frame, text="Transfer Funds")
+        # button to delete selected currency
+        self.delete_currency_button = Button(self.buttons_frame, text="Delete Selected")
+
+        # grid to save time
+        self.new_currency_button.grid(column=0, row=0, padx=2, pady=2)
+        self.transfer_currency_button.grid(column=1, row=0, padx=2, pady=2)
+        self.delete_currency_button.grid(column=2, row=0, padx=2, pady=2)
 
         # grids
         self.treasury_frame.grid(column=0, row=0, sticky=(N, S))
         self.data_entry_frame.grid(column=1, row=0, sticky=(N, S))
         self.all_currencies.grid(column=0, row=0)
+        self.buttons_frame.grid(column=0, row=1)
 
         # grid data entry
         name_label.grid(column=0, row=0)
