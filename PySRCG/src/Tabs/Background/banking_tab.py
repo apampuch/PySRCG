@@ -6,10 +6,24 @@ from src.CharData.currency import Currency
 from src.Tabs.notebook_tab import NotebookTab
 from src.app_data import on_cash_updated
 
+"""
+NOTE: There is a bug that I can't seem to fix involving double clicking things that causes the listbox
+to become deselected, and thus disable all of the UI elements. I don't know how to fix this.
+"""
 
 class BankingTab(NotebookTab, ABC):
+    def selected_currency(self) -> Currency:
+        return self.statblock.currencies[self.selected_currency_index]
+
     def __init__(self, parent):
         super().__init__(parent)
+
+        # this should be set when clicking on the listbox
+        # set to max when deleting last one
+        self.selected_currency_index = -1
+
+        # used to validate input
+        self.vcmd = (self.register(self.int_validate), '%d', '%i', '%P', '%s', '%S', '%v', '%V', '%W')
 
         """
         This is a listbox for currencies. When a currency is clicked, the other boxes will auto-populate.
@@ -20,10 +34,13 @@ class BankingTab(NotebookTab, ABC):
         to a Currency, it instead represenes the misc_cash variable in the statblock.
         """
         self.treasury_frame = LabelFrame(self, text="Treasury", padx=5, pady=5)
-        self.all_currencies = Listbox(self.treasury_frame, width=50, selectmode=SINGLE)
+        self.all_currencies = Listbox(self.treasury_frame, width=50, selectmode=BROWSE)
+        self.all_currencies_scroll = Scrollbar(self.treasury_frame, orient=VERTICAL, command=self.all_currencies.yview)
+        self.all_currencies["yscrollcommand"] = self.all_currencies_scroll.set
+        self.all_currencies.bind("<<ListboxSelect>>", self.on_select_listbox)
 
         self.data_entry_frame = LabelFrame(self, text="Selected Item", padx=5, pady=5)
-        self.data_entry_objs = CurrencyDataEntry(self.data_entry_frame)
+        self.data_entry_objs = CurrencyDataEntry(self.data_entry_frame, self.vcmd)
 
         self.all_currencies.insert(END, "Miscellaneous Currency")
 
@@ -45,7 +62,11 @@ class BankingTab(NotebookTab, ABC):
         self.treasury_frame.grid(column=0, row=0, sticky=(N, S))
         self.data_entry_frame.grid(column=1, row=0, sticky=(N, S))
         self.all_currencies.grid(column=0, row=0)
+        self.all_currencies_scroll.grid(column=1, row=0, sticky=(N, S))
         self.buttons_frame.grid(column=0, row=1)
+
+        # final setup thing
+        self.on_select_listbox(None)
 
     def new_currency(self):
         temp_window = Toplevel(self.parent)
@@ -53,7 +74,7 @@ class BankingTab(NotebookTab, ABC):
         temp_window.resizable(0, 0)
 
         # make a new window with all of the selected item stuff
-        new_currency_data_entry = CurrencyDataEntry(temp_window)
+        new_currency_data_entry = CurrencyDataEntry(temp_window, self.vcmd)
 
         # if checked, pay for it if applicable
         pay_var = IntVar()
@@ -79,6 +100,11 @@ class BankingTab(NotebookTab, ABC):
                 return rating * 50000
 
         def ok_func():
+            # prevent blank names
+            if new_currency_data_entry.name_var.get() == "":
+                self.bell()
+                return
+
             temp_window.destroy()
             new_currency = Currency(new_currency_data_entry.name_var.get(),
                                     new_currency_data_entry.currency_type_var.get(),
@@ -122,19 +148,99 @@ class BankingTab(NotebookTab, ABC):
             return
 
         # there will only ever be one selected
-        index = selection[0]
-        selected = self.statblock.currencies[index]
-        if selected.properties["permanent"]:
+
+        if self.selected_currency().properties["permanent"]:
             print("Can't delete that!")
             return
 
         # delete from inventory
-        del self.statblock.currencies[index]
-        self.all_currencies.delete(index)
+        del self.statblock.currencies[self.selected_currency_index]
+        self.all_currencies.delete(self.selected_currency_index)
+
+        # update selected so we're not overshooting the array of currencies
+        self.selected_currency_index = min(self.selected_currency_index, len(self.statblock.currencies) - 1)
 
         # update cash
         self.statblock.cash_str = "¥{}".format(self.statblock.cash)
         on_cash_updated()
+
+    def on_select_listbox(self, event):
+        print("yee")
+        selection = self.all_currencies.curselection()
+
+        if len(selection) > 0 and not self.statblock.currencies[selection[0]].properties["permanent"]:
+            self.data_entry_objs.name_entry.configure(state=NORMAL)
+            self.data_entry_objs.currency_combobox.configure(state="readonly")
+            self.data_entry_objs.registered_radio.configure(state=NORMAL)
+            self.data_entry_objs.certified_radio.configure(state=NORMAL)
+            self.data_entry_objs.category_entry.configure(state=NORMAL)
+            self.data_entry_objs.forged_checkbox.configure(state=NORMAL)
+            self.data_entry_objs.balance_entry.configure(state=NORMAL)
+            self.delete_currency_button.configure(state=NORMAL)
+
+        # disable everything if current selection is blank or de
+        else:
+            self.data_entry_objs.name_entry.configure(state=DISABLED)
+            self.data_entry_objs.currency_combobox.configure(state=DISABLED)
+            self.data_entry_objs.registered_radio.configure(state=DISABLED)
+            self.data_entry_objs.certified_radio.configure(state=DISABLED)
+            self.data_entry_objs.category_entry.configure(state=DISABLED)
+            self.data_entry_objs.forged_checkbox.configure(state=DISABLED)
+            self.delete_currency_button.configure(state=DISABLED)
+            if len(selection) == 0:
+                print(len(selection))
+                self.data_entry_objs.balance_entry.configure(state=DISABLED)
+            else:
+                self.data_entry_objs.balance_entry.configure(state=NORMAL)
+
+        if len(selection) > 0:
+            self.selected_currency_index = selection[0]
+            self.data_entry_objs.name_var.set(self.selected_currency().properties["name"])
+            self.data_entry_objs.currency_type_var.set(self.selected_currency().properties["currency_type"])
+            self.data_entry_objs.category_var.set(self.selected_currency().properties["category"])
+            self.data_entry_objs.on_category_change(None)
+            self.data_entry_objs.do_not_spend_var.set(self.selected_currency().properties["do_not_spend"])
+            self.data_entry_objs.rating_var.set(self.selected_currency().properties["rating"])
+            self.data_entry_objs.balance_var.set(self.selected_currency().properties["balance"])
+
+    def int_validate(self, action, index, value_if_allowed,
+                     prior_value, text, validation_type, trigger_type, widget_name):
+        """
+        Validates if entered text can be an int.
+        :param action:
+        :param index:
+        :param value_if_allowed:
+        :param prior_value:
+        :param text:
+        :param validation_type:
+        :param trigger_type:
+        :param widget_name:
+        :return: True if text is valid
+        """
+
+        if value_if_allowed or value_if_allowed == "":
+            try:
+                if value_if_allowed == "":
+                    val = 0
+                else:
+                    val = int(value_if_allowed)
+
+                # just allow it if there's nothing there for some reason
+                # this is to shut up an error when loading
+                if len(self.all_currencies.curselection()) < 1:
+                    return True
+
+                self.selected_currency().properties["balance"] = val
+
+                self.statblock.cash_str = "¥{}".format(self.statblock.cash)
+                on_cash_updated()
+                return True
+            except ValueError:
+                self.bell()
+                return False
+        else:
+            self.bell()
+            return False
 
     def reload_data(self):
         pass
@@ -153,7 +259,9 @@ class CurrencyDataEntry:
     """
     Separate class to make reusing some code easier.
     """
-    def __init__(self, parent):
+    def __init__(self, parent, vcmd):
+        self.parent = parent
+        self.vcmd = vcmd
         name_label = Label(parent, text="Name")
         self.name_var = StringVar()
         self.name_entry = Entry(parent, width=30, textvariable=self.name_var)
@@ -206,10 +314,12 @@ class CurrencyDataEntry:
         balance_label = Label(parent, text="Balance")
         self.balance_var = IntVar()
         self.balance_var.set(0)
-        self.balance_entry = Entry(parent, textvariable=self.balance_var)
+        self.balance_entry = Entry(parent, textvariable=self.balance_var, validate="key", validatecommand=self.vcmd)
 
         # checkbox for do_not_spend
-        self.do_not_spend_box = Checkbutton(parent, text="Do not spend")
+        self.do_not_spend_var = IntVar()
+        self.do_not_spend_var.set(0)
+        self.do_not_spend_box = Checkbutton(parent, text="Do not spend", variable=self.do_not_spend_var)
 
         # grid everything
         name_label.grid(column=0, row=0)
