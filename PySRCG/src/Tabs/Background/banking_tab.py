@@ -298,7 +298,7 @@ class CurrencyDataEntry:
 
         # currency type combobox
         currency_label = Label(parent, text="Currency")
-        currency_options = ("Credstick", "Currency", "Scrip", "Other")
+        currency_options = ("Credstick", "Hard Currency", "Scrip", "Other")
         self.currency_type_var = StringVar()
         self.currency_combobox = ttk.Combobox(parent, values=currency_options, state="readonly",
                                               textvariable=self.currency_type_var)

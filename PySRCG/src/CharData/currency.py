@@ -25,7 +25,7 @@ class Currency(Reportable):
         super().__init__()
 
         # validate currency_type
-        valid_currency_types = ("Credstick", "Currency", "Scrip",  "Other")
+        valid_currency_types = ("Credstick", "Hard Currency", "Scrip",  "Other")
         if currency_type not in valid_currency_types:
             raise ValueError(f"{currency_type} not a valid currency type.")
 
