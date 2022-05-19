@@ -7,9 +7,9 @@ from src.Tabs.notebook_tab import NotebookTab
 from src.app_data import on_cash_updated
 
 """
-NOTE: There is a bug that I can't seem to fix involving double clicking things that causes the listbox
-to become deselected, and thus disable all of the UI elements. I don't know how to fix this.
+Spending money is done from top to bottom.
 """
+
 
 class BankingTab(NotebookTab, ABC):
     def selected_currency(self) -> Currency:
@@ -34,7 +34,7 @@ class BankingTab(NotebookTab, ABC):
         to a Currency, it instead represenes the misc_cash variable in the statblock.
         """
         self.treasury_frame = LabelFrame(self, text="Treasury", padx=5, pady=5)
-        self.all_currencies = Listbox(self.treasury_frame, width=50, selectmode=BROWSE)
+        self.all_currencies = Listbox(self.treasury_frame, width=50, selectmode=BROWSE, exportselection=False)
         self.all_currencies_scroll = Scrollbar(self.treasury_frame, orient=VERTICAL, command=self.all_currencies.yview)
         self.all_currencies["yscrollcommand"] = self.all_currencies_scroll.set
         self.all_currencies.bind("<<ListboxSelect>>", self.on_select_listbox)
