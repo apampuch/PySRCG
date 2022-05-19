@@ -8,6 +8,7 @@ from src.app_data import on_cash_updated
 
 """
 Spending money is done from top to bottom.
+If the current currency doesn't have enough money, all of it is spent, and the remainder is taken from the next one
 """
 
 
@@ -39,6 +40,10 @@ class BankingTab(NotebookTab, ABC):
         self.all_currencies["yscrollcommand"] = self.all_currencies_scroll.set
         self.all_currencies.bind("<<ListboxSelect>>", self.on_select_listbox)
 
+        self.move_buttons_frame = Frame(self.treasury_frame)
+        self.move_up_button = Button(self.move_buttons_frame, text="↑", command=lambda: self.swap_currencies(-1))
+        self.move_down_button = Button(self.move_buttons_frame, text="↓", command=lambda: self.swap_currencies(1))
+
         self.data_entry_frame = LabelFrame(self, text="Selected Item", padx=5, pady=5)
         self.data_entry_objs = CurrencyDataEntry(self.data_entry_frame, self.vcmd)
 
@@ -60,9 +65,13 @@ class BankingTab(NotebookTab, ABC):
 
         # grids
         self.treasury_frame.grid(column=0, row=0, sticky=(N, S))
+        self.move_buttons_frame.grid(column=0, row=0)
+        self.move_up_button.grid(column=0, row=0, pady=4)
+        self.move_down_button.grid(column=0, row=1)
         self.data_entry_frame.grid(column=1, row=0, sticky=(N, S))
-        self.all_currencies.grid(column=0, row=0)
-        self.all_currencies_scroll.grid(column=1, row=0, sticky=(N, S))
+        self.all_currencies.grid(column=1, row=0)
+        self.all_currencies_scroll.grid(column=2, row=0, sticky=(N, S))
+
         self.buttons_frame.grid(column=0, row=1)
 
         # final setup thing
@@ -164,8 +173,30 @@ class BankingTab(NotebookTab, ABC):
         self.statblock.cash_str = "¥{}".format(self.statblock.cash)
         on_cash_updated()
 
+    def swap_currencies(self, direction):
+        # don't do anything if nothing is selected or if misc currencies is selected
+        if len(self.all_currencies.curselection()) == 0:
+            return
+
+        swap_index = self.selected_currency_index + direction
+
+        # do nothing if we'd go out of bounds
+        if swap_index > len(self.statblock.currencies) - 1 or swap_index < 0:
+            return
+
+        # swap currencies
+        self.statblock.currencies[self.selected_currency_index], self.statblock.currencies[swap_index] = \
+            self.statblock.currencies[swap_index], self.statblock.currencies[self.selected_currency_index]
+
+        # refill
+        self.all_currencies.delete(0, END)
+        for c in self.statblock.currencies:
+            self.all_currencies.insert(END, c.properties["name"])
+
+        self.all_currencies.selection_set(swap_index)
+        self.selected_currency_index = swap_index
+
     def on_select_listbox(self, event):
-        print("yee")
         selection = self.all_currencies.curselection()
 
         if len(selection) > 0 and not self.statblock.currencies[selection[0]].properties["permanent"]:
@@ -188,7 +219,6 @@ class BankingTab(NotebookTab, ABC):
             self.data_entry_objs.forged_checkbox.configure(state=DISABLED)
             self.delete_currency_button.configure(state=DISABLED)
             if len(selection) == 0:
-                print(len(selection))
                 self.data_entry_objs.balance_entry.configure(state=DISABLED)
             else:
                 self.data_entry_objs.balance_entry.configure(state=NORMAL)
@@ -246,13 +276,13 @@ class BankingTab(NotebookTab, ABC):
         pass
 
     def on_switch(self):
-        pass
+        self.data_entry_objs.balance_var.set(self.selected_currency().properties["balance"])
 
     def load_character(self):
         for c in self.statblock.currencies:
             self.all_currencies.insert(END, c.properties["name"])
 
-        self.all_currencies.insert(END, "Miscellaneous Currency")
+        # self.all_currencies.insert(END, "Miscellaneous Currency")
 
 
 class CurrencyDataEntry:

@@ -33,6 +33,7 @@ class Statblock(object):
         # TODO test the looping with multiple currencies
         # loop through all currencies, bring to no less than 0, keep going if there's anything left
         # stop if we reach the last currency
+
         i = 0
         while amount > 0 and i < len(self.currencies):
             sub_amount = min(amount, self.currencies[i].properties["balance"])
