@@ -54,7 +54,7 @@ class BankingTab(NotebookTab, ABC):
         # button for new item + new window
         self.new_currency_button = Button(self.buttons_frame, text="New Currency", command=self.new_currency)
         # button to transfer funds + new window
-        self.transfer_currency_button = Button(self.buttons_frame, text="Transfer Funds")
+        self.transfer_currency_button = Button(self.buttons_frame, text="Transfer Funds", command=self.transfer_currency)
         # button to delete selected currency
         self.delete_currency_button = Button(self.buttons_frame, text="Delete Selected", command=self.delete_currency)
 
@@ -149,6 +149,85 @@ class BankingTab(NotebookTab, ABC):
 
         cancel_button = Button(temp_window, text="Cancel", command=cancel_func)
         cancel_button.grid(column=1, row=7)
+
+    def transfer_currency(self):
+        selection = self.all_currencies.curselection()
+        # do nothing if nothing is selected
+        if len(selection) == 0:
+            print("Need to select something!")
+            return
+
+        # do nothing if we only have one currency
+        if len(self.statblock.currencies) == 1:
+            print("Need more than one currency!")
+            return
+
+        # must have at least 1 balance
+        if self.selected_currency().properties["balance"] <= 0:
+            print("Selected currency has zero or negative balance!")
+            return
+
+        # setup window
+        temp_window = Toplevel(self.parent)
+        temp_window.grab_set()
+        temp_window.resizable(0, 0)
+
+        transfer_label = Label(temp_window,
+                               text=f"Transfer how much from {self.selected_currency().properties['name']}? "
+                                    f"(Max {self.selected_currency().properties['balance']})")
+
+        transfer_spinbox = Spinbox(temp_window, from_=0, to=self.selected_currency().properties['balance'])
+
+        all_other_currencies = Listbox(temp_window, width=50, selectmode=BROWSE, exportselection=False)
+        all_other_currencies_scroll = Scrollbar(temp_window, orient=VERTICAL, command=all_other_currencies.yview)
+        all_other_currencies["yscrollcommand"] = self.all_currencies_scroll.set
+        all_other_currencies.bind("<<ListboxSelect>>", self.on_select_listbox)
+
+        # we need to get all but the one selected into the listbox
+        # however these won't map 1:1 if we do it like this
+        # we set a threshold, if we've selected the index that is >= this threshold, increment by 1 to get
+        # the actual thing that we want
+        i = 0
+        increment_threshold = -1
+
+        # fill with all other currencies
+        for c in self.statblock.currencies:
+            if c is not self.selected_currency():
+                all_other_currencies.insert(END, c.properties["name"])
+            else:
+                increment_threshold = i
+            i += 1
+
+        def do_transfer():
+            # get true index of selected currency in new window
+            xfer_sel = all_other_currencies.curselection()[0]
+            if xfer_sel >= increment_threshold:
+                xfer_sel += 1
+
+            # get the the actual currency object from that
+            target_currency = self.statblock.currencies[xfer_sel]
+            xfer_amt = int(transfer_spinbox.get())
+            self.selected_currency().properties["balance"] -= xfer_amt
+            target_currency.properties["balance"] += xfer_amt
+
+            # refresh balance entry
+            self.data_entry_objs.balance_var.set(self.selected_currency().properties["balance"])
+
+            temp_window.destroy()
+
+        def cancel():
+            temp_window.destroy()
+
+        transfer_button = Button(temp_window, text="Transfer", command=do_transfer)
+        cancel_button = Button(temp_window, text="Cancel", command=cancel)
+
+        transfer_label.grid(column=0, row=0)
+        transfer_spinbox.grid(column=0, row=1)
+        all_other_currencies.grid(column=1, row=0)
+        all_other_currencies_scroll.grid(column=2, row=0)
+
+        transfer_button.grid(column=0, row=2)
+        cancel_button.grid(column=1, row=2)
 
     def delete_currency(self):
         selection = self.all_currencies.curselection()
