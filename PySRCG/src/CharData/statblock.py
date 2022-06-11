@@ -30,7 +30,6 @@ class Statblock(object):
         self.cash_str = "¥{}".format(self.cash)
         on_cash_updated()
     def sub_cash(self, amount):
-        # TODO test the looping with multiple currencies
         # loop through all currencies, bring to no less than 0, keep going if there's anything left
         # stop if we reach the last currency
 

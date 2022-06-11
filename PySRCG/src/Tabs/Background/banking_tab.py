@@ -2,6 +2,7 @@ from abc import ABC
 from tkinter import *
 from tkinter import ttk
 
+from src import app_data
 from src.CharData.currency import Currency
 from src.Tabs.notebook_tab import NotebookTab
 from src.app_data import on_cash_updated
@@ -78,6 +79,9 @@ class BankingTab(NotebookTab, ABC):
         self.on_select_listbox(None)
 
     def new_currency(self):
+        # clear selection to prevent a bug where vcmd writes to the selected currency
+        self.all_currencies.selection_clear(0, END)
+
         temp_window = Toplevel(self.parent)
         temp_window.grab_set()
         temp_window.resizable(0, 0)
@@ -339,6 +343,7 @@ class BankingTab(NotebookTab, ABC):
                 if len(self.all_currencies.curselection()) < 1:
                     return True
 
+                # TODO move this outside to prevent a bug
                 self.selected_currency().properties["balance"] = val
 
                 self.statblock.cash_str = "¥{}".format(self.statblock.cash)
@@ -423,8 +428,9 @@ class CurrencyDataEntry:
         balance_label = Label(parent, text="Balance")
         self.balance_var = IntVar()
         self.balance_var.set(0)
+        print(app_data.app_character.statblock.cash)
         self.balance_entry = Entry(parent, textvariable=self.balance_var, validate="key", validatecommand=self.vcmd)
-
+        print(app_data.app_character.statblock.cash)
         # checkbox for do_not_spend
         self.do_not_spend_var = IntVar()
         self.do_not_spend_var.set(0)
