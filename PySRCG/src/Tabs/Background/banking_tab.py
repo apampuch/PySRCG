@@ -48,7 +48,7 @@ class BankingTab(NotebookTab, ABC):
         self.data_entry_frame = LabelFrame(self, text="Selected Item", padx=5, pady=5)
         self.data_entry_objs = CurrencyDataEntry(self.data_entry_frame, self.vcmd)
 
-        self.all_currencies.insert(END, "Miscellaneous Currency")
+        # self.all_currencies.insert(END, "Miscellaneous Currency")
 
         # buttons
         self.buttons_frame = Frame(self)
@@ -363,10 +363,9 @@ class BankingTab(NotebookTab, ABC):
         self.data_entry_objs.balance_var.set(self.selected_currency().properties["balance"])
 
     def load_character(self):
+        self.all_currencies.delete(0, END)
         for c in self.statblock.currencies:
             self.all_currencies.insert(END, c.properties["name"])
-
-        # self.all_currencies.insert(END, "Miscellaneous Currency")
 
 
 class CurrencyDataEntry:
