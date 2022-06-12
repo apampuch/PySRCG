@@ -37,6 +37,13 @@ gen_mode_dict = {
 def new_char(tabs):
     # set character
     app_data.app_character = Character()
+    app_data.app_character.statblock.currencies.append(
+        Currency("Miscellaneous Currency",
+                 "Other",
+                 "Miscellaneous",
+                 False,
+                 balance=app_data.app_character.statblock.gen_mode.get_generated_value("resources"),
+                 permanent=True))
 
     # setup top bar
     app_data.on_cash_updated()
@@ -126,7 +133,7 @@ def load(tabs):
 
             # convert dicts to item objects and add to inventory
             for currency in character_dict["statblock"]["currencies"]:
-                currency_obj = Gear(**currency)
+                currency_obj = Currency(**currency)
                 new_character.statblock.currencies.append(currency_obj)
 
             for item in character_dict["statblock"]["inventory"]:
@@ -187,13 +194,13 @@ def load(tabs):
                 # may need to recurse and add programs and parts
                 deck_obj = Deck(**deck)
                 new_character.statblock.decks.append(deck_obj)
-                
+
             # add vehicles
             for vehicle in character_dict["statblock"]["vehicles"]:
                 # may need to recurse and add programs and parts
                 vehicle_obj = Vehicle(**vehicle)
                 new_character.statblock.vehicles.append(vehicle_obj)
-                
+
             # add vehicle accessories
             for vehicle_accessory in character_dict["statblock"]["misc_vehicle_accessories"]:
                 # may need to recurse and add programs and parts
