@@ -82,7 +82,7 @@ class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
 
     def sell_callback(self, selected_index):
         # TODO fix this so that it sells the selected inventory
-        selected_item = self.statblock.misc_firearm_accessories[self.inv_selected_index]
+        selected_item = self.statblock_inventory[self.inv_selected_index]
 
         # return cash value
         self.statblock.add_cash(selected_item.properties["cost"])
