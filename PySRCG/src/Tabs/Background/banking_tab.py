@@ -140,7 +140,6 @@ class BankingTab(NotebookTab, ABC):
 
                 # refresh cash
                 # TODO move the string update to a lambda in the event
-                self.statblock.cash_str = "¥{}".format(self.statblock.cash)
                 on_cash_updated()
             else:
                 print("Can't afford that.")
@@ -203,6 +202,10 @@ class BankingTab(NotebookTab, ABC):
             i += 1
 
         def do_transfer():
+            if len(all_other_currencies.curselection()) == 0:
+                print("No currency to transfer to selected!")
+                return
+
             # get true index of selected currency in new window
             xfer_sel = all_other_currencies.curselection()[0]
             if xfer_sel >= increment_threshold:
@@ -253,7 +256,6 @@ class BankingTab(NotebookTab, ABC):
         self.selected_currency_index = min(self.selected_currency_index, len(self.statblock.currencies) - 1)
 
         # update cash
-        self.statblock.cash_str = "¥{}".format(self.statblock.cash)
         on_cash_updated()
 
     def swap_currencies(self, direction):
@@ -343,10 +345,9 @@ class BankingTab(NotebookTab, ABC):
                 if len(self.all_currencies.curselection()) < 1:
                     return True
 
-                # TODO move this outside to prevent a bug
+                # TODO move this outside possibly
                 self.selected_currency().properties["balance"] = val
 
-                self.statblock.cash_str = "¥{}".format(self.statblock.cash)
                 on_cash_updated()
                 return True
             except ValueError:

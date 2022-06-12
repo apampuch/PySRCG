@@ -30,8 +30,11 @@ tab_switch_events = []
 
 
 def on_cash_updated():
+    app_character.statblock.cash_str = "¥{}".format(app_character.statblock.cash)
+
     for event in cash_update_events:
         event()
+
 
 
 def on_tab_switched():
