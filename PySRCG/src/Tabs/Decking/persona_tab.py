@@ -30,7 +30,7 @@ class PersonaTab(NotebookTab, ABC):
         self.persona_total = IntVar(0)
 
         # combobox with all decks
-        self.deck_box = ttk.Combobox(self, values=self.deck_list_names, state="readonly")
+        self.deck_box = ttk.Combobox(self, state="readonly")
         self.deck_box.bind("<<ComboboxSelected>>", self.on_choose_deck)
 
         self.persona_frame = ttk.LabelFrame(self, text="Persona")

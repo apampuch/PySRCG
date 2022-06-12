@@ -428,9 +428,7 @@ class CurrencyDataEntry:
         balance_label = Label(parent, text="Balance")
         self.balance_var = IntVar()
         self.balance_var.set(0)
-        print(app_data.app_character.statblock.cash)
         self.balance_entry = Entry(parent, textvariable=self.balance_var, validate="key", validatecommand=self.vcmd)
-        print(app_data.app_character.statblock.cash)
         # checkbox for do_not_spend
         self.do_not_spend_var = IntVar()
         self.do_not_spend_var.set(0)

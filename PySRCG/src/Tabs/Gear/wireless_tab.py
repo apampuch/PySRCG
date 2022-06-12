@@ -13,7 +13,7 @@ class WirelessTab(ThreeColumnBuyTab):
 
         self.wireless_obj_dict = {}
         self.wireless_box = ttk.Combobox(self, values=self.wireless_obj_dict.keys(), state="readonly")
-        self.fill_combobox()
+        # self.fill_combobox()
 
         self.wireless_box.bind("<<ComboboxSelected>>", self.get_accobj)
 

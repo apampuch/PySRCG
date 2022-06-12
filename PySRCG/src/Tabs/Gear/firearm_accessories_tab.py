@@ -13,7 +13,7 @@ class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
 
         self.gunobj_dict = {}
         self.gun_box = ttk.Combobox(self, values=self.gunobj_dict.keys(), state="readonly")
-        self.fill_combobox()
+        # self.fill_combobox()
 
         self.gun_box.bind("<<ComboboxSelected>>", self.get_accobj)
 
@@ -81,6 +81,7 @@ class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
             print("Not enough money!")
 
     def sell_callback(self, selected_index):
+        # TODO fix this so that it sells the selected inventory
         selected_item = self.statblock.misc_firearm_accessories[self.inv_selected_index]
 
         # return cash value

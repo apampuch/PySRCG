@@ -116,12 +116,7 @@ class Statblock(object):
         self.gen_mode = Priority()
 
         # setup cash and currencies
-        self.currencies = [Currency("Miscellaneous Currency",
-                                    "Other",
-                                    "Miscellaneous",
-                                    False,
-                                    balance=self.gen_mode.get_generated_value("resources"),
-                                    permanent=True)]
+        self.currencies = []
 
         # this is the amount of cash that isn't in a Currency
         self.cash_str = "¥{}".format(self.cash)
@@ -175,6 +170,9 @@ class Statblock(object):
 
         # setup miscellaneous programs
         self.other_programs = []
+
+        # setup ui elements for gen mode
+        self.gen_mode.setup_ui_elements()
 
     def calculate_attribute(self, key):
         # take care of magic keys

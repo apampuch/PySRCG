@@ -18,7 +18,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
 
         # fill stuff with memory
         self.accessory_things_box = ttk.Combobox(self, values=self.accobj_dict.keys(), state="readonly", width=30)
-        self.fill_combobox()
+        # self.fill_combobox()
 
         self.accessory_things_box.bind("<<ComboboxSelected>>", self.get_accobj)
 

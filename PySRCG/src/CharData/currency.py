@@ -38,3 +38,6 @@ class Currency(Reportable):
         self.properties["do_not_spend"] = do_not_spend  # if True, don't spend from this
         self.properties["balance"] = balance
         self.properties["permanent"] = permanent
+
+    def serialize(self):
+        return self.properties.copy()

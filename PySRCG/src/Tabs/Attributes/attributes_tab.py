@@ -1,3 +1,5 @@
+from abc import ABC
+
 from src.CharData.gear import Gear
 from src.GenModes.finalized import Finalized
 from src.Tabs.notebook_tab import NotebookTab
@@ -9,7 +11,7 @@ from src.adjustment import Adjustment
 from src.statblock_modifier import StatMod
 
 
-class AttributesTab(NotebookTab):
+class AttributesTab(NotebookTab, ABC):
     equipped_armors: List[Gear]
     sliders: Dict[str, Scale]
     slider_vars: Dict[str, IntVar]
@@ -71,10 +73,10 @@ class AttributesTab(NotebookTab):
 
         # setup the grid of shit
         for attr in AttributesTab.base_attributes:
-            self.setup_slider_and_label(attr)
+            self.setup_slider_and_label(attr, first_setup=TRUE)
 
         for attr in AttributesTab.derived_attributes:
-            self.setup_slider_and_label(attr, True)
+            self.setup_slider_and_label(attr, True, first_setup=TRUE)
 
         # override reaction command because reaction is special
         # self.sliders["reaction"].configure(command=lambda x: self.on_set_reaction_value(x))
@@ -104,7 +106,7 @@ class AttributesTab(NotebookTab):
         self.quickness_penalty_val.set("0")
 
         # set dice pool values
-        self.set_pool_vals()
+        self.boot_pool_vals()
 
         # dice pool labels
         self.dice_pool_labelframe = ttk.LabelFrame(self, text="Dice Pools")
@@ -210,7 +212,7 @@ class AttributesTab(NotebookTab):
         )
         self.quickness_penalty_val_label.grid(column=1, row=2)
 
-    def setup_slider_and_label(self, key, other_attribute=False):
+    def setup_slider_and_label(self, key, other_attribute=False, first_setup=False):
         """Initial setup. Should only be run once per attribute."""
         self.slider_vars[key] = IntVar()             # this is the internal variable
         self.slider_vars[key].set(1)                 # initialize it to 1
@@ -232,6 +234,8 @@ class AttributesTab(NotebookTab):
         # the slider itself
         if other_attribute:
             racial_slider_minimum = 0
+        elif first_setup:  # just set to 1 if it's the very first setup on boot
+            racial_slider_minimum = 1
         else:
             racial_slider_minimum = self.race.racial_slider_minimum(key)
 
@@ -285,6 +289,21 @@ class AttributesTab(NotebookTab):
 
         # iterate current row
         self.current_row += 1
+
+    def boot_pool_vals(self):
+        # boots all the pools with value 1 for initial program load
+
+        # set reaction
+        self.sliders["reaction"].set(1)
+        self.sliders["initiative"].set(1)
+
+        # set dice pool values
+        self.combat_pool_val.set(1)
+        self.control_pool_val.set(1)
+        self.hacking_pool_val.set(1)
+        self.spell_pool_val.set(1)
+        self.task_pool_val.set("0")  # NYI
+        self.astral_combat_pool_val.set(1)
 
     def set_pool_vals(self):
         # setting reaction slider gives proper value, setting initiative slider does not

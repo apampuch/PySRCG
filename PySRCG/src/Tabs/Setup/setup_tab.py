@@ -1,3 +1,4 @@
+from abc import ABC
 from tkinter import *
 from tkinter import ttk
 from src.CharData.race import all_races
@@ -7,7 +8,7 @@ from src.GenModes.priority import Priority
 from src.Tabs.notebook_tab import NotebookTab
 
 
-class SetupTab(NotebookTab):
+class SetupTab(NotebookTab, ABC):
     @NotebookTab.race.setter
     def race(self, value):
         self.statblock.race = value
@@ -26,7 +27,7 @@ class SetupTab(NotebookTab):
         self.race_box = ttk.Combobox(self, values=self.race_vals, state="readonly")
         self.race_box.bind("<<ComboboxSelected>>", self.on_race_selected)
         self.race_box.current(0)
-        self.character.statblock.race = all_races[self.race_vals[0]]
+        # self.character.statblock.race = all_races[self.race_vals[0]]
 
         # self.magic_frame = ttk.LabelFrame(self, text="Magic User?")
 
@@ -50,7 +51,6 @@ class SetupTab(NotebookTab):
         self.gen_mode_frame.grid(column=0, row=1, columnspan=5)
         self.priority_gen_radio.grid(column=0, row=0)
         self.points_gen_radio.grid(column=1, row=0)
-        self.statblock.gen_mode.setup_ui_elements()
 
         self.race_box.grid(column=5, row=0)
 

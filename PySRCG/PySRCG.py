@@ -164,39 +164,39 @@ def main():
     app_data.top_bar = top_bar
     app_data.window = App(app_data.root, top_bar)
 
+    app_data.setup_tab = make_tab(SetupTab, "Character Setup")
+    app_data.attributes_tab = make_tab(AttributesTab, "Attributes")
+    app_data.background_tab = make_tab(BackgroundTab, "Background",
+                                       [PersonalInfoTab, EdgesFlawsTab, BankingTab],
+                                       ["Personal Info", "Edges & Flaws", "Banking"])
+    app_data.skills_tab = make_tab(SkillsTab, "Skills")
+    app_data.gear_tab = make_tab(ContainerTab, "Gear",
+                        [ItemsTab, AmmoTab, FirearmAccessoriesTab, ArmorEquipTab, WirelessTab],
+                        ["Items", "Ammo", "Firearm Accessories", "Armor", "Wireless"])
+    app_data.magic_tab = make_tab(MagicTab, "Magic")     # this one has its own tab because it needs to do special things
+    app_data.augments_tab = make_tab(ContainerTab, "Augments",
+                            [CyberwareTab, BiowareTab],
+                            ["Cyberware", "Bioware"])
+    app_data.decking_tab = make_tab(DeckingTab, "Decking")
+    app_data.rigging_tab = make_tab(ContainerTab, "Rigging",
+                           [VehicleBuyTab, VehicleAccessoriesTab],
+                           ["Vehicles", "Accessories"])
+    app_data.karma_tab = make_tab(KarmaTab, "Karma")
+
     # setup character
     # this has to be done after setting up the window
     # if it's done before, the character will think that there is no window
-    app_data.app_character = Character()
+    char_io.new_char(lambda: app_data.root.winfo_children()[2].winfo_children())
 
     # update top bar cash text
     top_bar.update_cash_text()
-
-    setup_tab = make_tab(SetupTab, "Character Setup")
-    attributes_tab = make_tab(AttributesTab, "Attributes")
-    background_tab = make_tab(BackgroundTab, "Background",
-                              [PersonalInfoTab, EdgesFlawsTab, BankingTab],
-                              ["Personal Info", "Edges & Flaws", "Banking"])
-    skills_tab = make_tab(SkillsTab, "Skills")
-    gear_tab = make_tab(ContainerTab, "Gear",
-                        [ItemsTab, AmmoTab, FirearmAccessoriesTab, ArmorEquipTab, WirelessTab],
-                        ["Items", "Ammo", "Firearm Accessories", "Armor", "Wireless"])
-    magic_tab = make_tab(MagicTab, "Magic")     # this one has its own tab because it needs to do special things
-    augments_tab = make_tab(ContainerTab, "Augments",
-                            [CyberwareTab, BiowareTab],
-                            ["Cyberware", "Bioware"])
-    decking_tab = make_tab(DeckingTab, "Decking")
-    rigging_tab = make_tab(ContainerTab, "Rigging",
-                           [VehicleBuyTab, VehicleAccessoriesTab],
-                           ["Vehicles", "Accessories"])
-    karma_tab = make_tab(KarmaTab, "Karma")
 
     top_bar.pack(fill=X)
     app_data.window.pack(fill=BOTH, expand=YES)
 
     magic_tab_show_on_awakened_status(app_data)
 
-    post_setup(attributes_tab)
+    post_setup(app_data.attributes_tab)
     app_data.root.mainloop()
 
 

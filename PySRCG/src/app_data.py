@@ -10,6 +10,18 @@ menu = None # should be the menu
 # WHY THE FUCK IS THIS A STRING??? it becomes a Character but still wtf
 app_character = "None"  # should be a Character()
 
+# all of the top level tabs, set automatically on launch, DO NOT CHANGE
+setup_tab = None
+attributes_tab = None
+background_tab = None
+skills_tab = None
+gear_tab = None
+magic_tab = None
+augments_tab = None
+decking_tab = None
+rigging_tab = None
+karma_tab = None
+
 cash_update_events = []
 tab_switch_events = []
 

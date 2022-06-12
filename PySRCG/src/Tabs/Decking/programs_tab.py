@@ -19,7 +19,7 @@ class ProgramsTab(ThreeColumnBuyTab):
 
         # fill stuff with memory
         self.memory_things_box = ttk.Combobox(self, values=self.memobj_dict.keys(), state="readonly")
-        self.fill_combobox()
+        # self.fill_combobox()
 
         self.memory_things_box.bind("<<ComboboxSelected>>", self.get_memobj_memory)
 
