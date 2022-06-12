@@ -27,7 +27,6 @@ class Statblock(object):
         return reduce(lambda a, b: a + b.properties["balance"], self.currencies, 0)
     def add_cash(self, amount):
         self.currencies[0].properties["balance"] += amount
-        self.cash_str = "¥{}".format(self.cash)
         on_cash_updated()
     def sub_cash(self, amount):
         # loop through all currencies, bring to no less than 0, keep going if there's anything left
@@ -43,13 +42,7 @@ class Statblock(object):
         # if we subbed from all currencies and there's still some remaining, just put the permanent one into debt
         self.misc_cash.properties["balance"] -= amount
 
-        self.cash_str = "¥{}".format(self.cash)
         on_cash_updated()
-    # @cash.setter
-    # def cash(self, value):
-    #     self.misc_cash = value
-    #     self.cash_str = "¥{}".format(self.misc_cash)
-    #     on_cash_updated()
 
     @property
     def awakened(self):
