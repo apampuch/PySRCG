@@ -154,18 +154,18 @@ class Priority(GenMode, ABC):
         self.fill_lists()
 
     def update_total(self, amount, key):
-        if key is "attributes":
+        if key == "attributes":
             self.cur_attribute_points.set(amount)
             app_data.top_bar.update_karma_bar(self.cur_attribute_points.get(),
                                               self.max_attribute_points.get(),
                                               "Priority Mode")
 
-        elif key is "skills":
+        elif key == "skills":
             self.cur_skill_points.set(amount)
             app_data.top_bar.update_karma_bar(self.cur_skill_points.get(),
                                               self.max_skill_points.get(),
                                               "Priority Mode")
-        elif key is "magic":
+        elif key == "magic":
             self.cur_magic_points.set(amount)
             app_data.top_bar.update_karma_bar(self.cur_magic_points.get(),
                                               self.max_magic_points.get(),
@@ -173,7 +173,7 @@ class Priority(GenMode, ABC):
 
     def swap_priority(self, direction):
         # do nothing if nothing is selected
-        if len(self.priority_name_list.curselection()) is 0:
+        if len(self.priority_name_list.curselection()) == 0:
             return
 
         selected_item_index = self.priority_name_list.curselection()[-1]
@@ -203,9 +203,9 @@ class Priority(GenMode, ABC):
     # gets the magic point value from a string like Full or Aspected
     def magic_val_from_string(self):
         awakened_type = self.get_generated_value("magic")
-        if awakened_type is "Full":
+        if awakened_type == "Full":
             return 25
-        elif awakened_type is "Aspected":
+        elif awakened_type == "Aspected":
             return 35
         else:
             return 0
@@ -273,19 +273,19 @@ class Priority(GenMode, ABC):
         L[cash_index] = "¥" + str(L[cash_index])
         # find race
         race_index = self.priority_order.index("race")
-        if race_index is 4:
+        if race_index == 4:
             L[race_index] = "Human"
-        elif race_index is 3:
+        elif race_index == 3:
             L[race_index] = "Dwarf/Ork"
-        elif race_index is 2:
+        elif race_index == 2:
             L[race_index] = "Elf/Troll"
         else:
             L[race_index] = "Any Race"
         # find magic
         magic_index = self.priority_order.index("magic")
-        if magic_index is 0:
+        if magic_index == 0:
             L[magic_index] = "Full Mage"
-        elif magic_index is 1:
+        elif magic_index == 1:
             L[magic_index] = "Aspected Mage"
         else:
             L[magic_index] = "Mundane"

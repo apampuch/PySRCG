@@ -22,7 +22,7 @@ class CyberwareTab(NotebookTab):
     def list_selected_index(self) -> int:
         """index of the index of the selected item"""
         selection = self.cyberware_list.curselection()
-        if len(selection) is 0:
+        if len(selection) == 0:
             return None
         return selection[-1]
 
@@ -173,7 +173,7 @@ class CyberwareTab(NotebookTab):
 
     def on_sell_click(self):
         # don't do anything if nothing is selected
-        if len(self.cyberware_list.curselection()) is 0:
+        if len(self.cyberware_list.curselection()) == 0:
             return
 
         # return cash value

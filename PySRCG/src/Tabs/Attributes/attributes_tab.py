@@ -442,7 +442,7 @@ class AttributesTab(NotebookTab, ABC):
             self.calculate_total()
 
         # recalculate armor penalties and shit when we change quickness
-        if key is "quickness":
+        if key == "quickness":
             self.statblock.calculate_armor_and_penalties(self.equipped_armors, None, None)
             self.quickness_penalty_val.set(self.statblock.armor_quickness_penalty)
 
