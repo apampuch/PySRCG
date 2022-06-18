@@ -27,7 +27,7 @@ class PersonaTab(NotebookTab, ABC):
         self.attribute_labels = {}
         self.value_labels = {}
 
-        self.persona_total = IntVar(0)
+        self.persona_total = IntVar()
 
         # combobox with all decks
         self.deck_box = ttk.Combobox(self, state="readonly")
