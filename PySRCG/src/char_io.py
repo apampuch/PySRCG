@@ -222,7 +222,23 @@ def load(tabs):
 
             # set background info
             new_character.name.set(character_dict["name"])
+            new_character.real_name.set(character_dict["real_name"])
+            new_character.street_names.set(character_dict["street_names"])
+
             new_character.sex.set(character_dict["sex"])
+            new_character.height.set(character_dict["height"])
+            new_character.weight.set(character_dict["weight"])
+            new_character.hair.set(character_dict["hair"])
+            new_character.eyes.set(character_dict["eyes"])
+            new_character.appearance.set(character_dict["appearance"])
+            new_character.archetype.set(character_dict["archetype"])
+
+            new_character.birthdate.set(character_dict["birthdate"])
+            new_character.birthplace.set(character_dict["birthplace"])
+            new_character.birth_notes.set(character_dict["birth_notes"])
+
+            new_character.notes.set(character_dict["notes"])
+            new_character.creator.set(character_dict["creator"])
 
             # set gen mode
             if character_dict["statblock"]["gen_mode"]["type"] == "priority":

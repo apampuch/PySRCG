@@ -8,7 +8,7 @@ root = None  # should be the window for the program
 window = None  # should be the main notebook
 menu = None # should be the menu
 # WHY THE FUCK IS THIS A STRING??? it becomes a Character but still wtf
-app_character = "None"  # should be a Character()
+app_character = None  # should be a Character()
 
 # all of the top level tabs, set automatically on launch, DO NOT CHANGE
 setup_tab = None
