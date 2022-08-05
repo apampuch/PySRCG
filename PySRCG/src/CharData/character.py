@@ -31,6 +31,8 @@ class Character(object):
         self.notes = StringVar()
         self.creator = StringVar()
 
+        self.lifestyles = []
+
         # tabs[0] is personal info tab
         # setup name entry to work with this variable
         app_data.background_tab.tabs[0].name_box.config(textvariable=self.name)
