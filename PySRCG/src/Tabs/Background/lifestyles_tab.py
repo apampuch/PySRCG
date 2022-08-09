@@ -149,20 +149,39 @@ class LifestylesTab(NotebookTab, ABC):
         self.on_select_listbox(None)
 
     def delete_lifestyle(self):
-        if len(self.character.lifestyles) == 0:
-            self.simple_info.grid_forget()
-            self.advanced_info.grid_forget()
-        else:
-            # TODO change the grid based on if the next one is simple or advanced
-            pass
+        if len(self.character.lifestyles) > 0:
+            index = self.lifestyles_listbox.curselection()[0]
+            del self.character.lifestyles[index]
+            self.lifestyles_listbox.delete(index)
+
+            if len(self.character.lifestyles) == 0:
+                self.simple_info.grid_forget()
+                self.advanced_info.grid_forget()
+            else:
+                new_index = min(index, len(self.character.lifestyles) - 1)
+                self.lifestyles_listbox.selection_clear(0, END)
+                self.lifestyles_listbox.selection_set(new_index)
+
+                # change the grid based on if the next one is simple or advanced
+                self.on_select_listbox(None)
 
     def on_simple_selected(self):
         if len(self.character.lifestyles) > 0:
-            self.show_simple_info()
+            index = self.lifestyles_listbox.curselection()[0]
+            selected = self.character.lifestyles[index]
+            if type(selected) is AdvancedLifestyle:
+                self.character.lifestyles[index] = SimpleLifestyle.fromAdvanced(selected)
+
+                self.show_simple_info()
 
     def on_advanced_selected(self):
         if len(self.character.lifestyles) > 0:
-            self.show_advanced_info()
+            index = self.lifestyles_listbox.curselection()[0]
+            selected = self.character.lifestyles[index]
+            if type(selected) is SimpleLifestyle:
+                self.character.lifestyles[index] = AdvancedLifestyle.fromSimple(selected)
+
+                self.show_advanced_info()
 
     def show_simple_info(self):
         self.advanced_info.grid_forget()
@@ -173,6 +192,7 @@ class LifestylesTab(NotebookTab, ABC):
         self.advanced_info.grid(column=1, row=1, sticky=EW)
 
     def on_select_listbox(self, event):
+        # load basic data
         lifestyle = self.character.lifestyles[self.lifestyles_listbox.curselection()[0]]
         self.name_var.set(lifestyle.name)
         self.residence_entry.delete(0.0, END)
@@ -184,6 +204,9 @@ class LifestylesTab(NotebookTab, ABC):
         self.description_entry.insert(END, lifestyle.description)
         self.notes_entry.delete(0.0, END)
         self.notes_entry.insert(END, lifestyle.notes)
+
+        # load cost data
+        self.setup_type.set(type(lifestyle).type)
 
     def reload_data(self):
         pass

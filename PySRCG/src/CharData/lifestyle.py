@@ -2,6 +2,8 @@ from abc import ABC, abstractmethod
 
 
 class Lifestyle(ABC):
+    type = "INVALID"
+
     def __init__(self, name, residence, permanent, month, year, LTG, description, notes):
         self.name = name
         self.residence = residence
@@ -26,6 +28,15 @@ class SimpleLifestyle(Lifestyle, ABC):
         "High (¥10000)": 10000,
         "Luxury (¥100000)": 100000
     }
+    type = "Simple"
+
+    @staticmethod
+    def fromAdvanced(a):
+        """
+        @type a: AdvancedLifestyle
+        """
+        return SimpleLifestyle(a.name, a.residence, a.permanent, a.month, a.year,
+                               a.LTG, a.description, a.notes, "Street (Free)")
 
     def __init__(self, name, residence, permanent, month, year, LTG, description, notes, tier):
         super().__init__(name, residence, permanent, month, year, LTG, description, notes)
@@ -38,6 +49,16 @@ class SimpleLifestyle(Lifestyle, ABC):
 
 
 class AdvancedLifestyle(Lifestyle):
+    type = "Advanced"
+
+    @staticmethod
+    def fromSimple(s):
+        """
+        @type s: SimpleLifestyle
+        """
+        return AdvancedLifestyle(s.name, s.residence, s.permanent, s.month, s.year,
+                               s.LTG, s.description, s.notes, 0, 0, 0, 0, 0, 0)
+
     # noinspection PyPep8Naming
     def __init__(self, name, residence, permanent, month, year, LTG, description, notes,
                  area, comforts, entertainment, furnishings, security, space):
