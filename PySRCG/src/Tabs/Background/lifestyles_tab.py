@@ -43,7 +43,7 @@ class LifestylesTab(NotebookTab, ABC):
 
         # simple lifestyle info
         self.simple_info = SimpleLifestyleInfo(self.lifestyle_data_frame)
-        self.advanced_info = SimpleLifestyleInfo(self.lifestyle_data_frame)
+        self.advanced_info = AdvancedLifestyleInfo(self.lifestyle_data_frame)
 
         self.general_info_frame = Frame(self)
         # name
@@ -136,7 +136,7 @@ class LifestylesTab(NotebookTab, ABC):
             LTG="",
             description="",
             notes="",
-            tier="Street (Free)")
+            tier=0)
         self.character.lifestyles.append(new_lifestyle)
         self.lifestyles_listbox.insert(END, new_lifestyle.name)
         self.lifestyles_listbox.selection_clear(0, END)
@@ -174,6 +174,8 @@ class LifestylesTab(NotebookTab, ABC):
 
                 self.show_simple_info()
 
+            self.on_select_listbox(None)
+
     def on_advanced_selected(self):
         if len(self.character.lifestyles) > 0:
             index = self.lifestyles_listbox.curselection()[0]
@@ -182,6 +184,8 @@ class LifestylesTab(NotebookTab, ABC):
                 self.character.lifestyles[index] = AdvancedLifestyle.fromSimple(selected)
 
                 self.show_advanced_info()
+
+            self.on_select_listbox(None)
 
     def show_simple_info(self):
         self.advanced_info.grid_forget()
@@ -206,7 +210,23 @@ class LifestylesTab(NotebookTab, ABC):
         self.notes_entry.insert(END, lifestyle.notes)
 
         # load cost data
-        self.setup_type.set(type(lifestyle).type)
+        lifestyle_type = type(lifestyle)
+        self.setup_type.set(lifestyle_type.type)
+
+        # set combobox values based on tiers
+        if lifestyle_type is SimpleLifestyle:
+            lifestyle: SimpleLifestyle
+            self.simple_info.selected_tier.set(SimpleLifestyleInfo.tiers[lifestyle.tier])
+        elif lifestyle_type is AdvancedLifestyle:
+            lifestyle: AdvancedLifestyle
+            self.advanced_info.selected_area.set(AdvancedLifestyleInfo.area_tiers[lifestyle.area])
+            self.advanced_info.selected_comforts.set(AdvancedLifestyleInfo.other_tiers[lifestyle.comforts])
+            self.advanced_info.selected_entertainment.set(AdvancedLifestyleInfo.other_tiers[lifestyle.entertainment])
+            self.advanced_info.selected_furnishings.set(AdvancedLifestyleInfo.other_tiers[lifestyle.furnishings])
+            self.advanced_info.selected_security.set(AdvancedLifestyleInfo.other_tiers[lifestyle.security])
+            self.advanced_info.selected_space.set(AdvancedLifestyleInfo.other_tiers[lifestyle.space])
+        else:
+            raise TypeError("Selected lifestyle is invalid type!")
 
     def reload_data(self):
         pass
@@ -246,8 +266,6 @@ class LifestylesTab(NotebookTab, ABC):
             prop = get_dict[text_entry]
             setattr(self.character.lifestyles[index], prop, text_entry.get(0.0, END))
 
-            #print(getattr(self.character.lifestyles[index], prop))
-
         text_entry.edit_modified(False)
 
     def on_name_updated(self):
@@ -266,76 +284,80 @@ class LifestylesTab(NotebookTab, ABC):
             index = sel[0]
             self.character.lifestyles[index].LTG = self.LTG_var.get()
 
+    def on_combobox_changed(self, box_var, field):
+        sel = self.lifestyles_listbox.curselection()
+        if len(self.character.lifestyles) > 0 and len(sel) > 0:
+            index = sel[0]
+
+            # get integer from string
+            # this is less retarded than using a dict for reasons
+            if field == "tier":
+                val = SimpleLifestyleInfo.tiers.index(box_var.get())
+            elif field == "area":
+                val = AdvancedLifestyleInfo.area_tiers.index(box_var.get())
+            else:
+                val = AdvancedLifestyleInfo.other_tiers.index(box_var.get())
+
+            setattr(self.character.lifestyles[index], field, val)
+
 
 class SimpleLifestyleInfo(LabelFrame):
-    tiers = {
-        "Street (Free)": 0,
-        "Squatter (¥100)": 100,
-        "Low (¥1000)": 1000,
-        "Middle (¥5000)": 5000,
-        "High (¥10000)": 10000,
-        "Luxury (¥100000)": 100000
-    }
+    tiers = ("Street (Free)", "Squatter (¥100)", "Low (¥1000)", "Middle (¥5000)", "High (¥10000)", "Luxury (¥100000)")
 
     def __init__(self, parent):
         super().__init__(parent, text="Cost")
         self.parent = parent
 
         self.selected_tier = StringVar()
+        self.selected_tier.trace("w", lambda x, y, z: parent.master.on_combobox_changed(self.selected_tier, "tier"))
         self.tier_selector = ttk.Combobox(self, textvariable=self.selected_tier, state="readonly",
-                                          values=tuple(SimpleLifestyleInfo.tiers.keys()))
+                                          values=SimpleLifestyleInfo.tiers)
 
         self.tier_selector.grid(column=0, row=0, padx=5, pady=5)
 
 
 class AdvancedLifestyleInfo(LabelFrame):
-    area_tiers = {
-        "Z—Street-equivalent (-1 points)": -1,
-        "E—Street-equivalent (0 points)": 0,
-        "D—Squatter-equivalent (1 points)": 1,
-        "C—Low-equivalent (2 points)": 2,
-        "B—Middle-equivalent (3 points)": 3,
-        "A—High-equivalent (4 points)": 4,
-        "AA—Luxury-equivalent (5 points)": 5,
-        "AAA—Luxury-equivalent (6 points)": 6,
-    }
+    area_tiers = ("Z—Street-equivalent (-1 points)", "E—Street-equivalent (0 points)",
+                  "D—Squatter-equivalent (1 points)", "C—Low-equivalent (2 points)",
+                  "B—Middle-equivalent (3 points)", "A—High-equivalent (4 points)",
+                  "AA—Luxury-equivalent (5 points)", "AAA—Luxury-equivalent (6 points)")
 
-    other_tiers = {
-        "Street-equivalent (0 points)": 0,
-        "Squatter-equivalent (1 points)": 1,
-        "Low-equivalent (2 points)": 2,
-        "Middle-equivalent (3 points)": 3,
-        "High-equivalent (4 points)": 4,
-        "Luxury-equivalent (5 points)": 5,
-    }
+    other_tiers = ("Street-equivalent (0 points)", "Squatter-equivalent (1 points)", "Low-equivalent (2 points)",
+                   "Middle-equivalent (3 points)", "High-equivalent (4 points)", "Luxury-equivalent (5 points)")
 
     def __init__(self, parent):
         super().__init__(parent, text="Advanced")
         self.parent = parent
 
         self.selected_area = StringVar()
+        self.selected_area.trace("w", lambda x, y, z: parent.master.on_combobox_changed(self.selected_area, "area"))
         self.area_selector = ttk.Combobox(self, textvariable=self.selected_area, state="readonly",
-                                          values=tuple(AdvancedLifestyleInfo.area_tiers.keys()))
+                                          values=AdvancedLifestyleInfo.area_tiers)
 
         self.selected_comforts = StringVar()
+        self.selected_comforts.trace("w", lambda x, y, z: parent.master.on_combobox_changed(self.selected_comforts, "comforts"))
         self.comforts_selector = ttk.Combobox(self, textvariable=self.selected_comforts, state="readonly",
-                                              values=tuple(AdvancedLifestyleInfo.other_tiers.keys()))
+                                              values=AdvancedLifestyleInfo.other_tiers)
 
         self.selected_entertainment = StringVar()
+        self.selected_entertainment.trace("w", lambda x, y, z: parent.master.on_combobox_changed(self.selected_entertainment, "entertainment"))
         self.entertainment_selector = ttk.Combobox(self, textvariable=self.selected_entertainment, state="readonly",
-                                                   values=tuple(AdvancedLifestyleInfo.other_tiers.keys()))
+                                                   values=AdvancedLifestyleInfo.other_tiers)
 
         self.selected_furnishings = StringVar()
+        self.selected_furnishings.trace("w", lambda x, y, z: parent.master.on_combobox_changed(self.selected_furnishings, "furnishings"))
         self.furnishings_selector = ttk.Combobox(self, textvariable=self.selected_furnishings, state="readonly",
-                                                 values=tuple(AdvancedLifestyleInfo.other_tiers.keys()))
+                                                 values=AdvancedLifestyleInfo.other_tiers)
 
         self.selected_security = StringVar()
+        self.selected_security.trace("w", lambda x, y, z: parent.master.on_combobox_changed(self.selected_security, "security"))
         self.security_selector = ttk.Combobox(self, textvariable=self.selected_security, state="readonly",
-                                              values=tuple(AdvancedLifestyleInfo.other_tiers.keys()))
+                                              values=AdvancedLifestyleInfo.other_tiers)
 
         self.selected_space = StringVar()
+        self.selected_space.trace("w", lambda x, y, z: parent.master.on_combobox_changed(self.selected_space, "space"))
         self.space_selector = ttk.Combobox(self, textvariable=self.selected_space, state="readonly",
-                                           values=tuple(AdvancedLifestyleInfo.other_tiers.keys()))
+                                           values=AdvancedLifestyleInfo.other_tiers)
 
         Label(self, text="Area").grid(column=0, row=0, padx=5, pady=5)
         Label(self, text="Comforts").grid(column=0, row=1, padx=5, pady=5)
@@ -350,7 +372,3 @@ class AdvancedLifestyleInfo(LabelFrame):
         self.furnishings_selector.grid(column=1, row=3, padx=5, pady=5)
         self.security_selector.grid(column=1, row=4, padx=5, pady=5)
         self.space_selector.grid(column=1, row=5, padx=5, pady=5)
-
-
-class AdvancedLifestyleTierSelector(LabelFrame):
-    pass

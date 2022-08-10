@@ -20,14 +20,8 @@ class Lifestyle(ABC):
 
 
 class SimpleLifestyle(Lifestyle, ABC):
-    level_cost_dict = {
-        "Street (Free)": 0,
-        "Squatter (¥100)": 100,
-        "Low (¥1000)": 1000,
-        "Middle (¥5000)": 5000,
-        "High (¥10000)": 10000,
-        "Luxury (¥100000)": 100000
-    }
+    tier: int
+    level_costs = (0, 100, 1000, 5000, 10000, 100000)
     type = "Simple"
 
     @staticmethod
@@ -35,29 +29,39 @@ class SimpleLifestyle(Lifestyle, ABC):
         """
         @type a: AdvancedLifestyle
         """
-        return SimpleLifestyle(a.name, a.residence, a.permanent, a.month, a.year,
-                               a.LTG, a.description, a.notes, "Street (Free)")
+        # find closest lifestyle
+        tier = -1
+        diff = 99999999999999999999999999999
+        for i in range(0, len(SimpleLifestyle.level_costs)):
+            new_diff = abs(a.cost() - SimpleLifestyle.level_costs[i])
+            if new_diff < diff:
+                tier = i
+                diff = new_diff
+
+        return SimpleLifestyle(a.name, a.residence, a.permanent, a.month, a.year, a.LTG, a.description, a.notes, tier)
 
     def __init__(self, name, residence, permanent, month, year, LTG, description, notes, tier):
         super().__init__(name, residence, permanent, month, year, LTG, description, notes)
-        if tier not in SimpleLifestyle.level_cost_dict:
+        if tier >= len(SimpleLifestyle.level_costs):
             raise ValueError(f"{tier} not a valid tier of lifestyle!")
         self.tier = tier
 
     def cost(self):
-        return SimpleLifestyle.level_cost_dict[self.tier]
+        return SimpleLifestyle.level_costs[self.tier]
 
 
 class AdvancedLifestyle(Lifestyle):
     type = "Advanced"
+    costs = [1, 15, 30, 45, 60, 70, 85, 100, 250, 400, 550, 700, 850, 1000, 1650, 2350, 3000, 3650, 4350, 5000, 5850,
+             6650, 7500, 8350, 9150, 10000, 25000, 40000, 55000, 70000, 85000, 100000, 125000, 150000]
 
     @staticmethod
     def fromSimple(s):
         """
         @type s: SimpleLifestyle
         """
-        return AdvancedLifestyle(s.name, s.residence, s.permanent, s.month, s.year,
-                               s.LTG, s.description, s.notes, 0, 0, 0, 0, 0, 0)
+        return AdvancedLifestyle(s.name, s.residence, s.permanent, s.month, s.year, s.LTG, s.description, s.notes,
+                                 s.tier, s.tier, s.tier, s.tier, s.tier, s.tier)
 
     # noinspection PyPep8Naming
     def __init__(self, name, residence, permanent, month, year, LTG, description, notes,
@@ -76,6 +80,5 @@ class AdvancedLifestyle(Lifestyle):
         self.hindrances = []
 
     def cost(self):
-        total = self.area + self.comforts + self.entertainment + self.furnishings + self.security + self.space + 1
-        total *= 15
-        return total
+        total = self.area + self.comforts + self.entertainment + self.furnishings + self.security + self.space - 1
+        return AdvancedLifestyle.costs[total]
