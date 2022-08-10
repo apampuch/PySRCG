@@ -16,7 +16,8 @@ class LifestylesTab(NotebookTab, ABC):
         # listbox for lifestyles + scrollbar
         self.list_and_scrollbar = Frame(self.list_frame)
         self.lifestyles_listbox = Listbox(self.list_and_scrollbar, selectmode=BROWSE, exportselection=False)
-        self.lifestyles_listbox_scroll = ttk.Scrollbar(self.list_and_scrollbar, orient=VERTICAL, command=self.lifestyles_listbox.yview)
+        self.lifestyles_listbox_scroll = ttk.Scrollbar(self.list_and_scrollbar, orient=VERTICAL,
+                                                       command=self.lifestyles_listbox.yview)
         self.lifestyles_listbox["yscrollcommand"] = self.lifestyles_listbox_scroll.set
         self.lifestyles_listbox.bind("<<ListboxSelect>>", self.on_select_listbox)
 
@@ -61,7 +62,8 @@ class LifestylesTab(NotebookTab, ABC):
         # month/year
         self.month_year_label = Label(self.general_info_frame, text="Month/Year")
         self.month_var = IntVar()
-        self.month_spin = Spinbox(self.general_info_frame, from_=1, to=12, wrap=True, width=2, textvariable=self.month_var)
+        self.month_spin = Spinbox(self.general_info_frame, from_=1, to=12, wrap=True, width=2,
+                                  textvariable=self.month_var)
         self.month_var.trace("w", lambda x, y, z: self.on_month_updated())
         self.year_var = IntVar()
         self.year_var.set(2050)
@@ -169,9 +171,10 @@ class LifestylesTab(NotebookTab, ABC):
         if len(self.character.lifestyles) > 0:
             index = self.lifestyles_listbox.curselection()[0]
             selected = self.character.lifestyles[index]
+
+            # switch to simple type
             if type(selected) is AdvancedLifestyle:
                 self.character.lifestyles[index] = SimpleLifestyle.fromAdvanced(selected)
-
                 self.show_simple_info()
 
             self.on_select_listbox(None)
@@ -180,9 +183,10 @@ class LifestylesTab(NotebookTab, ABC):
         if len(self.character.lifestyles) > 0:
             index = self.lifestyles_listbox.curselection()[0]
             selected = self.character.lifestyles[index]
+
+            # switch to advanced type
             if type(selected) is SimpleLifestyle:
                 self.character.lifestyles[index] = AdvancedLifestyle.fromSimple(selected)
-
                 self.show_advanced_info()
 
             self.on_select_listbox(None)
@@ -195,7 +199,8 @@ class LifestylesTab(NotebookTab, ABC):
         self.simple_info.grid_forget()
         self.advanced_info.grid(column=1, row=1, sticky=EW)
 
-    def on_select_listbox(self, event):
+    # noinspection PyUnusedLocal
+    def on_select_listbox(self, dummyvar):
         # load basic data
         lifestyle = self.character.lifestyles[self.lifestyles_listbox.curselection()[0]]
         self.name_var.set(lifestyle.name)
@@ -227,15 +232,6 @@ class LifestylesTab(NotebookTab, ABC):
             self.advanced_info.selected_space.set(AdvancedLifestyleInfo.other_tiers[lifestyle.space])
         else:
             raise TypeError("Selected lifestyle is invalid type!")
-
-    def reload_data(self):
-        pass
-
-    def on_switch(self):
-        pass
-
-    def load_character(self):
-        pass
 
     def on_month_updated(self):
         sel = self.lifestyles_listbox.curselection()
@@ -300,6 +296,15 @@ class LifestylesTab(NotebookTab, ABC):
 
             setattr(self.character.lifestyles[index], field, val)
 
+    def reload_data(self):
+        pass
+
+    def on_switch(self):
+        pass
+
+    def load_character(self):
+        pass
+
 
 class SimpleLifestyleInfo(LabelFrame):
     tiers = ("Street (Free)", "Squatter (¥100)", "Low (¥1000)", "Middle (¥5000)", "High (¥10000)", "Luxury (¥100000)")
@@ -335,27 +340,32 @@ class AdvancedLifestyleInfo(LabelFrame):
                                           values=AdvancedLifestyleInfo.area_tiers)
 
         self.selected_comforts = StringVar()
-        self.selected_comforts.trace("w", lambda x, y, z: parent.master.on_combobox_changed(self.selected_comforts, "comforts"))
+        self.selected_comforts.trace("w", lambda x, y, z: parent.master.on_combobox_changed(
+            self.selected_comforts, "comforts"))
         self.comforts_selector = ttk.Combobox(self, textvariable=self.selected_comforts, state="readonly",
                                               values=AdvancedLifestyleInfo.other_tiers)
 
         self.selected_entertainment = StringVar()
-        self.selected_entertainment.trace("w", lambda x, y, z: parent.master.on_combobox_changed(self.selected_entertainment, "entertainment"))
+        self.selected_entertainment.trace("w", lambda x, y, z: parent.master.on_combobox_changed(
+            self.selected_entertainment, "entertainment"))
         self.entertainment_selector = ttk.Combobox(self, textvariable=self.selected_entertainment, state="readonly",
                                                    values=AdvancedLifestyleInfo.other_tiers)
 
         self.selected_furnishings = StringVar()
-        self.selected_furnishings.trace("w", lambda x, y, z: parent.master.on_combobox_changed(self.selected_furnishings, "furnishings"))
+        self.selected_furnishings.trace("w", lambda x, y, z: parent.master.on_combobox_changed(
+            self.selected_furnishings, "furnishings"))
         self.furnishings_selector = ttk.Combobox(self, textvariable=self.selected_furnishings, state="readonly",
                                                  values=AdvancedLifestyleInfo.other_tiers)
 
         self.selected_security = StringVar()
-        self.selected_security.trace("w", lambda x, y, z: parent.master.on_combobox_changed(self.selected_security, "security"))
+        self.selected_security.trace("w", lambda x, y, z: parent.master.on_combobox_changed(
+            self.selected_security, "security"))
         self.security_selector = ttk.Combobox(self, textvariable=self.selected_security, state="readonly",
                                               values=AdvancedLifestyleInfo.other_tiers)
 
         self.selected_space = StringVar()
-        self.selected_space.trace("w", lambda x, y, z: parent.master.on_combobox_changed(self.selected_space, "space"))
+        self.selected_space.trace("w", lambda x, y, z: parent.master.on_combobox_changed(
+            self.selected_space, "space"))
         self.space_selector = ttk.Combobox(self, textvariable=self.selected_space, state="readonly",
                                            values=AdvancedLifestyleInfo.other_tiers)
 
