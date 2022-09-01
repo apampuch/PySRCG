@@ -5,7 +5,6 @@ from tkinter import ttk
 from src.CharData.lifestyle import *
 from src.Tabs.notebook_tab import NotebookTab
 
-
 class LifestylesTab(NotebookTab, ABC):
     def __init__(self, parent):
         super().__init__(parent)
@@ -296,6 +295,8 @@ class LifestylesTab(NotebookTab, ABC):
 
             setattr(self.character.lifestyles[index], field, val)
 
+            self.advanced_info.total_label.config(text=f"¥{self.character.lifestyles[index].cost()}")
+
     def reload_data(self):
         pass
 
@@ -369,6 +370,9 @@ class AdvancedLifestyleInfo(LabelFrame):
         self.space_selector = ttk.Combobox(self, textvariable=self.selected_space, state="readonly",
                                            values=AdvancedLifestyleInfo.other_tiers)
 
+        Label(self, text="Total").grid(column=0, row=6, padx=5, pady=5)
+        self.total_label = Label(self, text="¥0")
+
         Label(self, text="Area").grid(column=0, row=0, padx=5, pady=5)
         Label(self, text="Comforts").grid(column=0, row=1, padx=5, pady=5)
         Label(self, text="Entertainment").grid(column=0, row=2, padx=5, pady=5)
@@ -382,3 +386,4 @@ class AdvancedLifestyleInfo(LabelFrame):
         self.furnishings_selector.grid(column=1, row=3, padx=5, pady=5)
         self.security_selector.grid(column=1, row=4, padx=5, pady=5)
         self.space_selector.grid(column=1, row=5, padx=5, pady=5)
+        self.total_label.grid(column=1, row=6, padx=5, pady=5)

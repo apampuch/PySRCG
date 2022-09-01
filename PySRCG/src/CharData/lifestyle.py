@@ -52,7 +52,7 @@ class SimpleLifestyle(Lifestyle, ABC):
 
 class AdvancedLifestyle(Lifestyle):
     type = "Advanced"
-    costs = [1, 15, 30, 45, 60, 70, 85, 100, 250, 400, 550, 700, 850, 1000, 1650, 2350, 3000, 3650, 4350, 5000, 5850,
+    costs = [0, 15, 30, 45, 60, 70, 85, 100, 250, 400, 550, 700, 850, 1000, 1650, 2350, 3000, 3650, 4350, 5000, 5850,
              6650, 7500, 8350, 9150, 10000, 25000, 40000, 55000, 70000, 85000, 100000, 125000, 150000]
 
     @staticmethod
@@ -60,8 +60,12 @@ class AdvancedLifestyle(Lifestyle):
         """
         @type s: SimpleLifestyle
         """
+        area_tier = s.tier
+        if s.tier > 0:
+            area_tier += 1
+
         return AdvancedLifestyle(s.name, s.residence, s.permanent, s.month, s.year, s.LTG, s.description, s.notes,
-                                 s.tier, s.tier, s.tier, s.tier, s.tier, s.tier)
+                                 area_tier, s.tier, s.tier, s.tier, s.tier, s.tier)
 
     # noinspection PyPep8Naming
     def __init__(self, name, residence, permanent, month, year, LTG, description, notes,
@@ -80,5 +84,5 @@ class AdvancedLifestyle(Lifestyle):
         self.hindrances = []
 
     def cost(self):
-        total = self.area + self.comforts + self.entertainment + self.furnishings + self.security + self.space - 1
+        total = self.area + self.comforts + self.entertainment + self.furnishings + self.security + self.space
         return AdvancedLifestyle.costs[total]
