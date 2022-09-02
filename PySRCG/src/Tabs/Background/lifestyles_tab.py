@@ -5,6 +5,7 @@ from tkinter import ttk
 from src.CharData.lifestyle import *
 from src.Tabs.notebook_tab import NotebookTab
 
+
 class LifestylesTab(NotebookTab, ABC):
     def __init__(self, parent):
         super().__init__(parent)
@@ -217,10 +218,11 @@ class LifestylesTab(NotebookTab, ABC):
         lifestyle_type = type(lifestyle)
         self.setup_type.set(lifestyle_type.type)
 
-        # set combobox values based on tiers
+        # set combobox values based on tiers and show simple or advanced info
         if lifestyle_type is SimpleLifestyle:
             lifestyle: SimpleLifestyle
             self.simple_info.selected_tier.set(SimpleLifestyleInfo.tiers[lifestyle.tier])
+            self.show_simple_info()
         elif lifestyle_type is AdvancedLifestyle:
             lifestyle: AdvancedLifestyle
             self.advanced_info.selected_area.set(AdvancedLifestyleInfo.area_tiers[lifestyle.area])
@@ -229,6 +231,7 @@ class LifestylesTab(NotebookTab, ABC):
             self.advanced_info.selected_furnishings.set(AdvancedLifestyleInfo.other_tiers[lifestyle.furnishings])
             self.advanced_info.selected_security.set(AdvancedLifestyleInfo.other_tiers[lifestyle.security])
             self.advanced_info.selected_space.set(AdvancedLifestyleInfo.other_tiers[lifestyle.space])
+            self.show_advanced_info()
         else:
             raise TypeError("Selected lifestyle is invalid type!")
 
@@ -304,7 +307,10 @@ class LifestylesTab(NotebookTab, ABC):
         pass
 
     def load_character(self):
-        pass
+        self.lifestyles_listbox.delete(0, END)
+        lifestyle: Lifestyle
+        for lifestyle in self.character.lifestyles:
+            self.lifestyles_listbox.insert(END, lifestyle.name)
 
 
 class SimpleLifestyleInfo(LabelFrame):

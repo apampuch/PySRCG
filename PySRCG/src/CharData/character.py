@@ -56,5 +56,6 @@ class Character(object):
             "birthplace": self.birthplace.get(),
             "birth_notes": self.birth_notes.get(),
             "notes": self.notes.get(),
-            "creator": self.creator.get()
+            "creator": self.creator.get(),
+            "lifestyles": list(map(lambda x: x.serialize(), self.lifestyles))
         }

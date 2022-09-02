@@ -4,6 +4,7 @@ import os.path
 import tempfile
 
 from src.CharData.edge_flaw import EdgeFlaw
+from src.CharData.lifestyle import SimpleLifestyle, AdvancedLifestyle
 from src.CharData.wireless_accesory import WirelessAccessory
 from src.CharData.firearm_accessory import FirearmAccessory
 from src.CharData.vehicle_accessory import VehicleAccessory
@@ -132,6 +133,18 @@ def load(tabs):
             new_character.statblock.gen_mode = gen_mode_dict[gen_mode_key](character_dict["statblock"]["gen_mode"]["data"], all_races[race_str])
 
             # convert dicts to item objects and add to inventory
+            for lifestyle in character_dict["lifestyles"]:
+                lifestyle_type = lifestyle["type"]
+                del lifestyle["type"]
+                if lifestyle_type == "Simple":
+                    lifestyle_obj = SimpleLifestyle(**lifestyle)
+                elif lifestyle_type == "Advanced":
+                    lifestyle_obj = AdvancedLifestyle(**lifestyle)
+                else:
+                    raise ValueError('Lifestyle type must be "Simple" or "Advanced"!')
+
+                new_character.lifestyles.append(lifestyle_obj)
+
             for currency in character_dict["statblock"]["currencies"]:
                 currency_obj = Currency(**currency)
                 new_character.statblock.currencies.append(currency_obj)

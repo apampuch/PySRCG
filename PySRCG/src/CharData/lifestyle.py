@@ -49,6 +49,11 @@ class SimpleLifestyle(Lifestyle, ABC):
     def cost(self):
         return SimpleLifestyle.level_costs[self.tier]
 
+    def serialize(self):
+        ret = self.__dict__
+        ret["type"] = SimpleLifestyle.type
+        return ret
+
 
 class AdvancedLifestyle(Lifestyle):
     type = "Advanced"
@@ -69,9 +74,14 @@ class AdvancedLifestyle(Lifestyle):
 
     # noinspection PyPep8Naming
     def __init__(self, name, residence, permanent, month, year, LTG, description, notes,
-                 area, comforts, entertainment, furnishings, security, space):
+                 area, comforts, entertainment, furnishings, security, space, perks=None, hindrances=None):
         super().__init__(name, residence, permanent, month, year, LTG, description, notes)
         # define all the tiers for shit and lists for all the perks and hindrances
+
+        if perks is None:
+            perks = []
+        if hindrances is None:
+            hindrances = []
 
         self.area = area
         self.comforts = comforts
@@ -80,9 +90,14 @@ class AdvancedLifestyle(Lifestyle):
         self.security = security
         self.space = space
 
-        self.perks = []
-        self.hindrances = []
+        self.perks = perks
+        self.hindrances = hindrances
 
     def cost(self):
         total = self.area + self.comforts + self.entertainment + self.furnishings + self.security + self.space
         return AdvancedLifestyle.costs[total]
+
+    def serialize(self):
+        ret = self.__dict__
+        ret["type"] = AdvancedLifestyle.type
+        return ret
