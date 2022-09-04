@@ -4,74 +4,365 @@
   "schema_version": "1.3",
   "book": "Sprawl Survival Guide (Fanpro 10667)",
   "Lifestyle Edges/Flaws": {
-    "Astral Repellent": 0.2,
-    "Bribed Security": 0.15,
-    "Concerned Neighbors": 0.05,
-    "Defensive Setup": 0.1,
-    "Easygoing Landlord": 0.05,
-    "Escape Tunnel": 0.1,
-    "Good Insulation": 0.05,
-    "Good Reputation": 0.05,
-    "Hasty Access": 0.05,
-    "Helpful Neighbors": 0.05,
-    "Inconspicuous Housing": 0.1,
-    "Insurance": 0.1,
-    "Manaline/Power Site in the Basement": 0.2,
-    "Manaline/Power Site in the Basement (awakened)": 0.3,
-    "Masterful Engineering": 0.05,
-    "Motivated Service": 0.1,
-    "No More Neighbors": 0.15,
-    "One Step Away From Everything": 0.05,
-    "Pest Repellent": 0.05,
-    "Privacy Screen": 0.1,
-    "Quiet Neighborhood": 0.15,
-    "Reliable Utilities": 0.1,
-    "Roommate from Heaven": 0.1,
-    "Terrific View": 0.05,
-    "Vigilant Security": 0.15,
-    "Watertight": 0.05,
-    "Ambush Friendly": -0.1,
-    "Annoying Neighbors": -0.05,
-    "Astral Magnet": -0.2,
-    "Background Count": -0.2,
-    "Background Count (awakened)": -0.3,
-    "Bad Insulation": -0.05,
-    "Bad Reputation": -0.05,
-    "Cacophonous Neighborhood": -0.05,
-    "Crashpad": -0.1,
-    "Cursed Amenities": -0.1,
-    "Difficult Access": -0.05,
-    "Disgruntled Service": -0.1,
-    "Disgusting Neighborhood": -0.05,
-    "Gnomes Under the Floorboards (level 1)": -0.1,
-    "Gnomes Under the Floorboards (level 2)": -0.2,
-    "Haunted (level 1)": -0.1,
-    "Haunted (level 2)": -0.2,
-    "Horrible View": -0.05,
-    "Inattentive Security": -0.15,
-    "Infestation (level 1)": -0.1,
-    "Infestation (level 2)": -0.2,
-    "Intolerant Neighbors": -0.05,
-    "Living by Committee": -0.1,
-    "Living with Parents": -0.25,
-    "Mall Leftovers": -0.05,
-    "Middle of Nowhere": -0.05,
-    "No Hazard Alarm": -0.05,
-    "No Privacy (level 1)": -0.05,
-    "No Privacy (level 2)": -0.1,
-    "No Privacy (level 3)": -0.15,
-    "Patchwork Engineering": -0.05,
-    "Portal in the Closet (level 1)": -0.05,
-    "Portal in the Closet (level 2)": -0.1,
-    "Portal in the Closet (level 3)": -0.15,
-    "Portal in the Closet (level 4)": -0.2,
-    "Roommate from Hell": -0.05,
-    "Rough Neighborhood": -0.15,
-    "This Isn't Sam's Pizza": -0.05,
-    "Trigger-Happy Landlord": -0.05,
-    "Underpaid Security": -0.15,
-    "Unreliable Security": -0.05,
-    "Victory Gardens": -0.2,
-    "Waterlogged": -0.05
+    "Astral Repellent": {
+      "cost": 0.2,
+      "multiple": false,
+      "page": 137
+    },
+    "Bribed Security": {
+      "cost": 0.15,
+      "multiple": false,
+      "page": 137
+    },
+    "Concerned Neighbors": {
+      "cost": 0.05,
+      "multiple": false,
+      "page": 137
+    },
+    "Defensive Setup": {
+      "cost": 0.1,
+      "multiple": false,
+      "page": 137
+    },
+    "Easygoing Landlord": {
+      "cost": 0.05,
+      "multiple": false,
+      "page": 137
+    },
+    "Escape Tunnel": {
+      "cost": 0.1,
+      "multiple": false,
+      "page": 138
+    },
+    "Good Insulation": {
+      "cost": 0.05,
+      "multiple": false,
+      "page": 138
+    },
+    "Good Reputation": {
+      "cost": 0.05,
+      "multiple": false,
+      "page": 138
+    },
+    "Hasty Access": {
+      "cost": 0.05,
+      "multiple": false,
+      "page": 138
+    },
+    "Helpful Neighbors": {
+      "cost": 0.05,
+      "multiple": true,
+      "page": 138
+    },
+    "Inconspicuous Housing": {
+      "cost": 0.1,
+      "multiple": false,
+      "page": 138
+    },
+    "Insurance": {
+      "cost": 0.1,
+      "multiple": false,
+      "page": 138
+    },
+    "Insurance Price Increase": {
+      "cost": 0.05,
+      "multiple": true,
+      "page": 138
+    },
+    "Manaline/Power Site in the Basement": {
+      "cost": 0.2,
+      "multiple": false,
+      "page": 138
+    },
+    "Manaline/Power Site in the Basement (awakened)": {
+      "cost": 0.3,
+      "multiple": false,
+      "page": 138
+    },
+    "Masterful Engineering": {
+      "cost": 0.05,
+      "multiple": false,
+      "page": 139
+    },
+    "Motivated Service": {
+      "cost": 0.1,
+      "multiple": false,
+      "page": 139
+    },
+    "No More Neighbors": {
+      "cost": 0.15,
+      "multiple": false,
+      "page": 139
+    },
+    "One Step Away From Everything": {
+      "cost": 0.05,
+      "multiple": false,
+      "page": 139
+    },
+    "Pest Repellent": {
+      "cost": 0.05,
+      "multiple": false,
+      "page": 139
+    },
+    "Privacy Screen (level 1)": {
+      "cost": 0.1,
+      "multiple": false,
+      "page": 139
+    },
+    "Privacy Screen (level 2)": {
+      "cost": 0.2,
+      "multiple": false,
+      "page": 139
+    },
+    "Privacy Screen (level 3)": {
+      "cost": 0.3,
+      "multiple": false,
+      "page": 139
+    },
+    "Quiet Neighborhood": {
+      "cost": 0.15,
+      "multiple": false,
+      "page": 140
+    },
+    "Reliable Utilities": {
+      "cost": 0.1,
+      "multiple": false,
+      "page": 140
+    },
+    "Roommate from Heaven": {
+      "cost": 0.1,
+      "multiple": true,
+      "page": 140
+    },
+    "Terrific View": {
+      "cost": 0.05,
+      "multiple": false,
+      "page": 140
+    },
+    "Vigilant Security": {
+      "cost": 0.15,
+      "multiple": false,
+      "page": 140
+    },
+    "Watertight": {
+      "cost": 0.05,
+      "multiple": false,
+      "page": 140
+    },
+    "Ambush Friendly": {
+      "cost": -0.1,
+      "multiple": false,
+      "page": 140
+    },
+    "Annoying Neighbors": {
+      "cost": -0.05,
+      "multiple": true,
+      "page": 140
+    },
+    "Astral Magnet": {
+      "cost": -0.2,
+      "multiple": false,
+      "page": 140
+    },
+    "Background Count": {
+      "cost": -0.2,
+      "multiple": false,
+      "page": 140
+    },
+    "Background Count (awakened)": {
+      "cost": -0.3,
+      "multiple": false,
+      "page": 140
+    },
+    "Bad Insulation": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 140
+    },
+    "Bad Reputation": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 140
+    },
+    "Cacophonous Neighborhood": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 140
+    },
+    "Crashpad": {
+      "cost": -0.1,
+      "multiple": false,
+      "page": 141
+    },
+    "Cursed Amenities": {
+      "cost": -0.1,
+      "multiple": false,
+      "page": 141
+    },
+    "Difficult Access": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 141
+    },
+    "Disgruntled Service": {
+      "cost": -0.1,
+      "multiple": false,
+      "page": 141
+    },
+    "Disgusting Neighborhood": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 141
+    },
+    "Gnomes Under the Floorboards (level 1)": {
+      "cost": -0.1,
+      "multiple": false,
+      "page": 141
+    },
+    "Gnomes Under the Floorboards (level 2)": {
+      "cost": -0.2,
+      "multiple": false,
+      "page": 141
+    },
+    "Haunted (level 1)": {
+      "cost": -0.1,
+      "multiple": false,
+      "page": 141
+    },
+    "Haunted (level 2)": {
+      "cost": -0.2,
+      "multiple": false,
+      "page": 141
+    },
+    "Horrible View": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 141
+    },
+    "Inattentive Security": {
+      "cost": -0.15,
+      "multiple": false,
+      "page": 141
+    },
+    "Infestation (level 1)": {
+      "cost": -0.1,
+      "multiple": false,
+      "page": 141
+    },
+    "Infestation (level 2)": {
+      "cost": -0.2,
+      "multiple": false,
+      "page": 141
+    },
+    "Intolerant Neighbors": {
+      "cost": -0.05,
+      "multiple": true,
+      "page": 141
+    },
+    "Living by Committee": {
+      "cost": -0.1,
+      "multiple": false,
+      "page": 141
+    },
+    "Living with Parents": {
+      "cost": -0.25,
+      "multiple": false,
+      "page": 142
+    },
+    "Mall Leftovers": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 142
+    },
+    "Middle of Nowhere": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 142
+    },
+    "No Hazard Alarm": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 142
+    },
+    "No Privacy (level 1)": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 142
+    },
+    "No Privacy (level 2)": {
+      "cost": -0.1,
+      "multiple": false,
+      "page": 142
+    },
+    "No Privacy (level 3)": {
+      "cost": -0.15,
+      "multiple": false,
+      "page": 142
+    },
+    "Patchwork Engineering": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 143
+    },
+    "Portal in the Closet (level 1)": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 143
+    },
+    "Portal in the Closet (level 2)": {
+      "cost": -0.1,
+      "multiple": false,
+      "page": 143
+    },
+    "Portal in the Closet (level 3)": {
+      "cost": -0.15,
+      "multiple": false,
+      "page": 143
+    },
+    "Portal in the Closet (level 4)": {
+      "cost": -0.2,
+      "multiple": false,
+      "page": 143
+    },
+    "Roommate from Hell": {
+      "cost": -0.05,
+      "multiple": true,
+      "page": 143
+    },
+    "Rough Neighborhood": {
+      "cost": -0.15,
+      "multiple": false,
+      "page": 143
+    },
+    "This Isn't Sam's Pizza": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 143
+    },
+    "Trigger-Happy Landlord": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 143
+    },
+    "Underpaid Security": {
+      "cost": -0.15,
+      "multiple": false,
+      "page": 143
+    },
+    "Unreliable Security": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 143
+    },
+    "Victory Gardens": {
+      "cost": -0.2,
+      "multiple": false,
+      "page": 143
+    },
+    "Waterlogged": {
+      "cost": -0.05,
+      "multiple": false,
+      "page": 143
+    }
   }
 }

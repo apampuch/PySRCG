@@ -1,4 +1,5 @@
 from abc import ABC
+from copy import copy
 from tkinter import *
 from tkinter import ttk
 
@@ -232,6 +233,9 @@ class LifestylesTab(NotebookTab, ABC):
             self.advanced_info.selected_security.set(AdvancedLifestyleInfo.other_tiers[lifestyle.security])
             self.advanced_info.selected_space.set(AdvancedLifestyleInfo.other_tiers[lifestyle.space])
             self.show_advanced_info()
+            total = lifestyle.multiplier()
+            total_str = "{0:.2f}".format(total)
+            self.advanced_info.multiplier_label.config(text=total_str)
         else:
             raise TypeError("Selected lifestyle is invalid type!")
 
@@ -298,7 +302,8 @@ class LifestylesTab(NotebookTab, ABC):
 
             setattr(self.character.lifestyles[index], field, val)
 
-            self.advanced_info.total_label.config(text=f"¥{self.character.lifestyles[index].cost()}")
+            self.advanced_info.subtotal_label.config(text=f"¥{self.character.lifestyles[index].cost(subtotal=True)}")
+            self.advanced_info.total_label.config(text=f"¥{int(self.character.lifestyles[index].cost())}")
 
     def reload_data(self):
         pass
@@ -376,7 +381,14 @@ class AdvancedLifestyleInfo(LabelFrame):
         self.space_selector = ttk.Combobox(self, textvariable=self.selected_space, state="readonly",
                                            values=AdvancedLifestyleInfo.other_tiers)
 
-        Label(self, text="Total").grid(column=0, row=6, padx=5, pady=5)
+        Label(self, text="Subtotal").grid(column=0, row=6, padx=5, pady=5)
+        self.subtotal_label = Label(self, text="¥0")
+
+        self.perk_hindrance_button = Button(self, text="Perks/Hindrances", command=self.show_perks_hindrances)
+
+        Label(self, text="Multiplier").grid(column=0, row=8, padx=5, pady=5)
+        self.multiplier_label = Label(self, text="1.00")
+        Label(self, text="Total").grid(column=0, row=9, padx=5, pady=5)
         self.total_label = Label(self, text="¥0")
 
         Label(self, text="Area").grid(column=0, row=0, padx=5, pady=5)
@@ -392,4 +404,114 @@ class AdvancedLifestyleInfo(LabelFrame):
         self.furnishings_selector.grid(column=1, row=3, padx=5, pady=5)
         self.security_selector.grid(column=1, row=4, padx=5, pady=5)
         self.space_selector.grid(column=1, row=5, padx=5, pady=5)
-        self.total_label.grid(column=1, row=6, padx=5, pady=5)
+        self.subtotal_label.grid(column=1, row=6, padx=5, pady=5)
+
+        self.perk_hindrance_button.grid(column=1, row=7, padx=5, pady=5)
+
+        self.multiplier_label.grid(column=1, row=8, padx=5, pady=5)
+        self.total_label.grid(column=1, row=9, padx=5, pady=5)
+
+    def show_perks_hindrances(self):
+        selected_index = self.parent.master.lifestyles_listbox.curselection()[0]
+        selected_lifestyle = self.parent.master.character.lifestyles[selected_index]
+        temp_window = PerksHindrancesWindow(selected_lifestyle, self.parent.master.parent.game_data)
+        temp_window.grab_set()
+        temp_window.resizable(False, False)
+        temp_window.geometry('400x300')
+
+        self.wait_window(temp_window)
+
+        # set the multiplier
+        total = selected_lifestyle.multiplier()
+        total_str = "{0:.2f}".format(total)
+        self.multiplier_label.config(text=total_str)
+
+        # set the totals
+        self.parent.master.advanced_info.total_label.config(text=f"¥{int(selected_lifestyle.cost())}")
+
+
+class PerksHindrancesWindow(Toplevel):
+    def __init__(self, selected, game_data):
+        super().__init__()
+
+        self.selected_lifestyle: AdvancedLifestyle
+        self.selected_lifestyle = selected
+
+        self.perk_hindrance_library = []
+        self.library_label = Label(self, text="Library")
+        self.perk_hindrance_library_listbox = Listbox(self, width=30)
+
+        self.selected_label = Label(self, text="Current Perks/Hindrances")
+        self.selected_perks_hindrances = Listbox(self, width=30)
+
+        self.buy_button = Button(self, text="Buy", command=self.on_buy_click)
+        self.sell_button = Button(self, text="Sell", command=self.on_sell_click)
+
+        self.multiplier_label = Label(self, text="Multiplier: X.XX")
+
+        # fill the listboxes
+        for item in game_data["Lifestyle Edges/Flaws"]:
+            self.insert_into_library(item, game_data)
+
+        for item in self.selected_lifestyle.perks_hindrances:
+            self.insert_into_lifestyle(item)
+
+        # grids
+        self.library_label.grid(column=0, row=0)
+        self.selected_label.grid(column=1, row=0)
+
+        self.perk_hindrance_library_listbox.grid(column=0, row=1)
+        self.selected_perks_hindrances.grid(column=1, row=1)
+
+        self.buy_button.grid(column=0, row=2)
+        self.sell_button.grid(column=1, row=2)
+
+        self.multiplier_label.grid(column=0, row=3)
+
+        self.calculate_total()
+
+    def insert_into_library(self, item, game_data):
+        """Inserts the item into the library."""
+        text = f'{item} ({game_data["Lifestyle Edges/Flaws"][item]["cost"]})'
+        self.perk_hindrance_library_listbox.insert(END, text)
+
+        new = LifestylePerkHindrance(item, **game_data["Lifestyle Edges/Flaws"][item])
+        self.perk_hindrance_library.append(new)
+
+    def insert_into_lifestyle(self, ls_obj):
+        """Inserts the item into the selected lifestyle."""
+        text = f'{ls_obj.name} ({ls_obj.cost})'
+        self.selected_perks_hindrances.insert(END, text)
+
+    def calculate_total(self):
+        total = self.selected_lifestyle.multiplier()
+        total_str = "{0:.2f}".format(total)
+        self.multiplier_label.config(text=f"Multiplier: {total_str}")
+        return total
+
+    def on_buy_click(self):
+        if len(self.perk_hindrance_library_listbox.curselection()) > 0:
+            selected_index = self.perk_hindrance_library_listbox.curselection()[0]
+            ls_obj = self.perk_hindrance_library[selected_index]
+
+            # check for multiple
+            if not ls_obj.multiple:
+                ph_filter = filter(lambda x: x.multiple is False, self.selected_lifestyle.perks_hindrances)
+                ph_set = set(map(lambda x: x.name, ph_filter))
+                if ls_obj.name in ph_set:
+                    print("Already owned!")
+                    return
+            self.insert_into_lifestyle(ls_obj)
+
+            # add the actual object
+            new = copy(ls_obj)
+            self.selected_lifestyle.perks_hindrances.append(new)
+
+            self.calculate_total()
+
+    def on_sell_click(self):
+        if len(self.selected_perks_hindrances.curselection()) > 0:
+            selected_index = self.selected_perks_hindrances.curselection()[0]
+            del self.selected_lifestyle.perks_hindrances[selected_index]
+            self.selected_perks_hindrances.delete(selected_index)
+            self.calculate_total()

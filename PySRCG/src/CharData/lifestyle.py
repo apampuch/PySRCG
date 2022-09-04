@@ -46,7 +46,8 @@ class SimpleLifestyle(Lifestyle, ABC):
             raise ValueError(f"{tier} not a valid tier of lifestyle!")
         self.tier = tier
 
-    def cost(self):
+    def cost(self, subtotal=False):
+        # subtotal is a dummy var to make things easier
         return SimpleLifestyle.level_costs[self.tier]
 
     def serialize(self):
@@ -74,14 +75,16 @@ class AdvancedLifestyle(Lifestyle):
 
     # noinspection PyPep8Naming
     def __init__(self, name, residence, permanent, month, year, LTG, description, notes,
-                 area, comforts, entertainment, furnishings, security, space, perks=None, hindrances=None):
+                 area, comforts, entertainment, furnishings, security, space, perks_hindrances=None):
+        """
+
+        @type perks_hindrances: List[Dict]
+        """
         super().__init__(name, residence, permanent, month, year, LTG, description, notes)
         # define all the tiers for shit and lists for all the perks and hindrances
 
-        if perks is None:
-            perks = []
-        if hindrances is None:
-            hindrances = []
+        if perks_hindrances is None:
+            perks_hindrances = []
 
         self.area = area
         self.comforts = comforts
@@ -90,14 +93,37 @@ class AdvancedLifestyle(Lifestyle):
         self.security = security
         self.space = space
 
-        self.perks = perks
-        self.hindrances = hindrances
+        # make correct objects from dicts, this should only be done when loading
+        self.perks_hindrances = list(map(lambda x: LifestylePerkHindrance(**x), perks_hindrances))
 
-    def cost(self):
-        total = self.area + self.comforts + self.entertainment + self.furnishings + self.security + self.space
-        return AdvancedLifestyle.costs[total]
+    def cost(self, subtotal=False):
+        point_total = self.area + self.comforts + self.entertainment + self.furnishings + self.security + self.space
+        total = AdvancedLifestyle.costs[point_total]
+        # return without multiplier if subtotal is true
+        if subtotal:
+            return total
+        return total * self.multiplier()
+
+    def multiplier(self):
+        total = 1.0
+        for ph in self.perks_hindrances:
+            total += ph.cost
+
+        return total
 
     def serialize(self):
         ret = self.__dict__
         ret["type"] = AdvancedLifestyle.type
+        ret["perks_hindrances"] = list(map(lambda x: x.serialize(), ret["perks_hindrances"]))
         return ret
+
+
+class LifestylePerkHindrance:
+    def __init__(self, name, cost, multiple, page):
+        self.name = name
+        self.cost = cost
+        self.multiple = multiple
+        self.page = page
+
+    def serialize(self):
+        return self.__dict__
