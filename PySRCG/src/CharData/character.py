@@ -32,6 +32,7 @@ class Character(object):
         self.creator = StringVar()
 
         self.lifestyles = []
+        self.contacts = []
 
         # tabs[0] is personal info tab
         # setup name entry to work with this variable
@@ -57,5 +58,6 @@ class Character(object):
             "birth_notes": self.birth_notes.get(),
             "notes": self.notes.get(),
             "creator": self.creator.get(),
-            "lifestyles": list(map(lambda x: x.serialize(), self.lifestyles))
+            "lifestyles": list(map(lambda x: x.serialize(), self.lifestyles)),
+            "contacts": list(map(lambda x: x.serialize(), self.contacts))
         }
