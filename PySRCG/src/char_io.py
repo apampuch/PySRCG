@@ -3,6 +3,7 @@ import json
 import os.path
 import tempfile
 
+from src.CharData.contact import Contact
 from src.CharData.edge_flaw import EdgeFlaw
 from src.CharData.lifestyle import SimpleLifestyle, AdvancedLifestyle
 from src.CharData.wireless_accesory import WirelessAccessory
@@ -144,6 +145,10 @@ def load(tabs):
                     raise ValueError('Lifestyle type must be "Simple" or "Advanced"!')
 
                 new_character.lifestyles.append(lifestyle_obj)
+
+            for contact in character_dict["contacts"]:
+                contact_obj = Contact(**contact)
+                new_character.contacts.append(contact_obj)
 
             for currency in character_dict["statblock"]["currencies"]:
                 currency_obj = Currency(**currency)

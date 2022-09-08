@@ -203,4 +203,10 @@ class ContactsTab(NotebookTab, ABC):
         pass
 
     def load_character(self):
-        pass
+        self.contacts_listbox.delete(0, END)
+        for contact in self.character.contacts:
+            self.contacts_listbox.insert(END, contact.name)
+
+        # fix selection
+        self.contacts_listbox.selection_clear(0, END)
+        self.on_select_listbox(None)
