@@ -51,7 +51,8 @@ class ContactsTab(NotebookTab, ABC):
         self.affiliation_label = Label(self.contact_frame, text="Affiliation")
         self.affiliation_var = IntVar()
         self.affiliation_var.trace("w", lambda x, y, z: self.on_affiliation_updated())
-        self.affiliation_spinbox = Spinbox(self.contact_frame, textvariable=self.affiliation_var, from_=1, to=3, state=DISABLED, width=2)
+        self.affiliation_spinbox = Spinbox(self.contact_frame, textvariable=self.affiliation_var, from_=1, to=3,
+                                           state=DISABLED, width=2, readonlybackground="#ffffff")
 
         self.texts_frame = Frame(self.contact_frame)
 
@@ -101,7 +102,7 @@ class ContactsTab(NotebookTab, ABC):
             self.archetype_entry.config(state=NORMAL)
             self.location_entry.config(state=NORMAL)
             self.LTG_entry.config(state=NORMAL)
-            self.affiliation_spinbox.config(state=NORMAL)
+            self.affiliation_spinbox.config(state="readonly")
             self.description_text.config(state=NORMAL, bg="#ffffff")
             self.history_text.config(state=NORMAL, bg="#ffffff")
 
