@@ -39,6 +39,8 @@ gen_mode_dict = {
 def new_char(tabs):
     # set character
     app_data.app_character = Character()
+
+    # add default currency
     app_data.app_character.statblock.currencies.append(
         Currency("Miscellaneous Currency",
                  "Other",
@@ -46,6 +48,10 @@ def new_char(tabs):
                  False,
                  balance=app_data.app_character.statblock.gen_mode.get_generated_value("resources"),
                  permanent=True))
+
+    # add freebie contacts
+    app_data.app_character.contacts = [Contact("Freebie 1", "", "", 1, "", "", ""),
+                                       Contact("Freebie 2", "", "", 1, "", "", "")]
 
     # setup top bar
     app_data.on_cash_updated()
@@ -146,6 +152,7 @@ def load(tabs):
 
                 new_character.lifestyles.append(lifestyle_obj)
 
+            # new
             for contact in character_dict["contacts"]:
                 contact_obj = Contact(**contact)
                 new_character.contacts.append(contact_obj)
