@@ -96,8 +96,8 @@ class Priority(GenMode, ABC):
         elif type(tab) is MagicTab:
             # if magic tab check the sub tab
             # noinspection PyPep8Naming
-            SPELLS_TAB_INDEX = 0
-            POWERS_TAB_INDEX = 1
+            SPELLS_TAB_INDEX = 1
+            POWERS_TAB_INDEX = 2
             current_tab_index = tab.index("current")
             if current_tab_index == SPELLS_TAB_INDEX:
                 progress_text.set("{}/{}".format(self.cur_magic_points.get(), self.max_magic_points.get()))
