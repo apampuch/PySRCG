@@ -4,6 +4,7 @@ import os.path
 import tempfile
 
 from src.CharData.contact import Contact
+from src.CharData.currency import Currency
 from src.CharData.edge_flaw import EdgeFlaw
 from src.CharData.lifestyle import SimpleLifestyle, AdvancedLifestyle
 from src.CharData.wireless_accesory import WirelessAccessory

@@ -4,10 +4,13 @@ from tkinter import ttk
 from typing import Any
 
 from src.CharData.contact import Contact
+from src.GenModes.finalized import Finalized
 from src.Tabs.notebook_tab import NotebookTab
 
 
 class ContactsTab(NotebookTab, ABC):
+    affiliation_prices = [5000, 10000, 200000]
+
     def selected(self) -> Any | None:
         try:
             selected_index = self.contacts_listbox.curselection()[0]
@@ -136,6 +139,11 @@ class ContactsTab(NotebookTab, ABC):
             self.history_text.config(state=DISABLED, bg="#f0f0f0")
 
     def on_add_click(self):
+        # check if we have enough money if we're not already finalized
+        if type(self.character.statblock.gen_mode) is not Finalized:
+            if not self.character.statblock.pay_cash(5000):
+                print("Not enough cash!")
+
         # add to character
         new_contact = Contact("New Contact", "", "", 1, "", "", "")
         self.character.contacts.append(new_contact)
@@ -146,6 +154,12 @@ class ContactsTab(NotebookTab, ABC):
 
     def on_remove_click(self):
         selected_index = self.contacts_listbox.curselection()[0]
+
+        # refund based on affiliation if we're not finalized
+        if type(self.character.statblock.gen_mode) is not Finalized:
+            refund = ContactsTab.affiliation_prices[self.character.contacts[selected_index].affiliation - 1]
+            self.character.statblock.add_cash(refund)
+
         self.contacts_listbox.delete(selected_index)
         del self.character.contacts[selected_index]
 
