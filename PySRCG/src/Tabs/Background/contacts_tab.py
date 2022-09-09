@@ -199,7 +199,16 @@ class ContactsTab(NotebookTab, ABC):
 
     def on_affiliation_updated(self):
         if self.selected() is not None:
-            self.selected().affiliation = self.affiliation_var.get()
+            new_aff = self.affiliation_var.get()
+
+            # fix cash
+            if type(self.character.statblock.gen_mode) is not Finalized:
+                old_aff = self.selected().affiliation
+                cash_diff = ContactsTab.affiliation_prices[new_aff-1] - ContactsTab.affiliation_prices[old_aff-1]
+                if not self.character.statblock.pay_cash(cash_diff):
+                    print("Can't afford to upgrade contact!")
+
+            self.selected().affiliation = new_aff
 
     def on_description_updated(self):
         if self.selected() is not None:
