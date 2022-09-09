@@ -3,7 +3,6 @@ from tkinter import IntVar
 from typing import Dict
 
 from src import app_data
-from src.CharData.currency import Currency
 from src.GenModes.priority import Priority
 from src.app_data import on_cash_updated
 from src.Tabs.Attributes.attributes_tab import AttributesTab
@@ -18,16 +17,18 @@ def add_if_not_there(_dict, key):
 
 
 class Statblock(object):
-    base_attributes: Dict[str, int]
+    base_attributes: Dict[str, int | float]
     __race: Race
 
     # interface to make adding/subtracting cash work with Currencies
     @property
     def cash(self):
         return reduce(lambda a, b: a + b.properties["balance"], self.currencies, 0)
+
     def add_cash(self, amount):
         self.currencies[0].properties["balance"] += amount
         on_cash_updated()
+
     def sub_cash(self, amount):
         # loop through all currencies, bring to no less than 0, keep going if there's anything left
         # stop if we reach the last currency
@@ -47,6 +48,7 @@ class Statblock(object):
     @property
     def awakened(self):
         return self.__awakened
+
     @awakened.setter
     def awakened(self, value):
         self.__awakened = value
@@ -57,6 +59,7 @@ class Statblock(object):
     @property
     def tradition(self):
         return self.__tradition
+
     @tradition.setter
     def tradition(self, value):
         self.__tradition = value
@@ -281,6 +284,7 @@ class Statblock(object):
     @property
     def race(self):
         return self.__race
+
     @race.setter
     def race(self, value: Race):
         old_race = self.__race
