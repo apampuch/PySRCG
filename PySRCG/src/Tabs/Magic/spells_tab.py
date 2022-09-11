@@ -13,6 +13,12 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
         super().__init__(parent, buy_button_text="Learn", sell_button_text="Unlearn", plus_and_minus=True)
 
+        self.buy_spell_point_button = Button(self, text="Buy Spell Point")
+        self.sell_spell_point_button = Button(self, text="Sell Spell Point")
+
+        self.buy_spell_point_button.grid(column=3, row=1)
+        self.sell_spell_point_button.grid(column=4, row=1)
+
     @property
     def recurse_check_func(self):
         def spell_tab_recurse_check(val):
