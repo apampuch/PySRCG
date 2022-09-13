@@ -9,7 +9,7 @@ from tkinter import ttk
 class ArmorEquipTab(NotebookTab, ABC):
 
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "ArmorEquipTab")
 
         self.armor_list = []
         self.selected_armor_list = []

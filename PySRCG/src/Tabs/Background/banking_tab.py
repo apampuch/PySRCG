@@ -18,7 +18,7 @@ class BankingTab(NotebookTab, ABC):
         return self.statblock.currencies[self.selected_currency_index]
 
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "BankingTab")
 
         # this should be set when clicking on the listbox
         # set to max when deleting last one

@@ -1,37 +1,11 @@
-from tkinter import ttk
-
-from src.Tabs.Augments.bioware_tab import BiowareTab
-from src.Tabs.Augments.cyberware_tab import CyberwareTab
-
 # list of attributes that we need to look for variables in, eg "Cost: rating * 500"
-ATTRIBUTES_TO_CALCULATE = ["essence", "cost", "availability_rating", "availability_time"]
-STRINGS_TO_IGNORE = []  # nyi
+from src.Tabs.container_tab import ContainerTab
 
 
-class AugmentsTab(ttk.Notebook):
+class AugmentsTab(ContainerTab):
     def __init__(self, parent):
-        super().__init__(parent)
-        self.cyberware_tab = CyberwareTab(parent)
-        self.bioware_tab = BiowareTab(parent)
+        super().__init__(parent, "AugmentsTab")
 
-        self.add(self.cyberware_tab, text="Cyberware")
-        self.add(self.bioware_tab, text="Bioware")
-
-    def on_switch(self):
-        self.cyberware_tab.on_switch()
-        self.bioware_tab.on_switch()
-
-    def reload_data(self):
-        self.cyberware_tab.reload_data()
-        self.bioware_tab.reload_data()
-
-    def load_character(self):
-        self.cyberware_tab.load_character()
-        self.bioware_tab.load_character()
-
-    def calculate_total(self):
-        self.cyberware_tab.calculate_total()
-        self.bioware_tab.calculate_total()
 
 
 

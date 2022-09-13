@@ -8,7 +8,7 @@ from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 
 class EdgesFlawsTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "EdgesFlawsTab")
         self.no_duplicates = True
 
     @property

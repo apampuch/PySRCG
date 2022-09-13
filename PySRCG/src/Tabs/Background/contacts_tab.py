@@ -20,7 +20,7 @@ class ContactsTab(NotebookTab, ABC):
             return None
 
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "ContactsTab")
 
         self.list_frame = LabelFrame(self, text="Contacts List")
         self.contacts_listbox = Listbox(self.list_frame, selectmode=BROWSE, exportselection=False)

@@ -9,7 +9,7 @@ from tkinter import ttk
 
 class MagicBackgroundTab(NotebookTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "MagicBackgroundTab")
 
         # the tradition box should be unchanging
         self.traditions_labelframe = ttk.LabelFrame(self, text="Tradition")

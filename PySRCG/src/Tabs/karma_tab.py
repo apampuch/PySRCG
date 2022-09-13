@@ -11,7 +11,7 @@ from src.adjustment import Adjustment
 
 class KarmaTab(NotebookTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "KarmaTab")
 
         self.not_finalized_frame = Frame(self)
         self.finalized_frame = Frame(self)

@@ -9,7 +9,7 @@ from src.app_data import pay_cash
 
 class WirelessTab(ThreeColumnBuyTab):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "WirelessTab")
 
         self.wireless_obj_dict = {}
         self.wireless_box = ttk.Combobox(self, values=self.wireless_obj_dict.keys(), state="readonly")

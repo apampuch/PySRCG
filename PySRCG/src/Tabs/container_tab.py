@@ -4,12 +4,13 @@ from src import app_data
 
 
 class ContainerTab(ttk.Notebook):
-    def __init__(self, parent):
+    def __init__(self, parent, name):
         """
         :type tab_list: List(NoteBookTab)
         :type name_list: List(str)
         """
         super().__init__(parent)
+        self.name = name
 
         self.bind("<<NotebookTabChanged>>", app_data.window.on_tab_changed)
 

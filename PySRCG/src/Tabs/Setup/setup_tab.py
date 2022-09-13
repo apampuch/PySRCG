@@ -14,7 +14,7 @@ class SetupTab(NotebookTab, ABC):
         self.statblock.race = value
 
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "SetupTab")
         self.parent = parent
 
         # TODO move this to SR3_Core and make it take from there

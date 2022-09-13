@@ -3,6 +3,7 @@ from copy import copy
 
 from src.CharData.spell import Spell
 from src.GenModes.finalized import Finalized
+from src.GenModes.priority import Priority
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.adjustment import Adjustment
 
@@ -11,7 +12,7 @@ from tkinter import *
 
 class SpellsTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent, buy_button_text="Learn", sell_button_text="Unlearn", plus_and_minus=True)
+        super().__init__(parent, "SpellsTab", buy_button_text="Learn", sell_button_text="Unlearn", plus_and_minus=True)
 
         self.buy_spell_point_button = Button(self, text="Buy Spell Point")
         self.sell_spell_point_button = Button(self, text="Sell Spell Point")

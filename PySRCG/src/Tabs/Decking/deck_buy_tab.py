@@ -8,7 +8,7 @@ import src.app_data as app_data
 
 class DeckBuyTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent, add_callbacks, remove_callbacks):
-        super().__init__(parent, add_inv_callbacks=add_callbacks, remove_inv_callbacks=remove_callbacks)
+        super().__init__(parent, "DeckBuyTab", add_inv_callbacks=add_callbacks, remove_inv_callbacks=remove_callbacks)
 
     @property
     def library_source(self):

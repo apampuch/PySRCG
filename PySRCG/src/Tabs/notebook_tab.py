@@ -5,9 +5,10 @@ import abc
 
 class NotebookTab(ttk.Frame):
     """Base tab that other tabs inherit from"""
-    def __init__(self, parent):
+    def __init__(self, parent, name):
         super().__init__(parent)
         self.parent = parent
+        self.name = name
 
     @property
     def character(self):

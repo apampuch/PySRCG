@@ -22,7 +22,7 @@ class AttributesTab(NotebookTab, ABC):
     derived_attributes = ["essence", "magic", "reaction", "initiative"]
 
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "AttributesTab")
 
         self.equipped_armors = []
 

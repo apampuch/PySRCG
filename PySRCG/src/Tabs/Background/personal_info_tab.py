@@ -7,7 +7,7 @@ from tkinter import ttk
 
 class PersonalInfoTab(NotebookTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "PersonalInfoTab")
 
         # names frame
         self.names_frame = LabelFrame(self, text="Names")

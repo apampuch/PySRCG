@@ -9,7 +9,7 @@ from src.app_data import pay_cash
 
 class AmmoTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent, show_quantity=True, buy_from_list=True)
+        super().__init__(parent, "AmmoTab", show_quantity=True, buy_from_list=True)
 
     @staticmethod
     def name_for_list(x):

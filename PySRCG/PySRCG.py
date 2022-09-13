@@ -4,9 +4,10 @@ import pprint
 
 from pathlib import Path
 
-from src.CharData.character import *
 from src.Tabs.Attributes.attributes_tab import *
 from src.Tabs.Augments.augments_tab import *
+from src.Tabs.Augments.bioware_tab import BiowareTab
+from src.Tabs.Augments.cyberware_tab import CyberwareTab
 from src.Tabs.Background.background_tab import BackgroundTab
 from src.Tabs.Background.banking_tab import BankingTab
 from src.Tabs.Background.contacts_tab import ContactsTab
@@ -17,15 +18,16 @@ from src.Tabs.Decking.decking_tab import *  # imports app_data
 from src.Tabs.Gear.ammo_tab import AmmoTab
 from src.Tabs.Gear.armor_equip_tab import ArmorEquipTab
 from src.Tabs.Gear.firearm_accessories_tab import FirearmAccessoriesTab
+from src.Tabs.Gear.gear_tab import GearTab
 from src.Tabs.Gear.items_tab import ItemsTab
 from src.Tabs.Gear.wireless_tab import WirelessTab
+from src.Tabs.Rigging.rigging_tab import RiggingTab
 from src.Tabs.Rigging.vehicle_accessories_tab import VehicleAccessoriesTab
 from src.Tabs.Rigging.vehicle_buy_tab import VehicleBuyTab
 from src.Tabs.karma_tab import KarmaTab
 from src.Tabs.Magic.magic_tab import *  # imports app_data
 from src.Tabs.Setup.setup_tab import *
 from src.Tabs.Skills.skills_tab import SkillsTab
-from src.Tabs.container_tab import ContainerTab
 from src.Tabs.top_menu import *  # imports app_data
 from src.utils import magic_tab_show_on_awakened_status
 
@@ -172,15 +174,15 @@ def main():
                                        [PersonalInfoTab, EdgesFlawsTab, BankingTab, LifestylesTab, ContactsTab],
                                        ["Personal Info", "Edges & Flaws", "Banking", "Lifestyles", "Contacts"])
     app_data.skills_tab = make_tab(SkillsTab, "Skills")
-    app_data.gear_tab = make_tab(ContainerTab, "Gear",
+    app_data.gear_tab = make_tab(GearTab, "Gear",
                         [ItemsTab, AmmoTab, FirearmAccessoriesTab, ArmorEquipTab, WirelessTab],
                         ["Items", "Ammo", "Firearm Accessories", "Armor", "Wireless"])
     app_data.magic_tab = make_tab(MagicTab, "Magic")     # this one has its own tab because it needs to do special things
-    app_data.augments_tab = make_tab(ContainerTab, "Augments",
+    app_data.augments_tab = make_tab(AugmentsTab, "Augments",
                             [CyberwareTab, BiowareTab],
                             ["Cyberware", "Bioware"])
     app_data.decking_tab = make_tab(DeckingTab, "Decking")
-    app_data.rigging_tab = make_tab(ContainerTab, "Rigging",
+    app_data.rigging_tab = make_tab(RiggingTab, "Rigging",
                            [VehicleBuyTab, VehicleAccessoriesTab],
                            ["Vehicles", "Accessories"])
     app_data.karma_tab = make_tab(KarmaTab, "Karma")

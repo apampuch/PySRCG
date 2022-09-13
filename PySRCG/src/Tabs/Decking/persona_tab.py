@@ -18,7 +18,7 @@ class PersonaTab(NotebookTab, ABC):
     label updated with cur/max mp
     """
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "PersonaTab")
 
         self.slider_vars = {}
         self.slider_old_vals = {}

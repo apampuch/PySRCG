@@ -24,7 +24,7 @@ class SkillsTab(NotebookTab):
         return treeview_get(self.skills_list, self.tree_list_dict, make_copy=False)
 
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "SkillsTab")
         # TODO add an implementation of no_duplicates
 
         self.tree_library_dict = {}  # maps library terminal children iids to (skill name, skill attribute) tuple

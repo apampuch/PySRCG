@@ -49,7 +49,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             return None
         return selection[-1]
 
-    def __init__(self, parent,
+    def __init__(self, parent, name,
                  buy_button_text="Buy",
                  sell_button_text="Sell",
                  add_inv_callbacks: List[Callable] = None,      # callback functions when adding to inventory
@@ -69,7 +69,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         if remove_inv_callbacks is None:
             remove_inv_callbacks = []
 
-        super().__init__(parent)
+        super().__init__(parent, name)
         self.add_inv_callbacks = add_inv_callbacks
         self.remove_inv_callbacks = remove_inv_callbacks
         self.buy_from_list = buy_from_list

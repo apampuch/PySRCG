@@ -27,7 +27,7 @@ class CyberwareTab(NotebookTab):
         return selection[-1]
 
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "CyberwareTab")
 
         # used to validate input
         self.vcmd = (self.register(self.int_validate), '%d', '%i', '%P', '%s', '%S', '%v', '%V', '%W')

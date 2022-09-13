@@ -10,7 +10,7 @@ STRINGS_TO_IGNORE = []  # nyi
 
 class BiowareTab(NotebookTab):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "BiowareTab")
 
         self.NYI_label = Label(self, {"text": "Not Yet Implemented"}).grid(column=0, row=0)
 

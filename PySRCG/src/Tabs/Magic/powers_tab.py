@@ -13,7 +13,7 @@ from tkinter import ttk
 
 class PowersTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent, buy_button_text="Learn", sell_button_text="Unlearn", plus_and_minus=True)
+        super().__init__(parent, "PowersTab", buy_button_text="Learn", sell_button_text="Unlearn", plus_and_minus=True)
         self.no_duplicates = True
 
     @property

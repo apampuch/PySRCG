@@ -8,7 +8,7 @@ from src.Tabs.notebook_tab import NotebookTab
 
 class LifestylesTab(NotebookTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "LifestylesTab")
 
         # frame for existing lifestyles
         self.list_frame = LabelFrame(self, text="Lifestyles")

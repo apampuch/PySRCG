@@ -11,7 +11,7 @@ class ProgramsTab(ThreeColumnBuyTab):
                  buy_button_text,
                  sell_button_text):
 
-        super().__init__(parent, buy_button_text, sell_button_text)
+        super().__init__(parent, "ProgramsTab", buy_button_text, sell_button_text)
 
         # memobj is anything with in-game memory
         # key is name, value is matching thing with it

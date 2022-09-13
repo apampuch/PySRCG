@@ -9,6 +9,7 @@ import src.app_data as app_data
 class DeckingTab(ttk.Notebook):
     def __init__(self, parent):
         super().__init__(parent)
+        self.name = "DeckingTab"
         self.deck_tab = DeckBuyTab(parent, [self.on_deck_change], [self.on_deck_change])
         self.programs_tab = ProgramsTab(parent, "Buy", "Sell")
         self.persona_tab = PersonaTab(parent)

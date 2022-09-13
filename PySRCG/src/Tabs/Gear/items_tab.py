@@ -7,7 +7,7 @@ from src.CharData.gear import *
 
 class ItemsTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent, show_quantity=True, show_race_mods=True)
+        super().__init__(parent, "ItemsTab", show_quantity=True, show_race_mods=True)
 
     @property
     def recurse_check_func(self):
