@@ -151,7 +151,7 @@ class SkillsTab(NotebookTab):
 
     def remove_skill(self):
         # don't do anything if nothing is selected
-        if len(self.skills_list.selection()) is 0:
+        if len(self.skills_list.selection()) == 0:
             return
 
         selected_list_item_iid = self.skills_list.selection()[-1]  # this is an iid
@@ -189,7 +189,7 @@ class SkillsTab(NotebookTab):
         # otherwise try this for every other gen mode
         else:
             # if the parent item is not "", it's a specialization, and we need to only remove it from its skill
-            if parent_ui_item_iid is not "":
+            if parent_ui_item_iid != "":
                 # get the parent skill
                 parent_item = self.tree_list_dict[parent_ui_item_iid]
                 ui_name = self.skills_list.item(self.selected_skill_ui_iid(), "text")
@@ -219,13 +219,13 @@ class SkillsTab(NotebookTab):
     def specialize_skill(self):
         # TODO make it limit the number of specializations to the linked attribute
         # don't do anything if nothing is selected
-        if len(self.skills_list.selection()) is 0:
+        if len(self.skills_list.selection()) == 0:
             return
 
         # only make these checks if we're not finalized
         if type(self.gen_mode) is not Finalized:
             # don't do it if the skill is 1 or less
-            if self.list_selected.rank is 1:
+            if self.list_selected.rank == 1:
                 print("Too low to specialize")
                 return
 
@@ -249,7 +249,7 @@ class SkillsTab(NotebookTab):
 
         # funcs that we give to the buttons in the temp window
         def ok_func():
-            if name_entry.get() is not "":
+            if name_entry.get() != "":
                 # make a new item in the UI with the value equal to 1 plus the current rank
                 new_item_iid = self.skills_list.insert(self.selected_skill_ui_iid(), "end", text=name_entry.get(),
                                                        value=self.list_selected.rank + 1)
@@ -284,7 +284,7 @@ class SkillsTab(NotebookTab):
 
     def plus_skill(self):
         # don't do anything if nothing is selected
-        if len(self.skills_list.selection()) is 0:
+        if len(self.skills_list.selection()) == 0:
             return
 
         # figure out if finalized or not
@@ -342,7 +342,7 @@ class SkillsTab(NotebookTab):
 
     def minus_skill(self):
         # don't do anything if nothing is selected
-        if len(self.skills_list.selection()) is 0:
+        if len(self.skills_list.selection()) == 0:
             return
 
         if type(self.gen_mode) is Finalized:
