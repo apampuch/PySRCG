@@ -141,8 +141,7 @@ class SkillsTab(NotebookTab):
         # add child specializations
         for spec in skill.specializations:
             # make the child of the skill tree item
-            s_iid = self.skills_list.insert(iid, "end", text=spec,
-                                            value=skill.specializations[spec] + skill.rank)
+            s_iid = self.skills_list.insert(iid, "end", text=spec.name, value=spec.rank)
             # add it to the dictionary mapping the id to spec name
             self.tree_list_dict[s_iid] = spec
             # self.tree_spec_dict[iid][s_iid] = spec
