@@ -56,6 +56,7 @@ class App(ttk.Notebook):
     def on_tab_changed(self, event):
         # overly complicated way to get the current tab
         # because everything in tkinter is overly complicated the more I look at it
+        current_tab: NotebookTab | ContainerTab | MagicTab
         current_tab = self.select()
         current_tab = current_tab.replace(".!app.", "")
         current_tab = self.children[current_tab]

@@ -5,26 +5,25 @@ from tkinter import *
 from src import app_data
 from src.CharData.race import all_races
 from src.GenModes.gen_mode import GenMode
-from src.Tabs.Attributes.attributes_tab import AttributesTab
-from src.Tabs.Augments.augments_tab import AugmentsTab
-from src.Tabs.Background.background_tab import BackgroundTab
-from src.Tabs.Background.edges_flaws_tab import EdgesFlawsTab
-from src.Tabs.Decking.decking_tab import DeckingTab
-from src.Tabs.Magic.magic_tab import MagicTab
-from src.Tabs.Skills.skills_tab import SkillsTab
+#from src.Tabs.Attributes.attributes_tab import AttributesTab
+#from src.Tabs.Augments.augments_tab import AugmentsTab
+#from src.Tabs.Background.background_tab import BackgroundTab
+#from src.Tabs.Decking.decking_tab import DeckingTab
+#from src.Tabs.Magic.magic_tab import MagicTab
+#from src.Tabs.Skills.skills_tab import SkillsTab
 from src.utils import magic_tab_show_on_awakened_status
 
 
 class Priority(GenMode, ABC):
-    def __init__(self, priority_order=None, race=None):
+    def __init__(self, data=None, race=None, **kwargs):
         super().__init__()
         self.starting_skills_max = 6
 
         # 0 is highest priority, 4 is lowest
-        if priority_order is None:
+        if data is None:
             self.priority_order = ["resources", "attributes", "race", "skills", "magic"]
         else:
-            self.priority_order = priority_order
+            self.priority_order = data
 
         # this _dict corresponds to the value of the priority of each option
         # e.g. magic C would be priority_value_dict["magic"][2]
@@ -60,7 +59,40 @@ class Priority(GenMode, ABC):
         self.max_magic_points.set(self.magic_val_from_string())
         self.max_attribute_points.set(self.get_generated_value("attributes"))
 
+        """
+        sr3 allows purchasing extra spell points at 25000 each
+        Note that these are also added to max_magic_points when purchased, this is only for tracking 
+        how many of those points are purchased separately.
+        """
+        self.purchased_magic_points = IntVar()
+        if "purchased_magic_points" in kwargs:
+            self.purchased_magic_points.set(kwargs["purchased_magic_points"])
+            p = self.max_magic_points.get()
+            self.max_magic_points.set(p + self.purchased_magic_points.get())
+        else:
+            self.purchased_magic_points.set(0)
+
         # after instantiating call AttributesTab.calculate_total
+
+    def increment_purchased_magic_points(self):
+        p = self.purchased_magic_points.get()
+        self.purchased_magic_points.set(p + 1)
+        p = self.max_magic_points.get()
+        self.max_magic_points.set(p + 1)
+        
+    def decrement_purchased_magic_points(self):
+        """
+        Returns True and decrements purchased magic points if possible to do so.
+        Otherwise returns False.
+        """
+        if self.purchased_magic_points.get() > 0:
+            p = self.purchased_magic_points.get()
+            self.purchased_magic_points.set(p - 1)
+            p = self.max_magic_points.get()
+            self.max_magic_points.set(p - 1)
+            return True
+        else:
+            return False
 
     def point_purchase_allowed(self, amount: int, key: str) -> bool:
         threshold = 0
@@ -90,10 +122,10 @@ class Priority(GenMode, ABC):
             progress_text.set("")
             progress_bar.configure(maximum=10000000, variable=0)
 
-        if type(tab) is AttributesTab:
+        if tab.name == "AttributesTab":
             progress_text.set("{}/{}".format(self.cur_attribute_points.get(), self.max_attribute_points.get()))
             progress_bar.configure(maximum=self.max_attribute_points.get(), variable=self.cur_attribute_points)
-        elif type(tab) is MagicTab:
+        elif tab.name == "MagicTab":
             # if magic tab check the sub tab
             # noinspection PyPep8Naming
             SPELLS_TAB_INDEX = 1
@@ -108,21 +140,21 @@ class Priority(GenMode, ABC):
                 progress_text.set("{}/{}".format(points_cur, points_max))
                 progress_bar.configure(maximum=points_max,
                                        variable=app_data.app_character.statblock.power_points_ui_var)
-        elif type(tab) is SkillsTab:
+        elif tab.name == "SkillsTab":
             progress_text.set("{}/{}".format(self.cur_skill_points.get(), self.max_skill_points.get()))
             progress_bar.configure(maximum=self.max_skill_points.get(), variable=self.cur_skill_points)
-        elif type(tab) is AugmentsTab:
+        elif tab.name == "AugmentsTab":
             # hacky scope breaking bullshit, refactor this whole damn function to not be in the character gen modes
             ess_amt = app_data.app_character.statblock.essence
             ess_max = app_data.app_character.statblock.base_attributes["essence"]
             progress_text.set("{}/{}".format(ess_amt, ess_max))
             progress_bar.configure(maximum=ess_max, variable=app_data.app_character.statblock.ess_ui_var)
-        elif type(tab) is DeckingTab:
+        elif tab.name == "DeckingTab":
             PERSONA_TAB_INDEX = 2
             current_tab_index = tab.index("current")
             if current_tab_index != PERSONA_TAB_INDEX:
                 blank_set()
-        elif type(tab) is BackgroundTab:
+        elif tab.name == "BackgroundTab":
             EDGES_FLAWS_INDEX = 1
             current_tab_index = tab.index("current")
             if current_tab_index == EDGES_FLAWS_INDEX:
@@ -213,7 +245,7 @@ class Priority(GenMode, ABC):
     def on_priority_change(self, old_money):
         """set old values to new ones"""
         self.max_attribute_points.set(self.get_generated_value("attributes"))
-        self.max_magic_points.set(self.magic_val_from_string())
+        self.max_magic_points.set(self.magic_val_from_string() + self.purchased_magic_points.get())
         self.max_skill_points.set(self.get_generated_value("skills"))
 
         # breaking scope like this is SO hacky but fuck it
@@ -232,6 +264,11 @@ class Priority(GenMode, ABC):
         # set aspect to Full Mage if magic is top priority
         if awakened_val == "Full":
             app_data.app_character.statblock.aspect = "Full Mage"
+        # refund all purchased spell points if set to mundane
+        elif awakened_val is None:
+            refund_value = 25000 * self.purchased_magic_points.get()
+            self.purchased_magic_points.set(0)
+            app_data.app_character.statblock.add_cash(refund_value)
 
         app_data.app_character.statblock.awakened = awakened_val
 
@@ -263,7 +300,9 @@ class Priority(GenMode, ABC):
             self.priority_vals_list.insert(END, L[i])
 
     def serialize(self):
-        return {"type": "priority", "data": self.priority_order}
+        return {"type": "priority",
+                "data": self.priority_order,
+                "purchased_magic_points": self.purchased_magic_points.get()}
 
     def pretty_priority_values(self):
         L = self.priority_values()

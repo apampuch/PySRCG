@@ -14,11 +14,8 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
         super().__init__(parent, "SpellsTab", buy_button_text="Learn", sell_button_text="Unlearn", plus_and_minus=True)
 
-        self.buy_spell_point_button = Button(self, text="Buy Spell Point")
-        self.sell_spell_point_button = Button(self, text="Sell Spell Point")
-
-        self.buy_spell_point_button.grid(column=3, row=1)
-        self.sell_spell_point_button.grid(column=4, row=1)
+        self.buy_spell_point_button = Button(self, text="Buy Spell Point", command=self.buy_spell_point_callback)
+        self.sell_spell_point_button = Button(self, text="Sell Spell Point", command=self.sell_spell_point_callback)
 
     @property
     def recurse_check_func(self):
@@ -137,6 +134,34 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
 
                 self.calculate_total()
 
+    def buy_spell_point_callback(self):
+        if type(self.statblock.gen_mode) is not Finalized:
+            if self.statblock.pay_cash(25000):
+                if type(self.statblock.gen_mode) is Priority:
+                    # increment purchased and max by 1
+                    self.statblock.gen_mode.increment_purchased_magic_points()
+                    self.calculate_total()
+                else:
+                    self.statblock.add_cash(25000)  # undo paid cash
+                    raise NotImplementedError("Current gen mode not implemented for this")
+            else:
+                print("Not enough cash!")
+        else:
+            print("Need to not be finalized to use this!")
+
+    def sell_spell_point_callback(self):
+        if type(self.statblock.gen_mode) is not Finalized:
+            if type(self.statblock.gen_mode) is Priority:
+                if self.statblock.gen_mode.decrement_purchased_magic_points():
+                    self.statblock.add_cash(25000)
+                    self.calculate_total()
+                else:
+                    print("No more spell points to sell!")
+            else:
+                raise NotImplementedError("Current gen mode not implemented for this")
+        else:
+            print("Need to not be finalized to use this!")
+
     def get_total(self):
         total = 0
 
@@ -167,4 +192,12 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
         self.on_switch()
 
     def on_switch(self):
+        # show or hide spell point buttons based on finalized status
+        if type(self.gen_mode) is not Finalized:
+            self.buy_spell_point_button.grid(column=3, row=1)
+            self.sell_spell_point_button.grid(column=4, row=1)
+        else:
+            self.buy_spell_point_button.grid_forget()
+            self.sell_spell_point_button.grid_forget()
+
         self.calculate_total()
