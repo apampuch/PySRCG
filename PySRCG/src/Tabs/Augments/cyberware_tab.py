@@ -165,6 +165,8 @@ class CyberwareTab(NotebookTab):
                 if app_data.pay_cash(cyber.properties["cost"]):
                     self.add_cyberware_item(cyber)
                     self.calculate_total()
+                else:
+                    print("Not enough cash!")
             else:
                 print("Not enough essence left!")
 
