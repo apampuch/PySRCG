@@ -2,7 +2,9 @@ from copy import copy
 from tkinter import *
 from tkinter import ttk
 
+from src.app_data import pay_cash
 from src.CharData.lifestyle import *
+from src.GenModes.finalized import Finalized
 from src.Tabs.notebook_tab import NotebookTab
 
 
@@ -153,6 +155,7 @@ class LifestylesTab(NotebookTab, ABC):
     def delete_lifestyle(self):
         if len(self.character.lifestyles) > 0:
             index = self.lifestyles_listbox.curselection()[0]
+            pay_cash(-self.character.lifestyles[index].cost())
             del self.character.lifestyles[index]
             self.lifestyles_listbox.delete(index)
 
@@ -174,7 +177,13 @@ class LifestylesTab(NotebookTab, ABC):
 
             # switch to simple type
             if type(selected) is AdvancedLifestyle:
-                self.character.lifestyles[index] = SimpleLifestyle.fromAdvanced(selected)
+                new_lifestyle = SimpleLifestyle.fromAdvanced(selected)
+
+                # calculate diff and refund
+                diff = self.character.lifestyles[index].cost() - new_lifestyle.cost()
+                pay_cash(-diff)
+
+                self.character.lifestyles[index] = new_lifestyle
                 self.show_simple_info()
 
             self.on_select_listbox(None)
@@ -299,7 +308,21 @@ class LifestylesTab(NotebookTab, ABC):
             else:
                 val = AdvancedLifestyleInfo.other_tiers.index(box_var.get())
 
-            setattr(self.character.lifestyles[index], field, val)
+            # if not finalized, try to pay
+            if type(self.statblock.gen_mode) != Finalized:
+                # get difference of old and new costs of this lifestyle
+                old_cost = self.character.lifestyles[index].cost()
+                hypothetical_new = copy(self.character.lifestyles[index])
+                setattr(hypothetical_new, field, val)
+                new_cost = hypothetical_new.cost()
+                difference = new_cost - old_cost
+
+                # try to pay difference
+                if pay_cash(difference):
+                    setattr(self.character.lifestyles[index], field, val)
+            else:
+                # set the lifestyle attribute.
+                setattr(self.character.lifestyles[index], field, val)
 
             self.advanced_info.subtotal_label.config(text=f"¥{self.character.lifestyles[index].cost(subtotal=True)}")
             self.advanced_info.total_label.config(text=f"¥{int(self.character.lifestyles[index].cost())}")

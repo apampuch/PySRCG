@@ -36,7 +36,6 @@ def on_cash_updated():
         event()
 
 
-
 def on_tab_switched():
     for event in tab_switch_events:
         event()

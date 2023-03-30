@@ -29,14 +29,15 @@ class SimpleLifestyle(Lifestyle, ABC):
         """
         @type a: AdvancedLifestyle
         """
-        # find closest lifestyle
-        tier = -1
-        diff = 99999999999999999999999999999
-        for i in range(0, len(SimpleLifestyle.level_costs)):
-            new_diff = abs(a.cost() - SimpleLifestyle.level_costs[i])
-            if new_diff < diff:
+
+        # round to next lowest tier
+        # we do this so that we can convert from advanced to simple without going into negative cash
+        tier = 0
+        for i in range(1, len(SimpleLifestyle.level_costs)):
+            if a.cost() >= SimpleLifestyle.level_costs[i]:
                 tier = i
-                diff = new_diff
+            else:
+                break
 
         return SimpleLifestyle(a.name, a.residence, a.permanent, a.month, a.year, a.LTG, a.description, a.notes, tier)
 
@@ -48,7 +49,7 @@ class SimpleLifestyle(Lifestyle, ABC):
 
     def cost(self, subtotal=False):
         # subtotal is a dummy var to make things easier
-        return SimpleLifestyle.level_costs[self.tier]
+        return int(SimpleLifestyle.level_costs[self.tier])
 
     def serialize(self):
         ret = self.__dict__
@@ -101,8 +102,8 @@ class AdvancedLifestyle(Lifestyle):
         total = AdvancedLifestyle.costs[point_total]
         # return without multiplier if subtotal is true
         if subtotal:
-            return total
-        return total * self.multiplier()
+            return int(total)
+        return int(total * self.multiplier())
 
     def multiplier(self):
         total = 1.0
