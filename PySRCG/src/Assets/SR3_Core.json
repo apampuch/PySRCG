@@ -4908,7 +4908,7 @@
           "mods": {
             "cyber_encumbrance": 5,
             "cyber_body": 1,
-            "cyber_unarmed": "(STR + 2)M Stun"
+            "cyber_unarmed": 2
           },
           "essence": 0.5,
           "cost": 7500,
@@ -4925,7 +4925,7 @@
             "cyber_encumbrance": 10,
             "cyber_body": 1,
             "cyber_impact": 1,
-            "cyber_unarmed": "(STR + 3)M Stun"
+            "cyber_unarmed": 3
           },
           "essence": 1.15,
           "cost": 25000,
@@ -4943,7 +4943,7 @@
             "cyber_body": 2,
             "cyber_impact": 1,
             "cyber_ballistic": 1,
-            "cyber_unarmed": "(STR + 4)M Stun"
+            "cyber_unarmed": 4
           },
           "essence": 2.25,
           "cost": 75000,

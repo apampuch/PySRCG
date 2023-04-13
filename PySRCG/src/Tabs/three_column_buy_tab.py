@@ -58,6 +58,8 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                  show_quantity=False,
                  show_race_mods=False,
                  buy_from_list=False,
+                 show_cyberware_grades=False,
+                 show_bioware_grades=False,
                  plus_and_minus=False):  # allow buying the selected object from the inventory list
 
         # allow purchasing of duplicate items if False, set True in subclass init to disallow
@@ -126,6 +128,31 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         self.dwarf_race_mod.pack(side=LEFT)
         self.troll_race_mod.pack(side=LEFT)
 
+        # cyberware grades
+        self.grade_var = StringVar(value="standard")
+        self.cyberware_grade_frame = LabelFrame(self, text="Grade")
+        self.standard_radio = Radiobutton(self.cyberware_grade_frame,
+                                          text="Standard",
+                                          variable=self.grade_var,
+                                          value="standard")
+        self.alpha_radio = Radiobutton(self.cyberware_grade_frame,
+                                       text="Alphaware",
+                                       variable=self.grade_var,
+                                       value="alpha")
+        self.beta_radio = Radiobutton(self.cyberware_grade_frame,
+                                      text="Betaware",
+                                      variable=self.grade_var,
+                                      value="beta")
+        self.delta_radio = Radiobutton(self.cyberware_grade_frame,
+                                       text="Deltaware",
+                                       variable=self.grade_var,
+                                       value="delta")
+
+        self.standard_radio.pack(side=LEFT)
+        self.alpha_radio.pack(side=LEFT)
+        self.beta_radio.pack(side=LEFT)
+        self.delta_radio.pack(side=LEFT)
+
         # bind events and shit
         self.object_library.bind("<<TreeviewSelect>>", self.on_tree_item_click)
         self.object_library["yscrollcommand"] = self.object_library_scroll.set
@@ -163,6 +190,12 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
         if show_race_mods:
             self.race_mods_frame.grid(column=3, row=2)
+
+        if show_cyberware_grades:
+            self.cyberware_grade_frame.grid(column=3, row=3)
+
+        if show_bioware_grades:
+            pass
 
     def reload_data(self):
         children = self.object_library.get_children()
