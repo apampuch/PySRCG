@@ -26,3 +26,19 @@ class Cyberware(Reportable):
 
     def serialize(self):
         return self.properties.copy()
+
+
+class Bioware(Reportable):
+    def __init__(self, **kwargs):
+        super().__init__()
+        necessary_fields = ("name", "bio_index", "cost", "availability_rating", "availability_time", "availability_unit",
+                            "street_index", "legality", "page")
+
+        # fields that should be added but not reported like holds/fits
+        do_not_report = ["holds", "fits"]
+
+        # add the necessary fields
+        self.fill_necessary_fields(necessary_fields, kwargs)
+
+        # add the other fields
+        self.fill_miscellaneous_fields(kwargs, do_not_report)

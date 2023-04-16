@@ -12,14 +12,14 @@ class CyberwareTab(ThreeColumnBuyTab, ABC):
 
     @property
     def recurse_check_func(self):
-        def augment_tab_recurse_check(val):
+        def cyberware_tab_recurse_check(val):
             return "essence" not in val.keys()
 
-        return augment_tab_recurse_check
+        return cyberware_tab_recurse_check
 
     @property
     def recurse_end_func(self):
-        def augment_tab_recurse_end_callback(key, val, iid):
+        def cyberware_tab_recurse_end_callback(key, val, iid):
             # key is a string
             # val is a _dict from a json
             try:
@@ -29,7 +29,7 @@ class CyberwareTab(ThreeColumnBuyTab, ABC):
                 print(e)
                 print()
 
-        return augment_tab_recurse_end_callback
+        return cyberware_tab_recurse_end_callback
 
     @property
     def library_source(self):

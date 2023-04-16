@@ -1,24 +1,59 @@
+from abc import ABC
 from tkinter import *
 from tkinter import ttk
 
-from src.Tabs.notebook_tab import NotebookTab
-
-# list of attributes that we need to look for variables in, eg "Cost: rating * 500"
-ATTRIBUTES_TO_CALCULATE = ["essence", "cost", "availability_rating", "availability_time"]
-STRINGS_TO_IGNORE = []  # nyi
+from src.CharData.augment import Bioware
+from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 
 
-class BiowareTab(NotebookTab):
+class BiowareTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
         super().__init__(parent, "BiowareTab")
 
-        self.NYI_label = Label(self, {"text": "Not Yet Implemented"}).grid(column=0, row=0)
+    @property
+    def library_source(self):
+        try:
+            return self.parent.game_data["Augments"]["Bioware"]
+        except KeyError:
+            return {}
+
+    @property
+    def statblock_inventory(self):
+        return self.statblock.bioware
+
+    def buy_callback(self, selected):
+        pass
+
+    def sell_callback(self, selected_index):
+        pass
+
+    @property
+    def recurse_check_func(self):
+        def bioware_tab_recurse_check(val):
+            return "bio_index" not in val.keys()
+
+        return bioware_tab_recurse_check
+
+    @property
+    def recurse_end_func(self):
+        def bioware_tab_recurse_end_callback(key, val, iid):
+            # key is a string
+            # val is a _dict from a json
+            try:
+                self.tree_item_dict[iid] = Bioware(name=key, **val)
+            except TypeError as e:
+                print("Error with bioware {}:".format(key))
+                print(e)
+                print()
+
+        return bioware_tab_recurse_end_callback
 
     def calculate_total(self):
         pass
 
     def on_switch(self):
-        pass
+        self.calculate_total()
 
     def load_character(self):
-        pass
+        super().load_character()
+        self.on_switch()

@@ -149,7 +149,10 @@ class Statblock(object):
         self.spells = []
 
         # setup cyberware
-        self.cyberware = self.cyberware = []
+        self.cyberware = []
+
+        # setup bioware
+        self.bioware = []
 
         # setup adept powers
         self.powers = []
@@ -375,6 +378,14 @@ class Statblock(object):
     @essence.setter
     def essence(self, value):
         self.base_attributes["essence"] = value
+
+    @property
+    def essence_index(self):
+        essence_index_total = self.essence + 3.0
+
+        # TODO set the essence index UI control variable
+
+        return essence_index_total
 
     def make_fit_dict(self):
         """
