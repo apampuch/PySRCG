@@ -13,7 +13,7 @@ class BiowareTab(ThreeColumnBuyTab, ABC):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Augments"]["Bioware"]
+            return self.parent.game_data["Bioware"]
         except KeyError:
             return {}
 

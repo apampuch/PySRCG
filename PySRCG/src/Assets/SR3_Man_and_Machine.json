@@ -5,54 +5,52 @@
   "book": "Man and Machine (FPR25001)",
   "Items": {},
   "Skills": {},
-  "Augments": {
-    "Cyberware": {
+  "Cyberware": {
+
+  },
+  "Bioware": {
+    "Basic": {
+      "Adrenal Pump": {
+        "bio_index": "1.25 * level",
+        "cost": "20000 + 40000 * level",
+        "level": "level",
+        "street_index": 3,
+        "legality": "5P-R",
+        "page": 64,
+        "availability_rating": 10,
+        "availability_time": 16,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["cost", "level"]
+      },
+      "Cat's Eyes": {
+        "bio_index": 0.2,
+        "cost": 15000,
+        "street_index": 1,
+        "legality": "legal",
+        "page": 64,
+        "availability_rating": 4,
+        "availability_time": 6,
+        "availability_unit": "days"
+      },
+      "Chemical Gland": {
+        "bio_index": 0.6,
+        "cost": "60000 + compound_cost",
+        "street_index": 3,
+        "legality": "5-Q",
+        "page": 64,
+        "availability_rating": 10,
+        "availability_time": 4,
+        "availability_unit": "days",
+        "options": {"Compound": null},
+        "compound_cost": "compound_cost",
+        "attributes_to_calculate": ["compound_cost", "cost"]
+      }
+    },
+    "Cultured": {
 
     },
-    "Bioware": {
-      "Basic": {
-        "Adrenal Pump": {
-          "bio_index": "1.25 * level",
-          "cost": "20000 + 40000 * level",
-          "level": "level",
-          "street_index": 3,
-          "legality": "5P-R",
-          "page": 64,
-          "availability_rating": 10,
-          "availability_time": 16,
-          "availability_unit": "days",
-          "attributes_to_calculate": ["cost", "level"]
-        },
-        "Cat's Eyes": {
-          "bio_index": 0.2,
-          "cost": 15000,
-          "street_index": 1,
-          "legality": "legal",
-          "page": 64,
-          "availability_rating": 4,
-          "availability_time": 6,
-          "availability_unit": "days"
-        },
-        "FIXME: Chemical Gland": {
-          "bio_index": 0.6,
-          "cost": "60000 + compound_cost",
-          "street_index": 3,
-          "legality": "5-Q",
-          "page": 64,
-          "availability_rating": 10,
-          "availability_time": 4,
-          "availability_unit": "days",
-          "compound": "compound",
-          "compound_cost": "compound_cost",
-          "attributes_to_calculate": ["compound", "compound_cost", "cost"]
-        }
-      },
-      "Cultured": {
+    "Cosmetic": {
 
-      },
-      "Cosmetic": {
-
-      }
     }
   }
 }

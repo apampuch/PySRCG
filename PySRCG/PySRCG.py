@@ -29,6 +29,7 @@ from src.Tabs.Magic.magic_tab import *  # imports app_data
 from src.Tabs.Setup.setup_tab import *
 from src.Tabs.Skills.skills_tab import SkillsTab
 from src.Tabs.top_menu import *  # imports app_data
+from src.game_data import GameData
 from src.utils import magic_tab_show_on_awakened_status
 
 DEBUG = False
@@ -65,24 +66,12 @@ class App(ttk.Notebook):
         app_data.app_character.statblock.gen_mode.update_karma_label(current_tab)
 
     def load_game_data(self):
-        self.game_data = {}
+        self.game_data = GameData()
 
         for filename in SourcesWindow.selected_source_files:
             full_path = SourcesWindow.source_directory / filename
             with open(full_path, "r") as json_file:
-                self.game_data.update(json.load(json_file))
-
-                # load debug flag
-                if self.LOAD_DEBUG:
-                    pprint.pprint(self.game_data)
-                    print(type(self.game_data))
-                    print(self.game_data.keys())
-
-        # cleanup unnecessary data
-        clean_tags = ["book_abbr", "file_version", "schema_version", "book"]
-        for tag in clean_tags:
-            if tag in self.game_data:
-                del self.game_data[tag]
+                self.game_data.add(json.load(json_file))
 
 
 class TopBar(ttk.Frame):
@@ -145,8 +134,8 @@ def make_tab(tab_type, name, container_types=None, container_names=None):
         child_tabs = []
 
         # make new tabs from types, assign new_tab as parent
-        for type in container_types:
-            child_tabs.append(type(app_data.window))
+        for con_type in container_types:
+            child_tabs.append(con_type(app_data.window))
 
         new_tab.add_tabs(child_tabs, container_names)
 
@@ -176,16 +165,16 @@ def main():
                                        ["Personal Info", "Edges & Flaws", "Banking", "Lifestyles", "Contacts"])
     app_data.skills_tab = make_tab(SkillsTab, "Skills")
     app_data.gear_tab = make_tab(GearTab, "Gear",
-                        [ItemsTab, AmmoTab, FirearmAccessoriesTab, ArmorEquipTab, WirelessTab],
-                        ["Items", "Ammo", "Firearm Accessories", "Armor", "Wireless"])
-    app_data.magic_tab = make_tab(MagicTab, "Magic")     # this one has its own tab because it needs to do special things
+                                 [ItemsTab, AmmoTab, FirearmAccessoriesTab, ArmorEquipTab, WirelessTab],
+                                 ["Items", "Ammo", "Firearm Accessories", "Armor", "Wireless"])
+    app_data.magic_tab = make_tab(MagicTab, "Magic")    # this one has its own tab because it needs to do special things
     app_data.augments_tab = make_tab(AugmentsTab, "Augments",
-                            [CyberwareTab, BiowareTab],
-                            ["Cyberware", "Bioware"])
+                                     [CyberwareTab, BiowareTab],
+                                     ["Cyberware", "Bioware"])
     app_data.decking_tab = make_tab(DeckingTab, "Decking")
     app_data.rigging_tab = make_tab(RiggingTab, "Rigging",
-                           [VehicleBuyTab, VehicleAccessoriesTab],
-                           ["Vehicles", "Accessories"])
+                                    [VehicleBuyTab, VehicleAccessoriesTab],
+                                    ["Vehicles", "Accessories"])
     app_data.karma_tab = make_tab(KarmaTab, "Karma")
 
     # setup character
