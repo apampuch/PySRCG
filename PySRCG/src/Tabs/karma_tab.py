@@ -3,7 +3,6 @@ from abc import ABC
 from tkinter import *
 from tkinter import ttk
 
-from src import app_data
 from src.GenModes.finalized import Finalized
 from src.Tabs.notebook_tab import NotebookTab
 from src.adjustment import Adjustment
@@ -142,6 +141,7 @@ class KarmaTab(NotebookTab, ABC):
 
         self.not_finalized_frame.pack(expand=True)
 
+    # noinspection PyUnusedLocal
     def int_validate(self, action, index, value_if_allowed,
                      prior_value, text, validation_type, trigger_type, widget_name):
         """

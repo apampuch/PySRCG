@@ -2,7 +2,7 @@ from copy import copy
 from math import floor
 from tkinter import *
 from tkinter import ttk, messagebox
-from typing import Dict, Any, Optional
+from typing import Dict
 
 from src.CharData.skill import Skill, Specialization
 from src.GenModes.finalized import Finalized
@@ -56,11 +56,11 @@ class SkillsTab(NotebookTab):
         self.skills_list["yscrollcommand"] = self.skills_list_scroll.set
 
         # grids
-        self.object_library.grid(column=0, row=0, sticky=(N, S), columnspan=2)
-        self.skills_library_scroll.grid(column=2, row=0, sticky=(N, S))
+        self.object_library.grid(column=0, row=0, sticky=NS, columnspan=2)
+        self.skills_library_scroll.grid(column=2, row=0, sticky=NS)
 
-        self.skills_list.grid(column=4, row=0, sticky=(N, S), columnspan=3)
-        self.skills_list_scroll.grid(column=7, row=0, sticky=(N, S))
+        self.skills_list.grid(column=4, row=0, sticky=NS, columnspan=3)
+        self.skills_list_scroll.grid(column=7, row=0, sticky=NS)
 
         self.add_button.grid(column=0, row=1)
         self.remove_button.grid(column=1, row=1)

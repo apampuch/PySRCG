@@ -10,7 +10,8 @@ class MagicTab(ttk.Notebook):
     def __init__(self, parent):
 
         super().__init__(parent)
-        self.name = "MagicTab"  # this should really be both a notebook and a notebook tab at once, but we'll just hack this in for now
+        # this should really be both a notebook and a notebook tab at once, but we'll just hack this in for now
+        self.name = "MagicTab"
         self.background_tab = MagicBackgroundTab(parent)
         self.spells_tab = SpellsTab(parent)
         self.powers_tab = PowersTab(parent)

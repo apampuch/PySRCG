@@ -46,17 +46,16 @@ class CyberwareTab(ThreeColumnBuyTab, ABC):
         current_essence = self.statblock.essence
 
         # modify the item based on grade
-        cyber: Cyberware = self.library_selected
-        cyber.add_field("grade", str(self.grade_var.get()))
+        selected.add_field("grade", str(self.grade_var.get()))
 
-        cyber.properties["essence"] = self.calc_essence_cost(cyber, cyber.properties["grade"])
-        cyber.properties["cost"] = int(self.calc_yen_cost(cyber, cyber.properties["grade"]))
+        selected.properties["essence"] = self.calc_essence_cost(selected, selected.properties["grade"])
+        selected.properties["cost"] = int(self.calc_yen_cost(selected, selected.properties["grade"]))
 
         # if we have enough essence
-        if cyber.properties["essence"] < current_essence:
+        if selected.properties["essence"] < current_essence:
             # if we have enough money
-            if app_data.pay_cash(cyber.properties["cost"]):
-                self.add_inv_item(cyber)
+            if app_data.pay_cash(selected.properties["cost"]):
+                self.add_inv_item(selected)
                 self.calculate_total()
             else:
                 print("Not enough cash!")
@@ -73,7 +72,8 @@ class CyberwareTab(ThreeColumnBuyTab, ABC):
 
         self.calculate_total()
 
-    def calc_essence_cost(self, cyber, grade):
+    @staticmethod
+    def calc_essence_cost(cyber, grade):
         essence = cyber.properties["essence"]
 
         if grade == "standard":
@@ -89,7 +89,8 @@ class CyberwareTab(ThreeColumnBuyTab, ABC):
 
         return essence
 
-    def calc_yen_cost(self, cyber, grade):
+    @staticmethod
+    def calc_yen_cost(cyber, grade):
         cost = cyber.properties["cost"]
 
         if grade == "standard":

@@ -1,7 +1,7 @@
 from abc import ABC
+from typing import Any
 
 from src import app_data
-from src.CharData.deck import Deck
 from src.Tabs.notebook_tab import NotebookTab
 from tkinter import *
 from tkinter import ttk
@@ -56,7 +56,7 @@ class PersonaTab(NotebookTab, ABC):
                                   from_=1, to=1,
                                   variable=self.slider_vars[key],
                                   command=lambda x: self.on_set_slider_value(key, x),
-                                  orient=HORIZONTAL, showvalue=0)
+                                  orient=HORIZONTAL, showvalue=False)
 
         self.attribute_labels[key].grid(column=1, row=self.current_row)
         self.value_labels[key].grid(column=2, row=self.current_row)
@@ -65,8 +65,8 @@ class PersonaTab(NotebookTab, ABC):
         self.current_row += 1
 
     @property
-    def current_deck(self) -> Deck:
-        if not self.deck_list:  # if empty
+    def current_deck(self) -> Any | None:
+        if not self.deck_list:  # if empty, this makes it shut up
             return None
         return self.deck_list[self.deck_box.current()]
 
@@ -111,6 +111,7 @@ class PersonaTab(NotebookTab, ABC):
 
         self.calculate_total()
 
+    # noinspection PyUnusedLocal
     def on_choose_deck(self, event):
         # make it shut up if we have no decks
         # tab will be invisible if we have no decks anyway
@@ -134,7 +135,7 @@ class PersonaTab(NotebookTab, ABC):
         self.calculate_total()
 
     def on_switch(self):
-        selected_deck: str
+        selected_deck: str | None
 
         # get current deck before changing
         if self.deck_box.current() == -1:

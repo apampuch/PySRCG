@@ -12,7 +12,7 @@ class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
         super().__init__(parent, "FirearmAccessoriesTab", show_race_mods=True)
 
         self.gunobj_dict = {}
-        self.gun_box = ttk.Combobox(self, values=self.gunobj_dict.keys(), state="readonly")
+        self.gun_box = ttk.Combobox(self, values=list(self.gunobj_dict.keys()), state="readonly")
         # self.fill_combobox()
 
         self.gun_box.bind("<<ComboboxSelected>>", self.get_accobj)
@@ -66,6 +66,7 @@ class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
             if "firearm_accessories" in node.properties:
                 self.gunobj_dict[key] = node  # .accessories
 
+    # noinspection PyUnusedLocal
     def get_accobj(self, event):
         """Fills the inventory box with software from the selected memobj"""
         # clear list box

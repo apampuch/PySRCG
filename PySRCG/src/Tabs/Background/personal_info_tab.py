@@ -94,7 +94,8 @@ class PersonalInfoTab(NotebookTab, ABC):
         self.notes_entry.grid(column=0, row=0, padx=5, pady=3, columnspan=2)
         self.creator_entry.grid(column=1, row=1, padx=5, pady=3, columnspan=2)
 
-    def set_char_string(self, char_var, text_widget: Text):
+    @staticmethod
+    def set_char_string(char_var, text_widget: Text):
         char_var.set(text_widget.get(0.0, END))
         text_widget.edit_modified(False)
 

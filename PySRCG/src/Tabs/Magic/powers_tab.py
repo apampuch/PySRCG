@@ -1,14 +1,9 @@
 from abc import ABC
-from copy import copy
 
 from src import app_data
 from src.CharData.power import Power
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.statblock_modifier import StatMod
-from src.utils import treeview_get, recursive_treeview_fill
-
-from tkinter import *
-from tkinter import ttk
 
 
 class PowersTab(ThreeColumnBuyTab, ABC):

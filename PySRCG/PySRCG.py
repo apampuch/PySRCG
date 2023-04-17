@@ -1,8 +1,5 @@
 # noinspection PyUnresolvedReferences
 import json
-import pprint
-
-from pathlib import Path
 
 from src.Tabs.Attributes.attributes_tab import *
 from src.Tabs.Augments.augments_tab import *
@@ -57,10 +54,11 @@ class App(ttk.Notebook):
     def on_tab_changed(self, event):
         # overly complicated way to get the current tab
         # because everything in tkinter is overly complicated the more I look at it
-        current_tab: NotebookTab | ContainerTab | MagicTab
-        current_tab = self.select()
-        current_tab = current_tab.replace(".!app.", "")
-        current_tab = self.children[current_tab]
+        current_tab: NotebookTab | ContainerTab | MagicTab | Widget
+        tab_string: str
+        tab_string = self.select()
+        tab_string = tab_string.replace(".!app.", "")
+        current_tab = self.children[tab_string]
         current_tab.on_switch()
 
         app_data.app_character.statblock.gen_mode.update_karma_label(current_tab)

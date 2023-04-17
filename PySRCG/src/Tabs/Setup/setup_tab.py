@@ -31,11 +31,6 @@ class SetupTab(NotebookTab, ABC):
 
         # self.magic_frame = ttk.LabelFrame(self, text="Magic User?")
 
-        # self.magic_var = StringVar()
-        # self.magic_none_radio = Radiobutton(self.magic_frame, text="None", variable=self.magic_var, value="none")
-        # self.magic_full_radio = Radiobutton(self.magic_frame, text="Full", variable=self.magic_var, value="full")
-        # self.magic_aspected_radio = Radiobutton(self.magic_frame, text="Aspected", variable=self.magic_var, value="aspected")
-
         # generation options
         self.gen_frame = ttk.LabelFrame(self, text="Generation Mode")
         self.gen_mode_frame = Frame(self.gen_frame)
@@ -44,7 +39,8 @@ class SetupTab(NotebookTab, ABC):
         self.gen_mode_index = IntVar()
 
         self.priority_gen_radio = Radiobutton(self.gen_frame, text="Priority", variable=self.gen_mode_index, value=0)
-        self.points_gen_radio = Radiobutton(self.gen_frame, text="Points", variable=self.gen_mode_index, value=1, state=DISABLED)
+        self.points_gen_radio = Radiobutton(self.gen_frame, text="Points",
+                                            variable=self.gen_mode_index, value=1, state=DISABLED)
 
         # grids
         self.gen_frame.grid(column=0, row=0)

@@ -2,7 +2,6 @@ from abc import ABC
 from tkinter import *
 from tkinter import ttk
 
-from src import app_data
 from src.CharData.currency import Currency
 from src.Tabs.notebook_tab import NotebookTab
 from src.app_data import on_cash_updated
@@ -33,7 +32,7 @@ class BankingTab(NotebookTab, ABC):
         Pressing the "new currency" button will populate this box with a new currency that can be edited.
         Each item in the listbox maps to one Currency object in self.statblock.currencies
         The listbox will always be populated with a single "Miscellaneous Cash" object that does not map
-        to a Currency, it instead represenes the misc_cash variable in the statblock.
+        to a Currency, it instead represents the misc_cash variable in the statblock.
         """
         self.treasury_frame = LabelFrame(self, text="Treasury", padx=5, pady=5)
         self.all_currencies = Listbox(self.treasury_frame, width=50, selectmode=BROWSE, exportselection=False)
@@ -55,23 +54,23 @@ class BankingTab(NotebookTab, ABC):
         # button for new item + new window
         self.new_currency_button = Button(self.buttons_frame, text="New Currency", command=self.new_currency)
         # button to transfer funds + new window
-        self.transfer_currency_button = Button(self.buttons_frame, text="Transfer Funds", command=self.transfer_currency)
+        self.xfer_currency_button = Button(self.buttons_frame, text="Transfer Funds", command=self.transfer_currency)
         # button to delete selected currency
         self.delete_currency_button = Button(self.buttons_frame, text="Delete Selected", command=self.delete_currency)
 
         # grid to save time
         self.new_currency_button.grid(column=0, row=0, padx=2, pady=2)
-        self.transfer_currency_button.grid(column=1, row=0, padx=2, pady=2)
+        self.xfer_currency_button.grid(column=1, row=0, padx=2, pady=2)
         self.delete_currency_button.grid(column=2, row=0, padx=2, pady=2)
 
         # grids
-        self.treasury_frame.grid(column=0, row=0, sticky=(N, S))
+        self.treasury_frame.grid(column=0, row=0, sticky=NS)
         self.move_buttons_frame.grid(column=0, row=0)
         self.move_up_button.grid(column=0, row=0, pady=4)
         self.move_down_button.grid(column=0, row=1)
-        self.data_entry_frame.grid(column=1, row=0, sticky=(N, S))
+        self.data_entry_frame.grid(column=1, row=0, sticky=NS)
         self.all_currencies.grid(column=1, row=0)
-        self.all_currencies_scroll.grid(column=2, row=0, sticky=(N, S))
+        self.all_currencies_scroll.grid(column=2, row=0, sticky=NS)
 
         self.buttons_frame.grid(column=0, row=1)
 
@@ -84,9 +83,9 @@ class BankingTab(NotebookTab, ABC):
 
         temp_window = Toplevel(self.parent)
         temp_window.grab_set()
-        temp_window.resizable(0, 0)
+        temp_window.resizable(False, False)
 
-        # make a new window with all of the selected item stuff
+        # make a new window with all the selected item stuff
         new_currency_data_entry = CurrencyDataEntry(temp_window, self.vcmd)
 
         # if checked, pay for it if applicable
@@ -173,7 +172,7 @@ class BankingTab(NotebookTab, ABC):
         # setup window
         temp_window = Toplevel(self.parent)
         temp_window.grab_set()
-        temp_window.resizable(0, 0)
+        temp_window.resizable(False, False)
 
         transfer_label = Label(temp_window,
                                text=f"Transfer how much from {self.selected_currency().properties['name']}? "
@@ -281,6 +280,7 @@ class BankingTab(NotebookTab, ABC):
         self.all_currencies.selection_set(swap_index)
         self.selected_currency_index = swap_index
 
+    # noinspection PyUnusedLocal
     def on_select_listbox(self, event):
         selection = self.all_currencies.curselection()
 
@@ -318,6 +318,7 @@ class BankingTab(NotebookTab, ABC):
             self.data_entry_objs.rating_var.set(self.selected_currency().properties["rating"])
             self.data_entry_objs.balance_var.set(self.selected_currency().properties["balance"])
 
+    # noinspection PyUnusedLocal
     def int_validate(self, action, index, value_if_allowed,
                      prior_value, text, validation_type, trigger_type, widget_name):
         """

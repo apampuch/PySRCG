@@ -45,7 +45,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     def inv_selected_index(self):
         """ID of the index of the selected item"""
         selection = self.inventory_list.curselection()
-        if len(selection) is 0:
+        if len(selection) == 0:
             return None
         return selection[-1]
 
@@ -165,12 +165,12 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                                 self.recurse_check_func, self.recurse_end_func)
 
         # grids
-        self.object_library.grid                (column=0, row=0, sticky=(N, S), columnspan=2)
-        self.object_library_scroll.grid         (column=2, row=0, sticky=(N, S))
-        self.desc_box.grid                      (column=3, row=0, sticky=(N, S), columnspan=2)
-        self.desc_box_scroll.grid               (column=5, row=0, sticky=(N, S))
-        self.inventory_list.grid                (column=6, row=0, sticky=(N, S), columnspan=2)
-        self.inventory_list_scroll.grid         (column=8, row=0, sticky=(N, S))
+        self.object_library.grid                (column=0, row=0, sticky=NS, columnspan=2)
+        self.object_library_scroll.grid         (column=2, row=0, sticky=NS)
+        self.desc_box.grid                      (column=3, row=0, sticky=NS, columnspan=2)
+        self.desc_box_scroll.grid               (column=5, row=0, sticky=NS)
+        self.inventory_list.grid                (column=6, row=0, sticky=NS, columnspan=2)
+        self.inventory_list_scroll.grid         (column=8, row=0, sticky=NS)
 
         self.sell_button.grid(column=0, row=0, sticky=N, padx=50)
         if plus_and_minus:
@@ -321,11 +321,12 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             return True
 
         # convert to set for sweet O(1) lookups
-        setList = set(self.statblock_inventory)
+        set_list = set(self.statblock_inventory)
 
         # return True if no duplicates were found
-        return to_buy not in setList
+        return to_buy not in set_list
 
+    # noinspection PyUnusedLocal
     def int_validate(self, action, index, value_if_allowed,
                      prior_value, text, validation_type, trigger_type, widget_name):
         """
@@ -358,6 +359,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             self.bell()
             return False
 
+    # noinspection PyUnusedLocal
     def on_inv_item_click(self, event):
         # clear the treeview selection
         self.object_library.selection_remove(self.object_library.selection())
@@ -371,6 +373,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         item_report = self.statblock_inventory[self.inventory_list.curselection()[-1]].report()
         self.fill_description_box(item_report)
 
+    # noinspection PyUnusedLocal
     def on_tree_item_click(self, event):
         # removing things from the selection causes these events to fire so we need to add this check
         # on the selection length to make sure we're not throwing errors
@@ -428,14 +431,16 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             if type(selected_object) is Power:
                 var_dict["power_level"] = 1
 
-            # TODO unfuck this by doing the window check at the start and making the ok func call this again but not open the window, add a force_ignore_window arg maybe?
+            # TODO unfuck this by doing the window check at the start and making the ok func call this again but not \
+            # open the window, add a force_ignore_window arg maybe?
+
             # find any "options" the item has and prompt the user to set them
             if "options" in selected_object.properties:
                 option_entries = {}
 
                 # define functions for ok and cancel
                 def ok_func():
-                    # set all of the options
+                    # set all the options
                     for entry in option_entries:
                         if option_entries[entry].get() == "":
                             messagebox.showerror(title="Error", message="No blank options allowed.")
@@ -477,7 +482,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                 # setup new window
                 temp_window = Toplevel(self.parent)
                 temp_window.grab_set()
-                temp_window.resizable(0, 0)
+                temp_window.resizable(False, False)
 
                 # setup option labels and entries
                 for option in selected_object.properties["options"]:

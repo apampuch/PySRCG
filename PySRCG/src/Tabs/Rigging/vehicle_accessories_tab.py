@@ -1,3 +1,4 @@
+import re
 from abc import ABC
 from tkinter import *
 from tkinter import ttk
@@ -17,7 +18,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
         self.accobj_dict = {}
 
         # fill stuff with memory
-        self.accessory_things_box = ttk.Combobox(self, values=self.accobj_dict.keys(), state="readonly", width=30)
+        self.accessory_things_box = ttk.Combobox(self, values=list(self.accobj_dict.keys()), state="readonly", width=30)
         # self.fill_combobox()
 
         self.accessory_things_box.bind("<<ComboboxSelected>>", self.get_accobj)
@@ -56,6 +57,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
             if "vehicle_accessories" in node.properties:
                 self.accobj_dict[key] = node  # .accessories
 
+    # noinspection PyUnusedLocal
     def get_accobj(self, event):
         """Fills the inventory box with software from the selected memobj"""
         # clear list box

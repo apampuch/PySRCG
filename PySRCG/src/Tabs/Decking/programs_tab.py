@@ -1,3 +1,5 @@
+import re
+
 from src.CharData.program import Program
 from tkinter import *
 from tkinter import ttk
@@ -18,7 +20,7 @@ class ProgramsTab(ThreeColumnBuyTab):
         self.memobj_dict = {}
 
         # fill stuff with memory
-        self.memory_things_box = ttk.Combobox(self, values=self.memobj_dict.keys(), state="readonly")
+        self.memory_things_box = ttk.Combobox(self, values=list(self.memobj_dict.keys()), state="readonly")
         # self.fill_combobox()
 
         self.memory_things_box.bind("<<ComboboxSelected>>", self.get_memobj_memory)
@@ -59,6 +61,7 @@ class ProgramsTab(ThreeColumnBuyTab):
             if "stored_memory" in node.properties:
                 self.memobj_dict[key] = node.properties["stored_memory"]
 
+    # noinspection PyUnusedLocal
     def get_memobj_memory(self, event):
         """Fills the inventory box with software from the selected memobj"""
         # clear list box

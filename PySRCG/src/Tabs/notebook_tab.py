@@ -37,5 +37,5 @@ class NotebookTab(ttk.Frame):
 
     @abc.abstractmethod
     def load_character(self):
-        """Called on character load.."""
+        """Called on character load."""
         pass

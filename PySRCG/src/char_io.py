@@ -1,33 +1,31 @@
-import src.app_data as app_data
 import json
 import os.path
 import tempfile
+from tkinter import filedialog
+from typing import TextIO
 
-from src.CharData.contact import Contact
-from src.CharData.currency import Currency
-from src.CharData.edge_flaw import EdgeFlaw
-from src.CharData.lifestyle import SimpleLifestyle, AdvancedLifestyle
-from src.CharData.wireless_accesory import WirelessAccessory
-from src.CharData.firearm_accessory import FirearmAccessory
-from src.CharData.vehicle_accessory import VehicleAccessory
 from src.CharData.augment import Cyberware
 from src.CharData.character import *
+from src.CharData.contact import Contact
+from src.CharData.currency import Currency
 from src.CharData.deck import Deck
+from src.CharData.edge_flaw import EdgeFlaw
+from src.CharData.firearm_accessory import FirearmAccessory
 from src.CharData.gear import Gear
+from src.CharData.lifestyle import SimpleLifestyle, AdvancedLifestyle
 from src.CharData.power import Power
 from src.CharData.program import Program
 from src.CharData.race import all_races
 from src.CharData.skill import Skill
+from src.CharData.spell import Spell
 from src.CharData.tradition import Tradition
-from src.GenModes.priority import Priority
+from src.CharData.vehicle import Vehicle
+from src.CharData.vehicle_accessory import VehicleAccessory
+from src.CharData.wireless_accesory import WirelessAccessory
 from src.GenModes.finalized import Finalized
+from src.GenModes.priority import Priority
 from src.save_version_upgrade import upgrade_funcs
 from src.utils import magic_tab_show_on_awakened_status
-from tkinter import filedialog
-from typing import TextIO
-
-from src.CharData.spell import Spell
-from src.CharData.vehicle import Vehicle
 
 SAVE_VERSION = 0.3
 
@@ -99,7 +97,7 @@ def save_as(character: Character):
 
 def __make_dummy(character: Character):
     """
-    Makes a dummy file. ALWAYS CALL WITH WITH AS
+    Makes a dummy file. ALWAYS CALL WITH "WITH AS"
     :param character: character to write
     :return: dummy file
     """
@@ -133,7 +131,7 @@ def load(tabs):
             race_str = character_dict["statblock"]["race"]
             new_character.statblock.race = all_races[race_str]
             new_character.statblock.base_attributes = character_dict["statblock"]["base_attributes"]
-            #new_character.statblock.cash = character_dict["statblock"]["cash"]
+            # new_character.statblock.cash = character_dict["statblock"]["cash"]
 
             # set genmode
             gen_mode_key = character_dict["statblock"]["gen_mode"]["type"]
@@ -295,5 +293,3 @@ def load(tabs):
             print("Nothing opened")
         else:
             raise e
-
-

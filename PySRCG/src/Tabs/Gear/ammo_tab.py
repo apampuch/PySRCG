@@ -1,8 +1,7 @@
 from abc import ABC
-
 from tkinter import *
 
-from src.CharData.gear import find_gear_by_dict, Gear
+from src.CharData.gear import Gear
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.app_data import pay_cash
 
@@ -43,7 +42,8 @@ class AmmoTab(ThreeColumnBuyTab, ABC):
             if exists_index >= 0:
                 self.statblock_inventory[exists_index].properties["count"] += count
                 # update label and report box
-                self.update_inventory_text_at_index(exists_index, f"{selected.name} ({self.statblock_inventory[exists_index].properties['count']})")
+                self.update_inventory_text_at_index(
+                    exists_index, f"{selected.name} ({self.statblock_inventory[exists_index].properties['count']})")
                 self.fill_description_box(self.statblock_inventory[exists_index].report())
             else:
                 self.add_inv_item(selected)
@@ -62,7 +62,9 @@ class AmmoTab(ThreeColumnBuyTab, ABC):
             self.remove_inv_item(self.inv_selected_index)
         elif count < selected_item.properties["count"]:
             selected_item.properties["count"] -= count
-            self.update_inventory_text_at_index(selected_index, f"{selected_item.name} ({self.statblock_inventory[selected_index].properties['count']})")
+            self.update_inventory_text_at_index(
+                selected_index,
+                f"{selected_item.name} ({self.statblock_inventory[selected_index].properties['count']})")
             self.fill_description_box(self.statblock_inventory[selected_index].report())
         else:
             item_count = selected_item.properties["count"]

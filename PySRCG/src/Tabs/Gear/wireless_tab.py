@@ -7,12 +7,12 @@ from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.app_data import pay_cash
 
 
-class WirelessTab(ThreeColumnBuyTab):
+class WirelessTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
         super().__init__(parent, "WirelessTab")
 
         self.wireless_obj_dict = {}
-        self.wireless_box = ttk.Combobox(self, values=self.wireless_obj_dict.keys(), state="readonly")
+        self.wireless_box = ttk.Combobox(self, values=list(self.wireless_obj_dict.keys()), state="readonly")
         # self.fill_combobox()
 
         self.wireless_box.bind("<<ComboboxSelected>>", self.get_accobj)
@@ -70,7 +70,8 @@ class WirelessTab(ThreeColumnBuyTab):
         """
         Searches entire character looking for wireless shit.
         :param char_list: An inventory of gear or other things that can have a flux rating.
-        :param custom_names: A list of custom names to use, should be the same length as char_list. Any None entry will use the regular name.
+        :param custom_names: A list of custom names to use, should be the same length as char_list. Any None entry will
+        use the regular name.
         :return: A list of the found things.
         """
         for i in range(0, len(char_list)):
@@ -101,6 +102,7 @@ class WirelessTab(ThreeColumnBuyTab):
 
                 self.wireless_obj_dict[key] = node  # .accessories
 
+    # noinspection PyUnusedLocal
     def get_accobj(self, event):
         """Fills the inventory box with software from the selected memobj"""
         # clear list box

@@ -209,7 +209,7 @@ class LifestylesTab(NotebookTab, ABC):
         self.advanced_info.grid(column=1, row=1, sticky=EW)
 
     # noinspection PyUnusedLocal
-    def on_select_listbox(self, dummyvar):
+    def on_select_listbox(self, dummy_var):
         # load basic data
         lifestyle = self.character.lifestyles[self.lifestyles_listbox.curselection()[0]]
         self.name_var.set(lifestyle.name)

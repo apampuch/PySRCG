@@ -1,6 +1,5 @@
 from abc import ABC
 from tkinter import *
-from tkinter import ttk
 from typing import Any
 
 from src.CharData.contact import Contact
@@ -99,7 +98,8 @@ class ContactsTab(NotebookTab, ABC):
         self.history_label.grid(column=0, row=2)
         self.history_text.grid(column=0, row=3)
 
-    def on_select_listbox(self, dummyvar):
+    # noinspection PyUnusedLocal
+    def on_select_listbox(self, dummy_var):
         if len(self.contacts_listbox.curselection()) > 0:
             self.name_entry.config(state=NORMAL)
             self.archetype_entry.config(state=NORMAL)

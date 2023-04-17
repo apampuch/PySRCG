@@ -1,6 +1,4 @@
 from abc import ABC
-from tkinter import *
-from tkinter import ttk
 
 from src.CharData.augment import Bioware
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
