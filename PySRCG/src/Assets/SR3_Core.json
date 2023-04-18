@@ -4901,1044 +4901,1044 @@
       "page": 170
     }
   },
-      "Cyberware": {
-      "Bodyware": {
-        "Bone Lacing (Plastic)": {
-          "mods": {
-            "cyber_encumbrance": 5,
-            "cyber_body": 1,
-            "cyber_unarmed": 2
-          },
-          "essence": 0.5,
-          "cost": 7500,
-          "street_index": 1.5,
-          "legality": "6P-N",
-          "page": 302,
-          "availability_time": 14,
-          "availability_rating": 5,
-          "availability_unit": "days",
-          "augment_tag": "bone_lacing"
+  "Cyberware": {
+    "Bodyware": {
+      "Bone Lacing (Plastic)": {
+        "mods": {
+          "cyber_encumbrance": 5,
+          "cyber_body": 1,
+          "cyber_unarmed": 2
         },
-        "Bone Lacing (Aluminum)": {
-          "mods": {
-            "cyber_encumbrance": 10,
-            "cyber_body": 1,
-            "cyber_impact": 1,
-            "cyber_unarmed": 3
-          },
-          "essence": 1.15,
-          "cost": 25000,
-          "street_index": 1.5,
-          "legality": "6P-Q",
-          "page": 302,
-          "availability_time": 14,
-          "availability_rating": 5,
-          "availability_unit": "days",
-          "augment_tag": "bone_lacing"
+        "essence": 0.5,
+        "cost": 7500,
+        "street_index": 1.5,
+        "legality": "6P-N",
+        "page": 302,
+        "availability_time": 14,
+        "availability_rating": 5,
+        "availability_unit": "days",
+        "augment_tag": "bone_lacing"
+      },
+      "Bone Lacing (Aluminum)": {
+        "mods": {
+          "cyber_encumbrance": 10,
+          "cyber_body": 1,
+          "cyber_impact": 1,
+          "cyber_unarmed": 3
         },
-        "Bone Lacing (Titanium)": {
-          "mods": {
-            "cyber_encumbrance": 15,
-            "cyber_body": 2,
-            "cyber_impact": 1,
-            "cyber_ballistic": 1,
-            "cyber_unarmed": 4
-          },
-          "essence": 2.25,
-          "cost": 75000,
-          "street_index": 1.5,
-          "legality": "6-R",
-          "page": 302,
-          "availability_time": 14,
-          "availability_rating": 5,
-          "availability_unit": "days",
-          "augment_tag": "bone_lacing"
+        "essence": 1.15,
+        "cost": 25000,
+        "street_index": 1.5,
+        "legality": "6P-Q",
+        "page": 302,
+        "availability_time": 14,
+        "availability_rating": 5,
+        "availability_unit": "days",
+        "augment_tag": "bone_lacing"
+      },
+      "Bone Lacing (Titanium)": {
+        "mods": {
+          "cyber_encumbrance": 15,
+          "cyber_body": 2,
+          "cyber_impact": 1,
+          "cyber_ballistic": 1,
+          "cyber_unarmed": 4
         },
-        "Fingertip Compartment": {
-          "essence": 0.1,
-          "cost": 3000,
+        "essence": 2.25,
+        "cost": 75000,
+        "street_index": 1.5,
+        "legality": "6-R",
+        "page": 302,
+        "availability_time": 14,
+        "availability_rating": 5,
+        "availability_unit": "days",
+        "augment_tag": "bone_lacing"
+      },
+      "Fingertip Compartment": {
+        "essence": 0.1,
+        "cost": 3000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 302,
+        "availability_time": 3,
+        "availability_rating": 24,
+        "availability_unit": "hrs"
+      },
+      "Hand Blade": {
+        "essence": 0.1,
+        "cost": 7500,
+        "street_index": 1.5,
+        "legality": "4P-R",
+        "page": 302,
+        "availability_time": 6,
+        "availability_rating": 5,
+        "availability_unit": "days"
+      },
+      "Hand Blade (Retractable)": {
+        "essence": 0.25,
+        "cost": 10000,
+        "street_index": 1.5,
+        "legality": "3P-R",
+        "page": 302,
+        "availability_time": 6,
+        "availability_rating": 5,
+        "availability_unit": "days"
+      },
+      "Hand Razors": {
+        "essence": 0.1,
+        "cost": 4500,
+        "street_index": 1,
+        "legality": "3-N",
+        "page": 302,
+        "availability_time": 3,
+        "availability_rating": 72,
+        "availability_unit": "hrs"
+      },
+      "Hand Razors, Retractable": {
+        "essence": 0.2,
+        "cost": 13000,
+        "street_index": 1,
+        "legality": "3-N",
+        "page": 302,
+        "availability_time": 6,
+        "availability_rating": 72,
+        "availability_unit": "hrs"
+      },
+      "Hand Razors, Improved": {
+        "essence": 0.1,
+        "cost": 9000,
+        "street_index": 1,
+        "legality": "3-N",
+        "page": 302,
+        "availability_time": 5,
+        "availability_rating": 72,
+        "availability_unit": "hrs"
+      },
+      "Hand Razors, Improved, Retractable": {
+        "essence": 0.2,
+        "cost": 17500,
+        "street_index": 1,
+        "legality": "3-N",
+        "page": 302,
+        "availability_time": 6,
+        "availability_rating": 72,
+        "availability_unit": "hrs"
+      },
+      "Muscle Replacement": {
+        "mods": {
+          "cyber_strength": "rating",
+          "cyber_quickness": "rating"
+        },
+        "essence": "rating",
+        "cost": "rating * 20000",
+        "street_index": 1,
+        "legality": "5P-Q",
+        "page": 302,
+        "rating": "rating",
+        "availability_time": 4,
+        "availability_rating": 4,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["mods", "essence", "cost", "rating"],
+        "augment_tag": "muscle_replacement"
+      },
+      "Smartlink": {
+        "essence": 0.5,
+        "cost": 2500,
+        "street_index": 1,
+        "legality": "5P-N",
+        "page": 302,
+        "availability_time": 3,
+        "availability_rating": 36,
+        "availability_unit": "hrs",
+        "augment_tag": "smartlink"
+      },
+      "Spur": {
+        "essence": 0.1,
+        "cost": 7000,
+        "street_index": 1,
+        "legality": "3-N",
+        "page": 302,
+        "availability_time": 3,
+        "availability_rating": 72,
+        "availability_unit": "hrs"
+      },
+      "Spur, Retractable": {
+        "essence": 0.3,
+        "cost": 11500,
+        "street_index": 1,
+        "legality": "3-N",
+        "page": 302,
+        "availability_time": 5,
+        "availability_rating": 72,
+        "availability_unit": "hrs"
+      },
+      "Voice Modulator": {
+        "essence": 0.2,
+        "cost": 45000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 302,
+        "availability_time": 2,
+        "availability_rating": 24,
+        "availability_unit": "hrs"
+      },
+      "Voice Modulator Volume": {
+        "essence": 0,
+        "cost": 10000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 302,
+        "availability_time": 2,
+        "availability_rating": 24,
+        "availability_unit": "hrs"
+      },
+      "Voice Modulator Playback": {
+        "essence": 0.2,
+        "cost": 40000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 302,
+        "availability_time": 4,
+        "availability_rating": 48,
+        "availability_unit": "hrs"
+      },
+      "Voice Modulator Secondary Pattern": {
+        "essence": 0,
+        "cost": "30000 + 20000 * rating",
+        "street_index": 2,
+        "legality": "3-Q",
+        "rating": "rating",
+        "page": 302,
+        "availability_time": 6,
+        "availability_rating": 7,
+        "availability_unit": "days"
+      },
+      "Tonal Shift": {
+        "essence": 0,
+        "cost": 25000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 302,
+        "availability_time": 2,
+        "availability_rating": 24,
+        "availability_unit": "hrs"
+      },
+      "Boosted Reflexes": {
+        "mods": {
+          "rating": {
+            "1;1": {
+              "cyber_initiative": 1
+            },
+            "2;2": {
+              "cyber_reaction": 1,
+              "cyber_initiative": 1
+            },
+            "3;3": {
+              "cyber_reaction": 2,
+              "cyber_initiative": 2
+            }
+          }
+        },
+        "essence": {
+          "rating": {
+            "1;1": 0.5,
+            "2;2": 1.25,
+            "3;3": 2.8
+          }
+        },
+        "cost": {
+          "rating": {
+            "1;1": 15000,
+            "2;2": 40000,
+            "3;3": 90000
+          }
+        },
+        "street_index": {
+          "rating": {
+            "1;1": 1,
+            "2;2": 1.25,
+            "3;3": 1.5
+          }
+        },
+        "legality": {
+          "rating": {
+            "1;1": "8P-Q",
+            "2;2": "6P-Q",
+            "3;3": "5P-Q"
+          }
+        },
+        "rating": "rating",
+        "page": 302,
+        "availability_time": 3,
+        "availability_rating": 24,
+        "availability_unit": "hrs",
+        "attributes_to_calculate": ["mods", "essence", "cost", "street_index", "legality", "rating"],
+        "augment_tag": "boosted_reflexes"
+      },
+      "Dermal Plating": {
+        "mods": {
+          "cyber_body": "rating"
+        },
+        "essence": "rating * 0.5",
+        "cost": {
+          "rating": {
+            "1;1": 6000,
+            "2;2": 15000,
+            "3;3": 45000
+          }
+        },
+        "street_index": 1,
+        "legality": {
+          "rating": {
+            "1;2": "6P-N",
+            "3;3": "5P-N"
+          }
+        },
+        "rating": "rating",
+        "page": 302,
+        "availability_time": 4,
+        "availability_rating": 12,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["mods", "essence", "cost", "legality", "rating"],
+        "augment_tag": "dermal_plating"
+      },
+      "Filtration Systems": {
+        "Air Filtration System": {
+          "essence": "rating / 10",
+          "cost": "rating * 15000",
           "street_index": 1,
           "legality": "Legal",
-          "page": 302,
-          "availability_time": 3,
-          "availability_rating": 24,
-          "availability_unit": "hrs"
-        },
-        "Hand Blade": {
-          "essence": 0.1,
-          "cost": 7500,
-          "street_index": 1.5,
-          "legality": "4P-R",
-          "page": 302,
-          "availability_time": 6,
-          "availability_rating": 5,
-          "availability_unit": "days"
-        },
-        "Hand Blade (Retractable)": {
-          "essence": 0.25,
-          "cost": 10000,
-          "street_index": 1.5,
-          "legality": "3P-R",
-          "page": 302,
-          "availability_time": 6,
-          "availability_rating": 5,
-          "availability_unit": "days"
-        },
-        "Hand Razors": {
-          "essence": 0.1,
-          "cost": 4500,
-          "street_index": 1,
-          "legality": "3-N",
-          "page": 302,
-          "availability_time": 3,
-          "availability_rating": 72,
-          "availability_unit": "hrs"
-        },
-        "Hand Razors, Retractable": {
-          "essence": 0.2,
-          "cost": 13000,
-          "street_index": 1,
-          "legality": "3-N",
-          "page": 302,
-          "availability_time": 6,
-          "availability_rating": 72,
-          "availability_unit": "hrs"
-        },
-        "Hand Razors, Improved": {
-          "essence": 0.1,
-          "cost": 9000,
-          "street_index": 1,
-          "legality": "3-N",
-          "page": 302,
-          "availability_time": 5,
-          "availability_rating": 72,
-          "availability_unit": "hrs"
-        },
-        "Hand Razors, Improved, Retractable": {
-          "essence": 0.2,
-          "cost": 17500,
-          "street_index": 1,
-          "legality": "3-N",
-          "page": 302,
-          "availability_time": 6,
-          "availability_rating": 72,
-          "availability_unit": "hrs"
-        },
-        "Muscle Replacement": {
-          "mods": {
-            "cyber_strength": "rating",
-            "cyber_quickness": "rating"
-          },
-          "essence": "rating",
-          "cost": "rating * 20000",
-          "street_index": 1,
-          "legality": "5P-Q",
-          "page": 302,
           "rating": "rating",
-          "availability_time": 4,
+          "page": 302,
+          "availability_time": 6,
           "availability_rating": 4,
           "availability_unit": "days",
-          "attributes_to_calculate": ["mods", "essence", "cost", "rating"],
-          "augment_tag": "muscle_replacement"
+        "attributes_to_calculate": ["essence", "cost", "rating"]
         },
-        "Smartlink": {
-          "essence": 0.5,
-          "cost": 2500,
+        "Blood Filtration System": {
+          "essence": "rating / 5",
+          "cost": "rating * 10000",
           "street_index": 1,
-          "legality": "5P-N",
+          "rating": "rating",
+          "legality": "Legal",
+          "page": 302,
+          "availability_time": 6,
+          "availability_rating": 4,
+          "availability_unit": "days",
+        "attributes_to_calculate": ["essence", "cost", "rating"]
+        },
+        "Ingested Toxin Filtration System": {
+          "essence": "rating / 5",
+          "cost": "rating * 10000",
+          "street_index": 1,
+          "rating": "rating",
+          "legality": "Legal",
+          "page": 302,
+          "availability_time": 6,
+          "availability_rating": 4,
+          "availability_unit": "days",
+          "attributes_to_calculate": ["essence", "cost", "rating"]
+        }
+      },
+      "Simrigs": {
+        "Baseline Cyberware Simrig": {
+          "essence": 2,
+          "cost": 300000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 302,
+          "availability_time": 2,
+          "availability_rating": 5,
+          "availability_unit": "days"
+        },
+        "Full-X Cyberware Simrig": {
+          "essence": 2,
+          "cost": 500000,
+          "street_index": 3,
+          "legality": "Legal",
+          "page": 302,
+          "availability_time": 6,
+          "availability_rating": 12,
+          "availability_unit": "days"
+        },
+        "Simlink": {
+          "essence": 0.6,
+          "cost": "10000 * rating + 70000",
+          "street_index": 1.5,
+          "rating": "rating",
+          "legality": "Legal",
           "page": 302,
           "availability_time": 3,
-          "availability_rating": 36,
-          "availability_unit": "hrs",
-          "augment_tag": "smartlink"
+          "availability_rating": 5,
+          "availability_unit": "days",
+          "attributes_to_calculate": ["cost", "rating"]
+        }
+      },
+      "Skillwires": {
+        "essence": "0.2 * rating",
+        "cost": "max_mp * rating * 500",
+        "street_index": 1,
+        "rating": "rating",
+        "max_mp": "max_mp",
+        "legality": "Legal",
+        "page": 302,
+        "availability_time": "rating",
+        "availability_rating": 10,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["essence", "max_mp", "cost", "rating"],
+        "augment_tag": "skillwires"
+      },
+      "Vehicle Control Rig": {
+        "mods": {
+          "cyber_initiative_rigger": "rating",
+          "cyber_reaction_rigger": "rating * 2"
         },
-        "Spur": {
-          "essence": 0.1,
-          "cost": 7000,
-          "street_index": 1,
-          "legality": "3-N",
-          "page": 302,
-          "availability_time": 3,
-          "availability_rating": 72,
-          "availability_unit": "hrs"
+        "essence": {
+          "rating": {
+            "1;1": 2,
+            "2;2": 3,
+            "3;3": 5
+          }
         },
-        "Spur, Retractable": {
+        "cost": {
+          "rating": {
+            "1;1": 12000,
+            "2;2": 60000,
+            "3;3": 300000
+          }
+        },
+        "street_index": {
+          "rating": {
+            "1;1": 1,
+            "2;2": 1.25,
+            "3;3": 1.5
+          }
+        },
+        "rating": "rating",
+        "legality": {
+          "rating": {
+            "1;2": "6P-N",
+            "3;3": "5P-N"
+          }
+        },
+        "page": 302,
+        "availability_time": {
+          "rating": {
+            "1;1": 6,
+            "2;3": 8
+          }
+        },
+        "availability_rating": 48,
+        "availability_unit": "hrs",
+        "attributes_to_calculate": ["mods", "essence", "cost", "street_index", "rating", "legality", "availability_time"],
+        "augment_tag": "vehicle_control_rig",
+        "exclusion_tags": ["wired_reflexes", "boosted_reflexes"]
+      },
+      "Wired Reflexes": {
+        "mods": {
+          "cyber_initiative": "rating",
+          "cyber_reaction": "rating * 2"
+        },
+        "essence": {
+          "rating": {
+            "1;1": 2,
+            "2;2": 3,
+            "3;3": 5
+          }
+        },
+        "cost": {
+          "rating": {
+            "1;1": 55000,
+            "2;2": 165000,
+            "3;3": 500000
+          }
+        },
+        "street_index": 1,
+        "rating": "rating",
+        "legality": {
+          "rating": {
+            "1;1": "5P-Q",
+            "2;2": "4P-Q",
+            "3;3": "3-R"
+          }
+        },
+        "page": 302,
+        "availability_time": {
+          "rating": {
+            "1;2": 4,
+            "3;3": 8
+          }
+        },
+        "availability_rating": {
+          "rating": {
+            "1;2": 8,
+            "3;3": 14
+          }
+        },
+        "availability_unit": "days",
+        "attributes_to_calculate": ["mods", "essence", "cost", "rating", "legality", "availability_time", "availability_rating"],
+        "augment_tag": "wired_reflexes",
+        "exclusion_tags": ["vehicle_control_rig", "boosted_reflexes"]
+      },
+      "Wired Reflexes with Trigger": {
+        "mods": {
+          "cyber_initiative": "rating",
+          "cyber_reaction": "rating * 2"
+        },
+        "essence": {
+          "rating": {
+            "1;1": 2.2,
+            "2;2": 3.2,
+            "3;3": 5.2
+          }
+        },
+        "cost": {
+          "rating": {
+            "1;1": 68000,
+            "2;2": 178000,
+            "3;3": 513000
+          }
+        },
+        "street_index": 1,
+        "rating": "rating",
+        "legality": {
+          "rating": {
+            "1;2": "4P-Q",
+            "3;3": "3-R"
+          }
+        },
+        "page": 302,
+        "availability_time": {
+          "rating": {
+            "1;2": 4,
+            "3;3": 8
+          }
+        },
+        "availability_rating": {
+          "rating": {
+            "1;2": 8,
+            "3;3": 14
+          }
+        },
+        "availability_unit": "days",
+        "attributes_to_calculate": ["mods", "essence", "cost", "rating", "legality", "availability_time", "availability_rating"],
+        "augment_tag": "wired_reflexes",
+        "exclusion_tags": ["vehicle_control_rig", "boosted_reflexes"]
+      },
+      "Reaction Enhancer": {
+        "mods": {
+          "cyber_reaction": "rating"
+        },
+        "essence": "rating * 0.3",
+        "cost": "rating * 60000",
+        "street_index": 2,
+        "rating": "rating",
+        "legality": "4P-Q",
+        "page": 302,
+        "availability_time": 6,
+        "availability_rating": 7,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["mods", "essence", "cost", "rating"],
+        "augment_tag": "reaction_enhancer"
+      }
+    },
+    "Headware": {
+      "Chipjack": {
+        "essence": 0.2,
+        "cost": 1000,
+        "street_index": 0.9,
+        "legality": "legal",
+        "page": 298,
+        "availability_time": 72,
+        "availability_rating": 3,
+        "availability_unit": "hrs"
+      },
+      "Datajack": {
+        "essence": 0.2,
+        "cost": 1000,
+        "street_index": 0.9,
+        "legality": "legal",
+        "page": 298,
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "always"
+      },
+      "Data Lock": {
+        "essence": 0.2,
+        "cost": "1000 + encryption",
+        "street_index": 15,
+        "legality": "as encryption",
+        "page": 298,
+        "availability_time": 36,
+        "availability_rating": 6,
+        "availability_unit": "hours"
+      },
+      "Knowsoft Link": {
+        "essence": 0.1,
+        "cost": 1000,
+        "street_index": 1,
+        "legality": "legal",
+        "page": 298,
+        "availability_time": 24,
+        "availability_rating": 3,
+        "availability_unit": "hours"
+      },
+      "Memory": {
+        "essence": "mp / 300",
+        "cost": "mp * 150",
+        "street_index": 0.8,
+        "legality": "legal",
+        "page": 298,
+        "memory": "mp",
+        "availability_time": 24,
+        "availability_rating": 3,
+        "availability_unit": "hours",
+        "attributes_to_calculate": ["essence", "cost", "memory"]
+      },
+      "Tooth Compartment (breakable)": {
+        "essence": 0,
+        "cost": 700,
+        "street_index": 1.5,
+        "legality": "10P-Q",
+        "page": 299,
+        "availability_time": 48,
+        "availability_rating": 3,
+        "availability_unit": "hours"
+      },
+      "Tooth Compartment (storage)": {
+        "essence": 0,
+        "cost": 1500,
+        "street_index": 1.25,
+        "legality": "legal",
+        "page": 299,
+        "availability_time": 48,
+        "availability_rating": 2,
+        "availability_unit": "hours"
+      },
+      "Communications": {
+        "Commlink": {
           "essence": 0.3,
-          "cost": 11500,
+          "cost": "rating * 5000",
           "street_index": 1,
-          "legality": "3-N",
-          "page": 302,
-          "availability_time": 5,
-          "availability_rating": 72,
+          "legality": "legal",
+          "page": 297,
+          "rating": "rating",
+          "availability_time": 48,
+          "availability_rating": 3,
+          "availability_unit": "hrs",
+          "attributes_to_calculate": ["cost", "rating"],
+          "flux": 0
+        },
+        "Radio": {
+          "essence": 0.75,
+          "cost": "rating * 2000",
+          "street_index": 0.8,
+          "legality": "legal",
+          "page": 297,
+          "rating": "rating",
+          "availability_time": 24,
+          "availability_rating": 2,
+          "availability_unit": "hrs",
+          "attributes_to_calculate": ["cost", "rating"],
+          "flux": 0
+        },
+        "Radio Receiver": {
+          "essence": 0.8,
+          "cost": "rating * 1000",
+          "street_index": 0.8,
+          "legality": "legal",
+          "page": 297,
+          "rating": "rating",
+          "availability_time": 24,
+          "availability_rating": 2,
+          "availability_unit": "hrs",
+          "attributes_to_calculate": ["cost", "rating"],
+          "flux": 0
+        },
+        "Subvocal Microphones": {
+          "essence": 0.1,
+          "cost": 850,
+          "street_index": 2,
+          "legality": "legal",
+          "page": 297,
+          "availability_time": 72,
+          "availability_rating": 4,
           "availability_unit": "hrs"
         },
-        "Voice Modulator": {
-          "essence": 0.2,
-          "cost": 45000,
-          "street_index": 1,
-          "legality": "Legal",
-          "page": 302,
-          "availability_time": 2,
-          "availability_rating": 24,
-          "availability_unit": "hrs"
+        "Telephone": {
+          "essence": 0.5,
+          "cost": 3700,
+          "street_index": 0.9,
+          "legality": "legal",
+          "page": 298,
+          "availability_time": 24,
+          "availability_rating": 3,
+          "availability_unit": "hrs",
+          "flux": 0
+        }
+      },
+      "Cyberears": {
+        "Cyber Replacement Ear": {
+          "essence": 0.3,
+          "cost": 4000,
+          "street_index": 0.75,
+          "legality": "legal",
+          "holds": {
+            "type": "ear",
+            "essence": 0.5
+          },
+          "page": 299,
+          "availability_time": 24,
+          "availability_rating": 2,
+          "availability_unit": "hrs",
+          "augment_tag": "cyberears"
         },
-        "Voice Modulator Volume": {
+        "Cosmetic Modification": {
           "essence": 0,
-          "cost": 10000,
-          "street_index": 1,
-          "legality": "Legal",
-          "page": 302,
-          "availability_time": 2,
-          "availability_rating": 24,
+          "cost": 1000,
+          "street_index": 0.8,
+          "legality": "legal",
+          "fits": "ear",
+          "page": 299,
+          "availability_time": 24,
+          "availability_rating": 2,
           "availability_unit": "hrs"
         },
-        "Voice Modulator Playback": {
+        "Dampener": {
+          "essence": 0.1,
+          "cost": 3500,
+          "street_index": 1.25,
+          "legality": "legal",
+          "fits": "ear",
+          "page": 299,
+          "availability_time": 48,
+          "availability_rating": 4,
+          "availability_unit": "hrs"
+        },
+        "Hearing Amplification": {
           "essence": 0.2,
-          "cost": 40000,
-          "street_index": 1,
-          "legality": "Legal",
-          "page": 302,
-          "availability_time": 4,
-          "availability_rating": 48,
+          "cost": 3500,
+          "street_index": 1.25,
+          "legality": "legal",
+          "fits": "ear",
+          "page": 299,
+          "availability_time": 48,
+          "availability_rating": 4,
           "availability_unit": "hrs"
         },
-        "Voice Modulator Secondary Pattern": {
+        "High Frequency": {
+          "essence": 0.2,
+          "cost": 3000,
+          "street_index": 1.25,
+          "legality": "legal",
+          "fits": "ear",
+          "page": 299,
+          "availability_time": 48,
+          "availability_rating": 4,
+          "availability_unit": "hrs"
+        },
+        "Low Frequency": {
+          "essence": 0.2,
+          "cost": 3000,
+          "street_index": 1.25,
+          "legality": "legal",
+          "fits": "ear",
+          "page": 299,
+          "availability_time": 48,
+          "availability_rating": 4,
+          "availability_unit": "hrs"
+        },
+        "Recorder": {
+          "essence": 0.3,
+          "cost": 7000,
+          "street_index": 2,
+          "legality": "12P-N",
+          "fits": "ear",
+          "page": 299,
+          "availability_time": 48,
+          "availability_rating": 8,
+          "availability_unit": "hrs"
+        },
+        "Select Sound Filter": {
+          "essence": 0.3,
+          "cost": "level * 10000",
+          "level": "level",
+          "street_index": 1.25,
+          "legality": "legal",
+          "fits": "ear",
+          "page": 299,
+          "availability_time": 48,
+          "availability_rating": 6,
+          "availability_unit": "hrs",
+          "attributes_to_calculate": ["cost", "level"]
+        }
+      },
+      "Cybereyes": {
+        "Cyber Replacement Eye": {
+          "essence": 0.2,
+          "cost": 5000,
+          "street_index": 0.75,
+          "legality": "legal",
+          "holds": {
+            "type": "eye",
+            "essence": 0.5
+          },
+          "page": 299,
+          "availability_time": 24,
+          "availability_rating": 2,
+          "availability_unit": "hrs",
+          "augment_tag": "cybereyes"
+        },
+        "Cosmetic Modification": {
           "essence": 0,
-          "cost": "30000 + 20000 * rating",
+          "cost": 1000,
+          "street_index": 0.75,
+          "legality": "legal",
+          "fits": "eye",
+          "page": 299,
+          "availability_time": 24,
+          "availability_rating": 2,
+          "availability_unit": "hrs"
+        },
+        "Camera": {
+          "essence": 0.4,
+          "cost": 5000,
+          "street_index": 2,
+          "legality": "legal",
+          "fits": "eye",
+          "page": 299,
+          "availability_time": 24,
+          "availability_rating": 6,
+          "availability_unit": "hrs"
+        },
+        "Display Link": {
+          "essence": 0.1,
+          "cost": 1000,
+          "street_index": 1,
+          "legality": "legal",
+          "fits": "eye",
+          "page": 299,
+          "availability_time": 36,
+          "availability_rating": 4,
+          "availability_unit": "hrs"
+        },
+        "Flare Compensation": {
+          "essence": 0.1,
+          "cost": 2000,
+          "street_index": 1.25,
+          "legality": "legal",
+          "fits": "eye",
+          "page": 299,
+          "availability_time": 48,
+          "availability_rating": 5,
+          "availability_unit": "hrs"
+        },
+        "Image Link": {
+          "essence": 0.2,
+          "cost": 1600,
+          "street_index": 2,
+          "legality": "legal",
+          "fits": "eye",
+          "page": 299,
+          "availability_time": 48,
+          "availability_rating": 4,
+          "availability_unit": "hrs"
+        },
+        "Low-Light": {
+          "essence": 0.2,
+          "cost": 3000,
+          "street_index": 1.25,
+          "legality": "legal",
+          "fits": "eye",
+          "page": 300,
+          "availability_time": 36,
+          "availability_rating": 4,
+          "availability_unit": "hrs"
+        },
+        "Opticam": {
+          "essence": 0.5,
+          "cost": 20000,
+          "street_index": 2,
+          "legality": "legal",
+          "fits": "eye",
+          "page": 300,
+          "availability_time": 72,
+          "availability_rating": 5,
+          "availability_unit": "hrs"
+        },
+        "Protective Covers": {
+          "essence": 0,
+          "cost": 500,
+          "street_index": 1.5,
+          "legality": "legal",
+          "fits": "eye",
+          "page": 300,
+          "availability_time": 48,
+          "availability_rating": 4,
+          "availability_unit": "hrs"
+        },
+        "Protective Covers (one-way reflective)": {
+          "essence": 0,
+          "cost": 600,
+          "street_index": 1.5,
+          "legality": "legal",
+          "fits": "eye",
+          "page": 300,
+          "availability_time": 48,
+          "availability_rating": 4,
+          "availability_unit": "hrs"
+        },
+        "Retinal Clock": {
+          "essence": 0.1,
+          "cost": 450,
+          "street_index": 1,
+          "legality": "legal",
+          "fits": "eye",
+          "page": 300,
+          "availability_time": 24,
+          "availability_rating": 3,
+          "availability_unit": "hrs"
+        },
+        "Retinal Duplication": {
+          "essence": 0.1,
+          "cost": "rating * 20000",
           "street_index": 2,
           "legality": "3-Q",
           "rating": "rating",
-          "page": 302,
-          "availability_time": 6,
-          "availability_rating": 7,
-          "availability_unit": "days"
-        },
-        "Tonal Shift": {
-          "essence": 0,
-          "cost": 25000,
-          "street_index": 1,
-          "legality": "Legal",
-          "page": 302,
-          "availability_time": 2,
-          "availability_rating": 24,
-          "availability_unit": "hrs"
-        },
-        "Boosted Reflexes": {
-          "mods": {
-            "rating": {
-              "1;1": {
-                "cyber_initiative": 1
-              },
-              "2;2": {
-                "cyber_reaction": 1,
-                "cyber_initiative": 1
-              },
-              "3;3": {
-                "cyber_reaction": 2,
-                "cyber_initiative": 2
-              }
-            }
-          },
-          "essence": {
-            "rating": {
-              "1;1": 0.5,
-              "2;2": 1.25,
-              "3;3": 2.8
-            }
-          },
-          "cost": {
-            "rating": {
-              "1;1": 15000,
-              "2;2": 40000,
-              "3;3": 90000
-            }
-          },
-          "street_index": {
-            "rating": {
-              "1;1": 1,
-              "2;2": 1.25,
-              "3;3": 1.5
-            }
-          },
-          "legality": {
-            "rating": {
-              "1;1": "8P-Q",
-              "2;2": "6P-Q",
-              "3;3": "5P-Q"
-            }
-          },
-          "rating": "rating",
-          "page": 302,
-          "availability_time": 3,
-          "availability_rating": 24,
-          "availability_unit": "hrs",
-          "attributes_to_calculate": ["mods", "essence", "cost", "street_index", "legality", "rating"],
-          "augment_tag": "boosted_reflexes"
-        },
-        "Dermal Plating": {
-          "mods": {
-            "cyber_body": "rating"
-          },
-          "essence": "rating * 0.5",
-          "cost": {
-            "rating": {
-              "1;1": 6000,
-              "2;2": 15000,
-              "3;3": 45000
-            }
-          },
-          "street_index": 1,
-          "legality": {
-            "rating": {
-              "1;2": "6P-N",
-              "3;3": "5P-N"
-            }
-          },
-          "rating": "rating",
-          "page": 302,
-          "availability_time": 4,
-          "availability_rating": 12,
+          "fits": "eye",
+          "page": 300,
+          "availability_time": 7,
+          "availability_rating": 8,
           "availability_unit": "days",
-          "attributes_to_calculate": ["mods", "essence", "cost", "legality", "rating"],
-          "augment_tag": "dermal_plating"
+          "attributes_to_calculate": ["cost", "rating"]
         },
-        "Filtration Systems": {
-          "Air Filtration System": {
-            "essence": "rating / 10",
-            "cost": "rating * 15000",
-            "street_index": 1,
-            "legality": "Legal",
-            "rating": "rating",
-            "page": 302,
-            "availability_time": 6,
-            "availability_rating": 4,
-            "availability_unit": "days",
-          "attributes_to_calculate": ["essence", "cost", "rating"]
-          },
-          "Blood Filtration System": {
-            "essence": "rating / 5",
-            "cost": "rating * 10000",
-            "street_index": 1,
-            "rating": "rating",
-            "legality": "Legal",
-            "page": 302,
-            "availability_time": 6,
-            "availability_rating": 4,
-            "availability_unit": "days",
-          "attributes_to_calculate": ["essence", "cost", "rating"]
-          },
-          "Ingested Toxin Filtration System": {
-            "essence": "rating / 5",
-            "cost": "rating * 10000",
-            "street_index": 1,
-            "rating": "rating",
-            "legality": "Legal",
-            "page": 302,
-            "availability_time": 6,
-            "availability_rating": 4,
-            "availability_unit": "days",
-            "attributes_to_calculate": ["essence", "cost", "rating"]
-          }
-        },
-        "Simrigs": {
-          "Baseline Cyberware Simrig": {
-            "essence": 2,
-            "cost": 300000,
-            "street_index": 1,
-            "legality": "Legal",
-            "page": 302,
-            "availability_time": 2,
-            "availability_rating": 5,
-            "availability_unit": "days"
-          },
-          "Full-X Cyberware Simrig": {
-            "essence": 2,
-            "cost": 500000,
-            "street_index": 3,
-            "legality": "Legal",
-            "page": 302,
-            "availability_time": 6,
-            "availability_rating": 12,
-            "availability_unit": "days"
-          },
-          "Simlink": {
-            "essence": 0.6,
-            "cost": "10000 * rating + 70000",
-            "street_index": 1.5,
-            "rating": "rating",
-            "legality": "Legal",
-            "page": 302,
-            "availability_time": 3,
-            "availability_rating": 5,
-            "availability_unit": "days",
-            "attributes_to_calculate": ["cost", "rating"]
-          }
-        },
-        "Skillwires": {
-          "essence": "0.2 * rating",
-          "cost": "max_mp * rating * 500",
-          "street_index": 1,
-          "rating": "rating",
-          "max_mp": "max_mp",
-          "legality": "Legal",
-          "page": 302,
-          "availability_time": "rating",
-          "availability_rating": 10,
-          "availability_unit": "days",
-          "attributes_to_calculate": ["essence", "max_mp", "cost", "rating"],
-          "augment_tag": "skillwires"
-        },
-        "Vehicle Control Rig": {
-          "mods": {
-            "cyber_initiative_rigger": "rating",
-            "cyber_reaction_rigger": "rating * 2"
-          },
-          "essence": {
-            "rating": {
-              "1;1": 2,
-              "2;2": 3,
-              "3;3": 5
-            }
-          },
-          "cost": {
-            "rating": {
-              "1;1": 12000,
-              "2;2": 60000,
-              "3;3": 300000
-            }
-          },
-          "street_index": {
-            "rating": {
-              "1;1": 1,
-              "2;2": 1.25,
-              "3;3": 1.5
-            }
-          },
-          "rating": "rating",
-          "legality": {
-            "rating": {
-              "1;2": "6P-N",
-              "3;3": "5P-N"
-            }
-          },
-          "page": 302,
-          "availability_time": {
-            "rating": {
-              "1;1": 6,
-              "2;3": 8
-            }
-          },
-          "availability_rating": 48,
-          "availability_unit": "hrs",
-          "attributes_to_calculate": ["mods", "essence", "cost", "street_index", "rating", "legality", "availability_time"],
-          "augment_tag": "vehicle_control_rig",
-          "exclusion_tags": ["wired_reflexes", "boosted_reflexes"]
-        },
-        "Wired Reflexes": {
-          "mods": {
-            "cyber_initiative": "rating",
-            "cyber_reaction": "rating * 2"
-          },
-          "essence": {
-            "rating": {
-              "1;1": 2,
-              "2;2": 3,
-              "3;3": 5
-            }
-          },
-          "cost": {
-            "rating": {
-              "1;1": 55000,
-              "2;2": 165000,
-              "3;3": 500000
-            }
-          },
-          "street_index": 1,
-          "rating": "rating",
-          "legality": {
-            "rating": {
-              "1;1": "5P-Q",
-              "2;2": "4P-Q",
-              "3;3": "3-R"
-            }
-          },
-          "page": 302,
-          "availability_time": {
-            "rating": {
-              "1;2": 4,
-              "3;3": 8
-            }
-          },
-          "availability_rating": {
-            "rating": {
-              "1;2": 8,
-              "3;3": 14
-            }
-          },
-          "availability_unit": "days",
-          "attributes_to_calculate": ["mods", "essence", "cost", "rating", "legality", "availability_time", "availability_rating"],
-          "augment_tag": "wired_reflexes",
-          "exclusion_tags": ["vehicle_control_rig", "boosted_reflexes"]
-        },
-        "Wired Reflexes with Trigger": {
-          "mods": {
-            "cyber_initiative": "rating",
-            "cyber_reaction": "rating * 2"
-          },
-          "essence": {
-            "rating": {
-              "1;1": 2.2,
-              "2;2": 3.2,
-              "3;3": 5.2
-            }
-          },
-          "cost": {
-            "rating": {
-              "1;1": 68000,
-              "2;2": 178000,
-              "3;3": 513000
-            }
-          },
-          "street_index": 1,
-          "rating": "rating",
-          "legality": {
-            "rating": {
-              "1;2": "4P-Q",
-              "3;3": "3-R"
-            }
-          },
-          "page": 302,
-          "availability_time": {
-            "rating": {
-              "1;2": 4,
-              "3;3": 8
-            }
-          },
-          "availability_rating": {
-            "rating": {
-              "1;2": 8,
-              "3;3": 14
-            }
-          },
-          "availability_unit": "days",
-          "attributes_to_calculate": ["mods", "essence", "cost", "rating", "legality", "availability_time", "availability_rating"],
-          "augment_tag": "wired_reflexes",
-          "exclusion_tags": ["vehicle_control_rig", "boosted_reflexes"]
-        },
-        "Reaction Enhancer": {
-          "mods": {
-            "cyber_reaction": "rating"
-          },
-          "essence": "rating * 0.3",
-          "cost": "rating * 60000",
-          "street_index": 2,
-          "rating": "rating",
-          "legality": "4P-Q",
-          "page": 302,
-          "availability_time": 6,
-          "availability_rating": 7,
-          "availability_unit": "days",
-          "attributes_to_calculate": ["mods", "essence", "cost", "rating"],
-          "augment_tag": "reaction_enhancer"
-        }
-      },
-      "Headware": {
-        "Chipjack": {
+        "Thermographic": {
           "essence": 0.2,
-          "cost": 1000,
-          "street_index": 0.9,
-          "legality": "legal",
-          "page": 298,
-          "availability_time": 72,
-          "availability_rating": 3,
-          "availability_unit": "hrs"
-        },
-        "Datajack": {
-          "essence": 0.2,
-          "cost": 1000,
-          "street_index": 0.9,
-          "legality": "legal",
-          "page": 298,
-          "availability_rating": 0,
-          "availability_time": 0,
-          "availability_unit": "always"
-        },
-        "Data Lock": {
-          "essence": 0.2,
-          "cost": "1000 + encryption",
-          "street_index": 15,
-          "legality": "as encryption",
-          "page": 298,
-          "availability_time": 36,
-          "availability_rating": 6,
-          "availability_unit": "hours"
-        },
-        "Knowsoft Link": {
-          "essence": 0.1,
-          "cost": 1000,
-          "street_index": 1,
-          "legality": "legal",
-          "page": 298,
-          "availability_time": 24,
-          "availability_rating": 3,
-          "availability_unit": "hours"
-        },
-        "Memory": {
-          "essence": "mp / 300",
-          "cost": "mp * 150",
-          "street_index": 0.8,
-          "legality": "legal",
-          "page": 298,
-          "memory": "mp",
-          "availability_time": 24,
-          "availability_rating": 3,
-          "availability_unit": "hours",
-          "attributes_to_calculate": ["essence", "cost", "memory"]
-        },
-        "Tooth Compartment (breakable)": {
-          "essence": 0,
-          "cost": 700,
-          "street_index": 1.5,
-          "legality": "10P-Q",
-          "page": 299,
-          "availability_time": 48,
-          "availability_rating": 3,
-          "availability_unit": "hours"
-        },
-        "Tooth Compartment (storage)": {
-          "essence": 0,
-          "cost": 1500,
+          "cost": 3000,
           "street_index": 1.25,
           "legality": "legal",
-          "page": 299,
-          "availability_time": 48,
-          "availability_rating": 2,
-          "availability_unit": "hours"
+          "fits": "eye",
+          "page": 300,
+          "availability_time": 36,
+          "availability_rating": 4,
+          "availability_unit": "hrs"
         },
-        "Communications": {
-          "Commlink": {
-            "essence": 0.3,
-            "cost": "rating * 5000",
+        "Vision Magnification": {
+          "Optical 1": {
+            "essence": 0.2,
+            "cost": 2500,
             "street_index": 1,
             "legality": "legal",
-            "page": 297,
-            "rating": "rating",
+            "fits": "eye",
+            "page": 300,
             "availability_time": 48,
-            "availability_rating": 3,
-            "availability_unit": "hrs",
-            "attributes_to_calculate": ["cost", "rating"],
-            "flux": 0
-          },
-          "Radio": {
-            "essence": 0.75,
-            "cost": "rating * 2000",
-            "street_index": 0.8,
-            "legality": "legal",
-            "page": 297,
-            "rating": "rating",
-            "availability_time": 24,
-            "availability_rating": 2,
-            "availability_unit": "hrs",
-            "attributes_to_calculate": ["cost", "rating"],
-            "flux": 0
-          },
-          "Radio Receiver": {
-            "essence": 0.8,
-            "cost": "rating * 1000",
-            "street_index": 0.8,
-            "legality": "legal",
-            "page": 297,
-            "rating": "rating",
-            "availability_time": 24,
-            "availability_rating": 2,
-            "availability_unit": "hrs",
-            "attributes_to_calculate": ["cost", "rating"],
-            "flux": 0
-          },
-          "Subvocal Microphones": {
-            "essence": 0.1,
-            "cost": 850,
-            "street_index": 2,
-            "legality": "legal",
-            "page": 297,
-            "availability_time": 72,
             "availability_rating": 4,
             "availability_unit": "hrs"
           },
-          "Telephone": {
-            "essence": 0.5,
-            "cost": 3700,
-            "street_index": 0.9,
-            "legality": "legal",
-            "page": 298,
-            "availability_time": 24,
-            "availability_rating": 3,
-            "availability_unit": "hrs",
-            "flux": 0
-          }
-        },
-        "Cyberears": {
-          "Cyber Replacement Ear": {
-            "essence": 0.3,
+          "Optical 2": {
+            "essence": 0.2,
             "cost": 4000,
-            "street_index": 0.75,
-            "legality": "legal",
-            "holds": {
-              "type": "ear",
-              "essence": 0.5
-            },
-            "page": 299,
-            "availability_time": 24,
-            "availability_rating": 2,
-            "availability_unit": "hrs",
-            "augment_tag": "cyberears"
-          },
-          "Cosmetic Modification": {
-            "essence": 0,
-            "cost": 1000,
-            "street_index": 0.8,
-            "legality": "legal",
-            "fits": "ear",
-            "page": 299,
-            "availability_time": 24,
-            "availability_rating": 2,
-            "availability_unit": "hrs"
-          },
-          "Dampener": {
-            "essence": 0.1,
-            "cost": 3500,
-            "street_index": 1.25,
-            "legality": "legal",
-            "fits": "ear",
-            "page": 299,
-            "availability_time": 48,
-            "availability_rating": 4,
-            "availability_unit": "hrs"
-          },
-          "Hearing Amplification": {
-            "essence": 0.2,
-            "cost": 3500,
-            "street_index": 1.25,
-            "legality": "legal",
-            "fits": "ear",
-            "page": 299,
-            "availability_time": 48,
-            "availability_rating": 4,
-            "availability_unit": "hrs"
-          },
-          "High Frequency": {
-            "essence": 0.2,
-            "cost": 3000,
-            "street_index": 1.25,
-            "legality": "legal",
-            "fits": "ear",
-            "page": 299,
-            "availability_time": 48,
-            "availability_rating": 4,
-            "availability_unit": "hrs"
-          },
-          "Low Frequency": {
-            "essence": 0.2,
-            "cost": 3000,
-            "street_index": 1.25,
-            "legality": "legal",
-            "fits": "ear",
-            "page": 299,
-            "availability_time": 48,
-            "availability_rating": 4,
-            "availability_unit": "hrs"
-          },
-          "Recorder": {
-            "essence": 0.3,
-            "cost": 7000,
-            "street_index": 2,
-            "legality": "12P-N",
-            "fits": "ear",
-            "page": 299,
-            "availability_time": 48,
-            "availability_rating": 8,
-            "availability_unit": "hrs"
-          },
-          "Select Sound Filter": {
-            "essence": 0.3,
-            "cost": "level * 10000",
-            "level": "level",
-            "street_index": 1.25,
-            "legality": "legal",
-            "fits": "ear",
-            "page": 299,
-            "availability_time": 48,
-            "availability_rating": 6,
-            "availability_unit": "hrs",
-            "attributes_to_calculate": ["cost", "level"]
-          }
-        },
-        "Cybereyes": {
-          "Cyber Replacement Eye": {
-            "essence": 0.2,
-            "cost": 5000,
-            "street_index": 0.75,
-            "legality": "legal",
-            "holds": {
-              "type": "eye",
-              "essence": 0.5
-            },
-            "page": 299,
-            "availability_time": 24,
-            "availability_rating": 2,
-            "availability_unit": "hrs",
-            "augment_tag": "cybereyes"
-          },
-          "Cosmetic Modification": {
-            "essence": 0,
-            "cost": 1000,
-            "street_index": 0.75,
-            "legality": "legal",
-            "fits": "eye",
-            "page": 299,
-            "availability_time": 24,
-            "availability_rating": 2,
-            "availability_unit": "hrs"
-          },
-          "Camera": {
-            "essence": 0.4,
-            "cost": 5000,
-            "street_index": 2,
-            "legality": "legal",
-            "fits": "eye",
-            "page": 299,
-            "availability_time": 24,
-            "availability_rating": 6,
-            "availability_unit": "hrs"
-          },
-          "Display Link": {
-            "essence": 0.1,
-            "cost": 1000,
-            "street_index": 1,
-            "legality": "legal",
-            "fits": "eye",
-            "page": 299,
-            "availability_time": 36,
-            "availability_rating": 4,
-            "availability_unit": "hrs"
-          },
-          "Flare Compensation": {
-            "essence": 0.1,
-            "cost": 2000,
-            "street_index": 1.25,
-            "legality": "legal",
-            "fits": "eye",
-            "page": 299,
-            "availability_time": 48,
-            "availability_rating": 5,
-            "availability_unit": "hrs"
-          },
-          "Image Link": {
-            "essence": 0.2,
-            "cost": 1600,
-            "street_index": 2,
-            "legality": "legal",
-            "fits": "eye",
-            "page": 299,
-            "availability_time": 48,
-            "availability_rating": 4,
-            "availability_unit": "hrs"
-          },
-          "Low-Light": {
-            "essence": 0.2,
-            "cost": 3000,
-            "street_index": 1.25,
-            "legality": "legal",
-            "fits": "eye",
-            "page": 300,
-            "availability_time": 36,
-            "availability_rating": 4,
-            "availability_unit": "hrs"
-          },
-          "Opticam": {
-            "essence": 0.5,
-            "cost": 20000,
-            "street_index": 2,
-            "legality": "legal",
-            "fits": "eye",
-            "page": 300,
-            "availability_time": 72,
-            "availability_rating": 5,
-            "availability_unit": "hrs"
-          },
-          "Protective Covers": {
-            "essence": 0,
-            "cost": 500,
-            "street_index": 1.5,
-            "legality": "legal",
-            "fits": "eye",
-            "page": 300,
-            "availability_time": 48,
-            "availability_rating": 4,
-            "availability_unit": "hrs"
-          },
-          "Protective Covers (one-way reflective)": {
-            "essence": 0,
-            "cost": 600,
-            "street_index": 1.5,
-            "legality": "legal",
-            "fits": "eye",
-            "page": 300,
-            "availability_time": 48,
-            "availability_rating": 4,
-            "availability_unit": "hrs"
-          },
-          "Retinal Clock": {
-            "essence": 0.1,
-            "cost": 450,
             "street_index": 1,
             "legality": "legal",
             "fits": "eye",
             "page": 300,
-            "availability_time": 24,
-            "availability_rating": 3,
-            "availability_unit": "hrs"
-          },
-          "Retinal Duplication": {
-            "essence": 0.1,
-            "cost": "rating * 20000",
-            "street_index": 2,
-            "legality": "3-Q",
-            "rating": "rating",
-            "fits": "eye",
-            "page": 300,
-            "availability_time": 7,
-            "availability_rating": 8,
-            "availability_unit": "days",
-            "attributes_to_calculate": ["cost", "rating"]
-          },
-          "Thermographic": {
-            "essence": 0.2,
-            "cost": 3000,
-            "street_index": 1.25,
-            "legality": "legal",
-            "fits": "eye",
-            "page": 300,
-            "availability_time": 36,
+            "availability_time": 48,
             "availability_rating": 4,
             "availability_unit": "hrs"
           },
-          "Vision Magnification": {
-            "Optical 1": {
-              "essence": 0.2,
-              "cost": 2500,
-              "street_index": 1,
-              "legality": "legal",
-              "fits": "eye",
-              "page": 300,
-              "availability_time": 48,
-              "availability_rating": 4,
-              "availability_unit": "hrs"
-            },
-            "Optical 2": {
-              "essence": 0.2,
-              "cost": 4000,
-              "street_index": 1,
-              "legality": "legal",
-              "fits": "eye",
-              "page": 300,
-              "availability_time": 48,
-              "availability_rating": 4,
-              "availability_unit": "hrs"
-            },
-            "Optical 3": {
-              "essence": 0.2,
-              "cost": 6000,
-              "street_index": 1,
-              "legality": "legal",
-              "fits": "eye",
-              "page": 300,
-              "availability_time": 48,
-              "availability_rating": 5,
-              "availability_unit": "hrs"
-            },
-            "Electronic 1": {
-              "essence": 0.1,
-              "cost": 3500,
-              "street_index": 1,
-              "legality": "legal",
-              "fits": "eye",
-              "page": 300,
-              "availability_time": 48,
-              "availability_rating": 5,
-              "availability_unit": "hrs"
-            },
-            "Electronic 2": {
-              "essence": 0.1,
-              "cost": 7500,
-              "street_index": 1,
-              "legality": "legal",
-              "fits": "eye",
-              "page": 300,
-              "availability_time": 48,
-              "availability_rating": 5,
-              "availability_unit": "hrs"
-            },
-            "Electronic 3": {
-              "essence": 0.1,
-              "cost": 11000,
-              "street_index": 1,
-              "legality": "legal",
-              "fits": "eye",
-              "page": 300,
-              "availability_time": 48,
-              "availability_rating": 8,
-              "availability_unit": "hrs"
-            }
+          "Optical 3": {
+            "essence": 0.2,
+            "cost": 6000,
+            "street_index": 1,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 300,
+            "availability_time": 48,
+            "availability_rating": 5,
+            "availability_unit": "hrs"
+          },
+          "Electronic 1": {
+            "essence": 0.1,
+            "cost": 3500,
+            "street_index": 1,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 300,
+            "availability_time": 48,
+            "availability_rating": 5,
+            "availability_unit": "hrs"
+          },
+          "Electronic 2": {
+            "essence": 0.1,
+            "cost": 7500,
+            "street_index": 1,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 300,
+            "availability_time": 48,
+            "availability_rating": 5,
+            "availability_unit": "hrs"
+          },
+          "Electronic 3": {
+            "essence": 0.1,
+            "cost": 11000,
+            "street_index": 1,
+            "legality": "legal",
+            "fits": "eye",
+            "page": 300,
+            "availability_time": 48,
+            "availability_rating": 8,
+            "availability_unit": "hrs"
           }
-        }
-      },
-      "Cyberlimbs": {
-        "Obvious Cyberarm": {
-          "concealability": null,
-          "essence": 1,
-          "cost": 75000,
-          "street_index": 1,
-          "legality": "Legal",
-          "page": 303,
-          "availability_time": 4,
-          "availability_rating": 4,
-          "availability_unit": "days"
-        },
-        "Obvious Cyberleg": {
-          "concealability": null,
-          "essence": 1,
-          "cost": 75000,
-          "street_index": 1,
-          "legality": "Legal",
-          "page": 303,
-          "availability_time": 4,
-          "availability_rating": 4,
-          "availability_unit": "days"
-        },
-        "Synthetic Cyberarm": {
-          "concealability": 8,
-          "essence": 1,
-          "cost": 100000,
-          "street_index": 1,
-          "legality": "Legal",
-          "page": 303,
-          "availability_time": 4,
-          "availability_rating": 4,
-          "availability_unit": "days"
-        },
-        "Synthetic Cyberleg": {
-          "concealability": 8,
-          "essence": 1,
-          "cost": 100000,
-          "street_index": 1,
-          "legality": "Legal",
-          "page": 303,
-          "availability_time": 4,
-          "availability_rating": 4,
-          "availability_unit": "days"
         }
       }
+    },
+    "Cyberlimbs": {
+      "Obvious Cyberarm": {
+        "concealability": null,
+        "essence": 1,
+        "cost": 75000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 303,
+        "availability_time": 4,
+        "availability_rating": 4,
+        "availability_unit": "days"
+      },
+      "Obvious Cyberleg": {
+        "concealability": null,
+        "essence": 1,
+        "cost": 75000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 303,
+        "availability_time": 4,
+        "availability_rating": 4,
+        "availability_unit": "days"
+      },
+      "Synthetic Cyberarm": {
+        "concealability": 8,
+        "essence": 1,
+        "cost": 100000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 303,
+        "availability_time": 4,
+        "availability_rating": 4,
+        "availability_unit": "days"
+      },
+      "Synthetic Cyberleg": {
+        "concealability": 8,
+        "essence": 1,
+        "cost": 100000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 303,
+        "availability_time": 4,
+        "availability_rating": 4,
+        "availability_unit": "days"
+      }
+    }
     },
   "Decks": {
     "Allegiance Sigma": {
