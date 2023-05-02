@@ -44,13 +44,514 @@
         "options": {"Compound": null},
         "compound_cost": "compound_cost",
         "attributes_to_calculate": ["compound_cost", "cost"]
+      },
+      "Digestive Expansion": {
+        "bio_index": 1,
+        "cost": 80000,
+        "street_index": 2,
+        "legality": "Legal",
+        "page": 65,
+        "availability_rating": 6,
+        "availability_time": 10,
+        "availability_unit": "days"
+      },
+      "Enhanced Articulation": {
+        "bio_index": 0.6,
+        "mods": {"bio_reaction": 1},
+        "cost": 40000,
+        "street_index": 1.5,
+        "legality": "Legal",
+        "page": 66,
+        "availability_rating": 5,
+        "availability_time": 6,
+        "availability_unit": "days"
+      },
+      "Extended Volume": {
+        "bio_index": {
+          "level": {
+            "1;1": 0.2,
+            "2;2": 0.3,
+            "3;3": 0.4
+          }
+        },
+        "cost": {
+          "level": {
+            "1;1": 8000,
+            "2;2": 15000,
+            "3;3": 25000
+          }
+        },
+        "level": "level",
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 66,
+        "availability_rating": 4,
+        "availability_time": 4,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "cost", "level"]
+      },
+      "Metabolic Arrester": {
+        "bio_index": 0.6,
+        "cost": 20000,
+        "street_index": 1.5,
+        "legality": "Legal",
+        "page": 66,
+        "availability_rating": 6,
+        "availability_time": 8,
+        "availability_unit": "days"
+      },
+      "Muscle Augmentation": {
+        "bio_index": "0.4 * level",
+        "mods": {"bio_strength": "level"},
+        "cost": "20000 * level",
+        "level": "level",
+        "street_index": 0.9,
+        "legality": "4P-Q",
+        "page": 67,
+        "availability_rating": 6,
+        "availability_time": 6,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "mods", "cost", "level"]
+      },
+      "Muscle Toner": {
+        "bio_index": "0.4 * level",
+        "mods": {"bio_quickness": 1},
+        "cost": "25000 * level",
+        "level": "level",
+        "street_index": 0.9,
+        "legality": "4P-Q",
+        "page": 67,
+        "availability_rating": 6,
+        "availability_time": 6,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "mods", "cost", "level"]
+      },
+      "Nephritic Screen": {
+        "bio_index": 0.4,
+        "cost": 20000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 67,
+        "availability_rating": 6,
+        "availability_time": 6,
+        "availability_unit": "days"
+      },
+      "Nictitating Membranes": {
+        "bio_index": 0.1,
+        "cost": 8000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 67,
+        "availability_rating": 4,
+        "availability_time": 6,
+        "availability_unit": "days"
+      },
+      "Orthoskin": {
+        "bio_index": "0.5 * level",
+        "mods": {
+          "level": {
+            "1;1": {
+              "bio_impact": 1
+            },
+            "2;2": {
+              "bio_impact": 1,
+              "bio_ballistic": 1
+            },
+            "3;3": {
+              "bio_impact": 2,
+              "bio_ballistic": 1
+            }
+          }
+        },
+        "cost": {
+          "level": {
+            "1;1": 25000,
+            "2;2": 60000,
+            "3;3": 100000
+          }
+        },
+        "level": "level",
+        "street_index": 0.8,
+        "legality": "5P-N",
+        "page": 68,
+        "availability_rating": 8,
+        "availability_time": 8,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "mods", "cost", "level"]
+      },
+      "Pathogenic Defense": {
+        "bio_index": "0.2 * level",
+        "cost": "24000 * level",
+        "level": "level",
+        "street_index": 1.5,
+        "legality": "Legal",
+        "page": 68,
+        "availability_rating": 4,
+        "availability_time": 4,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "cost", "level"]
+      },
+      "Platelet Factories": {
+        "bio_index": 0.4,
+        "cost": 30000,
+        "street_index": 1.5,
+        "legality": "Legal",
+        "page": 68,
+        "availability_rating": 5,
+        "availability_time": 8,
+        "availability_unit": "days"
+      },
+      "Suprathyroid Gland": {
+        "bio_index": 1.4,
+        "mods": {
+          "bio_body": 1,
+          "bio_strength": 1,
+          "bio_quickness": 1,
+          "bio_reaction": 1
+        },
+        "cost": 50000,
+        "street_index": 2.5,
+        "legality": "6P-Q",
+        "page": 69,
+        "availability_rating": 8,
+        "availability_time": 12,
+        "availability_unit": "days"
+      },
+      "Symbiotes": {
+        "bio_index": {
+          "level": {
+            "1;1": 0.4,
+            "2;2": 0.7,
+            "3;3": 1.0
+          }
+        },
+        "cost": {
+          "level": {
+            "1;1": 15000,
+            "2;2": 35000,
+            "3;3": 60000
+          }
+        },
+        "level": "level",
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 69,
+        "availability_rating": 5,
+        "availability_time": 10,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "cost", "level"]
+      },
+      "Synthcardium": {
+        "bio_index": {
+          "level": {
+            "1;1": 0.2,
+            "2;2": 0.3
+          }
+        },
+        "cost": {
+          "level": {
+            "1;1": 6000,
+            "2;2": 15000
+          }
+        },
+        "level": "level",
+        "street_index": 1.5,
+        "legality": "Legal",
+        "page": 70,
+        "availability_rating": 4,
+        "availability_time": 10,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "cost", "level"]
+      },
+      "Tailored Pheromones": {
+        "bio_index": {
+          "level": {
+            "1;1": 0.4,
+            "2;2": 0.6
+          }
+        },
+        "cost": {
+          "level": {
+            "1;1": 20000,
+            "2;2": 45000
+          }
+        },
+        "level": "level",
+        "street_index": 2,
+        "legality": "Legal",
+        "page": 70,
+        "availability_rating": 12,
+        "availability_time": 14,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "cost", "level"]
+      },
+      "Toxin Extractor": {
+        "bio_index": {
+          "level": "0.4 * level"
+        },
+        "cost": "45000 * level",
+        "level": "level",
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 71,
+        "availability_rating": 4,
+        "availability_time": 4,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "cost", "level"]
+      },
+      "Tracheal Filter": {
+        "bio_index": {
+          "level": "0.4 * level"
+        },
+        "cost": "60000 * level",
+        "level": "level",
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 71,
+        "availability_rating": 4,
+        "availability_time": 10,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "cost", "level"]
+      }
+  },
+    "Cultured": {
+      "Cerebral Booster": {
+        "bio_index": {
+          "level": "0.4 * level"
+        },
+        "mods": {
+          "bio_intelligence": "level",
+          "bio_task_pool": {
+            "level": {
+              "1;1": 0,
+              "2;2": 1
+            }
+          }
+        },
+        "cultured_only": true,
+        "cost": {
+          "level": {
+            "1;1": 50000,
+            "2;2": 110000
+          }
+        },
+        "level": "level",
+        "street_index": 2,
+        "legality": "Legal",
+        "page": 72,
+        "availability_rating": 6,
+        "availability_time": 14,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "mods", "cost", "level"]
+      },
+      "Damage Compensators": {
+        "bio_index": {
+          "level": "0.2 * level"
+        },
+        "cultured_only": true,
+        "cost": {
+          "level": {
+            "1;2": "25000 * level",
+            "3;5": "50000 * level",
+            "6;9": "100000 * level"
+          }
+        },
+        "level": "level",
+        "street_index": 2.5,
+        "legality": "6P-N",
+        "page": 71,
+        "availability_rating": {
+          "level": {
+            "1;2": 6,
+            "3;5": 10,
+            "6;9": 12
+          }
+        },
+        "availability_time": 14,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "cost", "level", "availability_rating"]
+      },
+      "Mnemnonic Enhancer": {
+        "bio_index": {
+          "level": "0.2 * level"
+        },
+        "cultured_only": true,
+        "cost": "15000 * level",
+        "level": "level",
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 72,
+        "availability_rating": 6,
+        "availability_time": 7,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "cost", "level"]
+      },
+      "Pain Editor": {
+        "bio_index": 0.6,
+        "cultured_only": true,
+        "cost": 60000,
+        "street_index": 1.2,
+        "legality": "6P-N",
+        "page": 73,
+        "availability_rating": 6,
+        "availability_time": 6,
+        "availability_unit": "days"
+      },
+      "Reflex Recorder (base skill)": {
+        "bio_index": 0.25,
+        "cultured_only": true,
+        "cost": 25000,
+        "street_index": 1.5,
+        "legality": "Legal",
+        "page": 74,
+        "availability_rating": 8,
+        "availability_time": 6,
+        "availability_unit": "days",
+        "options": {"Skill": null}
+      },
+      "Reflex Recorder (specialization)": {
+        "bio_index": 0.1,
+        "cultured_only": true,
+        "cost": 10000,
+        "street_index": 1.5,
+        "legality": "Legal",
+        "page": 74,
+        "availability_rating": 5,
+        "availability_time": 6,
+        "availability_unit": "days",
+        "options": {"Specialization": null}
+      },
+      "Sleep Regulator": {
+        "bio_index": 0.3,
+        "cultured_only": true,
+        "cost": 20000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 74,
+        "availability_rating": 4,
+        "availability_time": 4,
+        "availability_unit": "days"
+      },
+      "Synaptic Accelerator": {
+        "bio_index": {
+          "level": {
+            "1;1": 0.4,
+            "2;2": 1.0
+          }
+        },
+        "mods": {
+          "bio_initiative": "level"
+        },
+        "cultured_only": true,
+        "level": "level",
+        "cost": {
+          "level": {
+            "1;1": 75000,
+            "2;2": 200000
+          }
+        },
+        "street_index": 2,
+        "legality": "5P-Q",
+        "page": 74,
+        "availability_rating": 6,
+        "availability_time": 12,
+        "availability_unit": "days",
+        "attributes_to_calculate": ["bio_index", "mods", "cost", "level"]
+      },
+      "Thermosense Organs": {
+        "bio_index": 0.5,
+        "cultured_only": true,
+        "cost": 25000,
+        "street_index": 2,
+        "legality": "Legal",
+        "page": 75,
+        "availability_rating": 10,
+        "availability_time": 12,
+        "availability_unit": "days"
+      },
+      "Trauma Dampener": {
+        "bio_index": 0.4,
+        "cultured_only": true,
+        "cost": 40000,
+        "street_index": 2,
+        "legality": "6P-N",
+        "page": 75,
+        "availability_rating": 6,
+        "availability_time": 8,
+        "availability_unit": "days"
       }
     },
-    "Cultured": {
-
-    },
     "Cosmetic": {
-
+      "Chloroplast Skin": {
+        "bio_index": 0.2,
+        "cost": 10000,
+        "street_index": 2,
+        "legality": "Legal",
+        "page": 76,
+        "availability_rating": 6,
+        "availability_time": 8,
+        "availability_unit": "days"
+      },
+      "Clean Metabolism": {
+        "bio_index": 0.2,
+        "cost": 10000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 76,
+        "availability_rating": 4,
+        "availability_time": 4,
+        "availability_unit": "days"
+      },
+      "Dietware": {
+        "bio_index": 0.2,
+        "cost": 10000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 76,
+        "availability_rating": 4,
+        "availability_time": 4,
+        "availability_unit": "days"
+      },
+      "Hair Growth": {
+        "bio_index": 0.1,
+        "cost": 2000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 76,
+        "availability_rating": 4,
+        "availability_time": 4,
+        "availability_unit": "days"
+      },
+      "Scent Glands": {
+        "bio_index": 0.1,
+        "cost": 5000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 76,
+        "availability_rating": 4,
+        "availability_time": 4,
+        "availability_unit": "days"
+      },
+      "Sensitive Skin": {
+        "bio_index": 0.2,
+        "cost": 10000,
+        "street_index": 2,
+        "legality": "Legal",
+        "page": 76,
+        "availability_rating": 6,
+        "availability_time": 6,
+        "availability_unit": "days"
+      },
+      "Skin Pigmentation": {
+        "bio_index": 0.1,
+        "cost": 5000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 76,
+        "availability_rating": 6,
+        "availability_time": 6,
+        "availability_unit": "days"
+      }
     }
   }
 }
