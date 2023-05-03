@@ -153,6 +153,20 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         self.beta_radio.pack(side=LEFT)
         self.delta_radio.pack(side=LEFT)
 
+        self.bio_grade_var = StringVar(value="standard")
+        self.bioware_grade_frame = LabelFrame(self, text="Grade")
+        self.bio_standard_radio = Radiobutton(self.bioware_grade_frame,
+                                              text="Standard",
+                                              variable=self.bio_grade_var,
+                                              value="standard")
+        self.bio_cultured_radio = Radiobutton(self.bioware_grade_frame,
+                                              text="Cultured",
+                                              variable=self.bio_grade_var,
+                                              value="cultured")
+
+        self.bio_standard_radio.pack(side=LEFT)
+        self.bio_cultured_radio.pack(side=LEFT)
+
         # bind events and shit
         self.object_library.bind("<<TreeviewSelect>>", self.on_tree_item_click)
         self.object_library["yscrollcommand"] = self.object_library_scroll.set
@@ -192,10 +206,10 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             self.race_mods_frame.grid(column=3, row=2)
 
         if show_cyberware_grades:
-            self.cyberware_grade_frame.grid(column=3, row=3)
+            self.cyberware_grade_frame.grid(column=3, row=2)
 
         if show_bioware_grades:
-            pass
+            self.bioware_grade_frame.grid(column=3, row=2)
 
     def reload_data(self):
         children = self.object_library.get_children()
@@ -375,7 +389,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
     # noinspection PyUnusedLocal
     def on_tree_item_click(self, event):
-        # removing things from the selection causes these events to fire so we need to add this check
+        # removing things from the selection causes these events to fire, so we need to add this check
         # on the selection length to make sure we're not throwing errors
         if len(self.object_library.selection()) > 0:
             # only select the last one selected if we've selected multiple things

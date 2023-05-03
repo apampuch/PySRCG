@@ -144,11 +144,20 @@ class Priority(GenMode, ABC):
             progress_text.set("{}/{}".format(self.cur_skill_points.get(), self.max_skill_points.get()))
             progress_bar.configure(maximum=self.max_skill_points.get(), variable=self.cur_skill_points)
         elif tab.name == "AugmentsTab":
-            # hacky scope breaking bullshit, refactor this whole damn function to not be in the character gen modes
-            ess_amt = app_data.app_character.statblock.essence
-            ess_max = app_data.app_character.statblock.base_attributes["essence"]
-            progress_text.set("{}/{}".format(ess_amt, ess_max))
-            progress_bar.configure(maximum=ess_max, variable=app_data.app_character.statblock.ess_ui_var)
+            CYBERWARE_TAB_INDEX = 0
+            BIOWARE_TAB_INDEX = 1
+            current_tab_index = tab.index("current")
+            if current_tab_index == CYBERWARE_TAB_INDEX:
+                # hacky scope breaking bullshit, refactor this whole damn function to not be in the character gen modes
+                ess_amt = app_data.app_character.statblock.essence
+                ess_max = app_data.app_character.statblock.base_attributes["essence"]
+                progress_text.set("{}/{}".format(ess_amt, ess_max))
+                progress_bar.configure(maximum=ess_max, variable=app_data.app_character.statblock.ess_ui_var)
+            elif current_tab_index == BIOWARE_TAB_INDEX:
+                ess_index_amt = app_data.app_character.statblock.essence_index
+                ess_index_max = app_data.app_character.statblock.essence + 3
+                progress_text.set("{}/{}".format(ess_index_amt, ess_index_max))
+                progress_bar.configure(maximum=ess_index_max, variable=app_data.app_character.statblock.ess_index_ui_var)
         elif tab.name == "DeckingTab":
             PERSONA_TAB_INDEX = 2
             current_tab_index = tab.index("current")

@@ -106,6 +106,7 @@ class Statblock(object):
         self.base_attributes["essence"] = 6.0
         self.ess_ui_var = IntVar()  # this only exists so we can control the progress bar with the essence value
         self.power_points_ui_var = IntVar()  # same as above but for power points
+        self.ess_index_ui_var = IntVar()  # same as above but for essence index
         self.ess_ui_var.set(6)
 
         # setup gen mode
@@ -381,9 +382,26 @@ class Statblock(object):
 
     @property
     def essence_index(self):
-        essence_index_total = self.essence + 3.0
+        essence_index_total = self.essence + 3
 
-        # TODO set the essence index UI control variable
+        for item in self.bioware:
+            essence_index_total -= item.properties["bio_index"]
+
+        # set the essence index UI control variable so it properly updates the UI
+        self.ess_index_ui_var.set(essence_index_total)
+
+        return essence_index_total
+
+    @property
+    def raw_essence_index(self):
+        # essence index without cyberware considerations
+        essence_index_total = self.base_attributes["essence"] + 3
+
+        for item in self.bioware:
+            essence_index_total -= item.properties["bio_index"]
+
+        # set the essence index UI control variable so it properly updates the UI
+        self.ess_index_ui_var.set(essence_index_total)
 
         return essence_index_total
 

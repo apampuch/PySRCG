@@ -20,7 +20,7 @@
         "availability_rating": 10,
         "availability_time": 16,
         "availability_unit": "days",
-        "attributes_to_calculate": ["cost", "level"]
+        "attributes_to_calculate": ["bio_index", "cost", "level"]
       },
       "Cat's Eyes": {
         "bio_index": 0.2,
@@ -286,9 +286,7 @@
         "attributes_to_calculate": ["bio_index", "cost", "level"]
       },
       "Toxin Extractor": {
-        "bio_index": {
-          "level": "0.4 * level"
-        },
+        "bio_index": "0.4 * level",
         "cost": "45000 * level",
         "level": "level",
         "street_index": 1,
@@ -300,9 +298,7 @@
         "attributes_to_calculate": ["bio_index", "cost", "level"]
       },
       "Tracheal Filter": {
-        "bio_index": {
-          "level": "0.4 * level"
-        },
+        "bio_index": "0.4 * level",
         "cost": "60000 * level",
         "level": "level",
         "street_index": 1,
@@ -316,9 +312,7 @@
   },
     "Cultured": {
       "Cerebral Booster": {
-        "bio_index": {
-          "level": "0.4 * level"
-        },
+        "bio_index": "0.4 * level",
         "mods": {
           "bio_intelligence": "level",
           "bio_task_pool": {
@@ -328,7 +322,7 @@
             }
           }
         },
-        "cultured_only": true,
+        "grade": "cultured",
         "cost": {
           "level": {
             "1;1": 50000,
@@ -345,10 +339,8 @@
         "attributes_to_calculate": ["bio_index", "mods", "cost", "level"]
       },
       "Damage Compensators": {
-        "bio_index": {
-          "level": "0.2 * level"
-        },
-        "cultured_only": true,
+        "bio_index": "0.2 * level",
+        "grade": "cultured",
         "cost": {
           "level": {
             "1;2": "25000 * level",
@@ -372,10 +364,8 @@
         "attributes_to_calculate": ["bio_index", "cost", "level", "availability_rating"]
       },
       "Mnemnonic Enhancer": {
-        "bio_index": {
-          "level": "0.2 * level"
-        },
-        "cultured_only": true,
+        "bio_index": "0.2 * level",
+        "grade": "cultured",
         "cost": "15000 * level",
         "level": "level",
         "street_index": 1,
@@ -388,7 +378,7 @@
       },
       "Pain Editor": {
         "bio_index": 0.6,
-        "cultured_only": true,
+        "grade": "cultured",
         "cost": 60000,
         "street_index": 1.2,
         "legality": "6P-N",
@@ -399,7 +389,7 @@
       },
       "Reflex Recorder (base skill)": {
         "bio_index": 0.25,
-        "cultured_only": true,
+        "grade": "cultured",
         "cost": 25000,
         "street_index": 1.5,
         "legality": "Legal",
@@ -411,7 +401,7 @@
       },
       "Reflex Recorder (specialization)": {
         "bio_index": 0.1,
-        "cultured_only": true,
+        "grade": "cultured",
         "cost": 10000,
         "street_index": 1.5,
         "legality": "Legal",
@@ -423,7 +413,7 @@
       },
       "Sleep Regulator": {
         "bio_index": 0.3,
-        "cultured_only": true,
+        "grade": "cultured",
         "cost": 20000,
         "street_index": 1,
         "legality": "Legal",
@@ -442,7 +432,7 @@
         "mods": {
           "bio_initiative": "level"
         },
-        "cultured_only": true,
+        "grade": "cultured",
         "level": "level",
         "cost": {
           "level": {
@@ -460,7 +450,7 @@
       },
       "Thermosense Organs": {
         "bio_index": 0.5,
-        "cultured_only": true,
+        "grade": "cultured",
         "cost": 25000,
         "street_index": 2,
         "legality": "Legal",
@@ -471,7 +461,7 @@
       },
       "Trauma Dampener": {
         "bio_index": 0.4,
-        "cultured_only": true,
+        "grade": "cultured",
         "cost": 40000,
         "street_index": 2,
         "legality": "6P-N",
