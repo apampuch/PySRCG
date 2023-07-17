@@ -64,7 +64,7 @@ class ItemsTab(ThreeColumnBuyTab, ABC):
         return self.statblock.inventory
 
     def on_switch(self):
-        pass
+        super().on_switch()
 
     def load_character(self):
         super().load_character()

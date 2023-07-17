@@ -6,7 +6,18 @@
   "Items": {},
   "Skills": {},
   "Cyberware": {
-
+    "Brainware": {
+      "ASIST Converter (datajack accessory)": {
+        "essence": 0,
+        "cost": 1000,
+        "street_index": 1.5,
+        "legality": "legal",
+        "page": 19,
+        "availability_rating": 6,
+        "availability_time": 36,
+        "availability_unit": "hours"
+      }
+    }
   },
   "Bioware": {
     "Basic": {

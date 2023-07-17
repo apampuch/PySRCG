@@ -138,8 +138,8 @@ def load(tabs):
             # PROBLEM: the args are only setup for a finalized thing
             new_character.statblock.gen_mode = \
                 gen_mode_dict[gen_mode_key](character_dict["statblock"]["gen_mode"]["data"],
-                                            all_races[race_str],
-                                            purchased_magic_points=character_dict["statblock"]["gen_mode"]["purchased_magic_points"])
+                                            purchased_magic_points=character_dict
+                                            ["statblock"]["gen_mode"]["purchased_magic_points"])
             new_character.statblock.gen_mode.setup_ui_elements()
 
             # convert dicts to item objects and add to inventory
@@ -268,12 +268,8 @@ def load(tabs):
             new_character.notes.set(character_dict["notes"])
             new_character.creator.set(character_dict["creator"])
 
-            # # set gen mode
-            # if character_dict["statblock"]["gen_mode"]["type"] == "priority":
-            #     new_character.statblock.gen_mode = Priority(character_dict["statblock"]["gen_mode"]["data"])
-            #     new_character.statblock.gen_mode.setup_ui_elements()
-            # else:
-            #     print("{} is NYI".format(character_dict["statblock"]["gen_mode"]["type"]))
+            # set otaku
+            new_character.statblock.otaku = character_dict["statblock"]["otaku"]
 
             # set character
             app_data.app_character = new_character

@@ -326,11 +326,11 @@ class AttributesTab(NotebookTab, ABC):
 
     def plus_button_func(self, key):
         # check if we're at the absolute maximum
-        if self.statblock.base_attributes[key] >= self.statblock.race.racial_max(key):
+        if self.statblock.base_attributes[key] >= self.statblock.racial_max(key):
             print(f"{key} already at maximum!")
             return
 
-        if self.statblock.base_attributes[key] >= self.statblock.race.racial_limit(key):
+        if self.statblock.base_attributes[key] >= self.statblock.racial_limit(key):
             karma_cost = (self.statblock.calculate_natural_attribute(key) + 1) * 3
         else:
             karma_cost = (self.statblock.calculate_natural_attribute(key) + 1) * 2
@@ -489,6 +489,7 @@ class AttributesTab(NotebookTab, ABC):
 
     def on_switch(self):
         # pack forget buttons and sliders to reset ui
+        # noinspection PyTypeChecker
         forgets = list(self.sliders.values()) \
                 + list(self.minus_buttons.values()) \
                 + list(self.plus_buttons.values()) \
@@ -508,6 +509,21 @@ class AttributesTab(NotebookTab, ABC):
                 # pack the slider
                 self.sliders[key].pack(side=LEFT)
                 self.mod_labels["slider"][key].pack()
+
+                # set attribute limits
+                limit = 6
+                if self.character is not None and self.statblock.otaku:
+                    if self.statblock.runt_otaku:
+                        if key in ("strength", "body", "quickness"):
+                            limit = max(1, self.statblock.race.racial_slider_minimum(key))
+                        elif key in ("intelligence", "willpower", "charisma"):
+                            limit = 8
+                    else:
+                        if key in ("strength", "body", "quickness"):
+                            limit = 5
+                        elif key in ("intelligence", "willpower", "charisma"):
+                            limit = 7
+                self.sliders[key].configure(to=limit)
 
             else:
                 # remove the hard limits on attributes

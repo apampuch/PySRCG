@@ -65,6 +65,10 @@ class CyberwareTab(ThreeColumnBuyTab, ABC):
     def sell_callback(self, selected_index):
         selected_item = self.statblock_inventory[self.inv_selected_index]
 
+        if "unsellable" in selected_item.properties:
+            print(f"Can't sell {selected_item.properties['name']}.")
+            return
+
         # return cash value
         self.statblock.add_cash(selected_item.properties["cost"])
 
@@ -122,8 +126,8 @@ class CyberwareTab(ThreeColumnBuyTab, ABC):
                                           "Augments Tab")
 
     def on_switch(self):
+        super().on_switch()
         self.calculate_total()
 
     def load_character(self):
         super().load_character()
-        self.on_switch()

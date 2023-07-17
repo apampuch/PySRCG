@@ -320,6 +320,16 @@ class SkillsTab(NotebookTab):
             final_starting_max_value = (self.gen_mode.starting_skills_max - 1) \
                 if len(self.list_selected.specializations) > 0 \
                 else self.gen_mode.starting_skills_max
+
+            # otaku skill adjustments
+            if self.statblock.otaku:
+                # increase computer max by 2
+                if self.list_selected.name == "Computer":  # TODO make this cover other skills
+                    final_starting_max_value += 2
+                # decrease etiquette max by 2
+                elif self.list_selected.name == "Etiquette":
+                    final_starting_max_value -= 2
+
             # check that we have enough points and aren't going past the max
             if self.list_selected is not None and \
                     self.gen_mode.point_purchase_allowed(test_val, "skills") and \

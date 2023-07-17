@@ -49,3 +49,13 @@ class GenMode(ABC):
     def point_purchase_allowed(self, amount, key):
         """Amount is the total. Key is what you want to purchase."""
         pass
+
+    @abstractmethod
+    def on_set_otaku(self):
+        """Reserves points or pins otaku to top of priority."""
+        pass
+
+    @abstractmethod
+    def on_unset_otaku(self):
+        """Undoes stuff from on_set_otaku()"""
+        pass

@@ -1,4 +1,5 @@
 from functools import reduce
+from math import ceil
 from tkinter import IntVar
 from typing import Dict
 
@@ -148,6 +149,17 @@ class Statblock(object):
         self.aspect = None
         self.focus = None
         self.spells = []
+
+        """
+        self.otaku: Can be True or False.
+        self.otaku_path: Can be None, Cyberadept, Technoshaman, or whatever else they might add
+        self.runt_otaku: If True, physical attributes are capped at 1 while mental attributes have limits increased by 2
+        """
+
+        # set otaku status
+        self.otaku = False
+        self.otaku_path = None
+        self.runt_otaku = False
 
         # setup cyberware
         self.cyberware = []
@@ -358,6 +370,30 @@ class Statblock(object):
     def willpower(self):
         return self.calculate_attribute("willpower")
 
+    # NOTE: there may be edges and flaws that affect racial limits and maximums
+    def racial_limit(self, key):
+        """The soft limit of an attribute, going beyond this costs more karma and requires GM permission."""
+        r = min(6, 6 + self.race.racial_attributes[key])
+        if self.otaku:
+            if self.runt_otaku:
+                if key in ("strength", "body", "quickness"):
+                    r = 1
+                elif key in ("intelligence", "willpower", "charisma"):
+                    r += 2
+            else:
+                if key in ("strength", "body", "quickness"):
+                    r -= 1
+                elif key in ("intelligence", "willpower", "charisma"):
+                    r += 1
+
+        # TODO get stuff from edges and flaws
+
+        return max(1, r)
+
+    def racial_max(self, key):
+        """The hard maximum that an attribute can reach naturally."""
+        return ceil(self.racial_limit(key) * 1.5)
+
     @property
     def essence(self):
         essence_total = 6  # I am SURE there are races that have more essence
@@ -503,7 +539,9 @@ class Statblock(object):
             "decks": decks,
             "vehicles": vehicles,
             "other_programs": other_programs,
-            "misc_vehicle_accessories": other_accessories
+            "misc_vehicle_accessories": other_accessories,
+            "otaku": self.otaku,
+            "runt_otaku": self.runt_otaku
         }
 
     def pay_cash(self, amount, *args) -> bool:

@@ -546,11 +546,13 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
     @abstractmethod
     def on_switch(self):
-        pass
-
-    @abstractmethod
-    def load_character(self):
+        # refesh the list on switch
+        # hopefully this doesn't cause any bugs
         self.inventory_list.delete(0, END)
         for item in self.statblock_inventory:
             insert_value = self.name_for_list(item)
             self.inventory_list.insert(END, insert_value)
+
+    @abstractmethod
+    def load_character(self):
+        self.on_switch()

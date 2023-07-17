@@ -1,4 +1,5 @@
 from src.Tabs.Decking.deck_buy_tab import DeckBuyTab
+from src.Tabs.Decking.otaku_tab import OtakuTab
 from src.Tabs.Decking.persona_tab import PersonaTab
 from src.Tabs.Decking.programs_tab import ProgramsTab
 from tkinter import ttk
@@ -13,6 +14,7 @@ class DeckingTab(ttk.Notebook):
         self.deck_tab = DeckBuyTab(parent, [self.on_deck_change], [self.on_deck_change])
         self.programs_tab = ProgramsTab(parent, "Buy", "Sell")
         self.persona_tab = PersonaTab(parent)
+        self.otaku_tab = OtakuTab(parent)
 
         self.bind("<<NotebookTabChanged>>", app_data.window.on_tab_changed)
 
@@ -24,6 +26,7 @@ class DeckingTab(ttk.Notebook):
         self.deck_tab.on_switch()
         self.programs_tab.on_switch()
         self.persona_tab.on_switch()
+        self.otaku_tab.on_switch()
         self.on_deck_change()
 
     def calculate_total(self):
@@ -37,6 +40,7 @@ class DeckingTab(ttk.Notebook):
         self.deck_tab.load_character()
         self.programs_tab.load_character()
         self.persona_tab.load_character()
+        self.otaku_tab.load_character()
         self.on_deck_change()
 
     def on_deck_change(self):
