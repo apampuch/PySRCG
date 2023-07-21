@@ -1,5 +1,5 @@
 from copy import copy
-from math import floor
+from math import floor, ceil
 from tkinter import *
 from tkinter import ttk, messagebox
 from typing import Dict
@@ -316,19 +316,22 @@ class SkillsTab(NotebookTab):
             if self.list_selected.rank >= self.statblock.calculate_natural_attribute(self.list_selected.attribute):
                 test_val += 1
 
-            # increase rank if allowed
+            # get the max value of the skill
             final_starting_max_value = (self.gen_mode.starting_skills_max - 1) \
                 if len(self.list_selected.specializations) > 0 \
                 else self.gen_mode.starting_skills_max
 
             # otaku skill adjustments
             if self.statblock.otaku:
+                # get channel skill totals
                 # increase computer max by 2
                 if self.list_selected.name == "Computer":  # TODO make this cover other skills
                     final_starting_max_value += 2
                 # decrease etiquette max by 2
                 elif self.list_selected.name == "Etiquette":
                     final_starting_max_value -= 2
+                elif self.list_selected.name in ("Access", "Control", "Files", "Index", "Slave"):
+                    final_starting_max_value = self.max_channel_rank()
 
             # check that we have enough points and aren't going past the max
             if self.list_selected is not None and \
@@ -429,6 +432,7 @@ class SkillsTab(NotebookTab):
     def get_total(self):
         """Totals all skill points and updates the top karma bar."""
         total = 0
+        channel_total = 0
 
         # calculate the total
         for skill in self.tree_list_dict.values():
@@ -446,7 +450,43 @@ class SkillsTab(NotebookTab):
             post_points = max(0, rank_total - self.statblock.calculate_natural_attribute(skill.attribute)) * 2
             total += pre_points + post_points
 
+            # check if otaku and if channel skill, if so, add to total
+            if self.statblock.otaku and skill.name in ("Access", "Control", "Files", "Index", "Slave"):
+                channel_total += pre_points + post_points
+
+        # check if otaku
+        if self.statblock.otaku:
+            # get free channel skill points
+            s = self.statblock
+            free_channel_points = ceil((s.intelligence + s.willpower + s.charisma) / 3)
+            # give discount of free points
+            total -= min(free_channel_points, channel_total)
+
         return total
+
+    def max_channel_rank(self) -> int:
+        """
+        Returns the max rank for a channel skill.
+        Note that you can end up with an invalid combo like 6,5,5.
+        Do a sanity check before finalization for this case.
+        """
+        ranks = []
+        for skill in self.statblock.skills:
+            print(skill.name)
+            if skill.name in ("Access", "Control", "Files", "Index", "Slave"):
+                ranks.append(skill.rank)
+
+        ranks.sort(reverse=True)
+        print(ranks)
+
+        # try to find 6,5,4 in ranks, search in reverse order
+        # if one isn't in there, that's the max rank
+        for n in (6, 5, 4):
+            if n not in ranks:
+                return n
+
+        # if we don't find anything, just return 3
+        return 3
 
     def calculate_total(self):
         self.statblock.gen_mode.update_total(self.get_total(), "skills")

@@ -1,3 +1,4 @@
+from src.Tabs.Decking.complex_forms_tab import ComplexFormsTab
 from src.Tabs.Decking.deck_buy_tab import DeckBuyTab
 from src.Tabs.Decking.otaku_tab import OtakuTab
 from src.Tabs.Decking.persona_tab import PersonaTab
@@ -15,12 +16,15 @@ class DeckingTab(ttk.Notebook):
         self.programs_tab = ProgramsTab(parent, "Buy", "Sell")
         self.persona_tab = PersonaTab(parent)
         self.otaku_tab = OtakuTab(parent)
+        # self.complex_forms_tab = ComplexFormsTab(parent)
 
         self.bind("<<NotebookTabChanged>>", app_data.window.on_tab_changed)
 
         self.add(self.deck_tab, text="Hardware")
         self.add(self.programs_tab, text="Software")
         self.add(self.persona_tab, text="Persona")
+        self.add(self.otaku_tab, text="Otaku")
+        # self.add(self.complex_forms_tab, text="Complex Forms")
 
     def on_switch(self):
         self.deck_tab.on_switch()
