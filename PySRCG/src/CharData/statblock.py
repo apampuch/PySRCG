@@ -160,6 +160,7 @@ class Statblock(object):
         self.otaku = False
         self.otaku_path = None
         self.runt_otaku = False
+        self.complex_forms = []
 
         # setup cyberware
         self.cyberware = []
@@ -541,7 +542,8 @@ class Statblock(object):
             "other_programs": other_programs,
             "misc_vehicle_accessories": other_accessories,
             "otaku": self.otaku,
-            "runt_otaku": self.runt_otaku
+            "runt_otaku": self.runt_otaku,
+            "complex_forms": self.complex_forms
         }
 
     def pay_cash(self, amount, *args) -> bool:

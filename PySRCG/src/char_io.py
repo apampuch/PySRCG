@@ -6,6 +6,7 @@ from typing import TextIO
 
 from src.CharData.augment import Cyberware
 from src.CharData.character import *
+from src.CharData.complex_form import ComplexForm
 from src.CharData.contact import Contact
 from src.CharData.currency import Currency
 from src.CharData.deck import Deck
@@ -240,6 +241,11 @@ def load(tabs):
                 # may need to recurse and add programs and parts
                 program_obj = Program(**other_program)
                 new_character.statblock.other_programs.append(program_obj)
+
+            # add complex forms
+            for complex_form in character_dict["statblock"]["complex_forms"]:
+                complex_form_obj = ComplexForm(**complex_form)
+                new_character.statblock.complex_forms.append(complex_form_obj)
 
             # add tradition and aspect
             new_character.statblock.awakened = character_dict["statblock"]["awakened"]

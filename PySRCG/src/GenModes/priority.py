@@ -423,3 +423,9 @@ class Priority(GenMode, ABC):
         self.fill_lists()
 
         return True
+
+    def get_otaku_complex_forms_resources(self):
+        """Returns amount from resources, not multiplied by 50."""
+        index = self.priority_order.index("resources")
+
+        return 4 - index

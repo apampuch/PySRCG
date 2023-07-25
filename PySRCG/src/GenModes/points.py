@@ -26,3 +26,14 @@ class Points(GenMode, ABC):
     def point_purchase_allowed(self, amount, key):
         """Ignore key since we draw from the same pool."""
         pass
+
+    def on_set_otaku(self):
+        pass
+
+    def on_unset_otaku(self):
+        pass
+
+    def get_otaku_complex_forms_resources(self):
+        pass
+
+

@@ -16,7 +16,7 @@ class DeckingTab(ttk.Notebook):
         self.programs_tab = ProgramsTab(parent, "Buy", "Sell")
         self.persona_tab = PersonaTab(parent)
         self.otaku_tab = OtakuTab(parent)
-        # self.complex_forms_tab = ComplexFormsTab(parent)
+        self.complex_forms_tab = ComplexFormsTab(parent)
 
         self.bind("<<NotebookTabChanged>>", app_data.window.on_tab_changed)
 
@@ -24,17 +24,19 @@ class DeckingTab(ttk.Notebook):
         self.add(self.programs_tab, text="Software")
         self.add(self.persona_tab, text="Persona")
         self.add(self.otaku_tab, text="Otaku")
-        # self.add(self.complex_forms_tab, text="Complex Forms")
+        self.add(self.complex_forms_tab, text="Complex Forms")
 
     def on_switch(self):
         self.deck_tab.on_switch()
         self.programs_tab.on_switch()
         self.persona_tab.on_switch()
         self.otaku_tab.on_switch()
+        self.complex_forms_tab.on_switch()
         self.on_deck_change()
 
     def calculate_total(self):
         self.persona_tab.calculate_total()
+        self.complex_forms_tab.calculate_total()
 
     def reload_data(self):
         self.deck_tab.reload_data()
@@ -45,6 +47,7 @@ class DeckingTab(ttk.Notebook):
         self.programs_tab.load_character()
         self.persona_tab.load_character()
         self.otaku_tab.load_character()
+        self.complex_forms_tab.load_character()
         self.on_deck_change()
 
     def on_deck_change(self):

@@ -1,12 +1,15 @@
-from src.CharData.reportable import Reportable
+from src.CharData.software import Software
 
 
-class Program(Reportable):  # might end up having to extend something like StorableInMemory
+class Program(Software):  # might end up having to extend something like StorableInMemory
     def __init__(self, **kwargs):
         super().__init__()
-        necessary_fields = ("name", "rating", "cost", "street_index", "availability_rating", "availability_time",
-                            "availability_unit", "size", "multiplier", "page")
-        
+
+        # get parent necessary fields
+        necessary_fields = ["cost", "street_index", "availability_rating", "availability_time", "availability_unit"]
+        necessary_fields += self.software_necessary_fields
+        necessary_fields = tuple(necessary_fields)
+
         # if "options" not in kwargs:
         #     kwargs["options"] = {}  # should be a list of a TBD object, this is NYI
 
@@ -25,12 +28,6 @@ class Program(Reportable):  # might end up having to extend something like Stora
         self.fill_miscellaneous_fields(kwargs)
         # self.properties["options"] = kwargs["options"]
 
-    def size(self):
-        if self.properties["rating"] == "rating":
-            return "rating * rating * multiplier"
-        else:
-            return self.properties["rating"] * self.properties["rating"] * self.properties["multiplier"]
-
     def availability_rating(self):
         if self.properties["rating"] == "rating":
             return "CHART NYI"
@@ -46,8 +43,6 @@ class Program(Reportable):  # might end up having to extend something like Stora
     def availability_time(self):
         if self.properties["rating"] == "rating":
             return "CHART NYI"
-        elif self.properties["rating"] == "rating":
-            return "7-30"
         elif self.properties["rating"] < 4:
             return 7
         elif 4 <= self.properties["rating"] < 7:
@@ -80,14 +75,6 @@ class Program(Reportable):  # might end up having to extend something like Stora
             return 2
         else:
             return 3
-
-    def serialize(self):
-        # make a copy of properties and remove size from it
-        # we do this because the json library can't serialize a function
-        ret = self.properties.copy()
-        del ret["size"]
-
-        return ret
 
 
 # a test of adding properties to the

@@ -59,3 +59,8 @@ class GenMode(ABC):
     def on_unset_otaku(self):
         """Undoes stuff from on_set_otaku()"""
         pass
+
+    @abstractmethod
+    def get_otaku_complex_forms_resources(self):
+        """Gets the number of MP you have from resources / 50"""
+        pass

@@ -174,3 +174,12 @@ class Finalized(GenMode, ABC):
     @property
     def spent_karma(self):
         return self.adjustments.get() + self.applied_karma.get()
+
+    def on_set_otaku(self):
+        pass
+
+    def on_unset_otaku(self):
+        pass
+
+    def get_otaku_complex_forms_resources(self):
+        pass
