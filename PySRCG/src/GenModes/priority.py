@@ -220,7 +220,6 @@ class Priority(GenMode, ABC):
         if app_data.app_character is not None:
             # do nothing if we're an otaku with magic selected
             magic_selected = self.priority_order[self.priority_name_list.curselection()[0]] == "magic"
-            print(direction)
             swapping_to_magic = self.priority_name_list.curselection()[0] == 1 and direction == -1
             if app_data.app_character.statblock.otaku:
                 if magic_selected or swapping_to_magic:
@@ -391,7 +390,6 @@ class Priority(GenMode, ABC):
 
         money_diff = new_money - old_money
         # money check
-        print(f"{app_data.app_character.statblock.otaku}: {app_data.app_character.statblock.cash + money_diff}")
         if app_data.app_character.statblock.cash + money_diff < 0:
             print("Not enough money to become an otaku!")
             return False

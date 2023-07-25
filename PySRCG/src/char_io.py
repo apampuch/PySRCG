@@ -276,6 +276,8 @@ def load(tabs):
 
             # set otaku
             new_character.statblock.otaku = character_dict["statblock"]["otaku"]
+            new_character.statblock.runt_otaku = character_dict["statblock"]["runt_otaku"]
+            new_character.statblock.otaku_path = character_dict["statblock"]["otaku_path"]
 
             # set character
             app_data.app_character = new_character

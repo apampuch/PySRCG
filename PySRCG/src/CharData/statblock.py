@@ -542,6 +542,7 @@ class Statblock(object):
             "other_programs": other_programs,
             "misc_vehicle_accessories": other_accessories,
             "otaku": self.otaku,
+            "otaku_path": self.otaku_path,
             "runt_otaku": self.runt_otaku,
             "complex_forms": self.complex_forms
         }

@@ -2,6 +2,7 @@ from abc import ABC
 from math import ceil
 from tkinter import *
 from tkinter import ttk
+from tkinter.ttk import Combobox
 
 from src.Tabs.notebook_tab import NotebookTab
 
@@ -24,6 +25,13 @@ class OtakuTab(NotebookTab, ABC):
 
         # only show this when not finalized
         self.channels_label = Label(self, text="Free Channels: ")
+
+        # otaku path
+        path_frame = ttk.LabelFrame(self, text="Path")
+        self.path_var = StringVar()
+        self.path_combobox = Combobox(path_frame, values=("Cyberadept", "Technoshaman"), state="readonly",
+                                      textvariable=self.path_var)
+        self.path_combobox.bind("<<ComboboxSelected>>", self.on_path_selected)
 
         # grids
         self.living_persona_frame.grid(column=0, row=0)
@@ -49,6 +57,13 @@ class OtakuTab(NotebookTab, ABC):
         self.hardening_label.grid(column=1, row=7, sticky=W, padx=8, pady=2)
         self.io_speed_label.grid(column=1, row=8, sticky=W, padx=8, pady=2)
 
+        path_frame.grid(column=1, row=0, sticky=N)
+        self.path_combobox.pack()
+
+    def on_path_selected(self, event):
+        selected_path = event.widget.get()
+        self.statblock.otaku_path = selected_path
+
     def calculate_persona(self):
         s = self.statblock
         self.mpcp_label.config(text=ceil((s.intelligence + s.willpower + s.charisma) / 3))
@@ -69,4 +84,5 @@ class OtakuTab(NotebookTab, ABC):
         self.calculate_persona()
 
     def load_character(self):
-        pass
+        self.path_var.set(self.statblock.otaku_path)
+        self.on_switch()

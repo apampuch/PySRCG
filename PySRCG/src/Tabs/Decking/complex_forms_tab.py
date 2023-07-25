@@ -88,7 +88,6 @@ class ComplexFormsTab(ThreeColumnBuyTab, ABC):
         app_data.top_bar.update_karma_bar(self.complex_forms_mp_total(),
                                           self.complex_forms_mp_limit(),
                                           "Complex Forms Tab")
-        print(app_data.top_bar.karma_fraction.get())
 
     def on_switch(self):
         self.calculate_total()

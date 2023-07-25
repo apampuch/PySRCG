@@ -89,7 +89,6 @@ class SetupTab(NotebookTab, ABC):
             self.runt_var.set(False)
             self.statblock.runt_otaku = False
 
-
         if self.otaku_var.get():
             # make datajack and asist converter objects
             datajack = Cyberware(name="Otaku Datajack", **self.parent.game_data["Cyberware"]["Headware"]["Datajack"])
@@ -136,8 +135,6 @@ class SetupTab(NotebookTab, ABC):
 
     def on_runt_checked(self):
         self.statblock.runt_otaku = self.runt_var.get()
-        print(self.statblock.racial_limit("intelligence"))
-        print(self.statblock.racial_max("intelligence"))
 
     def on_race_selected(self, event):
         """Event to set the race of the current character."""
@@ -146,6 +143,11 @@ class SetupTab(NotebookTab, ABC):
 
     def load_character(self):
         self.otaku_var.set(self.statblock.otaku)
+        self.runt_var.set(self.statblock.runt_otaku)
+        if self.statblock.runt_otaku:
+            self.runt_checkbox.config(state="normal")
+        else:
+            self.runt_checkbox.config(state="disabled")
         self.on_switch()
 
     def on_switch(self):
