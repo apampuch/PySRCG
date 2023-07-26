@@ -36,9 +36,9 @@ class Character(object):
 
         # tabs[0] is personal info tab
         # setup name entry to work with this variable
-        app_data.background_tab.tabs[0].name_box.config(textvariable=self.name)
-        app_data.background_tab.tabs[0].male_button.config(variable=self.sex)
-        app_data.background_tab.tabs[0].female_button.config(variable=self.sex)
+        app_data.background_tab.tab_list[0].name_box.config(textvariable=self.name)
+        app_data.background_tab.tab_list[0].male_button.config(variable=self.sex)
+        app_data.background_tab.tab_list[0].female_button.config(variable=self.sex)
 
     def serialize(self):
         return {
