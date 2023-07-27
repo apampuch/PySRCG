@@ -9,11 +9,8 @@ import src.app_data as app_data
 
 
 class ProgramsTab(ThreeColumnBuyTab):
-    def __init__(self, parent,
-                 buy_button_text,
-                 sell_button_text):
-
-        super().__init__(parent, "ProgramsTab", buy_button_text, sell_button_text)
+    def __init__(self, parent):
+        super().__init__(parent, "ProgramsTab")
 
         # memobj is anything with in-game memory
         # key is name, value is matching thing with it
@@ -110,6 +107,7 @@ class ProgramsTab(ThreeColumnBuyTab):
 
     def on_switch(self):
         self.fill_combobox()
+        super(ProgramsTab, self).on_switch()
         self.get_memobj_memory(None)
 
     def load_character(self):

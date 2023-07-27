@@ -11,13 +11,21 @@ from src.Tabs.Background.contacts_tab import ContactsTab
 from src.Tabs.Background.edges_flaws_tab import EdgesFlawsTab
 from src.Tabs.Background.lifestyles_tab import LifestylesTab
 from src.Tabs.Background.personal_info_tab import *
+from src.Tabs.Decking.complex_forms_tab import ComplexFormsTab
+from src.Tabs.Decking.deck_buy_tab import DeckBuyTab
 from src.Tabs.Decking.decking_tab import *  # imports app_data
+from src.Tabs.Decking.otaku_tab import OtakuTab
+from src.Tabs.Decking.persona_tab import PersonaTab
+from src.Tabs.Decking.programs_tab import ProgramsTab
 from src.Tabs.Gear.ammo_tab import AmmoTab
 from src.Tabs.Gear.armor_equip_tab import ArmorEquipTab
 from src.Tabs.Gear.firearm_accessories_tab import FirearmAccessoriesTab
 from src.Tabs.Gear.gear_tab import GearTab
 from src.Tabs.Gear.items_tab import ItemsTab
 from src.Tabs.Gear.wireless_tab import WirelessTab
+from src.Tabs.Magic.magic_background_tab import MagicBackgroundTab
+from src.Tabs.Magic.powers_tab import PowersTab
+from src.Tabs.Magic.spells_tab import SpellsTab
 from src.Tabs.Rigging.rigging_tab import RiggingTab
 from src.Tabs.Rigging.vehicle_accessories_tab import VehicleAccessoriesTab
 from src.Tabs.Rigging.vehicle_buy_tab import VehicleBuyTab
@@ -46,7 +54,6 @@ class App(ttk.Notebook):
         self.bind("<<NotebookTabChanged>>", self.on_tab_changed)
 
         self.top_bar = top_bar
-        # self.game_data = None  # deleting and moving to static
         self.LOAD_DEBUG = False
 
         self.load_game_data()
@@ -138,7 +145,7 @@ def make_tab(tab_type, name, container_types=None, container_names=None, contain
 
         # make new tabs from types, assign new_tab as parent
         for con_type in container_types:
-            child_tabs.append(con_type(app_data.window))
+            child_tabs.append(con_type(new_tab))
 
         new_tab.add_tabs(child_tabs, container_names)
 
@@ -170,11 +177,15 @@ def main():
     app_data.gear_tab = make_tab(GearTab, "Gear",
                                  [ItemsTab, AmmoTab, FirearmAccessoriesTab, ArmorEquipTab, WirelessTab],
                                  ["Items", "Ammo", "Firearm Accessories", "Armor", "Wireless"])
-    app_data.magic_tab = make_tab(MagicTab, "Magic")    # this one has its own tab because it needs to do special things
+    app_data.magic_tab = make_tab(MagicTab, "Magic",
+                                  [MagicBackgroundTab, SpellsTab, PowersTab],
+                                  ["Background", "Spells", "Powers"])
     app_data.augments_tab = make_tab(AugmentsTab, "Augments",
                                      [CyberwareTab, BiowareTab],
                                      ["Cyberware", "Bioware"])
-    app_data.decking_tab = make_tab(DeckingTab, "Decking")
+    app_data.decking_tab = make_tab(DeckingTab, "Decking",
+                                    [DeckBuyTab, ProgramsTab, PersonaTab, OtakuTab, ComplexFormsTab],
+                                    ["Hardware", "Software", "Persona", "Otaku", "Complex Forms"])
     app_data.rigging_tab = make_tab(RiggingTab, "Rigging",
                                     [VehicleBuyTab, VehicleAccessoriesTab],
                                     ["Vehicles", "Accessories"])
