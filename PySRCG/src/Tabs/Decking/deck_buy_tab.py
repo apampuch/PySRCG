@@ -13,7 +13,7 @@ class DeckBuyTab(ThreeColumnBuyTab, ABC):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Decks"]
+            return app_data.game_data["Decks"]
         except KeyError:
             return {}
 

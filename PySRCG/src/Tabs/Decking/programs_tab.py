@@ -73,7 +73,7 @@ class ProgramsTab(ThreeColumnBuyTab):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Programs"]
+            return app_data.game_data["Programs"]
         except KeyError:
             return {}
 

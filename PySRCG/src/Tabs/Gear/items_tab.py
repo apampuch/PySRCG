@@ -1,5 +1,6 @@
 from abc import ABC
 
+from src import app_data
 from src.app_data import pay_cash
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.CharData.gear import *
@@ -55,7 +56,7 @@ class ItemsTab(ThreeColumnBuyTab, ABC):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Items"]
+            return app_data.game_data["Items"]
         except KeyError:
             return {}
 

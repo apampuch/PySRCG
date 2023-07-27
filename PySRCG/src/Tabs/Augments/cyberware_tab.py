@@ -34,7 +34,7 @@ class CyberwareTab(ThreeColumnBuyTab, ABC):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Cyberware"]
+            return app_data.game_data["Cyberware"]
         except KeyError:
             return {}
 

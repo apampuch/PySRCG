@@ -17,7 +17,7 @@ class ComplexFormsTab(ThreeColumnBuyTab, ABC):
     def library_source(self):
         try:
             # no operational utilities because Otaku don't use them
-            d = copy(self.parent.game_data["Programs"])
+            d = copy(app_data.game_data["Programs"])
             del d["Operational Utilities"]
             return d
         except KeyError:

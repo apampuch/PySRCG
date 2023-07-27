@@ -69,7 +69,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Vehicle Accessories"]
+            return app_data.game_data["Vehicle Accessories"]
         except KeyError:
             return {}
 

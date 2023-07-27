@@ -10,6 +10,9 @@ class NotebookTab(ttk.Frame):
         self.parent = parent
         self.name = name
 
+    def karma_bar_handler(self):
+        pass
+
     @property
     def character(self):
         return app_data.app_character

@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import ttk, messagebox
 from typing import Dict
 
+from src import app_data
 from src.CharData.skill import Skill, Specialization
 from src.GenModes.finalized import Finalized
 from src.adjustment import Adjustment
@@ -91,7 +92,7 @@ class SkillsTab(NotebookTab):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Skills"]
+            return app_data.game_data["Skills"]
         except KeyError:
             return {}
 

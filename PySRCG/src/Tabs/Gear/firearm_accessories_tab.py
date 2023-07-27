@@ -2,6 +2,7 @@ import re
 from abc import ABC
 from tkinter import ttk, END
 
+from src import app_data
 from src.CharData.firearm_accessory import FirearmAccessory
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.app_data import pay_cash
@@ -22,7 +23,7 @@ class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Firearm Accessories"]
+            return app_data.game_data["Firearm Accessories"]
         except KeyError:
             return {}
 

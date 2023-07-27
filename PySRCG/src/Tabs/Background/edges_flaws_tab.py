@@ -14,7 +14,7 @@ class EdgesFlawsTab(ThreeColumnBuyTab, ABC):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Edges/Flaws"]
+            return app_data.game_data["Edges/Flaws"]
         except KeyError:
             return {}
 

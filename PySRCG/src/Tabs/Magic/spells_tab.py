@@ -1,6 +1,7 @@
 from abc import ABC
 from copy import copy
 
+from src import app_data
 from src.CharData.spell import Spell
 from src.GenModes.finalized import Finalized
 from src.GenModes.priority import Priority
@@ -37,7 +38,7 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Spells"]
+            return app_data.game_data["Spells"]
         except KeyError:
             return {}
 

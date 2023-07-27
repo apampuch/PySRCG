@@ -1,6 +1,7 @@
 from abc import ABC
 from tkinter import ttk
 
+from src import app_data
 from src.CharData.tradition import Tradition
 from src.Tabs.notebook_tab import NotebookTab
 
@@ -90,12 +91,12 @@ class MagicBackgroundTab(NotebookTab, ABC):
     def reload_data(self):
         self.traditions_dict = {}
         try:
-            tradition_data = self.parent.game_data["Traditions"]
+            tradition_data = app_data.game_data["Traditions"]
         except KeyError:
             tradition_data = {}
 
         for tradition in tradition_data:
-            self.traditions_dict[tradition] = Tradition(tradition, **self.parent.game_data["Traditions"][tradition])
+            self.traditions_dict[tradition] = Tradition(tradition, **app_data.game_data["Traditions"][tradition])
 
         self.tradition_box.configure(values=list(self.traditions_dict.keys()))
 

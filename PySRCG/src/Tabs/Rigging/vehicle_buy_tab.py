@@ -28,7 +28,7 @@ class VehicleBuyTab(ThreeColumnBuyTab, ABC):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Vehicles"]
+            return app_data.game_data["Vehicles"]
         except KeyError:
             return {}
 

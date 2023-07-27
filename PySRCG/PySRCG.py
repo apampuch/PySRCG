@@ -46,10 +46,19 @@ class App(ttk.Notebook):
         self.bind("<<NotebookTabChanged>>", self.on_tab_changed)
 
         self.top_bar = top_bar
-        self.game_data = None
+        # self.game_data = None  # deleting and moving to static
         self.LOAD_DEBUG = False
 
         self.load_game_data()
+
+    @staticmethod
+    def load_game_data():
+        app_data.game_data = GameData()
+
+        for filename in SourcesWindow.selected_source_files:
+            full_path = SourcesWindow.source_directory / filename
+            with open(full_path, "r") as json_file:
+                app_data.game_data.add(json.load(json_file))
 
     def on_tab_changed(self, event):
         # overly complicated way to get the current tab
@@ -62,14 +71,6 @@ class App(ttk.Notebook):
         current_tab.on_switch()
 
         app_data.app_character.statblock.gen_mode.update_karma_label(current_tab)
-
-    def load_game_data(self):
-        self.game_data = GameData()
-
-        for filename in SourcesWindow.selected_source_files:
-            full_path = SourcesWindow.source_directory / filename
-            with open(full_path, "r") as json_file:
-                self.game_data.add(json.load(json_file))
 
 
 class TopBar(ttk.Frame):
@@ -112,19 +113,23 @@ def post_setup(attri_tab):
     attri_tab.calculate_total()
 
 
-def make_tab(tab_type, name, container_types=None, container_names=None):
+def make_tab(tab_type, name, container_types=None, container_names=None, container_args=None):
     """
     Creates a tab and adds it to the window.
 
+    :param container_args: List of tuples or dicts of args for each contained tab
     :type tab_type: type
     :type name: string
     :type container_types: List(type)
     :type container_names: List(str)
+    :type container_args: List(type)
     """
     if container_types is None:
         container_types = []
     if container_names is None:
         container_names = []
+    if container_args is None:
+        container_args = []
 
     new_tab = tab_type(app_data.window)
 

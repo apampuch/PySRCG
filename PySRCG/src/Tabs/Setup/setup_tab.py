@@ -2,6 +2,7 @@ from abc import ABC
 from tkinter import *
 from tkinter import ttk
 
+from src import app_data
 from src.CharData.augment import Cyberware
 from src.CharData.race import all_races
 from src.GenModes.gen_mode import GenMode
@@ -91,10 +92,10 @@ class SetupTab(NotebookTab, ABC):
 
         if self.otaku_var.get():
             # make datajack and asist converter objects
-            datajack = Cyberware(name="Otaku Datajack", **self.parent.game_data["Cyberware"]["Headware"]["Datajack"])
+            datajack = Cyberware(name="Otaku Datajack", **app_data.game_data["Cyberware"]["Headware"]["Datajack"])
             datajack.properties["unsellable"] = True
 
-            asist_converter = Cyberware(name="Otaku ASIST Converter", **self.parent.game_data["Cyberware"]
+            asist_converter = Cyberware(name="Otaku ASIST Converter", **app_data.game_data["Cyberware"]
                                         ["Brainware"]["ASIST Converter (datajack accessory)"])
             asist_converter.properties["unsellable"] = True
 
