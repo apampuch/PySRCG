@@ -1,9 +1,10 @@
 from tkinter import ttk
 
 from src import app_data
+from src.Tabs.tab import Tab
 
 
-class ContainerTab(ttk.Notebook):
+class ContainerTab(ttk.Notebook, Tab):
     def __init__(self, parent, name):
         super().__init__(parent)
         self.name = name
@@ -23,6 +24,9 @@ class ContainerTab(ttk.Notebook):
 
     def current_child(self):
         return app_data.root.nametowidget(self.select())
+
+    def update_karma_bar(self):
+        self.current_child().update_karma_bar()
 
     def reload_data(self):
         for tab in self.tab_list:

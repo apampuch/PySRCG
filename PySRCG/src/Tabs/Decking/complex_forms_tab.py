@@ -1,6 +1,6 @@
 from abc import ABC
 from copy import copy
-from tkinter.ttk import Labelframe
+from tkinter import IntVar
 
 from src import app_data
 from src.CharData.complex_form import ComplexForm
@@ -12,6 +12,8 @@ from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 class ComplexFormsTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
         super().__init__(parent, "ComplexFormsTab")
+
+        self.forms_total = IntVar()
 
     @property
     def library_source(self):
@@ -64,11 +66,15 @@ class ComplexFormsTab(ThreeColumnBuyTab, ABC):
 
         if self.complex_forms_mp_total() + selected.size() <= self.complex_forms_mp_limit():
             self.add_inv_item(selected)
+            self.forms_total.set(self.complex_forms_mp_total())
+            self.calculate_total()
         else:
             print("Not enough space!")
 
     def sell_callback(self, selected_index):
         self.remove_inv_item(selected_index)
+        self.forms_total.set(self.complex_forms_mp_total())
+        self.calculate_total()
 
     @property
     def recurse_check_func(self):
@@ -85,9 +91,14 @@ class ComplexFormsTab(ThreeColumnBuyTab, ABC):
         return complex_forms_tab_recurse_end_callback
 
     def calculate_total(self):
-        app_data.top_bar.update_karma_bar(self.complex_forms_mp_total(),
-                                          self.complex_forms_mp_limit(),
-                                          "Complex Forms Tab")
+        app_data.top_bar.update_karma_label(self.complex_forms_mp_total(),
+                                            self.complex_forms_mp_limit(),
+                                            "Complex Forms Tab")
+
+    def update_karma_bar(self):
+        self.forms_total.set(self.complex_forms_mp_total())
+        progress_bar = app_data.top_bar.karma_bar
+        progress_bar.configure(variable=self.forms_total, maximum=self.complex_forms_mp_limit())
 
     def on_switch(self):
         self.calculate_total()

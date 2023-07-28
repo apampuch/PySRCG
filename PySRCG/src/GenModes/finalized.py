@@ -31,6 +31,12 @@ class Finalized(GenMode, ABC):
 
         self.adjustments = AdjustmentsContainer()
 
+        self.karma_bar_vals = {
+            "attributes": (self.adjustments, self.good_karma),
+            "spells": (self.adjustments, self.good_karma),
+            "skills": (self.adjustments, self.good_karma),
+        }
+
     def total_karma(self):
         """
         Returns total karma, good karma plus karma pool.
@@ -90,7 +96,6 @@ class Finalized(GenMode, ABC):
         from src.Tabs.Background.personal_info_tab import PersonalInfoTab
         from src.Tabs.Decking.decking_tab import DeckingTab
         from src.Tabs.Gear.items_tab import ItemsTab
-        from src.Tabs.Rigging.rigging_tab import RiggingTab
         from src.Tabs.Setup.setup_tab import SetupTab
         from src.Tabs.Magic.magic_tab import MagicTab
 
@@ -124,9 +129,9 @@ class Finalized(GenMode, ABC):
 
     def update_total(self, amount=None, key=None):  # set defaults here so we can call without args
         # Literally ignore everything and just refresh the karma bar.
-        app_data.top_bar.update_karma_bar(self.spent_karma,
-                                          self.good_karma.get(),
-                                          "Finalized Mode")
+        app_data.top_bar.update_karma_label(self.spent_karma,
+                                            self.good_karma.get(),
+                                            "Finalized Mode")
 
     def add_adjustment(self, adj):
         """
@@ -176,10 +181,11 @@ class Finalized(GenMode, ABC):
         return self.adjustments.get() + self.applied_karma.get()
 
     def on_set_otaku(self):
-        pass
+        raise Exception("This should never be called when finalized.")
 
     def on_unset_otaku(self):
-        pass
+        raise Exception("This should never be called when finalized.")
 
     def get_otaku_complex_forms_resources(self):
-        pass
+        """Should this ever even get called? Do we need this when Finalized?"""
+        raise NotImplementedError

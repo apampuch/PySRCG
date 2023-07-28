@@ -1,5 +1,6 @@
 from abc import ABC
 
+from src import app_data
 from src.CharData.gear import Gear
 from src.GenModes.finalized import Finalized
 from src.Tabs.notebook_tab import NotebookTab
@@ -461,15 +462,18 @@ class AttributesTab(NotebookTab, ABC):
 
         return total
 
-    def calculate_total(self):
-        """Totals all attributes' point values and updates the top karma bar."""
-
-        self.statblock.gen_mode.update_total(self.get_total(), "attributes")
-
     def racial_slider_calc(self, key):
         """Gets the total of the slider value and the racial attribute mod."""
         slider_val = self.sliders[key].get()
         return slider_val + self.race.racial_attributes[key]
+
+    def calculate_total(self):
+        """Totals all attributes' point values and updates the top karma bar."""
+        self.statblock.gen_mode.update_total(self.get_total(), "attributes")
+
+    def update_karma_bar(self):
+        vals = self.gen_mode.karma_bar_vals["attributes"]
+        app_data.top_bar.karma_bar.configure(variable=vals[0], maximum=vals[1].get())
 
     def load_character(self):
         """Called whenever a character is loaded"""

@@ -113,9 +113,13 @@ class BiowareTab(ThreeColumnBuyTab, ABC):
         return bioware_tab_recurse_end_callback
 
     def calculate_total(self):
-        app_data.top_bar.update_karma_bar("{:.2f}".format(self.statblock.essence_index),
-                                          self.statblock.essence + 3.0,  # max essence index
-                                          "Augments Tab")
+        app_data.top_bar.update_karma_label("{:.2f}".format(self.statblock.essence_index),
+                                            self.statblock.essence + 3.0,  # max essence index
+                                            "Augments Tab")
+
+    def update_karma_bar(self):
+        progress_bar = app_data.top_bar.karma_bar
+        progress_bar.configure(variable=self.statblock.ess_index_ui_var, maximum=self.statblock.essence_index)
 
     def on_switch(self):
         self.calculate_total()

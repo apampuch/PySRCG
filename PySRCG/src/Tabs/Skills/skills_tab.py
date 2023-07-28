@@ -244,7 +244,7 @@ class SkillsTab(NotebookTab):
         # setup new window
         temp_window = Toplevel(self.parent)
         temp_window.grab_set()
-        temp_window.resizable(0, 0)
+        temp_window.resizable(None, None)
 
         name_entry = Entry(temp_window)
 
@@ -503,6 +503,10 @@ class SkillsTab(NotebookTab):
         :return: The iid of the selected skill UI item
         """
         return self.skills_list.selection()[-1]
+
+    def update_karma_bar(self):
+        vals = self.gen_mode.karma_bar_vals["skills"]
+        app_data.top_bar.karma_bar.configure(variable=vals[0], maximum=vals[1].get())
 
     def reload_data(self):
         children = self.object_library.get_children()

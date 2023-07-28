@@ -8,6 +8,10 @@ from src.GenModes.gen_mode import GenMode
 from src.utils import magic_tab_show_on_awakened_status
 
 
+def points_max():
+    return app_data.app_character.statblock.magic + app_data.app_character.statblock.bonus_power_points
+
+
 class Priority(GenMode, ABC):
     def __init__(self, data=None, **kwargs):
         super().__init__()
@@ -66,6 +70,14 @@ class Priority(GenMode, ABC):
         else:
             self.purchased_magic_points.set(0)
 
+        # this dict is for getting karma bar stuff
+        # first in tuple is current, second in tuple is max
+        self.karma_bar_vals = {
+            "attributes": (self.cur_attribute_points, self.max_attribute_points),
+            "spells": (self.cur_magic_points, self.max_magic_points),
+            "skills": (self.cur_skill_points, self.max_skill_points),
+        }
+
         # after instantiating call AttributesTab.calculate_total
 
     def increment_purchased_magic_points(self):
@@ -103,74 +115,6 @@ class Priority(GenMode, ABC):
         else:
             return True
 
-    def update_karma_label(self, tab):
-        """
-        Updates the top bar's Karma label. Usually called when switching tabs.
-        This is what controls what the top bar shows.
-        """
-        progress_text = app_data.top_bar.karma_fraction
-        progress_bar = app_data.top_bar.karma_bar
-
-        def blank_set():
-            progress_text.set("")
-            progress_bar.configure(maximum=10000000, variable=0)
-
-        if tab.name == "AttributesTab":
-            progress_text.set("{}/{}".format(self.cur_attribute_points.get(), self.max_attribute_points.get()))
-            progress_bar.configure(maximum=self.max_attribute_points.get(), variable=self.cur_attribute_points)
-        elif tab.name == "MagicTab":
-            # if magic tab check the sub tab
-            # noinspection PyPep8Naming
-            SPELLS_TAB_INDEX = 1
-            POWERS_TAB_INDEX = 2
-            current_tab_index = tab.index("current")
-            if current_tab_index == SPELLS_TAB_INDEX:
-                progress_text.set("{}/{}".format(self.cur_magic_points.get(), self.max_magic_points.get()))
-                progress_bar.configure(maximum=self.max_magic_points.get(), variable=self.cur_magic_points)
-            elif current_tab_index == POWERS_TAB_INDEX:
-                points_cur = app_data.app_character.statblock.power_points
-                points_max = \
-                    app_data.app_character.statblock.magic + app_data.app_character.statblock.bonus_power_points
-                progress_text.set("{}/{}".format(points_cur, points_max))
-                progress_bar.configure(maximum=points_max,
-                                       variable=app_data.app_character.statblock.power_points_ui_var)
-        elif tab.name == "SkillsTab":
-            progress_text.set("{}/{}".format(self.cur_skill_points.get(), self.max_skill_points.get()))
-            progress_bar.configure(maximum=self.max_skill_points.get(), variable=self.cur_skill_points)
-        elif tab.name == "AugmentsTab":
-            CYBERWARE_TAB_INDEX = 0
-            BIOWARE_TAB_INDEX = 1
-            current_tab_index = tab.index("current")
-            if current_tab_index == CYBERWARE_TAB_INDEX:
-                # hacky scope breaking bullshit, refactor this whole damn function to not be in the character gen modes
-                ess_amt = app_data.app_character.statblock.essence
-                ess_max = app_data.app_character.statblock.base_attributes["essence"]
-                progress_text.set("{}/{}".format(ess_amt, ess_max))
-                progress_bar.configure(maximum=ess_max, variable=app_data.app_character.statblock.ess_ui_var)
-            elif current_tab_index == BIOWARE_TAB_INDEX:
-                ess_index_amt = app_data.app_character.statblock.essence_index
-                ess_index_max = app_data.app_character.statblock.essence + 3
-                progress_text.set("{}/{}".format(ess_index_amt, ess_index_max))
-                progress_bar.configure(maximum=ess_index_max,
-                                       variable=app_data.app_character.statblock.ess_index_ui_var)
-        elif tab.name == "DeckingTab":
-            PERSONA_TAB_INDEX = 2
-            current_tab_index = tab.index("current")
-            if current_tab_index != PERSONA_TAB_INDEX:
-                blank_set()
-        elif tab.name == "BackgroundTab":
-            EDGES_FLAWS_INDEX = 1
-            current_tab_index = tab.index("current")
-            if current_tab_index == EDGES_FLAWS_INDEX:
-                progress_text.set("{}".format(self.cur_edge_flaw_points.get()))
-                progress_bar.configure(maximum=10000000, variable=0)
-        else:
-            blank_set()
-
-        # TODO check if we're over the maximum, if so, change to red
-        # if not, change to green
-        # need styles to do this
-
     def setup_ui_elements(self):
         super().setup_ui_elements()
 
@@ -192,20 +136,20 @@ class Priority(GenMode, ABC):
     def update_total(self, amount, key):
         if key == "attributes":
             self.cur_attribute_points.set(amount)
-            app_data.top_bar.update_karma_bar(self.cur_attribute_points.get(),
-                                              self.max_attribute_points.get(),
-                                              "Priority Mode")
+            app_data.top_bar.update_karma_label(self.cur_attribute_points.get(),
+                                                self.max_attribute_points.get(),
+                                                "Priority Mode")
 
         elif key == "skills":
             self.cur_skill_points.set(amount)
-            app_data.top_bar.update_karma_bar(self.cur_skill_points.get(),
-                                              self.max_skill_points.get(),
-                                              "Priority Mode")
+            app_data.top_bar.update_karma_label(self.cur_skill_points.get(),
+                                                self.max_skill_points.get(),
+                                                "Priority Mode")
         elif key == "magic":
             self.cur_magic_points.set(amount)
-            app_data.top_bar.update_karma_bar(self.cur_magic_points.get(),
-                                              self.max_magic_points.get(),
-                                              "Priority Mode")
+            app_data.top_bar.update_karma_label(self.cur_magic_points.get(),
+                                                self.max_magic_points.get(),
+                                                "Priority Mode")
 
     def swap_priority(self, direction):
         """

@@ -70,14 +70,13 @@ class App(ttk.Notebook):
     def on_tab_changed(self, event):
         # overly complicated way to get the current tab
         # because everything in tkinter is overly complicated the more I look at it
-        current_tab: NotebookTab | ContainerTab | MagicTab | Widget
+        current_tab: NotebookTab | ContainerTab | Widget
         tab_string: str
         tab_string = self.select()
         tab_string = tab_string.replace(".!app.", "")
         current_tab = self.children[tab_string]
+        current_tab.update_karma_bar()
         current_tab.on_switch()
-
-        app_data.app_character.statblock.gen_mode.update_karma_label(current_tab)
 
 
 class TopBar(ttk.Frame):
@@ -109,7 +108,7 @@ class TopBar(ttk.Frame):
         self.cash_label.config(text=app_data.app_character.statblock.cash_str)
 
     # workaround for things that aren't explicitly in the priority system
-    def update_karma_bar(self, numer, denom, dbg_source):
+    def update_karma_label(self, numer, denom, dbg_source):
         if DEBUG:
             print("Updating from: " + dbg_source)
         self.karma_fraction.set("{}/{}".format(numer, denom))
@@ -120,7 +119,7 @@ def post_setup(attri_tab):
     attri_tab.calculate_total()
 
 
-def make_tab(tab_type, name, container_types=None, container_names=None, container_args=None):
+def make_tab(tab_type, name, container_types=None, container_names=None):
     """
     Creates a tab and adds it to the window.
 
@@ -135,8 +134,6 @@ def make_tab(tab_type, name, container_types=None, container_names=None, contain
         container_types = []
     if container_names is None:
         container_names = []
-    if container_args is None:
-        container_args = []
 
     new_tab = tab_type(app_data.window)
 

@@ -182,6 +182,10 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
     def on_tradition_change(self):
         return
 
+    def update_karma_bar(self):
+        vals = self.gen_mode.karma_bar_vals["spells"]
+        app_data.top_bar.karma_bar.configure(variable=vals[0], maximum=vals[1].get())
+
     def load_character(self):
         # clear everything
         self.inventory_list.delete(0, END)

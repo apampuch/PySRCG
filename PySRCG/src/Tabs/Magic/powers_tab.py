@@ -157,6 +157,11 @@ class PowersTab(ThreeColumnBuyTab, ABC):
 
             self.calculate_total()
 
+    def update_karma_bar(self):
+        progress_bar = app_data.top_bar.karma_bar
+        progress_bar.configure(variable=self.statblock.power_points_ui_var,
+                               maximum=self.statblock.magic + self.statblock.bonus_power_points)
+
     def on_switch(self):
         self.calculate_total()
 
@@ -164,7 +169,7 @@ class PowersTab(ThreeColumnBuyTab, ABC):
         # unlike the other tabs places we directly manipulate the top bar
         # since this has nothing to do with the generation mode
         self.statblock.power_points_ui_var.set(self.statblock.power_points)
-        app_data.top_bar.update_karma_bar("{:.2f}".format(self.statblock.power_points),
+        app_data.top_bar.update_karma_label("{:.2f}".format(self.statblock.power_points),
                                           self.statblock.total_power_points, "Powers Tab")
 
     def load_character(self):

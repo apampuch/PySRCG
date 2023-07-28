@@ -6,8 +6,7 @@ class GenMode(ABC):
     gen_mode_frame = None
 
     def __init__(self):
-        # print(app_data.app_character)
-        pass
+        self.karma_bar_vals = {}
 
     @abstractmethod
     def setup_ui_elements(self):
@@ -19,10 +18,6 @@ class GenMode(ABC):
 
     @abstractmethod
     def serialize(self):
-        pass
-
-    @abstractmethod
-    def update_karma_label(self, tab):
         pass
 
     @abstractmethod

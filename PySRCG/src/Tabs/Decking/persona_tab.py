@@ -118,8 +118,9 @@ class PersonaTab(NotebookTab, ABC):
         if self.current_deck is None:
             return
 
+        # setup sliders
         for key in self.sliders.keys():
-            # set slider maxmimums
+            # set slider maximums
             self.sliders[key].config(to=self.current_deck.properties["mpcp"])
             self.sliders[key].set(self.current_deck.properties["persona"][key])
 
@@ -128,11 +129,12 @@ class PersonaTab(NotebookTab, ABC):
 
             # self.on_set_slider_value(key, self.current_deck.properties["persona"][key])
 
-        # setup top progress bar
-        progress_bar = app_data.top_bar.karma_bar
-        progress_bar.configure(maximum=self.current_deck.total_persona_points(), variable=self.persona_total)
-
+        self.update_karma_bar()
         self.calculate_total()
+
+    def update_karma_bar(self):
+        progress_bar = app_data.top_bar.karma_bar
+        progress_bar.configure(variable=self.persona_total, maximum=self.current_deck.total_persona_points())
 
     def on_switch(self):
         selected_deck: str | None
@@ -161,3 +163,6 @@ class PersonaTab(NotebookTab, ABC):
         self.persona_total.set(total)
 
         app_data.top_bar.update_karma_bar(total, self.current_deck.total_persona_points(), "Persona Tab")
+
+    def load_character(self):
+        pass

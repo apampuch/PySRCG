@@ -121,9 +121,13 @@ class CyberwareTab(ThreeColumnBuyTab, ABC):
     def calculate_total(self):
         # unlike the other tabs places we directly manipulate the top bar
         # since this has nothing to do with the generation mode
-        app_data.top_bar.update_karma_bar("{:.2f}".format(self.statblock.essence),
-                                          self.statblock.base_attributes["essence"],
-                                          "Augments Tab")
+        app_data.top_bar.update_karma_label("{:.2f}".format(self.statblock.essence),
+                                            self.statblock.base_attributes["essence"],
+                                            "Augments Tab")
+
+    def update_karma_bar(self):
+        progress_bar = app_data.top_bar.karma_bar
+        progress_bar.configure(variable=self.statblock.ess_ui_var, maximum=self.statblock.base_attributes["essence"])
 
     def on_switch(self):
         super().on_switch()
