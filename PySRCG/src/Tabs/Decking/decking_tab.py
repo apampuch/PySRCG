@@ -18,3 +18,13 @@ class DeckingTab(ContainerTab):
             self.hide(self.tabs()[2])
         else:
             self.add(self.tabs()[2])
+
+    def show_hide_tabs(self, otaku):
+        if otaku:
+            self.add(self.tabs()[3])
+            self.add(self.tabs()[4])
+            # self.add(self.tabs()[5])
+        else:
+            self.hide(self.tabs()[3])
+            self.hide(self.tabs()[4])
+            # self.hide(self.tabs()[5])

@@ -47,6 +47,16 @@ class Statblock(object):
         on_cash_updated()
 
     @property
+    def otaku(self):
+        return self.__otaku
+
+    @otaku.setter
+    def otaku(self, value):
+        self.__otaku = value
+
+        app_data.window.nametowidget(".!app.!deckingtab").show_hide_tabs(self.otaku)
+
+    @property
     def awakened(self):
         return self.__awakened
 
@@ -157,7 +167,8 @@ class Statblock(object):
         """
 
         # set otaku status
-        self.otaku = False
+        self.__otaku = False
+        self.otaku = False  # do this to make it hide otaku tab on startup
         self.otaku_path = None
         self.runt_otaku = False
         self.complex_forms = []
