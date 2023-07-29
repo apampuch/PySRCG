@@ -331,7 +331,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             cb()
 
     def check_for_duplicates(self, to_buy):
-        if not self.no_duplicates:
+        if "no_duplicates" not in to_buy.properties or not to_buy.properties["no_duplicates"]:
             return True
 
         # convert to set for sweet O(1) lookups
@@ -526,7 +526,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
                 if not self.check_for_duplicates(selected_object):
                     messagebox.showerror(title="Error", message="No duplicates allowed.")
-                    raise ValueError("No duplicates allowed.")
+                    # raise ValueError("No duplicates allowed.")
                 self.buy_callback(selected_object)
         else:
             print("Can't buy that!")

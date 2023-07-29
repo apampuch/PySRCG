@@ -1626,7 +1626,10 @@
           "legality": "Legal",
           "cost": "2 * minutes * POVs",
           "length": "minutes",
-          "attributes_to_calculate": ["cost", "length"],
+          "attributes_to_calculate": [
+            "cost",
+            "length"
+          ],
           "street_index": 0.75,
           "page": 286
         },
@@ -1639,7 +1642,10 @@
           "legality": "Legal",
           "cost": "6 * minutes * POVs",
           "length": "minutes",
-          "attributes_to_calculate": ["cost", "length"],
+          "attributes_to_calculate": [
+            "cost",
+            "length"
+          ],
           "street_index": 0.75,
           "page": 286
         },
@@ -1652,7 +1658,10 @@
           "legality": "Legal",
           "cost": "90 * minutes * POVs",
           "length": "minutes",
-          "attributes_to_calculate": ["cost", "length"],
+          "attributes_to_calculate": [
+            "cost",
+            "length"
+          ],
           "street_index": 0.75,
           "page": 286
         },
@@ -1665,7 +1674,10 @@
           "legality": "Legal",
           "cost": "270 * minutes * POVs",
           "length": "minutes",
-          "attributes_to_calculate": ["cost", "length"],
+          "attributes_to_calculate": [
+            "cost",
+            "length"
+          ],
           "street_index": 0.75,
           "page": 286
         }
@@ -1682,7 +1694,10 @@
         "availability_unit": "always",
         "street_index": 1,
         "legality": "Legal",
-        "attributes_to_calculate": ["cost", "memory"],
+        "attributes_to_calculate": [
+          "cost",
+          "memory"
+        ],
         "page": 287
       },
       "Communications": {
@@ -1762,7 +1777,10 @@
           "availability_unit": "always",
           "legality": "Legal",
           "cost": "memory * 20",
-          "attributes_to_calculate": ["cost", "memory"],
+          "attributes_to_calculate": [
+            "cost",
+            "memory"
+          ],
           "street_index": 0.75,
           "page": 287,
           "memory": "memory"
@@ -1775,7 +1793,10 @@
           "availability_unit": "always",
           "legality": "Legal",
           "cost": "memory * 20 * 5",
-          "attributes_to_calculate": ["cost", "memory"],
+          "attributes_to_calculate": [
+            "cost",
+            "memory"
+          ],
           "street_index": 1,
           "page": 287,
           "memory": "memory"
@@ -1788,7 +1809,10 @@
           "availability_unit": "always",
           "legality": "Legal",
           "cost": "memory * 20 * 20",
-          "attributes_to_calculate": ["cost", "memory"],
+          "attributes_to_calculate": [
+            "cost",
+            "memory"
+          ],
           "street_index": 1.5,
           "page": 287,
           "memory": "memory"
@@ -1812,7 +1836,10 @@
           "availability_unit": "always",
           "legality": "Legal",
           "cost": "20 * Mp",
-          "attributes_to_calculate": ["cost", "memory"],
+          "attributes_to_calculate": [
+            "cost",
+            "memory"
+          ],
           "street_index": 1,
           "page": 287,
           "memory": "Mp"
@@ -1827,7 +1854,10 @@
           "availability_unit": "always",
           "legality": "Legal",
           "cost": "memory * 20",
-          "attributes_to_calculate": ["cost", "memory"],
+          "attributes_to_calculate": [
+            "cost",
+            "memory"
+          ],
           "street_index": 1,
           "page": 287
         },
@@ -1839,7 +1869,10 @@
           "availability_unit": "always",
           "legality": "Legal",
           "cost": "memory * 2 * 20",
-          "attributes_to_calculate": ["cost", "memory"],
+          "attributes_to_calculate": [
+            "cost",
+            "memory"
+          ],
           "street_index": 1.5,
           "page": 287
         },
@@ -1851,7 +1884,10 @@
           "availability_unit": "days",
           "legality": "Legal",
           "cost": "memory * 10 * 20",
-          "attributes_to_calculate": ["cost", "memory"],
+          "attributes_to_calculate": [
+            "cost",
+            "memory"
+          ],
           "street_index": 3,
           "page": 287
         }
@@ -1927,7 +1963,9 @@
         "cost": 500,
         "street_index": 2,
         "page": 288,
-        "options": {"Type": null}
+        "options": {
+          "Type": null
+        }
       },
       "Shop": {
         "concealability": null,
@@ -1939,7 +1977,9 @@
         "cost": 5000,
         "street_index": 3,
         "page": 288,
-        "options": {"Type": null}
+        "options": {
+          "Type": null
+        }
       },
       "Facility": {
         "concealability": null,
@@ -1951,7 +1991,9 @@
         "cost": 10000,
         "street_index": 4,
         "page": 288,
-        "options": {"Type": null}
+        "options": {
+          "Type": null
+        }
       }
     },
     "Surveillance and Security": {
@@ -2062,7 +2104,14 @@
           "cost": "rating * 1000 + ECCM * 1000 - 1000",
           "street_index": "2 + ECCM * 0.5 - 0.5",
           "ECCM_rating": "ECCM",
-          "attributes_to_calculate": ["cost", "street_index", "availability_rating", "rating", "ECCM_rating", "flux"],
+          "attributes_to_calculate": [
+            "cost",
+            "street_index",
+            "availability_rating",
+            "rating",
+            "ECCM_rating",
+            "flux"
+          ],
           "page": 288,
           "rating": "rating",
           "flux": "rating"
@@ -2076,7 +2125,11 @@
           "legality": "9P-U",
           "cost": "500",
           "street_index": "1.25",
-          "attributes_to_calculate": ["cost", "street_index", "availability_rating"],
+          "attributes_to_calculate": [
+            "cost",
+            "street_index",
+            "availability_rating"
+          ],
           "page": 289
         },
         "Transciever": {
@@ -2089,7 +2142,14 @@
           "cost": "rating * 500 + ECCM * 1000 - 1000",
           "street_index": "2 + ECCM * 0.5 - 0.5",
           "ECCM_rating": "ECCM",
-          "attributes_to_calculate": ["cost", "street_index", "availability_rating", "rating", "ECCM_rating", "flux"],
+          "attributes_to_calculate": [
+            "cost",
+            "street_index",
+            "availability_rating",
+            "rating",
+            "ECCM_rating",
+            "flux"
+          ],
           "page": 289,
           "rating": "rating",
           "flux": "rating"
@@ -2104,7 +2164,15 @@
           "cost": "rating * 1000 + ECCM * 1000 - 1000",
           "street_index": "3 + ECCM * 0.5 - 0.5",
           "ECCM_rating": "ECCM",
-          "attributes_to_calculate": ["cost", "weight", "street_index", "availability_rating", "rating", "ECCM_rating", "flux"],
+          "attributes_to_calculate": [
+            "cost",
+            "weight",
+            "street_index",
+            "availability_rating",
+            "rating",
+            "ECCM_rating",
+            "flux"
+          ],
           "page": 289,
           "rating": "rating",
           "flux": "rating"
@@ -2118,7 +2186,11 @@
           "legality": "Legal",
           "cost": "50000",
           "street_index": "2",
-          "attributes_to_calculate": ["cost", "street_index", "availability_rating"],
+          "attributes_to_calculate": [
+            "cost",
+            "street_index",
+            "availability_rating"
+          ],
           "page": 289
         },
         "Simlink": {
@@ -2131,7 +2203,14 @@
           "cost": "25000 + rating * 5000 + ECCM * 1000 - 1000",
           "street_index": "2 + ECCM * 0.5 - 0.5",
           "ECCM_rating": "ECCM",
-          "attributes_to_calculate": ["cost", "street_index", "availability_rating", "ECCM_rating", "rating", "flux"],
+          "attributes_to_calculate": [
+            "cost",
+            "street_index",
+            "availability_rating",
+            "ECCM_rating",
+            "rating",
+            "flux"
+          ],
           "page": 289,
           "rating": "rating",
           "flux": "rating / 4"
@@ -2146,7 +2225,14 @@
           "cost": "2000 * rating + ECCM * 1000 - 1000",
           "street_index": "2 + ECCM * 0.5 - 0.5",
           "ECCM_rating": "ECCM",
-          "attributes_to_calculate": ["cost", "street_index", "availability_rating", "ECCM_rating", "rating", "flux"],
+          "attributes_to_calculate": [
+            "cost",
+            "street_index",
+            "availability_rating",
+            "ECCM_rating",
+            "rating",
+            "flux"
+          ],
           "page": 289,
           "rating": "rating",
           "flux": "rating / 2"
@@ -2161,7 +2247,14 @@
           "cost": "rating * 100 + ECCM * 1000 - 1000",
           "street_index": "2 + ECCM * 0.5 - 0.5",
           "ECCM_rating": "ECCM",
-          "attributes_to_calculate": ["cost", "street_index", "availability_rating", "ECCM_rating", "rating", "flux"],
+          "attributes_to_calculate": [
+            "cost",
+            "street_index",
+            "availability_rating",
+            "ECCM_rating",
+            "rating",
+            "flux"
+          ],
           "page": 289,
           "rating": "rating",
           "flux": "rating"
@@ -2180,7 +2273,11 @@
         "street_index": 1.5,
         "page": 290,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Dataline Tap": {
         "concealability": 12,
@@ -2193,7 +2290,11 @@
         "street_index": 1.5,
         "page": 290,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Dataline Tap (Transmitter)": {
         "concealability": 12,
@@ -2206,7 +2307,12 @@
         "street_index": 1.5,
         "page": 290,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating", "flux"],
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating",
+          "flux"
+        ],
         "flux": "rating / 4"
       },
       "Laser Microphone": {
@@ -2220,7 +2326,12 @@
         "street_index": 1.5,
         "page": 290,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating", "flux"],
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating",
+          "flux"
+        ],
         "flux": "rating"
       },
       "Micro Camcorder": {
@@ -2245,7 +2356,11 @@
         "street_index": 2,
         "page": 290,
         "rating": "rating",
-        "attributes_to_calculate": ["cost", "rating", "flux"],
+        "attributes_to_calculate": [
+          "cost",
+          "rating",
+          "flux"
+        ],
         "flux": "rating"
       },
       "Shotgun Microphone": {
@@ -2259,7 +2374,12 @@
         "street_index": 1,
         "page": 290,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating", "flux"],
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating",
+          "flux"
+        ],
         "flux": "rating"
       },
       "Signal Locator (Standard)": {
@@ -2273,7 +2393,12 @@
         "street_index": 1.5,
         "page": 291,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating", "flux"],
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating",
+          "flux"
+        ],
         "flux": "rating"
       },
       "Signal Locator (AOD)": {
@@ -2287,7 +2412,12 @@
         "street_index": 1.5,
         "page": 291,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating", "flux"],
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating",
+          "flux"
+        ],
         "flux": "rating"
       },
       "Sony HB500 Portacam": {
@@ -2334,7 +2464,12 @@
         "street_index": 2,
         "page": 291,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating", "flux"],
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating",
+          "flux"
+        ],
         "flux": "rating"
       },
       "Tracking Signal (AOD)": {
@@ -2348,7 +2483,12 @@
         "street_index": 2,
         "page": 291,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating", "flux"],
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating",
+          "flux"
+        ],
         "flux": "rating"
       },
       "Voice Identifier": {
@@ -2362,7 +2502,12 @@
         "street_index": 2,
         "page": 291,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating", "flux"],
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating",
+          "flux"
+        ],
         "flux": "rating"
       }
     },
@@ -2378,7 +2523,11 @@
         "street_index": 1.5,
         "page": 291,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Data Encryption System": {
         "concealability": 2,
@@ -2391,7 +2540,11 @@
         "street_index": 2,
         "page": 291,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Dataline Scanner": {
         "concealability": 2,
@@ -2404,7 +2557,11 @@
         "street_index": 2,
         "page": 291,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Jammer": {
         "concealability": 2,
@@ -2417,7 +2574,12 @@
         "street_index": 1.5,
         "page": 291,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating", "flux"],
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating",
+          "flux"
+        ],
         "flux": "rating * 3 / 2"
       },
       "Voice Mask": {
@@ -2431,7 +2593,11 @@
         "street_index": 1.5,
         "page": 291,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "White Noise Generator": {
         "concealability": 3,
@@ -2444,7 +2610,11 @@
         "street_index": 1.5,
         "page": 291,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       }
     },
     "Data Encryption/Decryption": {
@@ -2471,7 +2641,11 @@
         "street_index": 1,
         "page": 292,
         "rating": "rating",
-        "attributes_to_calculate": ["legality", "cost", "rating"]
+        "attributes_to_calculate": [
+          "legality",
+          "cost",
+          "rating"
+        ]
       },
       "Data Decryption": {
         "concealability": null,
@@ -2496,7 +2670,11 @@
         "street_index": 1,
         "page": 292,
         "rating": "rating",
-        "attributes_to_calculate": ["legality", "cost", "rating"]
+        "attributes_to_calculate": [
+          "legality",
+          "cost",
+          "rating"
+        ]
       }
     },
     "Security Devices": {
@@ -2511,7 +2689,11 @@
         "street_index": 2,
         "page": 292,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Chem Sniffer (Doorway)": {
         "concealability": 4,
@@ -2524,7 +2706,11 @@
         "street_index": 3,
         "page": 292,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Containment Manacles": {
         "concealability": null,
@@ -2548,7 +2734,11 @@
         "street_index": 2,
         "page": 292,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Cyberware Scanner (Doorway)": {
         "concealability": 8,
@@ -2561,7 +2751,11 @@
         "street_index": 3,
         "page": 292,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Headjammer": {
         "concealability": 3,
@@ -2574,7 +2768,11 @@
         "street_index": 2,
         "page": 292,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Thumbprint Scanner": {
         "concealability": null,
@@ -2587,7 +2785,11 @@
         "street_index": 1,
         "page": 292,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Palmprint Scanner": {
         "concealability": null,
@@ -2600,7 +2802,11 @@
         "street_index": 2,
         "page": 292,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Retinal Scanner": {
         "concealability": null,
@@ -2613,7 +2819,11 @@
         "street_index": 3,
         "page": 292,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Jackstopper": {
         "concealability": 10,
@@ -2637,7 +2847,11 @@
         "street_index": 2,
         "page": 293,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Magnetic Anomaly Detector (Doorway)": {
         "concealability": 8,
@@ -2650,7 +2864,11 @@
         "street_index": 3,
         "page": 293,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Maglock": {
         "concealability": null,
@@ -2682,7 +2900,13 @@
         },
         "page": 293,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "availability_time", "cost", "rating", "street_index"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "availability_time",
+          "cost",
+          "rating",
+          "street_index"
+        ]
       },
       "Biometric Maglock": {
         "concealability": null,
@@ -2695,7 +2919,11 @@
         "street_index": 2,
         "page": 293,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "PANICBUTTON Hook-Up": {
         "concealability": 10,
@@ -2765,7 +2993,11 @@
         "street_index": 2,
         "page": 293,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Maglock Passkey (illegal)": {
         "concealability": 9,
@@ -2778,7 +3010,11 @@
         "street_index": 3,
         "page": 293,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Sequencer": {
         "concealability": 8,
@@ -2791,7 +3027,11 @@
         "street_index": 3,
         "page": 293,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Ultrasound Detector": {
         "concealability": 10,
@@ -2815,7 +3055,11 @@
         "street_index": 3,
         "page": 293,
         "rating": "rating",
-        "attributes_to_calculate": ["availability_rating", "cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "cost",
+          "rating"
+        ]
       },
       "Wire Clippers": {
         "concealability": 12,
@@ -2841,7 +3085,12 @@
         "cost": "200 * rating",
         "street_index": 1,
         "page": 293,
-        "attributes_to_calculate": ["availability_rating", "availability_time","cost", "rating"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "availability_time",
+          "cost",
+          "rating"
+        ]
       },
       "Climbing Gear": {
         "Ascent/Descent Harness": {
@@ -2911,7 +3160,11 @@
         "length": "meters",
         "street_index": 2,
         "page": 293,
-        "attributes_to_calculate": ["weight", "cost", "length"]
+        "attributes_to_calculate": [
+          "weight",
+          "cost",
+          "length"
+        ]
       },
       "Stealth Grapple Line": {
         "concealability": 3,
@@ -2924,7 +3177,11 @@
         "length": "meters",
         "street_index": 3,
         "page": 293,
-        "attributes_to_calculate": ["weight", "cost", "length"]
+        "attributes_to_calculate": [
+          "weight",
+          "cost",
+          "length"
+        ]
       },
       "Catalyst Stick": {
         "concealability": 9,
@@ -3027,7 +3284,10 @@
         "cost": "rating * rating * 3 * 100",
         "street_index": 1.25,
         "page": 295,
-        "attributes_to_calculate": ["rating", "cost"]
+        "attributes_to_calculate": [
+          "rating",
+          "cost"
+        ]
       },
       "Activesoft (specialization)": {
         "concealability": 12,
@@ -3040,7 +3300,10 @@
         "street_index": 1.25,
         "page": 295,
         "rating": "rating",
-        "attributes_to_calculate": ["rating", "cost"]
+        "attributes_to_calculate": [
+          "rating",
+          "cost"
+        ]
       },
       "Datasoft": {
         "concealability": 12,
@@ -3053,7 +3316,10 @@
         "street_index": 1.25,
         "page": 295,
         "rating": "rating",
-        "attributes_to_calculate": ["rating", "cost"]
+        "attributes_to_calculate": [
+          "rating",
+          "cost"
+        ]
       },
       "Datasoft (specialization)": {
         "concealability": 12,
@@ -3066,7 +3332,10 @@
         "street_index": 1.25,
         "page": 295,
         "rating": "rating",
-        "attributes_to_calculate": ["rating", "cost"]
+        "attributes_to_calculate": [
+          "rating",
+          "cost"
+        ]
       },
       "Knowsoft": {
         "concealability": 12,
@@ -3079,7 +3348,10 @@
         "street_index": 1.25,
         "page": 295,
         "rating": "rating",
-        "attributes_to_calculate": ["rating", "cost"]
+        "attributes_to_calculate": [
+          "rating",
+          "cost"
+        ]
       },
       "Knowsoft (specialization)": {
         "concealability": 12,
@@ -3092,7 +3364,10 @@
         "street_index": 1.25,
         "page": 295,
         "rating": "rating",
-        "attributes_to_calculate": ["rating", "cost"]
+        "attributes_to_calculate": [
+          "rating",
+          "cost"
+        ]
       },
       "Linguasoft": {
         "concealability": 12,
@@ -3105,7 +3380,10 @@
         "street_index": 1.25,
         "page": 295,
         "rating": "rating",
-        "attributes_to_calculate": ["rating", "cost"]
+        "attributes_to_calculate": [
+          "rating",
+          "cost"
+        ]
       },
       "Linguasoft (specialization)": {
         "concealability": 12,
@@ -3118,7 +3396,10 @@
         "street_index": 1.25,
         "page": 295,
         "rating": "rating",
-        "attributes_to_calculate": ["rating", "cost"]
+        "attributes_to_calculate": [
+          "rating",
+          "cost"
+        ]
       },
       "Skillsoft Jukebox": {
         "concealability": 6,
@@ -3132,7 +3413,11 @@
         "memory": "mp",
         "street_index": 1,
         "page": 295,
-        "attributes_to_calculate": ["cost", "ports", "memory"]
+        "attributes_to_calculate": [
+          "cost",
+          "ports",
+          "memory"
+        ]
       },
       "Optical Memory Chip": {
         "concealability": 12,
@@ -3145,7 +3430,10 @@
         "memory": "mp",
         "street_index": 1,
         "page": 295,
-        "attributes_to_calculate": ["cost", "memory"]
+        "attributes_to_calculate": [
+          "cost",
+          "memory"
+        ]
       },
       "Autonav Map Chip": {
         "concealability": 12,
@@ -3170,7 +3458,12 @@
         "cost": "skill_rating * skill_rating * 3 + instruction_rating * instruction_rating * 3",
         "street_index": 1,
         "page": 295,
-        "attributes_to_calculate": ["availability_rating", "skill_rating", "instruction_rating", "cost"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "skill_rating",
+          "instruction_rating",
+          "cost"
+        ]
       },
       "Virtual Instructor Chip (restricted skill)": {
         "concealability": 12,
@@ -3184,7 +3477,12 @@
         "cost": "skill_rating * skill_rating * 3 + instruction_rating * instruction_rating * 3",
         "street_index": 2,
         "page": 295,
-        "attributes_to_calculate": ["availability_rating", "skill_rating", "instruction_rating", "cost"]
+        "attributes_to_calculate": [
+          "availability_rating",
+          "skill_rating",
+          "instruction_rating",
+          "cost"
+        ]
       },
       "BTLs": {
         "Direct Input Chip": {
@@ -3235,7 +3533,10 @@
           "cost": "force * 1500",
           "street_index": 1,
           "page": 189,
-          "attributes_to_calculate": ["force", "cost"]
+          "attributes_to_calculate": [
+            "force",
+            "cost"
+          ]
         },
         "Specific Spell Focus": {
           "concealability": null,
@@ -3248,7 +3549,10 @@
           "cost": "force * 45000",
           "street_index": 2,
           "page": 189,
-          "attributes_to_calculate": ["force", "cost"]
+          "attributes_to_calculate": [
+            "force",
+            "cost"
+          ]
         },
         "Spell Category Focus": {
           "concealability": null,
@@ -3261,7 +3565,10 @@
           "cost": "force * 75000",
           "street_index": 2,
           "page": 189,
-          "attributes_to_calculate": ["force", "cost"]
+          "attributes_to_calculate": [
+            "force",
+            "cost"
+          ]
         },
         "Spirit Focus": {
           "concealability": null,
@@ -3274,7 +3581,10 @@
           "cost": "force * 60000",
           "street_index": 2,
           "page": 189,
-          "attributes_to_calculate": ["force", "cost"]
+          "attributes_to_calculate": [
+            "force",
+            "cost"
+          ]
         },
         "Power Focus": {
           "concealability": null,
@@ -3287,7 +3597,10 @@
           "cost": "force * 105000",
           "street_index": 2,
           "page": 189,
-          "attributes_to_calculate": ["force", "cost"]
+          "attributes_to_calculate": [
+            "force",
+            "cost"
+          ]
         },
         "Sustaining Focus": {
           "concealability": null,
@@ -3300,7 +3613,10 @@
           "cost": "force * 15000",
           "street_index": 2,
           "page": 189,
-          "attributes_to_calculate": ["force", "cost"]
+          "attributes_to_calculate": [
+            "force",
+            "cost"
+          ]
         },
         "Weapon Focus": {
           "concealability": null,
@@ -3314,7 +3630,11 @@
           "cost": "reach * 100000 + 100000 + force * 90000",
           "street_index": 2,
           "page": 189,
-          "attributes_to_calculate": ["force", "reach", "cost"]
+          "attributes_to_calculate": [
+            "force",
+            "reach",
+            "cost"
+          ]
         }
       },
       "Magical Supplies": {
@@ -3329,7 +3649,11 @@
           "cost": "force * 1000",
           "street_index": 1,
           "page": 189,
-          "attributes_to_calculate": ["availability_rating", "force", "cost"]
+          "attributes_to_calculate": [
+            "availability_rating",
+            "force",
+            "cost"
+          ]
         },
         "Shamanic Lodge Materials": {
           "concealability": null,
@@ -3342,7 +3666,11 @@
           "cost": "force * 500",
           "street_index": 1,
           "page": 189,
-          "attributes_to_calculate": ["availability_rating", "force", "cost"]
+          "attributes_to_calculate": [
+            "availability_rating",
+            "force",
+            "cost"
+          ]
         },
         "Hermetic Library (per skill)": {
           "concealability": null,
@@ -3355,7 +3683,11 @@
           "cost": "force * 500",
           "street_index": 1,
           "page": 189,
-          "attributes_to_calculate": ["availability_rating", "rating", "cost"]
+          "attributes_to_calculate": [
+            "availability_rating",
+            "rating",
+            "cost"
+          ]
         }
       },
       "Fetishes": {
@@ -3427,7 +3759,11 @@
           "cost": "force * 50",
           "street_index": 2,
           "page": 189,
-          "attributes_to_calculate": ["availability_rating", "force", "cost"]
+          "attributes_to_calculate": [
+            "availability_rating",
+            "force",
+            "cost"
+          ]
         },
         "M Drain": {
           "concealability": null,
@@ -3440,7 +3776,11 @@
           "cost": "force * 100",
           "street_index": 2,
           "page": 189,
-          "attributes_to_calculate": ["availability_rating", "force", "cost"]
+          "attributes_to_calculate": [
+            "availability_rating",
+            "force",
+            "cost"
+          ]
         },
         "S Drain": {
           "concealability": null,
@@ -3453,7 +3793,11 @@
           "cost": "force * 500",
           "street_index": 2,
           "page": 189,
-          "attributes_to_calculate": ["availability_rating", "force", "cost"]
+          "attributes_to_calculate": [
+            "availability_rating",
+            "force",
+            "cost"
+          ]
         },
         "D Drain": {
           "concealability": null,
@@ -3466,7 +3810,11 @@
           "cost": "force * 1000",
           "street_index": 2,
           "page": 189,
-          "attributes_to_calculate": ["availability_rating", "force", "cost"]
+          "attributes_to_calculate": [
+            "availability_rating",
+            "force",
+            "cost"
+          ]
         }
       }
     },
@@ -3482,7 +3830,9 @@
         "cost": "1000",
         "street_index": 2,
         "page": 304,
-        "attributes_to_calculate": ["cost"]
+        "attributes_to_calculate": [
+          "cost"
+        ]
       },
       "DocWagon Contract": {
         "Basic Service (one year)": {
@@ -3593,7 +3943,10 @@
           "cost": "rating * 50",
           "street_index": 2,
           "page": 304,
-          "attributes_to_calculate": ["rating", "cost"]
+          "attributes_to_calculate": [
+            "rating",
+            "cost"
+          ]
         },
         "Stimulant Patch": {
           "concealability": null,
@@ -3610,7 +3963,10 @@
           "cost": "rating * 25",
           "street_index": 1,
           "page": 304,
-          "attributes_to_calculate": ["rating", "cost"]
+          "attributes_to_calculate": [
+            "rating",
+            "cost"
+          ]
         },
         "Tranq Patch": {
           "concealability": null,
@@ -3627,7 +3983,10 @@
           "cost": "rating * 25",
           "street_index": 2,
           "page": 304,
-          "attributes_to_calculate": ["rating", "cost"]
+          "attributes_to_calculate": [
+            "rating",
+            "cost"
+          ]
         },
         "Trauma Patch": {
           "concealability": null,
@@ -3652,7 +4011,9 @@
         "street_index": 2,
         "legality": "legal",
         "flux": 2,
-        "attributes_to_calculate": ["cost"],
+        "attributes_to_calculate": [
+          "cost"
+        ],
         "page": 306
       },
       "Remote Control ECCM": {
@@ -3705,7 +4066,13 @@
           }
         },
         "rating": "rating",
-        "attributes_to_calculate": ["cost", "availability_rating", "availability_time", "street_index", "legality"],
+        "attributes_to_calculate": [
+          "cost",
+          "availability_rating",
+          "availability_time",
+          "street_index",
+          "legality"
+        ],
         "page": 306
       },
       "Hitcher Jacks": {
@@ -3717,7 +4084,9 @@
         "street_index": 1,
         "legality": "legal",
         "rating": "rating",
-        "attributes_to_calculate": ["cost"],
+        "attributes_to_calculate": [
+          "cost"
+        ],
         "page": 306
       },
       "Audio/Visual Screen Displays": {
@@ -4759,146 +5128,203 @@
     "Astral Perception": {
       "cost": 2,
       "max_levels": 1,
-      "page": 168
+      "page": 168,
+      "no_duplicates": false
     },
     "Attribute Boost": {
       "cost": 0.25,
-      "options": {"Attribute": ["Body", "Quickness", "Strength"]},
+      "options": {
+        "Attribute": [
+          "Body",
+          "Quickness",
+          "Strength"
+        ]
+      },
       "max_levels": null,
-      "page": 168
+      "page": 168,
+      "no_duplicates": true
     },
     "Body Control": {
       "cost": 0.25,
       "max_levels": null,
-      "page": 169
+      "page": 169,
+      "no_duplicates": true
     },
     "Combat Sense": {
       "cost": 1,
       "max_levels": 3,
-      "page": 169
+      "page": 169,
+      "no_duplicates": true
     },
     "Enhanced Perception": {
       "cost": 0.5,
       "max_levels": null,
-      "page": 169
+      "page": 169,
+      "no_duplicates": true
     },
     "Improved Ability (physical skill)": {
       "cost": 0.25,
-      "options": {"Skill": null},
+      "options": {
+        "Skill": null
+      },
       "max_levels": null,
-      "page": 169
+      "page": 169,
+      "no_duplicates": true
     },
     "Improved Ability (combat skill)": {
       "cost": 0.5,
-      "options": {"Skill": null},
+      "options": {
+        "Skill": null
+      },
       "max_levels": null,
-      "page": 169
+      "page": 169,
+      "no_duplicates": true
     },
     "Improved Physical Attribute": {
       "cost": 0.5,
-      "options": {"Attribute": ["Body", "Quickness", "Strength"]},
-      "mods": {"magical_ATTRIBUTE":  "power_level"},
+      "options": {
+        "Attribute": [
+          "Body",
+          "Quickness",
+          "Strength"
+        ]
+      },
+      "mods": {
+        "magical_ATTRIBUTE": "power_level"
+      },
       "max_levels": null,
-      "attributes_to_calculate": ["mods"],
-      "page": 169
+      "attributes_to_calculate": [
+        "mods"
+      ],
+      "page": 169,
+      "no_duplicates": true
     },
     "Improved Physical Attribute (beyond racial limit)": {
       "cost": 0.5,
-      "options": {"Attribute": ["Body", "Quickness", "Strength"]},
-      "mods": {"magical_ATTRIBUTE":  "power_level"},
+      "options": {
+        "Attribute": [
+          "Body",
+          "Quickness",
+          "Strength"
+        ]
+      },
+      "mods": {
+        "magical_ATTRIBUTE": "power_level"
+      },
       "max_levels": null,
-      "attributes_to_calculate": ["mods"],
-      "page": 169
+      "attributes_to_calculate": [
+        "mods"
+      ],
+      "page": 169,
+      "no_duplicates": true
     },
     "Improved Reflexes 1": {
       "cost": 2,
       "max_levels": 1,
-      "page": 169
+      "page": 169,
+      "no_duplicates": true
     },
     "Improved Reflexes 2": {
       "cost": 3,
       "max_levels": 1,
-      "page": 169
+      "page": 169,
+      "no_duplicates": true
     },
     "Improved Reflexes 3": {
       "cost": 5,
       "max_levels": 1,
-      "page": 169
+      "page": 169,
+      "no_duplicates": true
     },
     "Improved Sense (Direction Sense)": {
       "cost": 0.25,
       "max_levels": 1,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Improved Sense (Improved Scent)": {
       "cost": 0.25,
       "max_levels": 1,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Improved Sense (Improved Taste)": {
       "cost": 0.25,
       "max_levels": 1,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Improved Sense (Flare Compensation)": {
       "cost": 0.25,
       "max_levels": 1,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Improved Sense (Sound Dampening)": {
       "cost": 0.25,
       "max_levels": 1,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Killing Hands (L)": {
       "cost": 0.5,
       "max_levels": 1,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Killing Hands (M)": {
       "cost": 1,
       "max_levels": 1,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Killing Hands (S)": {
       "cost": 2,
       "max_levels": 1,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Killing Hands (D)": {
       "cost": 4,
       "max_levels": 1,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Magic Resistance": {
       "cost": 1,
       "max_levels": null,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Missile Parry": {
       "cost": 1,
       "max_levels": 1,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Mystic Armor": {
       "cost": 0.5,
       "max_levels": null,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Pain Resistance": {
       "cost": 0.5,
       "max_levels": null,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Rapid Healing": {
       "cost": 0.5,
       "max_levels": null,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     },
     "Suspended State": {
       "cost": 1,
       "max_levels": 1,
-      "page": 170
+      "page": 170,
+      "no_duplicates": true
     }
   },
   "Cyberware": {
@@ -5038,7 +5464,12 @@
         "availability_time": 4,
         "availability_rating": 4,
         "availability_unit": "days",
-        "attributes_to_calculate": ["mods", "essence", "cost", "rating"],
+        "attributes_to_calculate": [
+          "mods",
+          "essence",
+          "cost",
+          "rating"
+        ],
         "augment_tag": "muscle_replacement"
       },
       "Smartlink": {
@@ -5172,7 +5603,14 @@
         "availability_time": 3,
         "availability_rating": 24,
         "availability_unit": "hrs",
-        "attributes_to_calculate": ["mods", "essence", "cost", "street_index", "legality", "rating"],
+        "attributes_to_calculate": [
+          "mods",
+          "essence",
+          "cost",
+          "street_index",
+          "legality",
+          "rating"
+        ],
         "augment_tag": "boosted_reflexes"
       },
       "Dermal Plating": {
@@ -5199,7 +5637,13 @@
         "availability_time": 4,
         "availability_rating": 12,
         "availability_unit": "days",
-        "attributes_to_calculate": ["mods", "essence", "cost", "legality", "rating"],
+        "attributes_to_calculate": [
+          "mods",
+          "essence",
+          "cost",
+          "legality",
+          "rating"
+        ],
         "augment_tag": "dermal_plating"
       },
       "Filtration Systems": {
@@ -5213,7 +5657,11 @@
           "availability_time": 6,
           "availability_rating": 4,
           "availability_unit": "days",
-        "attributes_to_calculate": ["essence", "cost", "rating"]
+          "attributes_to_calculate": [
+            "essence",
+            "cost",
+            "rating"
+          ]
         },
         "Blood Filtration System": {
           "essence": "rating / 5",
@@ -5225,7 +5673,11 @@
           "availability_time": 6,
           "availability_rating": 4,
           "availability_unit": "days",
-        "attributes_to_calculate": ["essence", "cost", "rating"]
+          "attributes_to_calculate": [
+            "essence",
+            "cost",
+            "rating"
+          ]
         },
         "Ingested Toxin Filtration System": {
           "essence": "rating / 5",
@@ -5237,7 +5689,11 @@
           "availability_time": 6,
           "availability_rating": 4,
           "availability_unit": "days",
-          "attributes_to_calculate": ["essence", "cost", "rating"]
+          "attributes_to_calculate": [
+            "essence",
+            "cost",
+            "rating"
+          ]
         }
       },
       "Simrigs": {
@@ -5271,7 +5727,10 @@
           "availability_time": 3,
           "availability_rating": 5,
           "availability_unit": "days",
-          "attributes_to_calculate": ["cost", "rating"]
+          "attributes_to_calculate": [
+            "cost",
+            "rating"
+          ]
         }
       },
       "Skillwires": {
@@ -5285,7 +5744,12 @@
         "availability_time": "rating",
         "availability_rating": 10,
         "availability_unit": "days",
-        "attributes_to_calculate": ["essence", "max_mp", "cost", "rating"],
+        "attributes_to_calculate": [
+          "essence",
+          "max_mp",
+          "cost",
+          "rating"
+        ],
         "augment_tag": "skillwires"
       },
       "Vehicle Control Rig": {
@@ -5330,9 +5794,20 @@
         },
         "availability_rating": 48,
         "availability_unit": "hrs",
-        "attributes_to_calculate": ["mods", "essence", "cost", "street_index", "rating", "legality", "availability_time"],
+        "attributes_to_calculate": [
+          "mods",
+          "essence",
+          "cost",
+          "street_index",
+          "rating",
+          "legality",
+          "availability_time"
+        ],
         "augment_tag": "vehicle_control_rig",
-        "exclusion_tags": ["wired_reflexes", "boosted_reflexes"]
+        "exclusion_tags": [
+          "wired_reflexes",
+          "boosted_reflexes"
+        ]
       },
       "Wired Reflexes": {
         "mods": {
@@ -5376,9 +5851,20 @@
           }
         },
         "availability_unit": "days",
-        "attributes_to_calculate": ["mods", "essence", "cost", "rating", "legality", "availability_time", "availability_rating"],
+        "attributes_to_calculate": [
+          "mods",
+          "essence",
+          "cost",
+          "rating",
+          "legality",
+          "availability_time",
+          "availability_rating"
+        ],
         "augment_tag": "wired_reflexes",
-        "exclusion_tags": ["vehicle_control_rig", "boosted_reflexes"]
+        "exclusion_tags": [
+          "vehicle_control_rig",
+          "boosted_reflexes"
+        ]
       },
       "Wired Reflexes with Trigger": {
         "mods": {
@@ -5421,9 +5907,20 @@
           }
         },
         "availability_unit": "days",
-        "attributes_to_calculate": ["mods", "essence", "cost", "rating", "legality", "availability_time", "availability_rating"],
+        "attributes_to_calculate": [
+          "mods",
+          "essence",
+          "cost",
+          "rating",
+          "legality",
+          "availability_time",
+          "availability_rating"
+        ],
         "augment_tag": "wired_reflexes",
-        "exclusion_tags": ["vehicle_control_rig", "boosted_reflexes"]
+        "exclusion_tags": [
+          "vehicle_control_rig",
+          "boosted_reflexes"
+        ]
       },
       "Reaction Enhancer": {
         "mods": {
@@ -5438,7 +5935,12 @@
         "availability_time": 6,
         "availability_rating": 7,
         "availability_unit": "days",
-        "attributes_to_calculate": ["mods", "essence", "cost", "rating"],
+        "attributes_to_calculate": [
+          "mods",
+          "essence",
+          "cost",
+          "rating"
+        ],
         "augment_tag": "reaction_enhancer"
       }
     },
@@ -5493,7 +5995,11 @@
         "availability_time": 24,
         "availability_rating": 3,
         "availability_unit": "hours",
-        "attributes_to_calculate": ["essence", "cost", "memory"]
+        "attributes_to_calculate": [
+          "essence",
+          "cost",
+          "memory"
+        ]
       },
       "Tooth Compartment (breakable)": {
         "essence": 0,
@@ -5526,7 +6032,10 @@
           "availability_time": 48,
           "availability_rating": 3,
           "availability_unit": "hrs",
-          "attributes_to_calculate": ["cost", "rating"],
+          "attributes_to_calculate": [
+            "cost",
+            "rating"
+          ],
           "flux": 0
         },
         "Radio": {
@@ -5539,7 +6048,10 @@
           "availability_time": 24,
           "availability_rating": 2,
           "availability_unit": "hrs",
-          "attributes_to_calculate": ["cost", "rating"],
+          "attributes_to_calculate": [
+            "cost",
+            "rating"
+          ],
           "flux": 0
         },
         "Radio Receiver": {
@@ -5552,7 +6064,10 @@
           "availability_time": 24,
           "availability_rating": 2,
           "availability_unit": "hrs",
-          "attributes_to_calculate": ["cost", "rating"],
+          "attributes_to_calculate": [
+            "cost",
+            "rating"
+          ],
           "flux": 0
         },
         "Subvocal Microphones": {
@@ -5670,7 +6185,10 @@
           "availability_time": 48,
           "availability_rating": 6,
           "availability_unit": "hrs",
-          "attributes_to_calculate": ["cost", "level"]
+          "attributes_to_calculate": [
+            "cost",
+            "level"
+          ]
         }
       },
       "Cybereyes": {
@@ -5810,7 +6328,10 @@
           "availability_time": 7,
           "availability_rating": 8,
           "availability_unit": "days",
-          "attributes_to_calculate": ["cost", "rating"]
+          "attributes_to_calculate": [
+            "cost",
+            "rating"
+          ]
         },
         "Thermographic": {
           "essence": 0.2,
@@ -5939,7 +6460,7 @@
         "availability_unit": "days"
       }
     }
-    },
+  },
   "Decks": {
     "Allegiance Sigma": {
       "availability_rating": 4,
@@ -6058,55 +6579,73 @@
     "Operational Utilities": {
       "Analyze": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 3,
         "page": 220
       },
       "Browse": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 1,
         "page": 220
       },
       "Commlink": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 1,
         "page": 220
       },
       "Deception": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 2,
         "page": 220
       },
       "Decrypt": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 1,
         "page": 220
       },
       "Read/Write": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 2,
         "page": 220
       },
       "Relocate": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 2,
         "page": 220
       },
       "Scanner": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 3,
         "page": 220
       },
       "Spoof": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 3,
         "page": 220
       }
@@ -6114,13 +6653,17 @@
     "Special Utilities": {
       "Sleaze": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 3,
         "page": 221
       },
       "Track": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 8,
         "page": 221
       }
@@ -6128,43 +6671,57 @@
     "Offensive Utilities": {
       "Attack (L)": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 2,
         "page": 221
       },
       "Attack (M)": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 3,
         "page": 221
       },
       "Attack (S)": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 4,
         "page": 221
       },
       "Attack (D)": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 5,
         "page": 221
       },
       "Black Hammer": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 20,
         "page": 221
       },
       "Killjoy": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 10,
         "page": 221
       },
       "Slow": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 4,
         "page": 222
       }
@@ -6172,25 +6729,33 @@
     "Defensive Utilities": {
       "Armor": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 3,
         "page": 222
       },
       "Cloak": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 3,
         "page": 222
       },
       "Lock-On": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 3,
         "page": 222
       },
       "Medic": {
         "rating": "rating",
-        "attributes_to_calculate": ["rating"],
+        "attributes_to_calculate": [
+          "rating"
+        ],
         "multiplier": 4,
         "page": 222
       }
@@ -6504,7 +7069,6 @@
       },
       "Sendanko Marlin": {
         "handling": 3,
-
         "speed": 30,
         "accel": 3,
         "body": 3,
@@ -6527,7 +7091,6 @@
     "Winged Planes": {
       "Cessna C750 (standard)": {
         "handling": 5,
-
         "min_speed": 135,
         "speed": 340,
         "accel": 22,
@@ -6551,7 +7114,6 @@
       },
       "Cessna C750 (passenger)": {
         "handling": 5,
-
         "min_speed": 135,
         "speed": 340,
         "accel": 22,
@@ -6577,7 +7139,6 @@
     "Rotorcraft": {
       "Ares Dragon": {
         "handling": 5,
-
         "speed": 260,
         "accel": 10,
         "body": 7,
@@ -6599,7 +7160,6 @@
       },
       "Hughes WK-2 Stallion": {
         "handling": 5,
-
         "speed": 190,
         "accel": 14,
         "body": 4,
@@ -6678,7 +7238,6 @@
       },
       "GMC Banshee": {
         "handling": 6,
-
         "min_speed": 250,
         "speed": 1000,
         "accel": 50,
@@ -6711,7 +7270,6 @@
       },
       "GMC Beachcraft Patroller": {
         "handling": 4,
-
         "speed": 165,
         "accel": 9,
         "body": 4,
@@ -6736,7 +7294,6 @@
       },
       "Doc Wagon Osprey II": {
         "handling": 5,
-
         "speed": 380,
         "accel": 10,
         "body": 5,
@@ -6764,7 +7321,6 @@
       },
       "Northrup Wasp (PRC-42B Variant)": {
         "handling": 3,
-
         "speed": 130,
         "accel": 15,
         "body": 3,
@@ -6948,7 +7504,9 @@
         "street_index": 2,
         "legality": "Legal",
         "page": 312,
-        "attributes_to_calculate": ["cost"],
+        "attributes_to_calculate": [
+          "cost"
+        ],
         "flux": 2
       },
       "Vehicle Control Gear": {
@@ -7379,7 +7937,11 @@
       "availability_rating": 0,
       "availability_unit": "always",
       "rating": "rating",
-      "attributes_to_calculate": ["cost", "rating", "legality"]
+      "attributes_to_calculate": [
+        "cost",
+        "rating",
+        "legality"
+      ]
     },
     "Broadcast Decryption": {
       "concealability": null,
@@ -7403,7 +7965,11 @@
       "availability_rating": 0,
       "availability_unit": "always",
       "rating": "rating",
-      "attributes_to_calculate": ["cost", "rating", "legality"]
+      "attributes_to_calculate": [
+        "cost",
+        "rating",
+        "legality"
+      ]
     },
     "Signal Amplifier": {
       "concealability": 3,
@@ -7414,7 +7980,14 @@
       "legality": "10P-U",
       "cost": "rating * 250",
       "street_index": "1.5",
-      "attributes_to_calculate": ["cost", "weight", "street_index", "availability_rating", "availability_time", "rating"],
+      "attributes_to_calculate": [
+        "cost",
+        "weight",
+        "street_index",
+        "availability_rating",
+        "availability_time",
+        "rating"
+      ],
       "page": 289,
       "rating": "rating"
     }

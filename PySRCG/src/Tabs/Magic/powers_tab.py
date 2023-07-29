@@ -50,9 +50,6 @@ class PowersTab(ThreeColumnBuyTab, ABC):
     def buy_callback(self, selected):
         total_power_points = self.statblock.power_points
 
-        # print("Library Selected: " + self.library_selected.name)
-        # power = copy(self.library_selected)
-
         # make sure we have enough power points remaining
         if total_power_points + selected.properties["cost"] * selected.properties["level"] <= \
                 self.statblock.total_power_points:
