@@ -391,13 +391,15 @@ class AttributesTab(NotebookTab, ABC):
         else:
             self.slider_old_vals[key].set(value)
 
+        return value
+
     def on_set_attribute_value(self, key, value, adjust=True, set_pool=True):
         """Event called when slider is set"""
         # set value to int since it's passed in as a string for some reason
         value = int(value)
 
         if adjust:
-            self.adjust_disallowed_purchase(key, value)
+            value = self.adjust_disallowed_purchase(key, value)
 
         # we need to int(float(value)) because passes the value in as a string of a floating point number
         if key in self.statblock.base_attributes:
