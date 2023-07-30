@@ -167,7 +167,7 @@ class PowersTab(ThreeColumnBuyTab, ABC):
         # since this has nothing to do with the generation mode
         self.statblock.power_points_ui_var.set(self.statblock.power_points)
         app_data.top_bar.update_karma_label("{:.2f}".format(self.statblock.power_points),
-                                          self.statblock.total_power_points, "Powers Tab")
+                                            self.statblock.total_power_points, "Powers Tab")
 
     def load_character(self):
         super().load_character()

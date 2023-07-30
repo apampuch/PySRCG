@@ -29,5 +29,59 @@
   },
   "Programs": {
 
+  },
+  "Echoes": {
+    "Improved I/O Speed": {
+      "no_duplicates": false,
+      "page": 144
+    },
+    "Improved Hardening": {
+      "no_duplicates": false,
+      "page": 144
+    },
+    "Improved MPCP": {
+      "no_duplicates": false,
+      "page": 144
+    },
+    "Improved Persona": {
+      "no_duplicates": false,
+      "page": 144
+    },
+    "Improved Reaction": {
+      "no_duplicates": false,
+      "page": 145
+    },
+    "Daemon Summoning": {
+      "no_duplicates": true,
+      "page": 145
+    },
+    "Ghosting": {
+      "no_duplicates": true,
+      "page": 145
+    },
+    "Info Sortilage": {
+      "no_duplicates": true,
+      "page": 145
+    },
+    "Neurofilter": {
+      "no_duplicates": true,
+      "page": 145
+    },
+    "Overclock": {
+      "no_duplicates": true,
+      "page": 145
+    },
+    "Resonance Link": {
+      "no_duplicates": true,
+      "page": 145
+    },
+    "Switch": {
+      "no_duplicates": true,
+      "page": 146
+    },
+    "Traceroute": {
+      "no_duplicates": true,
+      "page": 146
+    }
   }
 }

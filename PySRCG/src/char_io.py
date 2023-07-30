@@ -10,6 +10,7 @@ from src.CharData.complex_form import ComplexForm
 from src.CharData.contact import Contact
 from src.CharData.currency import Currency
 from src.CharData.deck import Deck
+from src.CharData.echo import Echo
 from src.CharData.edge_flaw import EdgeFlaw
 from src.CharData.firearm_accessory import FirearmAccessory
 from src.CharData.gear import Gear
@@ -136,11 +137,17 @@ def load(tabs):
 
             # set genmode
             gen_mode_key = character_dict["statblock"]["gen_mode"]["type"]
-            # PROBLEM: the args are only setup for a finalized thing
-            new_character.statblock.gen_mode = \
-                gen_mode_dict[gen_mode_key](character_dict["statblock"]["gen_mode"]["data"],
-                                            purchased_magic_points=character_dict
-                                            ["statblock"]["gen_mode"]["purchased_magic_points"])
+
+            # only do purchased magic points if it's not finalized
+            if gen_mode_key != "finalized":
+                new_character.statblock.gen_mode = \
+                    gen_mode_dict[gen_mode_key](character_dict["statblock"]["gen_mode"]["data"],
+                                                purchased_magic_points=character_dict
+                                                ["statblock"]["gen_mode"]["purchased_magic_points"])
+            else:
+                new_character.statblock.gen_mode = \
+                    gen_mode_dict[gen_mode_key](character_dict["statblock"]["gen_mode"]["data"])
+
             new_character.statblock.gen_mode.setup_ui_elements()
 
             # convert dicts to item objects and add to inventory
@@ -247,6 +254,11 @@ def load(tabs):
                 complex_form_obj = ComplexForm(**complex_form)
                 new_character.statblock.complex_forms.append(complex_form_obj)
 
+            # add echoes
+            for echo in character_dict["statblock"]["echoes"]:
+                echo_obj = Echo(**echo)
+                new_character.statblock.echoes.append(echo_obj)
+
             # add tradition and aspect
             new_character.statblock.awakened = character_dict["statblock"]["awakened"]
             new_character.statblock.tradition = \
@@ -291,6 +303,7 @@ def load(tabs):
 
             app_data.window.on_tab_changed(None)  # slightly hacky but it makes the bar update
             magic_tab_show_on_awakened_status(app_data)
+            app_data.decking_tab.show_hide_tabs(app_data.app_character.statblock.otaku)
 
     except AttributeError as e:
         if "__enter__" in str(e):

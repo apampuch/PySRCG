@@ -1,4 +1,5 @@
 import src.app_data as app_data
+from src.GenModes.finalized import Finalized
 from src.Tabs.container_tab import ContainerTab
 
 
@@ -23,8 +24,10 @@ class DeckingTab(ContainerTab):
         if otaku:
             self.add(self.tabs()[3])
             self.add(self.tabs()[4])
-            # self.add(self.tabs()[5])
+            # this should never be unset after being finalized, no need for logic here
+            if type(app_data.app_character.statblock.gen_mode) == Finalized:
+                self.add(self.tabs()[5])
         else:
             self.hide(self.tabs()[3])
             self.hide(self.tabs()[4])
-            # self.hide(self.tabs()[5])
+            self.hide(self.tabs()[5])

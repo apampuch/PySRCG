@@ -5,10 +5,14 @@ from tkinter import IntVar
 from src import app_data
 from src.CharData.complex_form import ComplexForm
 from src.CharData.skill import Skill
+from src.GenModes.finalized import Finalized
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 
 
 # should be hidden if character is not an otaku
+from src.adjustment import Adjustment
+
+
 class ComplexFormsTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
         super().__init__(parent, "ComplexFormsTab")
@@ -62,19 +66,39 @@ class ComplexFormsTab(ThreeColumnBuyTab, ABC):
         return total
 
     def buy_callback(self, selected):
-        print(f"{self.complex_forms_mp_total()}/{self.complex_forms_mp_limit()}")
-
-        if self.complex_forms_mp_total() + selected.size() <= self.complex_forms_mp_limit():
-            self.add_inv_item(selected)
-            self.forms_total.set(self.complex_forms_mp_total())
-            self.calculate_total()
+        if type(self.gen_mode) is not Finalized:
+            if self.complex_forms_mp_total() + selected.size() <= self.complex_forms_mp_limit():
+                self.add_inv_item(selected)
+                self.forms_total.set(self.complex_forms_mp_total())
+                self.calculate_total()
+            else:
+                print("Not enough space!")
+        # if finalized it's just 1 karma
         else:
-            print("Not enough space!")
+            if self.gen_mode.point_purchase_allowed(1, None):
+                self.add_inv_item(selected)
+
+                def undo():
+                    return
+                adjustment = Adjustment(1, "add_complex_form_" + selected.properties["name"], undo, "Add complex form")
+                self.gen_mode.add_adjustment(adjustment)
+
+                self.calculate_total()
+            else:
+                print("Not enough karma!")
 
     def sell_callback(self, selected_index):
-        self.remove_inv_item(selected_index)
-        self.forms_total.set(self.complex_forms_mp_total())
-        self.calculate_total()
+        selected_form = self.statblock.complex_forms[self.inv_selected_index]
+
+        # TODO make this account for options and rating
+        if type(self.gen_mode) == Finalized:
+            if "add_complex_form_" + selected_form.properties["name"] in self.gen_mode.adjustments:
+                self.gen_mode.undo("add_complex_form_" + selected_form.properties["name"])
+                self.remove_inv_item(self.inv_selected_index)
+        else:
+            self.remove_inv_item(selected_index)
+            self.forms_total.set(self.complex_forms_mp_total())
+            self.calculate_total()
 
     @property
     def recurse_check_func(self):
@@ -91,14 +115,20 @@ class ComplexFormsTab(ThreeColumnBuyTab, ABC):
         return complex_forms_tab_recurse_end_callback
 
     def calculate_total(self):
-        app_data.top_bar.update_karma_label(self.complex_forms_mp_total(),
-                                            self.complex_forms_mp_limit(),
-                                            "Complex Forms Tab")
+        if type(self.gen_mode) is not Finalized:
+            app_data.top_bar.update_karma_label(self.complex_forms_mp_total(),
+                                                self.complex_forms_mp_limit(),
+                                                "Complex Forms Tab")
+        else:
+            self.gen_mode.update_total(None, None)
 
     def update_karma_bar(self):
-        self.forms_total.set(self.complex_forms_mp_total())
         progress_bar = app_data.top_bar.karma_bar
-        progress_bar.configure(variable=self.forms_total, maximum=self.complex_forms_mp_limit())
+        if type(self.gen_mode) is not Finalized:
+            self.forms_total.set(self.complex_forms_mp_total())
+            progress_bar.configure(variable=self.forms_total, maximum=self.complex_forms_mp_limit())
+        else:
+            progress_bar.configure(variable=self.gen_mode.adjustments, maximum=self.gen_mode.good_karma.get())
 
     def on_switch(self):
         self.calculate_total()

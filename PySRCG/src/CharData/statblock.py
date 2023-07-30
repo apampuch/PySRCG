@@ -172,6 +172,7 @@ class Statblock(object):
         self.otaku_path = None
         self.runt_otaku = False
         self.complex_forms = []
+        self.echoes = []
 
         # setup cyberware
         self.cyberware = []
@@ -529,6 +530,7 @@ class Statblock(object):
         vehicles = list(map(lambda x: x.serialize(), self.vehicles))
         other_accessories = list(map(lambda x: x.serialize(), self.misc_vehicle_accessories))
         other_programs = list(map(lambda x: x.serialize(), self.other_programs))
+        echoes = list(map(lambda x: x.serialize(), self.echoes))
         return {
             "race": self.__race.name,
             "base_attributes": self.base_attributes,
@@ -555,7 +557,8 @@ class Statblock(object):
             "otaku": self.otaku,
             "otaku_path": self.otaku_path,
             "runt_otaku": self.runt_otaku,
-            "complex_forms": self.complex_forms
+            "complex_forms": self.complex_forms,
+            "echoes": echoes
         }
 
     def pay_cash(self, amount, *args) -> bool:

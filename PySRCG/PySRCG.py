@@ -17,6 +17,7 @@ from src.Tabs.Decking.decking_tab import *  # imports app_data
 from src.Tabs.Decking.otaku_tab import OtakuTab
 from src.Tabs.Decking.persona_tab import PersonaTab
 from src.Tabs.Decking.programs_tab import ProgramsTab
+from src.Tabs.Decking.submersion_tab import SubmersionTab
 from src.Tabs.Gear.ammo_tab import AmmoTab
 from src.Tabs.Gear.armor_equip_tab import ArmorEquipTab
 from src.Tabs.Gear.firearm_accessories_tab import FirearmAccessoriesTab
@@ -128,7 +129,6 @@ def make_tab(tab_type, name, container_types=None, container_names=None):
     :type name: string
     :type container_types: List(type)
     :type container_names: List(str)
-    :type container_args: List(type)
     """
     if container_types is None:
         container_types = []
@@ -181,8 +181,8 @@ def main():
                                      [CyberwareTab, BiowareTab],
                                      ["Cyberware", "Bioware"])
     app_data.decking_tab = make_tab(DeckingTab, "Decking",
-                                    [DeckBuyTab, ProgramsTab, PersonaTab, OtakuTab, ComplexFormsTab],
-                                    ["Hardware", "Software", "Persona", "Otaku", "Complex Forms"])
+                                    [DeckBuyTab, ProgramsTab, PersonaTab, OtakuTab, ComplexFormsTab, SubmersionTab],
+                                    ["Hardware", "Software", "Persona", "Otaku", "Complex Forms", "Submersion"])
     app_data.rigging_tab = make_tab(RiggingTab, "Rigging",
                                     [VehicleBuyTab, VehicleAccessoriesTab],
                                     ["Vehicles", "Accessories"])

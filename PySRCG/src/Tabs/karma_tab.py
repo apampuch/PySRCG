@@ -3,6 +3,7 @@ from abc import ABC
 from tkinter import *
 from tkinter import ttk
 
+from src import app_data
 from src.GenModes.finalized import Finalized
 from src.Tabs.notebook_tab import NotebookTab
 from src.adjustment import Adjustment
@@ -187,6 +188,10 @@ class KarmaTab(NotebookTab, ABC):
         self.statblock.gen_mode = Finalized()
         self.statblock.gen_mode.update_total()
         self.karma_pool_val_label.configure(textvariable=self.gen_mode.karma_pool)
+
+        if self.statblock.otaku:
+            app_data.decking_tab.show_hide_tabs(self.statblock.otaku)
+
         self.on_switch()
 
     def apply_click(self):
