@@ -35,8 +35,7 @@ class Gear(Reportable):
                     self.properties["wireless_accessories"].append(WirelessAccessory(**accessory))
                 except TypeError as e:
                     print("Error with {}:".format(kwargs["wireless_accessories"].name))
-                    print(e)
-                    print()
+                    print(f"{e}\n")
 
             del kwargs["wireless_accessories"]
 
