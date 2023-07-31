@@ -28,7 +28,206 @@
     }
   },
   "Programs": {
-
+    "Operational Utilities": {
+      "Camo": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 3,
+        "page": 70
+      },
+      "Crash": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 3,
+        "page": 70
+      },
+      "Defuse": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 2,
+        "page": 70
+      },
+      "Doorstop": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 2,
+        "page": 70
+      },
+      "Encrypt": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 1,
+        "page": 70
+      },
+      "Evaluate": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 2,
+        "page": 70
+      },
+      "Mirrors": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 3,
+        "page": 71
+      },
+      "Purge": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 2,
+        "page": 71
+      },
+      "Redecorate": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 2,
+        "page": 71
+      },
+      "Sniffer": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 3,
+        "page": 71
+      },
+      "Snooper": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 2,
+        "page": 71
+      },
+      "Swerve": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 3,
+        "page": 71
+      },
+      "Triangulation": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 2,
+        "page": 71
+      },
+      "Validate": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 4,
+        "page": 71
+      }
+    },
+    "Special Utilities": {
+      "BattleTac Matrixlink": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 5,
+        "page": 71
+      },
+      "Cellular Link": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 1,
+        "page": 72
+      },
+      "Compressor": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 2,
+        "page": 72
+      },
+      "Guardian": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 2,
+        "page": 72
+      },
+      "Laser Link": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 1,
+        "page": 72
+      },
+      "Maser Link": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 1,
+        "page": 72
+      },
+      "Microwave Link": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 1,
+        "page": 73
+      },
+      "Radio Link": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 1,
+        "page": 73
+      },
+      "Remote Control": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 3,
+        "page": 73
+      },
+      "Satellite Link": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 2,
+        "page": 73
+      }
+    },
+    "Offensive Utilities": {
+      "Blinder": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 3,
+        "page": 73
+      },
+      "Poison": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 3,
+        "page": 73
+      },
+      "Restrict": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 3,
+        "page": 73
+      },
+      "Reveal": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 3,
+        "page": 73
+      },
+      "Hog": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 3,
+        "page": 73
+      },
+      "Steamroller": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 3,
+        "page": 74
+      }
+    },
+    "Defensive Utilities": {
+      "Restore": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 3,
+        "page": 74
+      },
+      "Shield": {
+        "rating": "rating",
+        "attributes_to_calculate": ["rating"],
+        "multiplier": 4,
+        "page": 74
+      }
+    }
   },
   "Echoes": {
     "Improved I/O Speed": {
