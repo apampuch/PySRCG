@@ -126,7 +126,7 @@
       },
       "Muscle Toner": {
         "bio_index": "0.4 * level",
-        "mods": {"bio_quickness": 1},
+        "mods": {"bio_quickness": "level"},
         "cost": "25000 * level",
         "level": "level",
         "street_index": 0.9,

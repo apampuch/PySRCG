@@ -40,8 +40,31 @@ class PersonaTab(NotebookTab, ABC):
         for attr in attributes:
             self.setup_slider_and_label(attr)
 
+        self.initiative_frame = ttk.LabelFrame(self, text="Initiative & Reaction")
+
+        self.natural_reaction_var = IntVar()
+        self.natural_initiative_var = StringVar()
+        self.natural_reaction_value = Label(self.initiative_frame, textvariable=self.natural_reaction_var)
+        self.natural_initiative_value = Label(self.initiative_frame, textvariable=self.natural_initiative_var)
+        self.dni_reaction_var = IntVar()
+        self.dni_initiative_var = StringVar()
+        self.dni_reaction_value = Label(self.initiative_frame, textvariable=self.dni_reaction_var)
+        self.dni_initiative_value = Label(self.initiative_frame, textvariable=self.dni_initiative_var)
+
+        # grids
+
         self.deck_box.grid(column=1, row=1)
         self.persona_frame.grid(column=1, row=2)
+        self.initiative_frame.grid(column=1, row=3)
+
+        Label(self.initiative_frame, text="Reaction (Physical)").grid(column=1, row=1)
+        self.natural_reaction_value.grid(column=2, row=1)
+        Label(self.initiative_frame, text="Initiative (Physical)").grid(column=1, row=2)
+        self.natural_initiative_value.grid(column=2, row=2)
+        Label(self.initiative_frame, text="Reaction (DNI)").grid(column=1, row=3)
+        self.dni_reaction_value.grid(column=2, row=3)
+        Label(self.initiative_frame, text="Initiative (DNI)").grid(column=1, row=4)
+        self.dni_initiative_value.grid(column=2, row=4)
 
     def setup_slider_and_label(self, key):
         """Initial setup. Should only be run once per attribute."""
@@ -124,10 +147,18 @@ class PersonaTab(NotebookTab, ABC):
             self.sliders[key].config(to=self.current_deck.properties["mpcp"])
             self.sliders[key].set(self.current_deck.properties["persona"][key])
 
-            # set slider values
-            # self.sliders[key].set(self.current_deck.properties["persona"][key])
-
-            # self.on_set_slider_value(key, self.current_deck.properties["persona"][key])
+            # set other deck stats
+            response_increase = self.current_deck.properties["response_increase"]
+            natural_reaction = min(self.statblock.calculate_natural_attribute("reaction") + response_increase * 2, 10)
+            natural_initiative = \
+                f"{min(response_increase + self.statblock.calculate_natural_attribute('initiative'), 5)}d6"
+            dni_reaction = min(self.statblock.intelligence + response_increase * 2 + 2, 10)
+            dni_initiative = \
+                f"{min(response_increase + self.statblock.calculate_natural_attribute('initiative') + 1, 5)}d6"
+            self.natural_reaction_var.set(natural_reaction)
+            self.natural_initiative_var.set(natural_initiative)
+            self.dni_reaction_var.set(dni_reaction)
+            self.dni_initiative_var.set(dni_initiative)
 
         self.update_karma_bar()
         self.calculate_total()
@@ -162,7 +193,7 @@ class PersonaTab(NotebookTab, ABC):
 
         self.persona_total.set(total)
 
-        app_data.top_bar.update_karma_bar(total, self.current_deck.total_persona_points(), "Persona Tab")
+        app_data.top_bar.update_karma_label(total, self.current_deck.total_persona_points(), "Persona Tab")
 
     def load_character(self):
         pass

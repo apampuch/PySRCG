@@ -237,12 +237,14 @@ class Statblock(object):
     def calculate_natural_attribute(self, key):
         # take care of magic keys
         if key == "reaction":
-            return self.reaction
+            return self.base_natural_reaction
         elif key == "magic":
             return self.magic
         elif key == "essence":
             # for cyber in self.cyberware:
             return self.essence
+        elif key == "initiative":
+            return 1
         else:
             total = self.base_attributes[key]
             # add racial attribute bonus
@@ -482,6 +484,10 @@ class Statblock(object):
     @property
     def base_reaction(self):
         return (self.quickness + self.intelligence) // 2
+
+    @property
+    def base_natural_reaction(self):
+        return (self.calculate_natural_attribute("quickness") + self.calculate_natural_attribute("intelligence")) // 2
 
     # calculated attributes
     @property
