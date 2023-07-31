@@ -51,11 +51,17 @@ class PersonaTab(NotebookTab, ABC):
         self.dni_reaction_value = Label(self.initiative_frame, textvariable=self.dni_reaction_var)
         self.dni_initiative_value = Label(self.initiative_frame, textvariable=self.dni_initiative_var)
 
-        # grids
+        self.other_info_frame = ttk.LabelFrame(self, text="Other Info")
+        self.hardening_var = IntVar()
+        self.hardening_value = Label(self.other_info_frame, textvariable=self.hardening_var)
+        self.io_speed_var = StringVar()
+        self.io_speed_value = Label(self.other_info_frame, textvariable=self.io_speed_var)
 
+        # grids
         self.deck_box.grid(column=1, row=1)
         self.persona_frame.grid(column=1, row=2)
-        self.initiative_frame.grid(column=1, row=3)
+        self.initiative_frame.grid(column=1, row=3, sticky=W)
+        self.other_info_frame.grid(column=1, row=4, sticky=W)
 
         Label(self.initiative_frame, text="Reaction (Physical)").grid(column=1, row=1)
         self.natural_reaction_value.grid(column=2, row=1)
@@ -65,6 +71,11 @@ class PersonaTab(NotebookTab, ABC):
         self.dni_reaction_value.grid(column=2, row=3)
         Label(self.initiative_frame, text="Initiative (DNI)").grid(column=1, row=4)
         self.dni_initiative_value.grid(column=2, row=4)
+
+        Label(self.other_info_frame, text="Hardening").grid(column=1, row=1)
+        self.hardening_value.grid(column=2, row=1)
+        Label(self.other_info_frame, text="I/O Speed").grid(column=1, row=2)
+        self.io_speed_value.grid(column=2, row=2)
 
     def setup_slider_and_label(self, key):
         """Initial setup. Should only be run once per attribute."""
@@ -159,6 +170,8 @@ class PersonaTab(NotebookTab, ABC):
             self.natural_initiative_var.set(natural_initiative)
             self.dni_reaction_var.set(dni_reaction)
             self.dni_initiative_var.set(dni_initiative)
+            self.hardening_var.set(self.current_deck.properties["hardening"])
+            self.io_speed_var.set(f"{self.current_deck.properties['io_speed']}")
 
         self.update_karma_bar()
         self.calculate_total()
