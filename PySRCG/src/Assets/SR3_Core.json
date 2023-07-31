@@ -1,6 +1,6 @@
 {
   "book_abbr": "sr3",
-  "file_version": "1.4",
+  "file_version": "1.5",
   "schema_version": "1.3",
   "book": "Shadowrun 3 Core (FASA 7001)",
   "Items": {
@@ -4529,7 +4529,8 @@
         "Air"
       ],
       "always_has_focus": false,
-      "focus_name": "Element"
+      "focus_name": "Element",
+      "page": 167
     },
     "Shamanic": {
       "allowed_aspects": [
@@ -4557,7 +4558,8 @@
         "Wolf"
       ],
       "always_has_focus": true,
-      "focus_name": "Totem"
+      "focus_name": "Totem",
+      "page": 162
     },
     "Adept": {
       "allowed_aspects": [
@@ -4565,7 +4567,8 @@
       ],
       "allowed_foci": [],
       "always_has_focus": false,
-      "focus_name": "Path"
+      "focus_name": "Path",
+      "page": 168
     }
   },
   "Spells": {
