@@ -97,5 +97,18 @@ class StatMod:
         return total
 
     @staticmethod
+    def total_of_stat(key):
+        """Total of all mods for one stat, like Quickness."""
+        total = 0
+
+        # find all the mods
+        for mod_name in StatMod._all_stat_mods.keys():
+            stat = mod_name.split("_")[1]
+            if stat == key:
+                total += sum(StatMod._all_stat_mods[mod_name])
+
+        return total
+
+    @staticmethod
     def mod_count():
         return len(StatMod._all_stat_mods)

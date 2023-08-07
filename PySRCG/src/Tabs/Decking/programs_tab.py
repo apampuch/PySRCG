@@ -1,5 +1,6 @@
 import re
 
+from src.CharData.cranial_deck import CranialDeck
 from src.CharData.program import Program
 from tkinter import *
 from tkinter import ttk
@@ -28,6 +29,7 @@ class ProgramsTab(ThreeColumnBuyTab):
         self.memobj_dict = {}
         self.fill_stuff_with_memory(self.statblock.inventory)
         self.fill_stuff_with_memory(self.statblock.cyberware)
+        # we don't call all_decks because cyberware should cover cranial cyberdecks
         self.fill_stuff_with_memory(self.statblock.decks)
         self.memobj_dict["Misc Software"] = self.statblock.other_programs
         self.memory_things_box["values"] = list(self.memobj_dict.keys())
@@ -42,6 +44,9 @@ class ProgramsTab(ThreeColumnBuyTab):
         for node in char_list:
             # check for duplicate names
             key = node.name
+
+            if type(node) == CranialDeck:
+                key += " (Cranial)"
 
             # count names that contain the key we want to use
             # we use regex to strip any dupe counts that

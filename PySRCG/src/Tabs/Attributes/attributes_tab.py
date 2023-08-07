@@ -317,12 +317,17 @@ class AttributesTab(NotebookTab, ABC):
         self.on_set_attribute_value("reaction", self.statblock.reaction, False, False)
         self.on_set_attribute_value("initiative", self.statblock.initiative, False, False)
         # set dice pool values
-        self.combat_pool_val.set(self.statblock.combat_pool)
-        self.control_pool_val.set(self.statblock.control_pool)
-        self.hacking_pool_val.set(self.statblock.hacking_pool)
-        self.spell_pool_val.set(self.statblock.spell_pool)
-        self.task_pool_val.set("0")  # NYI
-        self.astral_combat_pool_val.set(self.statblock.astral_combat_pool)
+        combat = self.statblock.combat_pool + StatMod.total_of_stat("combatpool")
+        self.combat_pool_val.set(combat)
+        control = self.statblock.control_pool + StatMod.total_of_stat("controlpool")
+        self.control_pool_val.set(control)
+        hacking = self.statblock.hacking_pool + StatMod.total_of_stat("hackingpool")
+        self.hacking_pool_val.set(hacking)
+        spell = self.statblock.spell_pool + StatMod.total_of_stat("spellpool")
+        self.spell_pool_val.set(spell)
+        self.task_pool_val.set(StatMod.total_of_stat("taskpool"))
+        astral_combat = self.statblock.astral_combat_pool + StatMod.total_of_stat("astralcombat")
+        self.astral_combat_pool_val.set(astral_combat)
 
     def plus_button_func(self, key):
         # check if we're at the absolute maximum

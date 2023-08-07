@@ -2,6 +2,7 @@ from abc import ABC
 from typing import Any
 
 from src import app_data
+from src.CharData.cranial_deck import CranialDeck
 from src.Tabs.notebook_tab import NotebookTab
 from tkinter import *
 from tkinter import ttk
@@ -108,14 +109,22 @@ class PersonaTab(NotebookTab, ABC):
     def deck_list(self):
         decks = []
 
-        for deck in self.statblock.decks:
+        # get regular decks
+        for deck in self.statblock.all_decks():
             decks.append(deck)
 
         return decks
 
     @property
     def deck_list_names(self):
-        return list(map(lambda x: x.name, self.deck_list))
+        names = []
+        for deck in self.deck_list:
+            n = deck.name
+            if type(deck) == CranialDeck:
+                n += " (Cranial)"
+            names.append(n)
+
+        return names
 
     def on_set_slider_value(self, key, value):
         value = int(value)

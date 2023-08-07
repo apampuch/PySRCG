@@ -8,6 +8,7 @@ from src.CharData.augment import Cyberware
 from src.CharData.character import *
 from src.CharData.complex_form import ComplexForm
 from src.CharData.contact import Contact
+from src.CharData.cranial_deck import CranialDeck
 from src.CharData.currency import Currency
 from src.CharData.deck import Deck
 from src.CharData.echo import Echo
@@ -208,12 +209,16 @@ def load(tabs):
 
             # add cyberware
             for cyber in character_dict["statblock"]["cyberware"]:
-                cyber_obj = Cyberware(**cyber)
+                if "mpcp" in cyber:
+                    cyber_obj = CranialDeck(**cyber)
+                else:
+                    cyber_obj = Cyberware(**cyber)
                 # add mods
                 if "mods" in cyber_obj.properties:
                     for key in cyber_obj.properties["mods"].keys():
                         value = cyber_obj.properties["mods"][key]
                         StatMod.add_mod(key, value)
+                # check if it's a cranial deck
                 new_character.statblock.cyberware.append(cyber_obj)
 
             # add powers

@@ -3,6 +3,7 @@ from tkinter import *
 
 from src import app_data
 from src.CharData.augment import Cyberware
+from src.CharData.cranial_deck import CranialDeck
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 
 
@@ -23,11 +24,14 @@ class CyberwareTab(ThreeColumnBuyTab, ABC):
             # key is a string
             # val is a _dict from a json
             try:
-                self.tree_item_dict[iid] = Cyberware(name=key, **val)
+                # make a cranial cyberdeck if it's one
+                if "mpcp" in val.keys():
+                    self.tree_item_dict[iid] = CranialDeck(name=key, **val)
+                else:
+                    self.tree_item_dict[iid] = Cyberware(name=key, **val)
             except TypeError as e:
                 print("Error with cyberware {}:".format(key))
-                print(e)
-                print()
+                print(f"{e}\n")
 
         return cyberware_tab_recurse_end_callback
 

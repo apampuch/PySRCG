@@ -16,6 +16,277 @@
         "availability_rating": 6,
         "availability_time": 36,
         "availability_unit": "hours"
+      },
+      "Chipjack Expert Driver": {
+        "essence": "0.1 * rating",
+        "cost": "5000 * rating",
+        "street_index": 1.5,
+        "rating": "rating",
+        "attributes_to_calculate": ["rating", "cost", "essence", "mods"],
+        "mods": {
+          "cyber_taskpool": "rating"
+        },
+        "legality": "legal",
+        "page": 19,
+        "availability_rating": 4,
+        "availability_time": 48,
+        "availability_unit": "hours"
+      },
+      "Data Compactor": {
+        "essence": "0.5 + 0.5 * rating",
+        "cost": "rating * 9500",
+        "street_index": 1,
+        "rating": "rating",
+        "attributes_to_calculate": ["rating", "cost", "essence"],
+        "legality": "legal",
+        "page": 20,
+        "availability_rating": 6,
+        "availability_time": 60,
+        "availability_unit": "hours"
+      },
+      "Data Filter": {
+        "essence": 0.3,
+        "cost": 5000,
+        "street_index": 1.5,
+        "legality": "legal",
+        "page": 20,
+        "availability_rating": 6,
+        "availability_time": 36,
+        "availability_unit": "hours"
+      },
+      "Encephalon": {
+        "essence": {
+          "rating":{
+            "1;1": 0.75,
+            "2;2": 1.5
+          }
+        },
+        "cost": {
+          "rating":{
+            "1;1": 40000,
+            "2;2": 115000
+          }
+        },
+        "street_index": 2,
+        "rating": "rating",
+        "mods": {
+          "cyber_taskpool": "rating"
+        },
+        "attributes_to_calculate": ["rating", "cost", "essence", "mods"],
+        "legality": "legal",
+        "page": 20,
+        "availability_rating": 6,
+        "availability_time": 12,
+        "availability_unit": "days"
+      },
+      "Induction Datajack": {
+        "essence": 0.3,
+        "cost": 3000,
+        "street_index": 2,
+        "legality": "legal",
+        "page": 21,
+        "availability_rating": 5,
+        "availability_time": 4,
+        "availability_unit": "days"
+      },
+      "Invoked Memory Stimulator": {
+        "essence": 0.25,
+        "cost": 100000,
+        "street_index": 4,
+        "legality": "3P-Q",
+        "page": 21,
+        "availability_rating": 10,
+        "availability_time": 2,
+        "availability_unit": "months"
+      },
+      "Math SPU": {
+        "essence": "0.05 + rating * 0.05",
+        "cost": {
+          "rating": {
+            "1;1": 2000,
+            "2;2": 5000,
+            "3;3": 11000
+          }
+        },
+        "street_index": 1,
+        "rating": "rating",
+        "mods": {
+          "cyber_hackingpool": "rating"
+        },
+        "attributes_to_calculate": ["rating", "cost", "essence", "mods"],
+        "legality": "Legal",
+        "page": 21,
+        "availability_rating": 6,
+        "availability_time": 60,
+        "availability_unit": "hours"
+      },
+      "Multi-slot Chipjacks": {
+        "essence": "0.15 + slots * 0.05",
+        "cost": "slots * 1000",
+        "street_index": 0.9,
+        "slots": {
+          "slots": {
+            "2;2": 2,
+            "3;3": 3,
+            "4;4": 4
+          }
+        },
+        "attributes_to_calculate": ["slots", "cost", "essence"],
+        "legality": "Legal",
+        "page": 21,
+        "availability_rating": 3,
+        "availability_time": 72,
+        "availability_unit": "hours"
+      },
+      "RAS Override": {
+        "essence": 0.05,
+        "cost": 1000,
+        "street_index": 1,
+        "legality": "Legal",
+        "page": 21,
+        "availability_rating": 4,
+        "availability_time": 48,
+        "availability_unit": "hours"
+      },
+      "Invoked Memory Stimulator": {
+        "essence": 0.25,
+        "cost": 100000,
+        "street_index": 4,
+        "legality": "3P-Q",
+        "page": 21,
+        "availability_rating": 10,
+        "availability_time": 2,
+        "availability_unit": "months"
+      }
+    },
+    "Cranial Cyberdecks": {
+      "Allegiance Sigma": {
+        "essence": 1.9,
+        "availability_rating": 4,
+        "availability_time": 1,
+        "availability_unit": "week",
+        "legality": "4P-S",
+        "mpcp": 3,
+        "hardening": 1,
+        "active_memory": 200,
+        "storage_memory": 500,
+        "io_speed": 100,
+        "response_increase": 0,
+        "cost": 14000,
+        "street_index": 0.8,
+        "page": 19
+      },
+      "Sony CTY-360-D": {
+        "essence": 2.5,
+        "availability_rating": 6,
+        "availability_time": 2,
+        "availability_unit": "weeks",
+        "legality": "4P-S",
+        "mpcp": 5,
+        "hardening": 3,
+        "active_memory": 300,
+        "storage_memory": 600,
+        "io_speed": 200,
+        "response_increase": 1,
+        "cost": 75000,
+        "street_index": 1,
+        "page": 19
+      },
+      "Novatech Hyperdeck-6": {
+        "essence": 2.7,
+        "availability_rating": 6,
+        "availability_time": 2,
+        "availability_unit": "weeks",
+        "legality": "4P-S",
+        "mpcp": 6,
+        "hardening": 4,
+        "active_memory": 600,
+        "storage_memory": 1000,
+        "io_speed": 240,
+        "response_increase": 1,
+        "cost": 150000,
+        "street_index": 1,
+        "page": 19
+      },
+      "CMT Avatar": {
+        "essence": 2.8,
+        "availability_rating": 8,
+        "availability_time": 2,
+        "availability_unit": "weeks",
+        "legality": "4P-S",
+        "mpcp": 7,
+        "hardening": 4,
+        "active_memory": 700,
+        "storage_memory": 1400,
+        "io_speed": 300,
+        "response_increase": 1,
+        "cost": 300000,
+        "street_index": 1,
+        "page": 19
+      },
+      "Renraku Craftwerk-8": {
+        "essence": 2.9,
+        "availability_rating": 10,
+        "availability_time": 1,
+        "availability_unit": "month",
+        "legality": "4P-S",
+        "mpcp": 8,
+        "hardening": 4,
+        "active_memory": 1000,
+        "storage_memory": 2000,
+        "io_speed": 360,
+        "response_increase": 2,
+        "cost": 450000,
+        "street_index": 1,
+        "page": 19
+      },
+      "Transys Highlander": {
+        "essence": 3.0,
+        "availability_rating": 14,
+        "availability_time": 1,
+        "availability_unit": "month",
+        "legality": "4P-S",
+        "mpcp": 9,
+        "hardening": 4,
+        "active_memory": 1500,
+        "storage_memory": 2500,
+        "io_speed": 400,
+        "response_increase": 2,
+        "cost": 700000,
+        "street_index": 1,
+        "page": 19
+      },
+      "Novatech Slimcase-10": {
+        "essence": 3.2,
+        "availability_rating": 18,
+        "availability_time": 1,
+        "availability_unit": "month",
+        "legality": "4P-S",
+        "mpcp": 10,
+        "hardening": 5,
+        "active_memory": 2000,
+        "storage_memory": 2500,
+        "io_speed": 480,
+        "response_increase": 2,
+        "cost": 1500000,
+        "street_index": 1,
+        "page": 19
+      },
+      "Fairlight Excalibur": {
+        "essence": 3.5,
+        "availability_rating": 24,
+        "availability_time": 2,
+        "availability_unit": "months",
+        "legality": "4P-S",
+        "mpcp": 12,
+        "hardening": 6,
+        "active_memory": 3000,
+        "storage_memory": 5000,
+        "io_speed": 600,
+        "response_increase": 3,
+        "cost": 2000000,
+        "street_index": 1,
+        "page": 19
       }
     }
   },
@@ -326,7 +597,7 @@
         "bio_index": "0.4 * level",
         "mods": {
           "bio_intelligence": "level",
-          "bio_task_pool": {
+          "bio_taskpool": {
             "level": {
               "1;1": 0,
               "2;2": 1

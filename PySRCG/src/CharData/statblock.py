@@ -1,3 +1,4 @@
+from copy import copy
 from functools import reduce
 from math import ceil
 from tkinter import IntVar
@@ -77,6 +78,16 @@ class Statblock(object):
 
         # callback magic tab
         app_data.window.nametowidget(".!app.!magictab").show_hide_tabs(self.awakened, self.tradition)
+
+    # we do this because we need to accommodate cranial cyberdecks
+    def all_decks(self):
+        decks = copy(self.decks)
+
+        for cyberware in self.cyberware:
+            if "mpcp" in cyberware.properties:
+                decks.append(cyberware)
+
+        return decks
 
     @property
     def misc_cash(self):

@@ -15,7 +15,7 @@ class DeckingTab(ContainerTab):
         """
         This function shows the persona tab when the character has decks, and hides it when the character doesn't.
         """
-        if len(app_data.app_character.statblock.decks) == 0:
+        if len(app_data.app_character.statblock.all_decks()) == 0:
             self.hide(self.tabs()[2])
         else:
             self.add(self.tabs()[2])
@@ -31,3 +31,7 @@ class DeckingTab(ContainerTab):
             self.hide(self.tabs()[3])
             self.hide(self.tabs()[4])
             self.hide(self.tabs()[5])
+
+    def on_switch(self):
+        super().on_switch()
+        self.on_deck_change()
