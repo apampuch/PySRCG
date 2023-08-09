@@ -424,17 +424,20 @@ class AttributesTab(NotebookTab, ABC):
 
         # set the bio bonus column
         bio_key = "bio_" + key
-        bio_val = int(StatMod.get_mod_total(bio_key))
+        bio_ex_key = "bio_EX" + key
+        bio_val = int(StatMod.get_mod_total(bio_key, bio_ex_key))
         self.mod_labels["bio"][key].config(text=bio_val)
 
         # set the cyber bonus column
         cyber_key = "cyber_" + key
-        cyber_val = int(StatMod.get_mod_total(cyber_key))
+        cyber_ex_key = "cyber_EX" + key
+        cyber_val = int(StatMod.get_mod_total(cyber_key, cyber_ex_key))
         self.mod_labels["cyber"][key].config(text=cyber_val)
 
         # set the other bonus column
         other_key = "other_" + key
-        other_val = int(StatMod.get_mod_total(other_key))
+        other_ex_key = "other_EX" + key
+        other_val = int(StatMod.get_mod_total(other_key, other_ex_key))
         self.mod_labels["other"][key].config(text=other_val)
 
         # set the total, force it to be an integer

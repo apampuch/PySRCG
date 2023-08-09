@@ -7,9 +7,11 @@ from typing import Dict
 from src import app_data
 from src.GenModes.priority import Priority
 from src.app_data import on_cash_updated
-from src.Tabs.Attributes.attributes_tab import AttributesTab
 from src.CharData.race import Race
 from src.statblock_modifier import StatMod
+
+all_base_attributes = ("body", "quickness", "strength", "charisma", "intelligence", "willpower")
+all_derived_attributes = ("essence", "magic", "reaction", "initiative")
 
 
 def add_if_not_there(_dict, key):
@@ -210,7 +212,14 @@ class Statblock(object):
         # setup ui elements for gen mode
         self.gen_mode.setup_ui_elements()
 
-    def calculate_attribute(self, key):
+    def calculate_attribute(self, key, ex_mods=True):
+        """
+        Calculates the attribute with the given key. ex_mods should be False when calculating derived attributes.
+        @param key: Attribute to calculate.
+        @param ex_mods: If True, also get exclusive mods for that attribute. This should never be called when
+        calculating derived attributes like reaction.
+        @return: Value of the attribute as an integer.
+        """
         # take care of magic keys
         if key == "reaction":
             total = self.base_reaction
@@ -228,24 +237,21 @@ class Statblock(object):
         if key in self.race.racial_attributes:
             total += self.race.racial_attributes[key]
 
-        # add cyber bonus
-        cyber_key = "cyber_" + key
-        total += StatMod.get_mod_total(cyber_key)
+        key_prefixes = ("cyber_", "bio_", "other_")
 
-        # add bio bonus
-        bio_key = "bio_" + key
-        total += StatMod.get_mod_total(bio_key)
-
-        # add other bonus
-        other_key = "other_" + key
-        total += StatMod.get_mod_total(other_key)
+        for prefix in key_prefixes:
+            full_key = prefix + key
+            total += StatMod.get_mod_total(full_key)
+            if ex_mods:
+                full_ex_key = prefix + "EX" + key
+                total += StatMod.get_mod_total(full_ex_key)
 
         # can't be less than 1
         total = max(total, 1)
 
         return total
 
-    def calculate_natural_attribute(self, key):
+    def calculate_natural_attribute(self, key, ex_mods=True):
         # take care of magic keys
         if key == "reaction":
             return self.base_natural_reaction
@@ -261,13 +267,14 @@ class Statblock(object):
             # add racial attribute bonus
             total += self.race.racial_attributes[key]
 
-            # add bio bonus
-            bio_key = "bio_" + key
-            total += StatMod.get_mod_total(bio_key)
+            key_prefixes = ("bio_", "other_")
 
-            # add other bonus
-            other_key = "other_" + key
-            total += StatMod.get_mod_total(other_key)
+            for prefix in key_prefixes:
+                full_key = prefix + key
+                total += StatMod.get_mod_total(full_key)
+                if ex_mods:
+                    full_ex_key = prefix + "EX" + key
+                    total += StatMod.get_mod_total(full_ex_key)
 
             # can't be less than 1
             total = max(total, 1)
@@ -333,7 +340,7 @@ class Statblock(object):
 
         # adjust the attribute values so that the slider position is the same
         # if above max, set to max
-        for key in AttributesTab.base_attributes:
+        for key in all_base_attributes:
             attr_pos = self.base_attributes[key] - old_race.racial_slider_minimum(key)
             self.base_attributes[key] = attr_pos + value.racial_slider_minimum(key)
 
@@ -396,29 +403,28 @@ class Statblock(object):
     def willpower(self):
         return self.calculate_attribute("willpower")
 
-    # NOTE: there may be edges and flaws that affect racial limits and maximums
-    def racial_limit(self, key):
-        """The soft limit of an attribute, going beyond this costs more karma and requires GM permission."""
-        r = min(6, 6 + self.race.racial_attributes[key])
-        if self.otaku:
-            if self.runt_otaku:
-                if key in ("strength", "body", "quickness"):
-                    r = 1
-                elif key in ("intelligence", "willpower", "charisma"):
-                    r += 2
-            else:
-                if key in ("strength", "body", "quickness"):
-                    r -= 1
-                elif key in ("intelligence", "willpower", "charisma"):
-                    r += 1
+    # calculated attributes
+    @property
+    def reaction(self):
+        return self.calculate_attribute("reaction")
 
-        # TODO get stuff from edges and flaws
+    @property
+    def base_reaction(self):
+        return (self.calculate_attribute("quickness", ex_mods=False) +
+                self.calculate_attribute("intelligence", ex_mods=False)) // 2
 
-        return max(1, r)
+    @property
+    def base_natural_reaction(self):
+        return (self.calculate_natural_attribute("quickness", ex_mods=False) +
+                self.calculate_natural_attribute("intelligence", ex_mods=False)) // 2
 
-    def racial_max(self, key):
-        """The hard maximum that an attribute can reach naturally."""
-        return ceil(self.racial_limit(key) * 1.5)
+    @property
+    def initiative(self):
+        return self.calculate_attribute("initiative")
+
+    @property
+    def magic(self):
+        return int(self.essence)
 
     @property
     def essence(self):
@@ -467,6 +473,30 @@ class Statblock(object):
 
         return essence_index_total
 
+    # NOTE: there may be edges and flaws that affect racial limits and maximums
+    def racial_limit(self, key):
+        """The soft limit of an attribute, going beyond this costs more karma and requires GM permission."""
+        r = min(6, 6 + self.race.racial_attributes[key])
+        if self.otaku:
+            if self.runt_otaku:
+                if key in ("strength", "body", "quickness"):
+                    r = 1
+                elif key in ("intelligence", "willpower", "charisma"):
+                    r += 2
+            else:
+                if key in ("strength", "body", "quickness"):
+                    r -= 1
+                elif key in ("intelligence", "willpower", "charisma"):
+                    r += 1
+
+        # TODO get stuff from edges and flaws
+
+        return max(1, r)
+
+    def racial_max(self, key):
+        """The hard maximum that an attribute can reach naturally."""
+        return ceil(self.racial_limit(key) * 1.5)
+
     def make_fit_dict(self):
         """
         Makes the fit dict. This is for things like cybereyes and cyberears that can hold amounts of mods themselves.
@@ -491,27 +521,6 @@ class Statblock(object):
                 fit_dict[None][1] += cyber.properties["essence"]
 
         return fit_dict
-
-    @property
-    def base_reaction(self):
-        return (self.quickness + self.intelligence) // 2
-
-    @property
-    def base_natural_reaction(self):
-        return (self.calculate_natural_attribute("quickness") + self.calculate_natural_attribute("intelligence")) // 2
-
-    # calculated attributes
-    @property
-    def reaction(self):
-        return self.calculate_attribute("reaction")
-
-    @property
-    def initiative(self):
-        return self.calculate_attribute("initiative")
-
-    @property
-    def magic(self):
-        return int(self.essence)
 
     @property
     # power points from adept powers
