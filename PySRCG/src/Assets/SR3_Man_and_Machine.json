@@ -3,160 +3,1369 @@
   "file_version": "1.0",
   "schema_version": "1.3",
   "book": "Man and Machine (FPR25001)",
-  "Items": {},
-  "Skills": {},
-  "Cyberware": {
-    "Brainware": {
-      "ASIST Converter (datajack accessory)": {
-        "essence": 0,
-        "cost": 1000,
-        "street_index": 1.5,
-        "legality": "legal",
-        "page": 19,
-        "availability_rating": 6,
-        "availability_time": 36,
-        "availability_unit": "hours"
-      },
-      "Chipjack Expert Driver": {
-        "essence": "0.1 * rating",
-        "cost": "5000 * rating",
-        "street_index": 1.5,
-        "rating": "rating",
-        "attributes_to_calculate": ["rating", "cost", "essence", "mods"],
-        "mods": {
-          "cyber_taskpool": "rating"
-        },
+  "Items": {
+    "Cyberware Accessories": {
+      "ASIST Converter (external plug-in)": {
+        "cost": 50,
+        "street_index": 1,
+        "weight": 0,
         "legality": "legal",
         "page": 19,
         "availability_rating": 4,
-        "availability_time": 48,
+        "availability_time": 24,
         "availability_unit": "hours"
       },
-      "Data Compactor": {
-        "essence": "0.5 + 0.5 * rating",
-        "cost": "rating * 9500",
-        "street_index": 1,
-        "rating": "rating",
-        "attributes_to_calculate": ["rating", "cost", "essence"],
-        "legality": "legal",
-        "page": 20,
-        "availability_rating": 6,
-        "availability_time": 60,
-        "availability_unit": "hours"
-      },
-      "Data Filter": {
-        "essence": 0.3,
-        "cost": 5000,
-        "street_index": 1.5,
-        "legality": "legal",
-        "page": 20,
-        "availability_rating": 6,
-        "availability_time": 36,
-        "availability_unit": "hours"
-      },
-      "Encephalon": {
-        "essence": {
-          "rating":{
-            "1;1": 0.75,
-            "2;2": 1.5
-          }
-        },
-        "cost": {
-          "rating":{
-            "1;1": 40000,
-            "2;2": 115000
-          }
-        },
+      "Optiscan Remote Adapter": {
+        "cost": 2500,
         "street_index": 2,
-        "rating": "rating",
-        "mods": {
-          "cyber_taskpool": "rating"
-        },
-        "attributes_to_calculate": ["rating", "cost", "essence", "mods"],
-        "legality": "legal",
-        "page": 20,
-        "availability_rating": 6,
-        "availability_time": 12,
-        "availability_unit": "days"
-      },
-      "Induction Datajack": {
-        "essence": 0.3,
-        "cost": 3000,
-        "street_index": 2,
-        "legality": "legal",
-        "page": 21,
-        "availability_rating": 5,
-        "availability_time": 4,
-        "availability_unit": "days"
-      },
-      "Invoked Memory Stimulator": {
-        "essence": 0.25,
-        "cost": 100000,
-        "street_index": 4,
-        "legality": "3P-Q",
-        "page": 21,
-        "availability_rating": 10,
+        "weight": 0,
+        "legality": "3P-N",
+        "page": 14,
+        "availability_rating": 8,
         "availability_time": 2,
-        "availability_unit": "months"
+        "availability_unit": "weeks"
       },
-      "Math SPU": {
-        "essence": "0.05 + rating * 0.05",
-        "cost": {
-          "rating": {
-            "1;1": 2000,
-            "2;2": 5000,
-            "3;3": 11000
-          }
-        },
+      "External Transducer": {
+        "cost": 1000,
         "street_index": 1,
-        "rating": "rating",
-        "mods": {
-          "cyber_hackingpool": "rating"
-        },
-        "attributes_to_calculate": ["rating", "cost", "essence", "mods"],
+        "weight": 0,
         "legality": "Legal",
-        "page": 21,
-        "availability_rating": 6,
-        "availability_time": 60,
-        "availability_unit": "hours"
-      },
-      "Multi-slot Chipjacks": {
-        "essence": "0.15 + slots * 0.05",
-        "cost": "slots * 1000",
-        "street_index": 0.9,
-        "slots": {
-          "slots": {
-            "2;2": 2,
-            "3;3": 3,
-            "4;4": 4
-          }
-        },
-        "attributes_to_calculate": ["slots", "cost", "essence"],
-        "legality": "Legal",
-        "page": 21,
+        "page": 19,
         "availability_rating": 3,
         "availability_time": 72,
         "availability_unit": "hours"
       },
-      "RAS Override": {
-        "essence": 0.05,
-        "cost": 1000,
-        "street_index": 1,
+      "Induction Adapter": {
+        "cost": 100,
+        "street_index": 1.5,
+        "weight": 0,
         "legality": "Legal",
         "page": 21,
         "availability_rating": 4,
         "availability_time": 48,
         "availability_unit": "hours"
+      }
+    }
+  },
+  "Firearm Accessories": {
+    "SmartLink": {
+      "Smart Goggles 2": {
+        "mount": null,
+        "conceal": 0,
+        "rating": 0,
+        "weight": 0.1,
+        "availability_rating": 4,
+        "availability_time": 36,
+        "availability_unit": "hrs",
+        "cost": 3500,
+        "street_index": 2,
+        "legality": "4P-N",
+        "page": 32
       },
-      "Invoked Memory Stimulator": {
-        "essence": 0.25,
-        "cost": 100000,
-        "street_index": 4,
-        "legality": "3P-Q",
-        "page": 21,
-        "availability_rating": 10,
-        "availability_time": 2,
-        "availability_unit": "months"
+      "Smartgun, internal": {
+        "mount": null,
+        "conceal": 0,
+        "rating": null,
+        "weight": 0.25,
+        "availability_rating": 0,
+        "availability_time": 0,
+        "availability_unit": "Weapon",
+        "cost": "+150%",
+        "street_index": "Weapon",
+        "legality": "4P-N",
+        "page": 32
+      },
+      "Smartgun, external": {
+        "mount": "Top/under",
+        "conceal": "-2",
+        "rating": null,
+        "weight": 0.75,
+        "availability_rating": 6,
+        "availability_time": 48,
+        "availability_unit": "hrs",
+        "cost": 800,
+        "street_index": 1,
+        "legality": "4P-N",
+        "page": 32
+      }
+    },
+    "Skills": {},
+    "Cyberware": {
+      "Senseware": {
+        "Balance Augmenter": {
+          "essence": 0.4,
+          "cost": 14000,
+          "street_index": 2,
+          "legality": "Legal",
+          "page": 13,
+          "availability_time": 2,
+          "availability_rating": 8,
+          "availability_unit": "weeks"
+        },
+        "Chemical Analyzer": {
+          "essence": 0.2,
+          "cost": 2500,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 13,
+          "availability_time": 6,
+          "availability_rating": 4,
+          "availability_unit": "days"
+        },
+        "Gas Spectrometer": {
+          "essence": 0.2,
+          "cost": 2500,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 13,
+          "availability_time": 6,
+          "availability_rating": 4,
+          "availability_unit": "days"
+        },
+        "Chemical Analyzer (built-in program)": {
+          "essence": 0.2,
+          "cost": "2500 + program_rating * program_rating * 3 * 200",
+          "street_index": 1,
+          "legality": "Legal",
+          "program_rating": "program_rating",
+          "attributes_to_calculate": [
+            "program_rating",
+            "cost"
+          ],
+          "page": 13,
+          "availability_time": 6,
+          "availability_rating": 4,
+          "availability_unit": "days"
+        },
+        "Gas Spectrometer (built-in program)": {
+          "essence": 0.2,
+          "cost": "2500 + program_rating * program_rating * 3 * 200",
+          "street_index": 1,
+          "legality": "Legal",
+          "program_rating": "program_rating",
+          "attributes_to_calculate": [
+            "program_rating",
+            "cost"
+          ],
+          "page": 13,
+          "availability_time": 6,
+          "availability_rating": 4,
+          "availability_unit": "days"
+        },
+        "Eye Datajack": {
+          "essence": 0.25,
+          "cost": 2200,
+          "street_index": 2,
+          "legality": "4P-N",
+          "page": 13,
+          "availability_time": 48,
+          "availability_rating": 6,
+          "availability_unit": "hours"
+        },
+        "Eye Laser System (Low Power)": {
+          "essence": 0.2,
+          "cost": 3000,
+          "street_index": 2,
+          "legality": "5P-N",
+          "page": 13,
+          "availability_time": 48,
+          "availability_rating": 6,
+          "availability_unit": "hours"
+        },
+        "Eye Laser System (Medium Power)": {
+          "essence": 0.3,
+          "cost": 5000,
+          "street_index": 2,
+          "legality": "5P-N",
+          "page": 13,
+          "availability_time": 48,
+          "availability_rating": 6,
+          "availability_unit": "hours"
+        },
+        "Eye Laser System (High Power)": {
+          "essence": 0.5,
+          "cost": 5000,
+          "street_index": 2,
+          "legality": "5P-N",
+          "page": 13,
+          "availability_time": 48,
+          "availability_rating": 6,
+          "availability_unit": "hours"
+        },
+        "Laser Designator": {
+          "essence": 0.1,
+          "cost": 6000,
+          "street_index": 3,
+          "legality": "5P-R",
+          "page": 14,
+          "availability_time": 1,
+          "availability_rating": 12,
+          "availability_unit": "months"
+        },
+        "Laser Microphone": {
+          "essence": 0.1,
+          "cost": "2000 * rating",
+          "street_index": 2,
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "rating",
+            "cost",
+            "availability_rating"
+          ],
+          "legality": "5P-N",
+          "page": 14,
+          "availability_time": 72,
+          "availability_rating": "rating",
+          "availability_unit": "hours"
+        },
+        "Optiscan Link": {
+          "essence": 0.15,
+          "cost": 2500,
+          "street_index": 3,
+          "legality": "3P-N",
+          "page": 14,
+          "availability_rating": 8,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Tool Laser": {
+          "essence": 0.15,
+          "cost": 3000,
+          "street_index": 2,
+          "legality": "5P-N",
+          "page": 15,
+          "availability_rating": 8,
+          "availability_time": 1,
+          "availability_unit": "week"
+        },
+        "Eye Light Systems": {
+          "essence": 0.2,
+          "cost": 1200,
+          "street_index": 1.5,
+          "legality": "Legal",
+          "page": 15,
+          "availability_rating": 4,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Brightlight Feature": {
+          "essence": 0.2,
+          "cost": 2200,
+          "street_index": 3,
+          "legality": "7P-Q",
+          "page": 15,
+          "availability_rating": 8,
+          "availability_time": 2,
+          "availability_unit": "weeks"
+        },
+        "Brightlight Feature (Superflash)": {
+          "essence": 0.2,
+          "cost": 2700,
+          "street_index": 3,
+          "legality": "7P-Q",
+          "page": 15,
+          "availability_rating": 8,
+          "availability_time": 2,
+          "availability_unit": "weeks"
+        },
+        "Eye Dart": {
+          "essence": 0.25,
+          "concealment": 10,
+          "ammo": 1,
+          "mode": "SS",
+          "damage": "Special",
+          "cost": 4200,
+          "street_index": 2,
+          "legality": "7P-Q",
+          "page": 16,
+          "availability_rating": 8,
+          "availability_time": 2,
+          "availability_unit": "weeks"
+        },
+        "Eye Gun": {
+          "essence": 0.4,
+          "concealment": 9,
+          "ammo": 1,
+          "mode": "SS",
+          "damage": "3L",
+          "cost": 6400,
+          "street_index": 3,
+          "legality": "6P-Q",
+          "page": 16,
+          "availability_rating": 6,
+          "availability_time": 1,
+          "availability_unit": "weeks"
+        },
+        "Independent Cybereye (Pair)": {
+          "essence": 0.5,
+          "cost": 15000,
+          "street_index": 2,
+          "legality": "Legal",
+          "page": 16,
+          "availability_rating": 6,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Independent Cybereye (Single)": {
+          "essence": 0.3,
+          "cost": 10000,
+          "street_index": 2,
+          "legality": "Legal",
+          "page": 16,
+          "availability_rating": 6,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Internal GPS": {
+          "essence": 0.1,
+          "cost": 2000,
+          "street_index": 1.5,
+          "legality": "Legal",
+          "page": 17,
+          "availability_rating": 5,
+          "availability_time": 6,
+          "availability_unit": "days"
+        },
+        "Microscopic Vision": {
+          "essence": 0.1,
+          "cost": 5000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 17,
+          "availability_rating": 5,
+          "availability_time": 48,
+          "availability_unit": "hours"
+        },
+        "Olfactory Booster": {
+          "essence": 0.2,
+          "cost": "1000 * level",
+          "street_index": 1,
+          "legality": "Legal",
+          "level": "level",
+          "attributes_to_calculate": [
+            "level",
+            "cost"
+          ],
+          "page": 17,
+          "availability_rating": 6,
+          "availability_time": 8,
+          "availability_unit": "days"
+        },
+        "Oral Dart": {
+          "essence": 0.25,
+          "concealment": 10,
+          "ammo": 3,
+          "mode": "SS",
+          "damage": "Special",
+          "cost": 3600,
+          "street_index": 2,
+          "legality": "6P-Q",
+          "page": 17,
+          "availability_rating": 6,
+          "availability_time": 1,
+          "availability_unit": "weeks"
+        },
+        "Oral Gun": {
+          "essence": 0.4,
+          "concealment": 9,
+          "ammo": 4,
+          "mode": "SS",
+          "damage": "4L",
+          "cost": 5600,
+          "street_index": 3,
+          "legality": "6P-Q",
+          "page": 17,
+          "availability_rating": 6,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Oral Slasher": {
+          "essence": 0.4,
+          "concealment": 9,
+          "ammo": 1,
+          "mode": "SS",
+          "damage": "3L",
+          "cost": 6400,
+          "street_index": 3,
+          "legality": "6P-Q",
+          "page": 17,
+          "availability_rating": 6,
+          "availability_time": 1,
+          "availability_unit": "weeks"
+        },
+        "Orientation System": {
+          "essence": 0.25,
+          "cost": 15000,
+          "street_index": 1.5,
+          "legality": "Legal",
+          "page": 18,
+          "availability_rating": 5,
+          "availability_time": 6,
+          "availability_unit": "days"
+        },
+        "Spatial Recognizer": {
+          "essence": 0.2,
+          "cost": 1200,
+          "street_index": 2,
+          "legality": "Legal",
+          "page": 18,
+          "availability_rating": 4,
+          "availability_time": 48,
+          "availability_unit": "hours"
+        },
+        "Ultrasound Vision": {
+          "essence": 0.5,
+          "cost": 10000,
+          "street_index": 2,
+          "legality": "Legal",
+          "page": 18,
+          "availability_rating": 6,
+          "availability_time": 48,
+          "availability_unit": "hours"
+        }
+      },
+      "Communications": {
+        "Internal Voice Mask": {
+          "essence": 0.1,
+          "cost": "4000 * rating",
+          "street_index": 1,
+          "legality": "6P-Q",
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "rating",
+            "cost"
+          ],
+          "page": 18,
+          "availability_rating": 6,
+          "availability_time": 48,
+          "availability_unit": "hours"
+        },
+        "High-frequency Modulator": {
+          "essence": 0,
+          "cost": 8000,
+          "street_index": 1.25,
+          "legality": "6P-Q",
+          "page": 18,
+          "availability_rating": 6,
+          "availability_time": 48,
+          "availability_unit": "hours"
+        },
+        "Low-frequency Modulator": {
+          "essence": 0,
+          "cost": 8000,
+          "street_index": 1.25,
+          "legality": "6P-Q",
+          "page": 18,
+          "availability_rating": 6,
+          "availability_time": 48,
+          "availability_unit": "hours"
+        },
+        "Subdermal Speakers": {
+          "essence": 0.1,
+          "cost": 650,
+          "street_index": 2,
+          "legality": "Legal",
+          "page": 19,
+          "availability_rating": 4,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Transducer": {
+          "essence": 0.1,
+          "cost": 2000,
+          "street_index": 1.5,
+          "legality": "Legal",
+          "page": 19,
+          "availability_rating": 4,
+          "availability_time": 1,
+          "availability_unit": "week"
+        }
+      },
+      "Brainware": {
+        "ASIST Converter (datajack accessory)": {
+          "essence": 0,
+          "cost": 1000,
+          "street_index": 1.5,
+          "legality": "legal",
+          "page": 19,
+          "availability_rating": 6,
+          "availability_time": 36,
+          "availability_unit": "hours"
+        },
+        "Chipjack Expert Driver": {
+          "essence": "0.1 * rating",
+          "cost": "5000 * rating",
+          "street_index": 1.5,
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "rating",
+            "cost",
+            "essence",
+            "mods"
+          ],
+          "mods": {
+            "cyber_taskpool": "rating"
+          },
+          "legality": "legal",
+          "page": 19,
+          "availability_rating": 4,
+          "availability_time": 48,
+          "availability_unit": "hours"
+        },
+        "Data Compactor": {
+          "essence": "0.5 + 0.5 * rating",
+          "cost": "rating * 9500",
+          "street_index": 1,
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "rating",
+            "cost",
+            "essence"
+          ],
+          "legality": "legal",
+          "page": 20,
+          "availability_rating": 6,
+          "availability_time": 60,
+          "availability_unit": "hours"
+        },
+        "Data Filter": {
+          "essence": 0.3,
+          "cost": 5000,
+          "street_index": 1.5,
+          "legality": "legal",
+          "page": 20,
+          "availability_rating": 6,
+          "availability_time": 36,
+          "availability_unit": "hours"
+        },
+        "Encephalon": {
+          "essence": {
+            "rating": {
+              "1;1": 0.75,
+              "2;2": 1.5
+            }
+          },
+          "cost": {
+            "rating": {
+              "1;1": 40000,
+              "2;2": 115000
+            }
+          },
+          "street_index": 2,
+          "rating": "rating",
+          "mods": {
+            "cyber_taskpool": "rating"
+          },
+          "attributes_to_calculate": [
+            "rating",
+            "cost",
+            "essence",
+            "mods"
+          ],
+          "legality": "legal",
+          "page": 20,
+          "availability_rating": 6,
+          "availability_time": 12,
+          "availability_unit": "days"
+        },
+        "Induction Datajack": {
+          "essence": 0.3,
+          "cost": 3000,
+          "street_index": 2,
+          "legality": "legal",
+          "page": 21,
+          "availability_rating": 5,
+          "availability_time": 4,
+          "availability_unit": "days"
+        },
+        "Invoked Memory Stimulator": {
+          "essence": 0.25,
+          "cost": 100000,
+          "street_index": 4,
+          "legality": "3P-Q",
+          "page": 21,
+          "availability_rating": 10,
+          "availability_time": 2,
+          "availability_unit": "months"
+        },
+        "Math SPU": {
+          "essence": "0.05 + rating * 0.05",
+          "cost": {
+            "rating": {
+              "1;1": 2000,
+              "2;2": 5000,
+              "3;3": 11000
+            }
+          },
+          "street_index": 1,
+          "rating": "rating",
+          "mods": {
+            "cyber_hackingpool": "rating"
+          },
+          "attributes_to_calculate": [
+            "rating",
+            "cost",
+            "essence",
+            "mods"
+          ],
+          "legality": "Legal",
+          "page": 21,
+          "availability_rating": 6,
+          "availability_time": 60,
+          "availability_unit": "hours"
+        },
+        "Multi-slot Chipjacks": {
+          "essence": "0.15 + slots * 0.05",
+          "cost": "slots * 1000",
+          "street_index": 0.9,
+          "slots": {
+            "slots": {
+              "2;2": 2,
+              "3;3": 3,
+              "4;4": 4
+            }
+          },
+          "attributes_to_calculate": [
+            "slots",
+            "cost",
+            "essence"
+          ],
+          "legality": "Legal",
+          "page": 21,
+          "availability_rating": 3,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "RAS Override": {
+          "essence": 0.05,
+          "cost": 1000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 21,
+          "availability_rating": 4,
+          "availability_time": 48,
+          "availability_unit": "hours"
+        },
+        "Router": {
+          "essence": "0.1 + 0.01 * headware_ports + 0.01 * bodyware_ports",
+          "cost": "1000 + 500 * headware_ports + 200 * bodyware_ports",
+          "street_index": 1,
+          "legality": "Legal",
+          "headware_ports": "headware_ports",
+          "bodyware_ports": "bodyware_ports",
+          "attributes_to_calculate": [
+            "headware_ports",
+            "bodyware_ports",
+            "cost",
+            "essence"
+          ],
+          "page": 22,
+          "availability_rating": 0,
+          "availability_time": 0,
+          "availability_unit": "Always"
+        },
+        "Tactical Computer": {
+          "essence": "1.5 + 0.1 * dedicated_ports + 0.1 * generic_ports",
+          "cost": "400000 + 10000 * dedicated_ports + 5000 * generic_ports",
+          "street_index": 4,
+          "legality": "2P-R",
+          "headware_ports": "headware_ports",
+          "bodyware_ports": "bodyware_ports",
+          "attributes_to_calculate": [
+            "dedicated_ports",
+            "generic_ports",
+            "cost",
+            "essence"
+          ],
+          "page": 22,
+          "availability_rating": 12,
+          "availability_time": 60,
+          "availability_unit": "days"
+        }
+      },
+      "Riggerware": {
+        "BattleTac FDDM Master Unit": {
+          "essence": 0.15,
+          "cost": 200000,
+          "street_index": 3,
+          "legality": "5P-R",
+          "page": 23,
+          "availability_rating": 10,
+          "availability_time": 21,
+          "availability_unit": "days"
+        },
+        "BattleTac IVIS Master Unit": {
+          "essence": 0.15,
+          "cost": 150000,
+          "street_index": 3,
+          "legality": "5P-R",
+          "page": 23,
+          "availability_rating": 8,
+          "availability_time": 14,
+          "availability_unit": "days"
+        },
+        "Cranial Remote Deck": {
+          "essence": 0.3,
+          "cost": "25000 * rating",
+          "street_index": 2,
+          "legality": "Legal",
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "rating",
+            "cost"
+          ],
+          "flux": 0,
+          "page": 23,
+          "availability_rating": 4,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Remote Control ECCM": {
+          "essence": {
+            "rating": {
+              "1;3": 0.2,
+              "4;6": 0.3,
+              "7;9": 0.4,
+              "10;": 0.45
+            }
+          },
+          "cost": {
+            "rating": {
+              "1;3": "rating * 15000",
+              "4;6": "rating * 35000",
+              "7;9": "rating * 75000",
+              "10;": 900000
+            }
+          },
+          "street_index": {
+            "rating": {
+              "1;3": 2,
+              "4;6": 3,
+              "7;9": 4,
+              "10;": 5
+            }
+          },
+          "legality": {
+            "rating": {
+              "1;3": "Legal",
+              "4;6": "6P-Q",
+              "7;9": "5P-R",
+              "10;": "4P-R"
+            }
+          },
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "rating",
+            "cost",
+            "essence",
+            "street_index",
+            "availability_rating",
+            "availability_time",
+            "legality"
+          ],
+          "flux": 0,
+          "page": 24,
+          "availability_rating": {
+            "rating": {
+              "1;3": 4,
+              "4;6": 6,
+              "7;9": 12,
+              "10;": 18
+            }
+          },
+          "availability_time": {
+            "rating": {
+              "1;3": 7,
+              "4;6": 14,
+              "7;9": 28,
+              "10;": 45
+            }
+          },
+          "availability_unit": "days"
+        },
+        "RC Encryption Module": {
+          "essence": 0.2,
+          "cost": "10000 * rating",
+          "street_index": 3,
+          "legality": "8P-W",
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "rating",
+            "cost",
+            "availability_rating",
+            "availability_time"
+          ],
+          "page": 24,
+          "availability_rating": "rating",
+          "availability_time": "rating",
+          "availability_unit": "days"
+        },
+        "Rigger Decryption Module": {
+          "essence": 0.2,
+          "cost": "17500 * rating",
+          "street_index": 3,
+          "legality": "8P-W",
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "rating",
+            "cost",
+            "availability_rating",
+            "availability_time"
+          ],
+          "page": 24,
+          "availability_rating": "rating + 2",
+          "availability_time": "rating",
+          "availability_unit": "days"
+        },
+        "Protocol Emulation Module": {
+          "essence": 0.2,
+          "cost": "5000 * rating",
+          "street_index": 2,
+          "legality": "Legal",
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "rating",
+            "cost",
+            "availability_rating",
+            "availability_time"
+          ],
+          "page": 25,
+          "availability_rating": "rating + 2",
+          "availability_time": "rating",
+          "availability_unit": "days"
+        }
+      },
+      "Bodyware": {
+        "Auto-injector (Reusable)": {
+          "essence": 0.1,
+          "cost": "1000 + 500 * extra_doses",
+          "street_index": 1.5,
+          "legality": "6P-N",
+          "extra_doses": "extra_doses",
+          "page": 25,
+          "availability_rating": 4,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Auto-injector (One-shot)": {
+          "essence": 0.05,
+          "cost": "1500 + 500 * extra_doses",
+          "street_index": 1.5,
+          "legality": "4P-Q",
+          "extra_doses": "extra_doses",
+          "page": 25,
+          "availability_rating": 4,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Balance Tail": {
+          "essence": 0.5,
+          "cost": 10000,
+          "street_index": 2,
+          "legality": "Legal",
+          "page": 25,
+          "availability_rating": 8,
+          "availability_time": 1,
+          "availability_unit": "week"
+        },
+        "Biomonitor": {
+          "essence": 0.3,
+          "cost": 5000,
+          "street_index": 2,
+          "legality": "Legal",
+          "page": 25,
+          "availability_rating": 6,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Diagnostics Processor": {
+          "essence": 0.2,
+          "cost": 2500,
+          "street_index": 2,
+          "legality": "Legal",
+          "page": 26,
+          "availability_rating": 6,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Subdermal Display": {
+          "essence": 0.1,
+          "cost": 500,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 26,
+          "availability_rating": 4,
+          "availability_time": 48,
+          "availability_unit": "hours"
+        },
+        "Body Compartment": {
+          "essence": 0.2,
+          "cost": 5000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 26,
+          "availability_rating": 4,
+          "availability_time": 48,
+          "availability_unit": "hours"
+        },
+        "Injector": {
+          "essence": 0,
+          "cost": 500,
+          "street_index": 1.5,
+          "legality": "6P-N",
+          "page": 27,
+          "availability_rating": 4,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Lockpicks": {
+          "essence": 0,
+          "cost": 500,
+          "street_index": 3,
+          "legality": "6P-Q",
+          "page": 27,
+          "availability_rating": 8,
+          "availability_time": 2,
+          "availability_unit": "weeks"
+        },
+        "Lockpick Gun": {
+          "essence": 0,
+          "cost": "rating * 250",
+          "street_index": 3,
+          "legality": "6P-Q",
+          "page": 27,
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "rating",
+            "cost"
+          ],
+          "availability_rating": 8,
+          "availability_time": 2,
+          "availability_unit": "weeks"
+        },
+        "Synthetic Fingerprint": {
+          "essence": 0,
+          "cost": "rating * 2000",
+          "street_index": 3,
+          "legality": "4P-Q",
+          "page": 27,
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "rating",
+            "cost",
+            "availability_rating"
+          ],
+          "availability_rating": "rating * 2",
+          "availability_time": 1,
+          "availability_unit": "week"
+        },
+        "Scanner Accessory": {
+          "essence": 0,
+          "cost": "rating * 500",
+          "street_index": 3,
+          "legality": "6P-V",
+          "page": 27,
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "rating",
+            "cost",
+            "availability_rating"
+          ],
+          "availability_rating": "rating",
+          "availability_time": 27,
+          "availability_unit": "hours"
+        },
+        "Bone Lacing (Ceramic)": {
+          "mods": {
+            "cyber_encumbrance": 15,
+            "cyber_body": 1,
+            "cyber_impact": 1,
+            "cyber_unarmed": 3
+          },
+          "essence": 1.5,
+          "cost": 40000,
+          "street_index": 2,
+          "legality": "6P-Q",
+          "page": 27,
+          "availability_rating": 6,
+          "availability_time": 21,
+          "availability_unit": "days",
+          "augment_tag": "bone_lacing"
+        },
+        "Bone Lacing (Kevlar)": {
+          "mods": {
+            "cyber_encumbrance": 5,
+            "cyber_body": 1,
+            "cyber_ballistic": 1
+          },
+          "essence": 1,
+          "cost": 20000,
+          "street_index": 2,
+          "legality": "6P-N",
+          "page": 27,
+          "availability_rating": 6,
+          "availability_time": 21,
+          "availability_unit": "days",
+          "augment_tag": "bone_lacing"
+        },
+        "Cyberfins": {
+          "essence": 0.3,
+          "cost": 10500,
+          "street_index": 1.25,
+          "legality": "3P-N",
+          "page": 27,
+          "availability_rating": 5,
+          "availability_time": 48,
+          "availability_unit": "hours"
+        },
+        "Cyberskull (obvious)": {
+          "essence": 0.75,
+          "cost": 35000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 28,
+          "availability_rating": 6,
+          "availability_time": 4,
+          "availability_unit": "days"
+        },
+        "Cyberskull (synthetic)": {
+          "concealment": 10,
+          "essence": 0.75,
+          "cost": 55000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 28,
+          "availability_rating": 6,
+          "availability_time": 4,
+          "availability_unit": "days"
+        },
+        "Cybertorso (obvious)": {
+          "essence": 1.5,
+          "cost": 90000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 28,
+          "availability_rating": 6,
+          "availability_time": 4,
+          "availability_unit": "days"
+        },
+        "Cybertorso (synthetic)": {
+          "concealment": 8,
+          "essence": 1.5,
+          "cost": 120000,
+          "street_index": 1,
+          "legality": "Legal",
+          "page": 28,
+          "availability_rating": 6,
+          "availability_time": 4,
+          "availability_unit": "days"
+        },
+        "Dermal Sheath": {
+          "essence": "rating * 0.7",
+          "cost": {
+            "rating": {
+              "1;1": 24000,
+              "2;2": 60000,
+              "3;3": 120000
+            }
+          },
+          "mods": {
+            "cyber_body": "rating + 1"
+          },
+          "street_index": 1.5,
+          "legality": {
+            "rating": {
+              "1;1": "6P-N",
+              "2;2": "6P-N",
+              "3;3": "5P-N"
+            }
+          },
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "essence",
+            "cost",
+            "mods",
+            "legality",
+            "rating",
+            "availability_rating"
+          ],
+          "page": 28,
+          "availability_rating": {
+            "rating": {
+              "1;1": 6,
+              "2;2": 6,
+              "3;3": 8
+            }
+          },
+          "availability_time": 14,
+          "availability_unit": "days"
+        },
+        "Dermal Sheath (Ruthenium)": {
+          "essence": "rating * 0.7 + image_scanners * 0.05 + 0.2",
+          "cost": {
+            "rating": {
+              "1;1": "174000 + image_scanners * 8000",
+              "2;2": "210000 + image_scanners * 8000",
+              "3;3": "270000 + image_scanners * 8000"
+            }
+          },
+          "mods": {
+            "cyber_body": "rating + 1"
+          },
+          "street_index": 1.75,
+          "legality": "4P-N",
+          "rating": "rating",
+          "image_scanners": "image_scanners",
+          "attributes_to_calculate": [
+            "essence",
+            "cost",
+            "mods",
+            "rating",
+            "image_scanners",
+            "availability_rating"
+          ],
+          "page": 28,
+          "availability_rating": {
+            "rating": {
+              "1;1": 8,
+              "2;2": 8,
+              "3;3": 10
+            }
+          },
+          "availability_time": 18,
+          "availability_unit": "days"
+        },
+        "Flex Hands": {
+          "essence": 0.4,
+          "cost": 8000,
+          "street_index": 2,
+          "legality": "7P-N",
+          "page": 28,
+          "availability_rating": 6,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Foot Anchor": {
+          "essence": 0.4,
+          "cost": 14000,
+          "street_index": 2,
+          "legality": "Legal",
+          "page": 29,
+          "availability_rating": 6,
+          "availability_time": 7,
+          "availability_unit": "days"
+        },
+        "Hydraulic Jacks": {
+          "essence": "0.75 + 0.25 * rating",
+          "cost": "rating * 5000",
+          "street_index": 1,
+          "legality": "Legal",
+          "rating": "rating",
+          "attributes_to_calculate": [
+            "essence",
+            "cost",
+            "rating"
+          ],
+          "page": 29,
+          "availability_rating": 5,
+          "availability_time": 6,
+          "availability_unit": "days"
+        },
+        "Internal Air Tank": {
+          "essence": 0.25,
+          "cost": 1200,
+          "street_index": 1.5,
+          "legality": "Legal",
+          "page": 29,
+          "availability_rating": 4,
+          "availability_time": 5,
+          "availability_unit": "days"
+        },
+        "Tracheal Vent": {
+          "essence": 0.1,
+          "cost": 750,
+          "street_index": 1.5,
+          "legality": "Legal",
+          "page": 29,
+          "availability_rating": 4,
+          "availability_time": 5,
+          "availability_unit": "days"
+        },
+        "Jolt Alert": {
+          "essence": 0.1,
+          "cost": 1500,
+          "street_index": 1.5,
+          "legality": "Legal",
+          "page": 29,
+          "availability_rating": 4,
+          "availability_time": 48,
+          "availability_unit": "hours"
+        },
+        "Magnetic System": {
+          "essence": 0.3,
+          "cost": 2800,
+          "street_index": 2,
+          "legality": "Legal",
+          "page": 30,
+          "availability_rating": 6,
+          "availability_time": 7,
+          "availability_unit": "days"
+        },
+        "Move-By-Wire System": {
+          "essence": "1.0 + rating * 1.5",
+          "cost": {
+            "rating": {
+              "1;1": 250000,
+              "2;2": 500000,
+              "3;3": 1000000,
+              "4;4": 2000000
+            }
+          },
+          "mods": {
+            "cyber_EXquickness": "rating",
+            "cyber_reaction": "rating",
+            "cyber_initiative": "rating"
+          },
+          "street_index": {
+            "rating": {
+              "1;1": 2.5,
+              "2;2": 3,
+              "3;3": 3,
+              "4;4": 3.5
+            }
+          },
+          "rating": "rating",
+          "legality": "3P-CC",
+          "page": 30,
+          "attributes_to_calculate": [
+            "essence",
+            "cost",
+            "street_index",
+            "rating",
+            "mods",
+            "availability_rating",
+            "availability_time"
+          ],
+          "availability_rating": {
+            "rating": {
+              "1;1": 8,
+              "2;2": 10,
+              "3;3": 18,
+              "4;4": 20
+            }
+          },
+          "availability_time": {
+            "rating": {
+              "1;1": 10,
+              "2;2": 20,
+              "3;3": 30,
+              "4;4": 45
+            }
+          },
+          "availability_unit": "days"
+        },
+        "OXSYS Cybergill": {
+          "essence": 0.75,
+          "cost": 12500,
+          "street_index": 1.75,
+          "legality": "Legal",
+          "page": 31,
+          "availability_rating": 5,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Retractable Climbing Claws": {
+          "essence": 0.3,
+          "cost": 10000,
+          "street_index": 1.5,
+          "legality": "6P-N",
+          "page": 31,
+          "availability_rating": 5,
+          "availability_time": 72,
+          "availability_unit": "hours"
+        },
+        "Smartlink-2": {
+          "essence": 0.5,
+          "cost": 3500,
+          "street_index": 2,
+          "legality": "5P-N",
+          "page": 31,
+          "availability_rating": 6,
+          "availability_time": 48,
+          "availability_unit": "hours"
+        },
+        "Smartlink Subsystems": {
+          "Induction Pad": {
+            "essence": 0.1,
+            "cost": 200,
+            "street_index": 1.5,
+            "legality": "5P-N",
+            "page": 32,
+            "availability_rating": 4,
+            "availability_time": 48,
+            "availability_unit": "hours"
+          },
+          "Eye Display": {
+            "essence": 0.1,
+            "cost": 300,
+            "street_index": 1.5,
+            "legality": "Legal",
+            "page": 32,
+            "availability_rating": 4,
+            "availability_time": 48,
+            "availability_unit": "hours"
+          },
+          "Limited Simsense Rig": {
+            "essence": 0.1,
+            "cost": 1000,
+            "street_index": 1.5,
+            "legality": "5P-N",
+            "page": 32,
+            "availability_rating": 4,
+            "availability_time": 48,
+            "availability_unit": "hours"
+          },
+          "Standard Processor": {
+            "essence": 0.2,
+            "cost": 1000,
+            "street_index": 1.5,
+            "legality": "5P-N",
+            "page": 32,
+            "availability_rating": 4,
+            "availability_time": 48,
+            "availability_unit": "hours"
+          },
+          "Smartlink-2 Processor": {
+            "essence": 0.2,
+            "cost": 2000,
+            "street_index": 2,
+            "legality": "5P-N",
+            "page": 32,
+            "availability_rating": 6,
+            "availability_time": 48,
+            "availability_unit": "hours"
+          },
+          "Range Finder": {
+            "essence": 0.1,
+            "cost": 2000,
+            "street_index": 1.5,
+            "legality": "Legal",
+            "page": 32,
+            "availability_rating": 8,
+            "availability_time": 48,
+            "availability_unit": "hours"
+          },
+          "Personalized Safety": {
+            "essence": 0,
+            "cost": 200,
+            "street_index": 1.5,
+            "legality": "5P-N",
+            "page": 32,
+            "availability_rating": 4,
+            "availability_time": 48,
+            "availability_unit": "hours"
+          }
+        }
       }
     },
     "Cranial Cyberdecks": {
@@ -241,7 +1450,7 @@
         "page": 19
       },
       "Transys Highlander": {
-        "essence": 3.0,
+        "essence": 3,
         "availability_rating": 14,
         "availability_time": 1,
         "availability_unit": "month",
@@ -302,7 +1511,11 @@
         "availability_rating": 10,
         "availability_time": 16,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "cost",
+          "level"
+        ]
       },
       "Cat's Eyes": {
         "bio_index": 0.2,
@@ -323,9 +1536,14 @@
         "availability_rating": 10,
         "availability_time": 4,
         "availability_unit": "days",
-        "options": {"Compound": null},
+        "options": {
+          "Compound": null
+        },
         "compound_cost": "compound_cost",
-        "attributes_to_calculate": ["compound_cost", "cost"]
+        "attributes_to_calculate": [
+          "compound_cost",
+          "cost"
+        ]
       },
       "Digestive Expansion": {
         "bio_index": 1,
@@ -339,7 +1557,9 @@
       },
       "Enhanced Articulation": {
         "bio_index": 0.6,
-        "mods": {"bio_reaction": 1},
+        "mods": {
+          "bio_reaction": 1
+        },
         "cost": 40000,
         "street_index": 1.5,
         "legality": "Legal",
@@ -370,7 +1590,11 @@
         "availability_rating": 4,
         "availability_time": 4,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "cost",
+          "level"
+        ]
       },
       "Metabolic Arrester": {
         "bio_index": 0.6,
@@ -384,7 +1608,9 @@
       },
       "Muscle Augmentation": {
         "bio_index": "0.4 * level",
-        "mods": {"bio_strength": "level"},
+        "mods": {
+          "bio_strength": "level"
+        },
         "cost": "20000 * level",
         "level": "level",
         "street_index": 0.9,
@@ -393,11 +1619,18 @@
         "availability_rating": 6,
         "availability_time": 6,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "mods", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "mods",
+          "cost",
+          "level"
+        ]
       },
       "Muscle Toner": {
         "bio_index": "0.4 * level",
-        "mods": {"bio_quickness": "level"},
+        "mods": {
+          "bio_quickness": "level"
+        },
         "cost": "25000 * level",
         "level": "level",
         "street_index": 0.9,
@@ -406,7 +1639,12 @@
         "availability_rating": 6,
         "availability_time": 6,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "mods", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "mods",
+          "cost",
+          "level"
+        ]
       },
       "Nephritic Screen": {
         "bio_index": 0.4,
@@ -459,7 +1697,12 @@
         "availability_rating": 8,
         "availability_time": 8,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "mods", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "mods",
+          "cost",
+          "level"
+        ]
       },
       "Pathogenic Defense": {
         "bio_index": "0.2 * level",
@@ -471,7 +1714,11 @@
         "availability_rating": 4,
         "availability_time": 4,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "cost",
+          "level"
+        ]
       },
       "Platelet Factories": {
         "bio_index": 0.4,
@@ -504,7 +1751,7 @@
           "level": {
             "1;1": 0.4,
             "2;2": 0.7,
-            "3;3": 1.0
+            "3;3": 1
           }
         },
         "cost": {
@@ -521,7 +1768,11 @@
         "availability_rating": 5,
         "availability_time": 10,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "cost",
+          "level"
+        ]
       },
       "Synthcardium": {
         "bio_index": {
@@ -543,7 +1794,11 @@
         "availability_rating": 4,
         "availability_time": 10,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "cost",
+          "level"
+        ]
       },
       "Tailored Pheromones": {
         "bio_index": {
@@ -565,7 +1820,11 @@
         "availability_rating": 12,
         "availability_time": 14,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "cost",
+          "level"
+        ]
       },
       "Toxin Extractor": {
         "bio_index": "0.4 * level",
@@ -577,7 +1836,11 @@
         "availability_rating": 4,
         "availability_time": 4,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "cost",
+          "level"
+        ]
       },
       "Tracheal Filter": {
         "bio_index": "0.4 * level",
@@ -589,9 +1852,13 @@
         "availability_rating": 4,
         "availability_time": 10,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "cost",
+          "level"
+        ]
       }
-  },
+    },
     "Cultured": {
       "Cerebral Booster": {
         "bio_index": "0.4 * level",
@@ -618,7 +1885,12 @@
         "availability_rating": 6,
         "availability_time": 14,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "mods", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "mods",
+          "cost",
+          "level"
+        ]
       },
       "Damage Compensators": {
         "bio_index": "0.2 * level",
@@ -643,7 +1915,12 @@
         },
         "availability_time": 14,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "cost", "level", "availability_rating"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "cost",
+          "level",
+          "availability_rating"
+        ]
       },
       "Mnemnonic Enhancer": {
         "bio_index": "0.2 * level",
@@ -656,7 +1933,11 @@
         "availability_rating": 6,
         "availability_time": 7,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "cost",
+          "level"
+        ]
       },
       "Pain Editor": {
         "bio_index": 0.6,
@@ -679,7 +1960,9 @@
         "availability_rating": 8,
         "availability_time": 6,
         "availability_unit": "days",
-        "options": {"Skill": null}
+        "options": {
+          "Skill": null
+        }
       },
       "Reflex Recorder (specialization)": {
         "bio_index": 0.1,
@@ -691,7 +1974,9 @@
         "availability_rating": 5,
         "availability_time": 6,
         "availability_unit": "days",
-        "options": {"Specialization": null}
+        "options": {
+          "Specialization": null
+        }
       },
       "Sleep Regulator": {
         "bio_index": 0.3,
@@ -708,7 +1993,7 @@
         "bio_index": {
           "level": {
             "1;1": 0.4,
-            "2;2": 1.0
+            "2;2": 1
           }
         },
         "mods": {
@@ -728,7 +2013,12 @@
         "availability_rating": 6,
         "availability_time": 12,
         "availability_unit": "days",
-        "attributes_to_calculate": ["bio_index", "mods", "cost", "level"]
+        "attributes_to_calculate": [
+          "bio_index",
+          "mods",
+          "cost",
+          "level"
+        ]
       },
       "Thermosense Organs": {
         "bio_index": 0.5,
