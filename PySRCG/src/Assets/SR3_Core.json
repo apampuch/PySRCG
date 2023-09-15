@@ -4010,10 +4010,9 @@
         "availability_unit": "hrs",
         "street_index": 2,
         "legality": "legal",
+        "rating": "rating",
         "flux": 2,
-        "attributes_to_calculate": [
-          "cost"
-        ],
+        "attributes_to_calculate": ["rating", "cost"],
         "page": 306
       },
       "Remote Control ECCM": {
@@ -4067,6 +4066,7 @@
         },
         "rating": "rating",
         "attributes_to_calculate": [
+          "rating",
           "cost",
           "availability_rating",
           "availability_time",
