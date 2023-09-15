@@ -7,13 +7,14 @@ import src.app_data as app_data
 
 
 class DeckBuyTab(ThreeColumnBuyTab, ABC):
-    def __init__(self, parent, add_callbacks, remove_callbacks):
-        super().__init__(parent, add_inv_callbacks=add_callbacks, remove_inv_callbacks=remove_callbacks)
+    def __init__(self, parent):
+        super().__init__(parent, "DeckBuyTab",
+                         add_inv_callbacks=[parent.on_deck_change], remove_inv_callbacks=[parent.on_deck_change])
 
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Decks"]
+            return app_data.game_data["Decks"]
         except KeyError:
             return {}
 
@@ -45,12 +46,12 @@ class DeckBuyTab(ThreeColumnBuyTab, ABC):
     def sell_callback(self, selected_index):
         selected_item = self.statblock_inventory[self.inv_selected_index]
 
-        self.statblock.cash += selected_item.properties["cost"]
+        self.statblock.add_cash(selected_item.properties["cost"])
 
         self.remove_inv_item(selected_index)
 
     def on_switch(self):
-        pass
+        super().on_switch()
 
     def load_character(self):
-        pass
+        super().load_character()

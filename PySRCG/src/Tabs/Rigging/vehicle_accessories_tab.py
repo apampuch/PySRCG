@@ -1,3 +1,4 @@
+import re
 from abc import ABC
 from tkinter import *
 from tkinter import ttk
@@ -10,15 +11,15 @@ from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 # TODO figure out this Mount shit
 class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent, "Buy", "Sell")
+        super().__init__(parent, "VehicleAccessoriesTab", "Buy", "Sell")
 
         # acc is a vehcile with accessories, so any vehicle really
         # key is name, value is matching thing with it
         self.accobj_dict = {}
 
         # fill stuff with memory
-        self.accessory_things_box = ttk.Combobox(self, values=self.accobj_dict.keys(), state="readonly", width=30)
-        self.fill_combobox()
+        self.accessory_things_box = ttk.Combobox(self, values=list(self.accobj_dict.keys()), state="readonly", width=30)
+        # self.fill_combobox()
 
         self.accessory_things_box.bind("<<ComboboxSelected>>", self.get_accobj)
 
@@ -56,6 +57,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
             if "vehicle_accessories" in node.properties:
                 self.accobj_dict[key] = node  # .accessories
 
+    # noinspection PyUnusedLocal
     def get_accobj(self, event):
         """Fills the inventory box with software from the selected memobj"""
         # clear list box
@@ -67,7 +69,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Vehicle Accessories"]
+            return app_data.game_data["Vehicle Accessories"]
         except KeyError:
             return {}
 
@@ -135,7 +137,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
         return mount_total + new_mount.properties["body_cost"] <= v.body
 
     def sell_callback(self, item_index):
-        self.statblock.cash += self.statblock_inventory[item_index].properties["cost"]
+        self.statblock.add_cash(self.statblock_inventory[item_index].properties["cost"])
         self.remove_inv_item(item_index)
 
     @property

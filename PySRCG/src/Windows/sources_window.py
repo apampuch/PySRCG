@@ -2,7 +2,7 @@ import os
 from copy import copy
 from pathlib import Path
 from tkinter import *
-from tkinter import ttk, filedialog
+from tkinter import filedialog
 
 from src import app_data
 
@@ -25,14 +25,14 @@ class SourcesWindow(Toplevel):
 
         # grab focus and disable resizing
         self.grab_set()
-        self.resizable(0, 0)
+        self.resizable(False, False)
 
         # text box for directory path
         self.path_var = StringVar()
         self.path_var.set(SourcesWindow.source_directory)
         path_label = Label(self, text="Sources Path:")
         self.path_entry = Entry(self, textvariable=self.path_var, width=60, state=DISABLED)
-        browse_button = Button(self, text="Browse", command=lambda : self.browse_callback())
+        browse_button = Button(self, text="Browse", command=lambda: self.browse_callback())
 
         # listbox for jsons
         # selected ones are used
@@ -49,7 +49,7 @@ class SourcesWindow(Toplevel):
         self.path_entry.grid(column=1, row=0, padx=10)
         browse_button.grid(column=2, row=0, padx=10, pady=5)
 
-        sources_labelframe.grid(column=0, row=1, columnspan=3, sticky=(W, E), padx=10)
+        sources_labelframe.grid(column=0, row=1, columnspan=3, sticky="WE", padx=10)
         self.sources_box.pack(fill=BOTH, padx=5, pady=5)
 
         ok_button.grid(column=0, row=2, pady=10)
@@ -57,6 +57,7 @@ class SourcesWindow(Toplevel):
 
         self.fill_listbox()
 
+    # noinspection PyUnusedLocal
     def selected_callback(self, event):
         # updates selected source files list
         self.new_selected_source_files.clear()
@@ -81,7 +82,7 @@ class SourcesWindow(Toplevel):
 
     def browse_callback(self):
         new_path = filedialog.askdirectory()
-        if new_path is not "":
+        if new_path != "":
             self.path_var.set(new_path)
             SourcesWindow.source_directory = Path(new_path)
             self.fill_listbox()

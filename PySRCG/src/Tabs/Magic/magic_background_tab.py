@@ -1,15 +1,14 @@
 from abc import ABC
-
-from src.Tabs.notebook_tab import NotebookTab
-from src.CharData.tradition import Tradition
-
-from tkinter import *
 from tkinter import ttk
+
+from src import app_data
+from src.CharData.tradition import Tradition
+from src.Tabs.notebook_tab import NotebookTab
 
 
 class MagicBackgroundTab(NotebookTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "MagicBackgroundTab")
 
         # the tradition box should be unchanging
         self.traditions_labelframe = ttk.LabelFrame(self, text="Tradition")
@@ -24,18 +23,19 @@ class MagicBackgroundTab(NotebookTab, ABC):
         # aspects combobox
         self.focus_aspects = []
         self.aspects_labelframe = ttk.LabelFrame(self, text="Aspect")
-        self.aspects_box = ttk.Combobox(self.aspects_labelframe, values=None, state="readonly")
+        self.aspects_box = ttk.Combobox(self.aspects_labelframe, values=[], state="readonly")
         self.aspects_box.bind("<<ComboboxSelected>>", self.on_change_aspect)
         self.aspects_box.grid(column=0, row=0)
 
         # combobox for the focus
         self.focus_labelframe = ttk.LabelFrame(self, text="Focus")
-        self.focus_box = ttk.Combobox(self.focus_labelframe, values=None, state="readonly")
+        self.focus_box = ttk.Combobox(self.focus_labelframe, values=[], state="readonly")
         self.focus_box.bind("<<ComboboxSelected>>", self.on_change_focus)
         self.focus_box.grid(column=0, row=0)
 
         self.traditions_labelframe.grid(column=0, row=0)
 
+    # noinspection PyUnusedLocal
     def on_change_tradition(self, *args):
         self.statblock.tradition = self.traditions_dict[self.tradition_box.get()]
         self.fill_aspects()
@@ -49,6 +49,7 @@ class MagicBackgroundTab(NotebookTab, ABC):
         # clear focus no matter what
         self.focus_box.set("")
 
+    # noinspection PyUnusedLocal
     def on_change_aspect(self, *args):
         self.statblock.aspect = self.aspects_box.get()
         self.check_focus_box()
@@ -57,6 +58,7 @@ class MagicBackgroundTab(NotebookTab, ABC):
         if not self.statblock.tradition.always_has_focus and self.statblock.aspect not in self.focus_aspects:
             self.focus_box.set("")
 
+    # noinspection PyUnusedLocal
     def on_change_focus(self, *args):
         self.statblock.focus = self.focus_box.get()
 
@@ -89,12 +91,12 @@ class MagicBackgroundTab(NotebookTab, ABC):
     def reload_data(self):
         self.traditions_dict = {}
         try:
-            tradition_data = self.parent.game_data["Traditions"]
+            tradition_data = app_data.game_data["Traditions"]
         except KeyError:
             tradition_data = {}
 
         for tradition in tradition_data:
-            self.traditions_dict[tradition] = Tradition(tradition, **self.parent.game_data["Traditions"][tradition])
+            self.traditions_dict[tradition] = Tradition(tradition, **app_data.game_data["Traditions"][tradition])
 
         self.tradition_box.configure(values=list(self.traditions_dict.keys()))
 
@@ -109,8 +111,8 @@ class MagicBackgroundTab(NotebookTab, ABC):
             if self.statblock.focus is not None:
                 self.focus_box.set(self.statblock.focus)
         else:
-            self.aspects_box.configure(values=None)
-            self.focus_box.configure(values=None)
+            self.aspects_box.configure(values=[])
+            self.focus_box.configure(values=[])
 
         self.on_switch()
 

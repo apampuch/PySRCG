@@ -15,7 +15,7 @@ class TopMenu(Menu):
         self.parent = parent
 
         self.file_menu = Menu(self)
-        self.File = self.add_cascade(label="File", menu=self.file_menu)
+        self.add_cascade(label="File", menu=self.file_menu)
 
         self.file_menu.add_command(label="New", command=lambda: char_io.new_char(self.tabs))
         self.file_menu.add_command(label="Open", command=lambda: char_io.load(self.tabs))
@@ -25,7 +25,7 @@ class TopMenu(Menu):
         self.file_menu.add_command(label="Quit", command=parent.quit)
 
         self.options_menu = Menu(self)
-        self.Options = self.add_cascade(label="Options", menu=self.options_menu)
+        self.add_cascade(label="Options", menu=self.options_menu)
         self.options_menu.add_command(label="Sources", command=lambda: SourcesWindow(self.parent))
 
     def tabs(self):

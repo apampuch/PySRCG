@@ -44,7 +44,7 @@ class Reportable:
     def fill_necessary_fields(self, necessary_fields, _dict, report=True):
         """
         Fills the necessary fields. Throws an error if _dict doesn't contain the fields we want.
-        :param necessary_fields: Tuple of all of the necessary fields.
+        :param necessary_fields: Tuple of all necessary fields.
         :param report: If true, the field will be reported with report()
         :param _dict:
         """

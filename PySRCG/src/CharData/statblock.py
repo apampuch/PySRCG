@@ -1,12 +1,17 @@
+from copy import copy
+from functools import reduce
+from math import ceil
 from tkinter import IntVar
 from typing import Dict
 
 from src import app_data
 from src.GenModes.priority import Priority
 from src.app_data import on_cash_updated
-from src.Tabs.Attributes.attributes_tab import AttributesTab
 from src.CharData.race import Race
 from src.statblock_modifier import StatMod
+
+all_base_attributes = ("body", "quickness", "strength", "charisma", "intelligence", "willpower")
+all_derived_attributes = ("essence", "magic", "reaction", "initiative")
 
 
 def add_if_not_there(_dict, key):
@@ -16,21 +21,48 @@ def add_if_not_there(_dict, key):
 
 
 class Statblock(object):
-    base_attributes: Dict[str, int]
+    base_attributes: Dict[str, int | float]
     __race: Race
 
+    # interface to make adding/subtracting cash work with Currencies
     @property
     def cash(self):
-        return self.__cash
-    @cash.setter
-    def cash(self, value):
-        self.__cash = value
-        self.cash_str = "¥{}".format(self.__cash)
+        return reduce(lambda a, b: a + b.properties["balance"], self.currencies, 0)
+
+    def add_cash(self, amount):
+        self.currencies[0].properties["balance"] += amount
         on_cash_updated()
+
+    def sub_cash(self, amount):
+        # loop through all currencies, bring to no less than 0, keep going if there's anything left
+        # stop if we reach the last currency
+
+        i = 0
+        while amount > 0 and i < len(self.currencies):
+            sub_amount = min(amount, self.currencies[i].properties["balance"])
+            self.currencies[i].properties["balance"] -= sub_amount
+            amount -= sub_amount
+            i += 1
+
+        # if we subbed from all currencies and there's still some remaining, just put the permanent one into debt
+        self.misc_cash.properties["balance"] -= amount
+
+        on_cash_updated()
+
+    @property
+    def otaku(self):
+        return self.__otaku
+
+    @otaku.setter
+    def otaku(self, value):
+        self.__otaku = value
+
+        app_data.window.nametowidget(".!app.!deckingtab").show_hide_tabs(self.otaku)
 
     @property
     def awakened(self):
         return self.__awakened
+
     @awakened.setter
     def awakened(self, value):
         self.__awakened = value
@@ -41,12 +73,39 @@ class Statblock(object):
     @property
     def tradition(self):
         return self.__tradition
+
     @tradition.setter
     def tradition(self, value):
         self.__tradition = value
 
         # callback magic tab
         app_data.window.nametowidget(".!app.!magictab").show_hide_tabs(self.awakened, self.tradition)
+
+    # we do this because we need to accommodate cranial cyberdecks
+    def all_decks(self):
+        decks = copy(self.decks)
+
+        for cyberware in self.cyberware:
+            if "mpcp" in cyberware.properties:
+                decks.append(cyberware)
+
+        return decks
+
+    @property
+    def misc_cash(self):
+        count = 0
+        r = None
+        for c in self.currencies:
+            if c.properties["permanent"]:
+                count += 1
+                r = c
+
+        if count == 0:
+            raise ValueError("No miscellaneous cash currency present.")
+        elif count < 1:
+            raise ValueError("Multiple miscellaneous cash currencies present.")
+        else:
+            return r
 
     def __init__(self, race):
         self.__race = race
@@ -71,14 +130,17 @@ class Statblock(object):
         self.base_attributes["essence"] = 6.0
         self.ess_ui_var = IntVar()  # this only exists so we can control the progress bar with the essence value
         self.power_points_ui_var = IntVar()  # same as above but for power points
+        self.ess_index_ui_var = IntVar()  # same as above but for essence index
         self.ess_ui_var.set(6)
 
         # setup gen mode
         self.gen_mode = Priority()
 
-        # setup cash
-        self.__cash = self.gen_mode.get_generated_value("resources")
-        self.cash_str = "¥{}".format(self.__cash)
+        # setup cash and currencies
+        self.currencies = []
+
+        # this is the amount of cash that isn't in a Currency
+        self.cash_str = "¥{}".format(self.cash)
 
         # setup inventory
         self.inventory = []
@@ -111,8 +173,25 @@ class Statblock(object):
         self.focus = None
         self.spells = []
 
+        """
+        self.otaku: Can be True or False.
+        self.otaku_path: Can be None, Cyberadept, Technoshaman, or whatever else they might add
+        self.runt_otaku: If True, physical attributes are capped at 1 while mental attributes have limits increased by 2
+        """
+
+        # set otaku status
+        self.__otaku = False
+        self.otaku = False  # do this to make it hide otaku tab on startup
+        self.otaku_path = None
+        self.runt_otaku = False
+        self.complex_forms = []
+        self.echoes = []
+
         # setup cyberware
-        self.cyberware = self.cyberware = []
+        self.cyberware = []
+
+        # setup bioware
+        self.bioware = []
 
         # setup adept powers
         self.powers = []
@@ -120,17 +199,27 @@ class Statblock(object):
 
         # setup decks
         self.decks = []
-            
+
         # setup vehicles
         self.vehicles = []
-            
+
         # setup vehicle accessories
         self.misc_vehicle_accessories = []
 
         # setup miscellaneous programs
         self.other_programs = []
 
-    def calculate_attribute(self, key):
+        # setup ui elements for gen mode
+        self.gen_mode.setup_ui_elements()
+
+    def calculate_attribute(self, key, ex_mods=True):
+        """
+        Calculates the attribute with the given key. ex_mods should be False when calculating derived attributes.
+        @param key: Attribute to calculate.
+        @param ex_mods: If True, also get exclusive mods for that attribute. This should never be called when
+        calculating derived attributes like reaction.
+        @return: Value of the attribute as an integer.
+        """
         # take care of magic keys
         if key == "reaction":
             total = self.base_reaction
@@ -143,49 +232,49 @@ class Statblock(object):
             total = 1
         else:
             total = self.base_attributes[key]
-            
+
         # add racial attribute bonus
         if key in self.race.racial_attributes:
             total += self.race.racial_attributes[key]
 
-        # add cyber bonus
-        cyber_key = "cyber_" + key
-        total += StatMod.get_mod_total(cyber_key)
+        key_prefixes = ("cyber_", "bio_", "other_")
 
-        # add bio bonus
-        bio_key = "bio_" + key
-        total += StatMod.get_mod_total(bio_key)
-
-        # add other bonus
-        other_key = "other_" + key
-        total += StatMod.get_mod_total(other_key)
+        for prefix in key_prefixes:
+            full_key = prefix + key
+            total += StatMod.get_mod_total(full_key)
+            if ex_mods:
+                full_ex_key = prefix + "EX" + key
+                total += StatMod.get_mod_total(full_ex_key)
 
         # can't be less than 1
         total = max(total, 1)
 
         return total
 
-    def calculate_natural_attribute(self, key):
+    def calculate_natural_attribute(self, key, ex_mods=True):
         # take care of magic keys
         if key == "reaction":
-            return self.reaction
+            return self.base_natural_reaction
         elif key == "magic":
             return self.magic
         elif key == "essence":
             # for cyber in self.cyberware:
             return self.essence
+        elif key == "initiative":
+            return 1
         else:
             total = self.base_attributes[key]
             # add racial attribute bonus
             total += self.race.racial_attributes[key]
 
-            # add bio bonus
-            bio_key = "bio_" + key
-            total += StatMod.get_mod_total(bio_key)
+            key_prefixes = ("bio_", "other_")
 
-            # add other bonus
-            other_key = "other_" + key
-            total += StatMod.get_mod_total(other_key)
+            for prefix in key_prefixes:
+                full_key = prefix + key
+                total += StatMod.get_mod_total(full_key)
+                if ex_mods:
+                    full_ex_key = prefix + "EX" + key
+                    total += StatMod.get_mod_total(full_ex_key)
 
             # can't be less than 1
             total = max(total, 1)
@@ -244,13 +333,14 @@ class Statblock(object):
     @property
     def race(self):
         return self.__race
+
     @race.setter
     def race(self, value: Race):
         old_race = self.__race
 
         # adjust the attribute values so that the slider position is the same
         # if above max, set to max
-        for key in AttributesTab.base_attributes:
+        for key in all_base_attributes:
             attr_pos = self.base_attributes[key] - old_race.racial_slider_minimum(key)
             self.base_attributes[key] = attr_pos + value.racial_slider_minimum(key)
 
@@ -313,6 +403,29 @@ class Statblock(object):
     def willpower(self):
         return self.calculate_attribute("willpower")
 
+    # calculated attributes
+    @property
+    def reaction(self):
+        return self.calculate_attribute("reaction")
+
+    @property
+    def base_reaction(self):
+        return (self.calculate_attribute("quickness", ex_mods=False) +
+                self.calculate_attribute("intelligence", ex_mods=False)) // 2
+
+    @property
+    def base_natural_reaction(self):
+        return (self.calculate_natural_attribute("quickness", ex_mods=False) +
+                self.calculate_natural_attribute("intelligence", ex_mods=False)) // 2
+
+    @property
+    def initiative(self):
+        return self.calculate_attribute("initiative")
+
+    @property
+    def magic(self):
+        return int(self.essence)
+
     @property
     def essence(self):
         essence_total = 6  # I am SURE there are races that have more essence
@@ -334,6 +447,55 @@ class Statblock(object):
     @essence.setter
     def essence(self, value):
         self.base_attributes["essence"] = value
+
+    @property
+    def essence_index(self):
+        essence_index_total = self.essence + 3
+
+        for item in self.bioware:
+            essence_index_total -= item.properties["bio_index"]
+
+        # set the essence index UI control variable so it properly updates the UI
+        self.ess_index_ui_var.set(essence_index_total)
+
+        return essence_index_total
+
+    @property
+    def raw_essence_index(self):
+        # essence index without cyberware considerations
+        essence_index_total = self.base_attributes["essence"] + 3
+
+        for item in self.bioware:
+            essence_index_total -= item.properties["bio_index"]
+
+        # set the essence index UI control variable so it properly updates the UI
+        self.ess_index_ui_var.set(essence_index_total)
+
+        return essence_index_total
+
+    # NOTE: there may be edges and flaws that affect racial limits and maximums
+    def racial_limit(self, key):
+        """The soft limit of an attribute, going beyond this costs more karma and requires GM permission."""
+        r = min(6, 6 + self.race.racial_attributes[key])
+        if self.otaku:
+            if self.runt_otaku:
+                if key in ("strength", "body", "quickness"):
+                    r = 1
+                elif key in ("intelligence", "willpower", "charisma"):
+                    r += 2
+            else:
+                if key in ("strength", "body", "quickness"):
+                    r -= 1
+                elif key in ("intelligence", "willpower", "charisma"):
+                    r += 1
+
+        # TODO get stuff from edges and flaws
+
+        return max(1, r)
+
+    def racial_max(self, key):
+        """The hard maximum that an attribute can reach naturally."""
+        return ceil(self.racial_limit(key) * 1.5)
 
     def make_fit_dict(self):
         """
@@ -361,23 +523,6 @@ class Statblock(object):
         return fit_dict
 
     @property
-    def base_reaction(self):
-        return (self.quickness + self.intelligence) // 2
-
-    # calculated attributes
-    @property
-    def reaction(self):
-        return self.calculate_attribute("reaction")
-
-    @property
-    def initiative(self):
-        return self.calculate_attribute("initiative")
-
-    @property
-    def magic(self):
-        return int(self.essence)
-
-    @property
     # power points from adept powers
     def power_points(self):
         total = 0
@@ -394,6 +539,7 @@ class Statblock(object):
         """
         Serializes this into a _dict for turning into a json.
         """
+        currencies = list(map(lambda x: x.serialize(), self.currencies))
         inventory = list(map(lambda x: x.serialize(), self.inventory))
         ammunition = list(map(lambda x: x.serialize(), self.ammunition))
         misc_firearm_accessories = list(map(lambda x: x.serialize(), self.misc_firearm_accessories))
@@ -410,10 +556,11 @@ class Statblock(object):
         vehicles = list(map(lambda x: x.serialize(), self.vehicles))
         other_accessories = list(map(lambda x: x.serialize(), self.misc_vehicle_accessories))
         other_programs = list(map(lambda x: x.serialize(), self.other_programs))
+        echoes = list(map(lambda x: x.serialize(), self.echoes))
         return {
             "race": self.__race.name,
             "base_attributes": self.base_attributes,
-            "cash": self.__cash,
+            "currencies": currencies,
             "inventory": inventory,
             "ammunition": ammunition,
             "misc_firearm_accessories": misc_firearm_accessories,
@@ -432,7 +579,12 @@ class Statblock(object):
             "decks": decks,
             "vehicles": vehicles,
             "other_programs": other_programs,
-            "misc_vehicle_accessories": other_accessories
+            "misc_vehicle_accessories": other_accessories,
+            "otaku": self.otaku,
+            "otaku_path": self.otaku_path,
+            "runt_otaku": self.runt_otaku,
+            "complex_forms": self.complex_forms,
+            "echoes": echoes
         }
 
     def pay_cash(self, amount, *args) -> bool:
@@ -447,8 +599,8 @@ class Statblock(object):
         for b in args:
             will_pay = will_pay and b
 
-        if amount <= self.__cash and will_pay:
-            self.cash -= amount
+        if amount <= self.cash and will_pay:
+            self.sub_cash(amount)
             return True
         else:
             return False

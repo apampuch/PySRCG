@@ -10,7 +10,7 @@ from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 
 class VehicleBuyTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent, "Buy", "Sell")
+        super().__init__(parent, "VehicleAccessoriesTab", "Buy", "Sell")
 
         self.race_mod_var = StringVar(value="None")
 
@@ -28,7 +28,7 @@ class VehicleBuyTab(ThreeColumnBuyTab, ABC):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Vehicles"]
+            return app_data.game_data["Vehicles"]
         except KeyError:
             return {}
 
@@ -55,11 +55,11 @@ class VehicleBuyTab(ThreeColumnBuyTab, ABC):
         vehicle: Vehicle = self.statblock_inventory[item_index]
         accessory: VehicleAccessory
         for accessory in vehicle.properties["vehicle_accessories"]:
-            self.statblock.cash += accessory.properties["cost"]
+            self.statblock.add_cash(accessory.properties["cost"])
             if "wireless_accessories" in accessory.properties:
                 for wireless_accessory in accessory.properties["wireless_accessories"]:
-                    self.statblock.cash += wireless_accessory.properties["cost"]
-        self.statblock.cash += self.statblock_inventory[item_index].properties["cost"]
+                    self.statblock.add_cash(wireless_accessory.properties["cost"])
+        self.statblock.add_cash(self.statblock_inventory[item_index].properties["cost"])
         self.remove_inv_item(item_index)
 
     @property

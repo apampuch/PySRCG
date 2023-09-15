@@ -85,14 +85,29 @@ class StatMod:
         StatMod._all_stat_mods = {}
 
     @staticmethod
-    def get_mod_total(key):
+    def get_mod_total(key, ex_key=None):
         """Total the mods for the given key."""
         total = 0
-        if key not in StatMod._all_stat_mods.keys():
-            return total
+        if key in StatMod._all_stat_mods.keys():
+            for mod in StatMod._all_stat_mods[key]:
+                total += mod
 
-        for mod in StatMod._all_stat_mods[key]:
-            total += mod
+        if ex_key is not None and ex_key in StatMod._all_stat_mods.keys():
+            for mod in StatMod._all_stat_mods[ex_key]:
+                total += mod
+
+        return total
+
+    @staticmethod
+    def total_of_stat(key):
+        """Total of all mods for one stat, like Quickness."""
+        total = 0
+
+        # find all the mods
+        for mod_name in StatMod._all_stat_mods.keys():
+            stat = mod_name.split("_")[1]
+            if stat == key:
+                total += sum(StatMod._all_stat_mods[mod_name])
 
         return total
 

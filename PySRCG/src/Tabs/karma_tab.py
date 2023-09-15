@@ -11,7 +11,7 @@ from src.adjustment import Adjustment
 
 class KarmaTab(NotebookTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "KarmaTab")
 
         self.not_finalized_frame = Frame(self)
         self.finalized_frame = Frame(self)
@@ -31,7 +31,7 @@ class KarmaTab(NotebookTab, ABC):
         # spending karma
         spending_karma_frame = ttk.LabelFrame(self.finalized_frame, text="Karma Spending")
 
-        self.karma_for_cash_var = IntVar(0)  # reset this when applying
+        self.karma_for_cash_var = IntVar()  # reset this when applying
         karma_for_cash_label = Label(spending_karma_frame, text="¥1000 = 1 Karma")
         karma_for_cash_minus_button = Button(spending_karma_frame, text="-", command=self.sell_karma_with_cash)
         karma_for_cash_amount_label = Label(spending_karma_frame, textvariable=self.karma_for_cash_var)
@@ -39,7 +39,7 @@ class KarmaTab(NotebookTab, ABC):
         # karma_for_cash_box = Entry(spending_karma_frame, textvariable=self.karma_for_cash_var, validate="key",
         #                            validatecommand=self.vcmd)
 
-        self.cash_for_karma_var = IntVar(0)
+        self.cash_for_karma_var = IntVar()
         cash_for_karma_label = Label(spending_karma_frame, text="1 Karma = ¥250")
         cash_for_karma_minus_button = Button(spending_karma_frame, text="-", command=self.sell_cash_with_karma)
         cash_for_karma_amount_label = Label(spending_karma_frame, textvariable=self.cash_for_karma_var)
@@ -48,7 +48,7 @@ class KarmaTab(NotebookTab, ABC):
         #                            validatecommand=self.vcmd)
 
         # TODO check if the character is an adept for this
-        self.karma_for_adept_var = IntVar(0)
+        self.karma_for_adept_var = IntVar()
         karma_for_adept_label = Label(spending_karma_frame, text="20 Karma = 1 adept point")
         karma_for_adept_minus_button = Button(spending_karma_frame, text="-")
         karma_for_adept_amount_label = Label(spending_karma_frame, textvariable=self.karma_for_adept_var)
@@ -56,7 +56,7 @@ class KarmaTab(NotebookTab, ABC):
         # karma_for_adept_box = Entry(spending_karma_frame, textvariable=self.karma_for_adept_var, validate="key",
         #                             validatecommand=self.vcmd)
 
-        self.karma_for_edge_flaw_var = IntVar(0)
+        self.karma_for_edge_flaw_var = IntVar()
         karma_for_edge_flaw_label = Label(spending_karma_frame, text="Edges and Flaws NYI")
         karma_for_edge_flaw_minus_button = Button(spending_karma_frame, text="-")
         karma_for_edge_flaw_amount_label = Label(spending_karma_frame, textvariable=self.karma_for_edge_flaw_var)
@@ -64,7 +64,7 @@ class KarmaTab(NotebookTab, ABC):
         # karma_for_edge_flaw_box = Entry(spending_karma_frame, textvariable=self.karma_for_edge_flaw_var, validate="key",
         #                                 validatecommand=self.vcmd)
 
-        karma_for_custom_var = IntVar(0)
+        karma_for_custom_var = IntVar()
         karma_for_custom_reason_var = StringVar()
         karma_for_custom_label = Label(spending_karma_frame, text="Custom Karma Spending")
         karma_for_custom_box = Entry(spending_karma_frame, textvariable=karma_for_custom_var, validate="key",
@@ -98,7 +98,7 @@ class KarmaTab(NotebookTab, ABC):
         # total
         total_karma_label = Label(set_karma_frame, text="Total")
 
-        self.total_karma_var = IntVar(0)
+        self.total_karma_var = IntVar()
         total_karma_box = Entry(set_karma_frame, textvariable=self.total_karma_var, validate="key",
                                 validatecommand=self.vcmd)
         total_karma_add_button = Button(set_karma_frame, text="Add", command=self.add_total_karma)
@@ -110,7 +110,7 @@ class KarmaTab(NotebookTab, ABC):
         available_karma_label = Label(set_karma_frame, text="Available")
         self.available_karma_amt = Label(set_karma_frame, text="BUGGED")  # should always be Karma gen mode
 
-        kp_loss_var = IntVar(0)
+        kp_loss_var = IntVar()
         kp_loss_label = Label(set_karma_frame, text="KP Loss")
         kp_loss_box = Entry(set_karma_frame, textvariable=kp_loss_var, validate="key",
                             validatecommand=self.vcmd)
@@ -142,6 +142,7 @@ class KarmaTab(NotebookTab, ABC):
 
         self.not_finalized_frame.pack(expand=True)
 
+    # noinspection PyUnusedLocal
     def int_validate(self, action, index, value_if_allowed,
                      prior_value, text, validation_type, trigger_type, widget_name):
         """
@@ -187,6 +188,10 @@ class KarmaTab(NotebookTab, ABC):
         self.statblock.gen_mode = Finalized()
         self.statblock.gen_mode.update_total()
         self.karma_pool_val_label.configure(textvariable=self.gen_mode.karma_pool)
+
+        if self.statblock.otaku:
+            app_data.decking_tab.show_hide_tabs(self.statblock.otaku)
+
         self.on_switch()
 
     def apply_click(self):
@@ -257,7 +262,8 @@ class KarmaTab(NotebookTab, ABC):
             print("Can't sell any more karma back!")
         else:
             self.karma_for_cash_var.set(self.karma_for_cash_var.get() - 1)
-            self.statblock.cash += 1000
+            # self.statblock.cash += 1000
+            self.statblock.add_cash(1000)
             self.statblock.gen_mode.sub_karma(1, self.statblock.race)
             self.statblock.gen_mode.update_total()
 
@@ -274,7 +280,8 @@ class KarmaTab(NotebookTab, ABC):
             adjustment = Adjustment(1, "buy_cash_with_karma",  undo)
             self.gen_mode.add_adjustment(adjustment)
             self.cash_for_karma_var.set(self.cash_for_karma_var.get() + 250)
-            self.statblock.cash += 250
+            # self.statblock.cash += 250
+            self.statblock.add_cash(250)
         else:
             print("Not enough karma!")
 

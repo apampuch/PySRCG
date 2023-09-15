@@ -1,4 +1,3 @@
-from copy import copy
 from src.CharData.program import Program
 from src.CharData.reportable import Reportable
 
@@ -11,7 +10,9 @@ class Deck(Reportable):
                             "response_increase", "page")
 
         self.fill_necessary_fields(necessary_fields, kwargs)
+        self.setup_deck_stuff(kwargs)
 
+    def setup_deck_stuff(self, kwargs):
         # also do a special check for stored memory
         if "stored_memory" not in kwargs:
             kwargs["stored_memory"] = []

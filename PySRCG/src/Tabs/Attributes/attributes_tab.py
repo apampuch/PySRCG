@@ -1,15 +1,18 @@
+from abc import ABC
+
+from src import app_data
 from src.CharData.gear import Gear
 from src.GenModes.finalized import Finalized
 from src.Tabs.notebook_tab import NotebookTab
 from tkinter import *
 from tkinter import ttk
-from typing import Dict, List, Any
+from typing import Dict, List
 
 from src.adjustment import Adjustment
 from src.statblock_modifier import StatMod
 
 
-class AttributesTab(NotebookTab):
+class AttributesTab(NotebookTab, ABC):
     equipped_armors: List[Gear]
     sliders: Dict[str, Scale]
     slider_vars: Dict[str, IntVar]
@@ -20,7 +23,7 @@ class AttributesTab(NotebookTab):
     derived_attributes = ["essence", "magic", "reaction", "initiative"]
 
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "AttributesTab")
 
         self.equipped_armors = []
 
@@ -71,10 +74,10 @@ class AttributesTab(NotebookTab):
 
         # setup the grid of shit
         for attr in AttributesTab.base_attributes:
-            self.setup_slider_and_label(attr)
+            self.setup_slider_and_label(attr, first_setup=TRUE)
 
         for attr in AttributesTab.derived_attributes:
-            self.setup_slider_and_label(attr, True)
+            self.setup_slider_and_label(attr, True, first_setup=TRUE)
 
         # override reaction command because reaction is special
         # self.sliders["reaction"].configure(command=lambda x: self.on_set_reaction_value(x))
@@ -104,7 +107,7 @@ class AttributesTab(NotebookTab):
         self.quickness_penalty_val.set("0")
 
         # set dice pool values
-        self.set_pool_vals()
+        self.boot_pool_vals()
 
         # dice pool labels
         self.dice_pool_labelframe = ttk.LabelFrame(self, text="Dice Pools")
@@ -132,42 +135,42 @@ class AttributesTab(NotebookTab):
         self.combat_pool_val_label = ttk.Label(
             self.dice_pool_labelframe,
             style="Red.TLabel",
-            textvar=self.combat_pool_val
+            textvariable=self.combat_pool_val
         )
         self.combat_pool_val_label.grid(column=1, row=0)
 
         self.control_pool_val_label = ttk.Label(
             self.dice_pool_labelframe,
             style="Red.TLabel",
-            textvar=self.control_pool_val
+            textvariable=self.control_pool_val
         )
         self.control_pool_val_label.grid(column=1, row=1)
 
         self.hacking_pool_val_label = ttk.Label(
             self.dice_pool_labelframe,
             style="Red.TLabel",
-            textvar=self.hacking_pool_val
+            textvariable=self.hacking_pool_val
         )
         self.hacking_pool_val_label.grid(column=1, row=2)
 
         self.spell_pool_val_label = ttk.Label(
             self.dice_pool_labelframe,
             style="Red.TLabel",
-            textvar=self.spell_pool_val
+            textvariable=self.spell_pool_val
         )
         self.spell_pool_val_label.grid(column=1, row=3)
 
         self.task_pool_val_label = ttk.Label(
             self.dice_pool_labelframe,
             style="Red.TLabel",
-            textvar=self.task_pool_val
+            textvariable=self.task_pool_val
         )
         self.task_pool_val_label.grid(column=1, row=4)
 
         self.astral_combat_pool_label_labelframe = ttk.Label(
             self.dice_pool_labelframe,
             style="Red.TLabel",
-            textvar=self.astral_combat_pool_val
+            textvariable=self.astral_combat_pool_val
         )
         self.astral_combat_pool_label_labelframe.grid(column=1, row=5)
 
@@ -192,30 +195,30 @@ class AttributesTab(NotebookTab):
         self.ballistic_armor_val_label = ttk.Label(
             self.armor_labelframe,
             style="Red.TLabel",
-            textvar=self.ballistic_armor_val
+            textvariable=self.ballistic_armor_val
         )
         self.ballistic_armor_val_label.grid(column=1, row=0)
 
         self.impact_armor_val_label = ttk.Label(
             self.armor_labelframe,
             style="Red.TLabel",
-            textvar=self.impact_armor_val
+            textvariable=self.impact_armor_val
         )
         self.impact_armor_val_label.grid(column=1, row=1)
 
         self.quickness_penalty_val_label = ttk.Label(
             self.armor_labelframe,
             style="Red.TLabel",
-            textvar=self.quickness_penalty_val
+            textvariable=self.quickness_penalty_val
         )
         self.quickness_penalty_val_label.grid(column=1, row=2)
 
-    def setup_slider_and_label(self, key, other_attribute=False):
+    def setup_slider_and_label(self, key, other_attribute=False, first_setup=False):
         """Initial setup. Should only be run once per attribute."""
-        self.slider_vars[key] = IntVar()             # this is the internal variable
-        self.slider_vars[key].set(1)                 # initialize it to 1
-        self.slider_old_vals[key] = IntVar()         # this is to correct for when we try to go over our total
-        self.slider_old_vals[key].set(1)             # initialize it to 1
+        self.slider_vars[key] = IntVar()  # this is the internal variable
+        self.slider_vars[key].set(1)  # initialize it to 1
+        self.slider_old_vals[key] = IntVar()  # this is to correct for when we try to go over our total
+        self.slider_old_vals[key].set(1)  # initialize it to 1
 
         # setup the ui elements
 
@@ -232,16 +235,17 @@ class AttributesTab(NotebookTab):
         # the slider itself
         if other_attribute:
             racial_slider_minimum = 0
+        elif first_setup:  # just set to 1 if it's the very first setup on boot
+            racial_slider_minimum = 1
         else:
             racial_slider_minimum = self.race.racial_slider_minimum(key)
 
-        # The from_ and to values on the sliders themselves are different from
-        # what the actual values are.
+        # The from_ and to values on the sliders themselves are different from what the actual values are.
         self.sliders[key] = Scale(adjustment_container_frame,
                                   from_=racial_slider_minimum, to=6,
                                   variable=self.slider_vars[key],
                                   command=lambda x: self.on_set_attribute_value(key, x),
-                                  orient=HORIZONTAL, showvalue=0)
+                                  orient=HORIZONTAL, showvalue=False)
 
         # - and + buttons if we're finalized
         self.minus_buttons[key] = Button(adjustment_container_frame,
@@ -276,7 +280,7 @@ class AttributesTab(NotebookTab):
         self.attribute_labels[key].grid(column=0, row=self.current_row, sticky=E)
         adjustment_container_frame.grid(column=1, row=self.current_row)
         # self.sliders[key].grid(column=1, row=self.current_row)
-        #self.mod_labels["slider"][key].grid(column=2, row=self.current_row)
+        # self.mod_labels["slider"][key].grid(column=2, row=self.current_row)
         self.mod_labels["race"][key].grid(column=3, row=self.current_row)
         self.mod_labels["bio"][key].grid(column=4, row=self.current_row)
         self.mod_labels["cyber"][key].grid(column=5, row=self.current_row)
@@ -285,6 +289,21 @@ class AttributesTab(NotebookTab):
 
         # iterate current row
         self.current_row += 1
+
+    def boot_pool_vals(self):
+        # boots all the pools with value 1 for initial program load
+
+        # set reaction
+        self.sliders["reaction"].set(1)
+        self.sliders["initiative"].set(1)
+
+        # set dice pool values
+        self.combat_pool_val.set("1")
+        self.control_pool_val.set("1")
+        self.hacking_pool_val.set("1")
+        self.spell_pool_val.set("1")
+        self.task_pool_val.set("0")  # NYI
+        self.astral_combat_pool_val.set("1")
 
     def set_pool_vals(self):
         # setting reaction slider gives proper value, setting initiative slider does not
@@ -298,20 +317,25 @@ class AttributesTab(NotebookTab):
         self.on_set_attribute_value("reaction", self.statblock.reaction, False, False)
         self.on_set_attribute_value("initiative", self.statblock.initiative, False, False)
         # set dice pool values
-        self.combat_pool_val.set(self.statblock.combat_pool)
-        self.control_pool_val.set(self.statblock.control_pool)
-        self.hacking_pool_val.set(self.statblock.hacking_pool)
-        self.spell_pool_val.set(self.statblock.spell_pool)
-        self.task_pool_val.set("0")  # NYI
-        self.astral_combat_pool_val.set(self.statblock.astral_combat_pool)
+        combat = self.statblock.combat_pool + StatMod.total_of_stat("combatpool")
+        self.combat_pool_val.set(combat)
+        control = self.statblock.control_pool + StatMod.total_of_stat("controlpool")
+        self.control_pool_val.set(control)
+        hacking = self.statblock.hacking_pool + StatMod.total_of_stat("hackingpool")
+        self.hacking_pool_val.set(hacking)
+        spell = self.statblock.spell_pool + StatMod.total_of_stat("spellpool")
+        self.spell_pool_val.set(spell)
+        self.task_pool_val.set(StatMod.total_of_stat("taskpool"))
+        astral_combat = self.statblock.astral_combat_pool + StatMod.total_of_stat("astralcombat")
+        self.astral_combat_pool_val.set(astral_combat)
 
     def plus_button_func(self, key):
         # check if we're at the absolute maximum
-        if self.statblock.base_attributes[key] >= self.statblock.race.racial_max(key):
+        if self.statblock.base_attributes[key] >= self.statblock.racial_max(key):
             print(f"{key} already at maximum!")
             return
 
-        if self.statblock.base_attributes[key] >= self.statblock.race.racial_limit(key):
+        if self.statblock.base_attributes[key] >= self.statblock.racial_limit(key):
             karma_cost = (self.statblock.calculate_natural_attribute(key) + 1) * 3
         else:
             karma_cost = (self.statblock.calculate_natural_attribute(key) + 1) * 2
@@ -372,13 +396,15 @@ class AttributesTab(NotebookTab):
         else:
             self.slider_old_vals[key].set(value)
 
+        return value
+
     def on_set_attribute_value(self, key, value, adjust=True, set_pool=True):
         """Event called when slider is set"""
         # set value to int since it's passed in as a string for some reason
         value = int(value)
 
         if adjust:
-            self.adjust_disallowed_purchase(key, value)
+            value = self.adjust_disallowed_purchase(key, value)
 
         # we need to int(float(value)) because passes the value in as a string of a floating point number
         if key in self.statblock.base_attributes:
@@ -398,17 +424,20 @@ class AttributesTab(NotebookTab):
 
         # set the bio bonus column
         bio_key = "bio_" + key
-        bio_val = int(StatMod.get_mod_total(bio_key))
+        bio_ex_key = "bio_EX" + key
+        bio_val = int(StatMod.get_mod_total(bio_key, bio_ex_key))
         self.mod_labels["bio"][key].config(text=bio_val)
 
         # set the cyber bonus column
         cyber_key = "cyber_" + key
-        cyber_val = int(StatMod.get_mod_total(cyber_key))
+        cyber_ex_key = "cyber_EX" + key
+        cyber_val = int(StatMod.get_mod_total(cyber_key, cyber_ex_key))
         self.mod_labels["cyber"][key].config(text=cyber_val)
 
         # set the other bonus column
         other_key = "other_" + key
-        other_val = int(StatMod.get_mod_total(other_key))
+        other_ex_key = "other_EX" + key
+        other_val = int(StatMod.get_mod_total(other_key, other_ex_key))
         self.mod_labels["other"][key].config(text=other_val)
 
         # set the total, force it to be an integer
@@ -423,7 +452,7 @@ class AttributesTab(NotebookTab):
             self.calculate_total()
 
         # recalculate armor penalties and shit when we change quickness
-        if key is "quickness":
+        if key == "quickness":
             self.statblock.calculate_armor_and_penalties(self.equipped_armors, None, None)
             self.quickness_penalty_val.set(self.statblock.armor_quickness_penalty)
 
@@ -443,15 +472,18 @@ class AttributesTab(NotebookTab):
 
         return total
 
-    def calculate_total(self):
-        """Totals all attributes' point values and updates the top karma bar."""
-
-        self.statblock.gen_mode.update_total(self.get_total(), "attributes")
-
     def racial_slider_calc(self, key):
         """Gets the total of the slider value and the racial attribute mod."""
         slider_val = self.sliders[key].get()
         return slider_val + self.race.racial_attributes[key]
+
+    def calculate_total(self):
+        """Totals all attributes' point values and updates the top karma bar."""
+        self.statblock.gen_mode.update_total(self.get_total(), "attributes")
+
+    def update_karma_bar(self):
+        vals = self.gen_mode.karma_bar_vals["attributes"]
+        app_data.top_bar.karma_bar.configure(variable=vals[0], maximum=vals[1].get())
 
     def load_character(self):
         """Called whenever a character is loaded"""
@@ -463,17 +495,19 @@ class AttributesTab(NotebookTab):
         self.on_switch()
 
     def get_progress_bar_info(self):
-        cur = self.character.statblock.gen_mode.cur_attribute_points.get()
-        max = self.character.statblock.gen_mode.max_attribute_points.get()
+        _cur = self.character.statblock.gen_mode.cur_attribute_points.get()
+        _max = self.character.statblock.gen_mode.max_attribute_points.get()
 
-        return cur, max
+        return _cur, _max
 
     def on_switch(self):
         # pack forget buttons and sliders to reset ui
-        for item in list(self.sliders.values())\
-                    + list(self.minus_buttons.values())\
-                    + list(self.plus_buttons.values())\
-                    + list(self.mod_labels["slider"].values()):
+        # noinspection PyTypeChecker
+        forgets = list(self.sliders.values()) \
+                + list(self.minus_buttons.values()) \
+                + list(self.plus_buttons.values()) \
+                + list(self.mod_labels["slider"].values())
+        for item in forgets:
             item.pack_forget()
 
         # get name of current race and set the label
@@ -488,6 +522,21 @@ class AttributesTab(NotebookTab):
                 # pack the slider
                 self.sliders[key].pack(side=LEFT)
                 self.mod_labels["slider"][key].pack()
+
+                # set attribute limits
+                limit = 6
+                if self.character is not None and self.statblock.otaku:
+                    if self.statblock.runt_otaku:
+                        if key in ("strength", "body", "quickness"):
+                            limit = max(1, self.statblock.race.racial_slider_minimum(key))
+                        elif key in ("intelligence", "willpower", "charisma"):
+                            limit = 8
+                    else:
+                        if key in ("strength", "body", "quickness"):
+                            limit = 5
+                        elif key in ("intelligence", "willpower", "charisma"):
+                            limit = 7
+                self.sliders[key].configure(to=limit)
 
             else:
                 # remove the hard limits on attributes
@@ -524,13 +573,15 @@ class AttributesTab(NotebookTab):
 
         # setup armor
         bal_total = self.statblock.ballistic_armor + StatMod.get_mod_total("race_ballistic") \
-                    + StatMod.get_mod_total("bio_ballistic") + StatMod.get_mod_total("cyber_ballistic") \
-                    + StatMod.get_mod_total("other_ballistic")
+                                                   + StatMod.get_mod_total("bio_ballistic") \
+                                                   + StatMod.get_mod_total("cyber_ballistic") \
+                                                   + StatMod.get_mod_total("other_ballistic")
         self.ballistic_armor_val.set(bal_total)
 
         imp_total = self.statblock.impact_armor + StatMod.get_mod_total("race_impact") \
-                    + StatMod.get_mod_total("bio_impact") + StatMod.get_mod_total("cyber_impact") \
-                    + StatMod.get_mod_total("other_impact")
+                                                + StatMod.get_mod_total("bio_impact") \
+                                                + StatMod.get_mod_total("cyber_impact") \
+                                                + StatMod.get_mod_total("other_impact")
         self.impact_armor_val.set(imp_total)
 
         self.quickness_penalty_val.set(self.statblock.armor_quickness_penalty)

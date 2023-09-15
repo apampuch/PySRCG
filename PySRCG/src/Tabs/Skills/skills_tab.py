@@ -1,9 +1,10 @@
 from copy import copy
-from math import floor
+from math import floor, ceil
 from tkinter import *
 from tkinter import ttk, messagebox
-from typing import Dict, Any, Optional
+from typing import Dict
 
+from src import app_data
 from src.CharData.skill import Skill, Specialization
 from src.GenModes.finalized import Finalized
 from src.adjustment import Adjustment
@@ -24,7 +25,7 @@ class SkillsTab(NotebookTab):
         return treeview_get(self.skills_list, self.tree_list_dict, make_copy=False)
 
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "SkillsTab")
         # TODO add an implementation of no_duplicates
 
         self.tree_library_dict = {}  # maps library terminal children iids to (skill name, skill attribute) tuple
@@ -56,11 +57,11 @@ class SkillsTab(NotebookTab):
         self.skills_list["yscrollcommand"] = self.skills_list_scroll.set
 
         # grids
-        self.object_library.grid(column=0, row=0, sticky=(N, S), columnspan=2)
-        self.skills_library_scroll.grid(column=2, row=0, sticky=(N, S))
+        self.object_library.grid(column=0, row=0, sticky=NS, columnspan=2)
+        self.skills_library_scroll.grid(column=2, row=0, sticky=NS)
 
-        self.skills_list.grid(column=4, row=0, sticky=(N, S), columnspan=3)
-        self.skills_list_scroll.grid(column=7, row=0, sticky=(N, S))
+        self.skills_list.grid(column=4, row=0, sticky=NS, columnspan=3)
+        self.skills_list_scroll.grid(column=7, row=0, sticky=NS)
 
         self.add_button.grid(column=0, row=1)
         self.remove_button.grid(column=1, row=1)
@@ -91,7 +92,7 @@ class SkillsTab(NotebookTab):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Skills"]
+            return app_data.game_data["Skills"]
         except KeyError:
             return {}
 
@@ -141,8 +142,7 @@ class SkillsTab(NotebookTab):
         # add child specializations
         for spec in skill.specializations:
             # make the child of the skill tree item
-            s_iid = self.skills_list.insert(iid, "end", text=spec,
-                                            value=skill.specializations[spec] + skill.rank)
+            s_iid = self.skills_list.insert(iid, "end", text=spec.name, value=spec.rank)
             # add it to the dictionary mapping the id to spec name
             self.tree_list_dict[s_iid] = spec
             # self.tree_spec_dict[iid][s_iid] = spec
@@ -152,7 +152,7 @@ class SkillsTab(NotebookTab):
 
     def remove_skill(self):
         # don't do anything if nothing is selected
-        if len(self.skills_list.selection()) is 0:
+        if len(self.skills_list.selection()) == 0:
             return
 
         selected_list_item_iid = self.skills_list.selection()[-1]  # this is an iid
@@ -190,7 +190,7 @@ class SkillsTab(NotebookTab):
         # otherwise try this for every other gen mode
         else:
             # if the parent item is not "", it's a specialization, and we need to only remove it from its skill
-            if parent_ui_item_iid is not "":
+            if parent_ui_item_iid != "":
                 # get the parent skill
                 parent_item = self.tree_list_dict[parent_ui_item_iid]
                 ui_name = self.skills_list.item(self.selected_skill_ui_iid(), "text")
@@ -220,13 +220,13 @@ class SkillsTab(NotebookTab):
     def specialize_skill(self):
         # TODO make it limit the number of specializations to the linked attribute
         # don't do anything if nothing is selected
-        if len(self.skills_list.selection()) is 0:
+        if len(self.skills_list.selection()) == 0:
             return
 
         # only make these checks if we're not finalized
         if type(self.gen_mode) is not Finalized:
             # don't do it if the skill is 1 or less
-            if self.list_selected.rank is 1:
+            if self.list_selected.rank == 1:
                 print("Too low to specialize")
                 return
 
@@ -244,13 +244,13 @@ class SkillsTab(NotebookTab):
         # setup new window
         temp_window = Toplevel(self.parent)
         temp_window.grab_set()
-        temp_window.resizable(0, 0)
+        temp_window.resizable(None, None)
 
         name_entry = Entry(temp_window)
 
         # funcs that we give to the buttons in the temp window
         def ok_func():
-            if name_entry.get() is not "":
+            if name_entry.get() != "":
                 # make a new item in the UI with the value equal to 1 plus the current rank
                 new_item_iid = self.skills_list.insert(self.selected_skill_ui_iid(), "end", text=name_entry.get(),
                                                        value=self.list_selected.rank + 1)
@@ -285,7 +285,7 @@ class SkillsTab(NotebookTab):
 
     def plus_skill(self):
         # don't do anything if nothing is selected
-        if len(self.skills_list.selection()) is 0:
+        if len(self.skills_list.selection()) == 0:
             return
 
         # figure out if finalized or not
@@ -317,10 +317,23 @@ class SkillsTab(NotebookTab):
             if self.list_selected.rank >= self.statblock.calculate_natural_attribute(self.list_selected.attribute):
                 test_val += 1
 
-            # increase rank if allowed
+            # get the max value of the skill
             final_starting_max_value = (self.gen_mode.starting_skills_max - 1) \
                 if len(self.list_selected.specializations) > 0 \
                 else self.gen_mode.starting_skills_max
+
+            # otaku skill adjustments
+            if self.statblock.otaku:
+                # get channel skill totals
+                # increase computer max by 2
+                if self.list_selected.name == "Computer":  # TODO make this cover other skills
+                    final_starting_max_value += 2
+                # decrease etiquette max by 2
+                elif self.list_selected.name == "Etiquette":
+                    final_starting_max_value -= 2
+                elif self.list_selected.name in ("Access", "Control", "Files", "Index", "Slave"):
+                    final_starting_max_value = self.max_channel_rank()
+
             # check that we have enough points and aren't going past the max
             if self.list_selected is not None and \
                     self.gen_mode.point_purchase_allowed(test_val, "skills") and \
@@ -343,7 +356,7 @@ class SkillsTab(NotebookTab):
 
     def minus_skill(self):
         # don't do anything if nothing is selected
-        if len(self.skills_list.selection()) is 0:
+        if len(self.skills_list.selection()) == 0:
             return
 
         if type(self.gen_mode) is Finalized:
@@ -420,6 +433,7 @@ class SkillsTab(NotebookTab):
     def get_total(self):
         """Totals all skill points and updates the top karma bar."""
         total = 0
+        channel_total = 0
 
         # calculate the total
         for skill in self.tree_list_dict.values():
@@ -437,7 +451,43 @@ class SkillsTab(NotebookTab):
             post_points = max(0, rank_total - self.statblock.calculate_natural_attribute(skill.attribute)) * 2
             total += pre_points + post_points
 
+            # check if otaku and if channel skill, if so, add to total
+            if self.statblock.otaku and skill.name in ("Access", "Control", "Files", "Index", "Slave"):
+                channel_total += pre_points + post_points
+
+        # check if otaku
+        if self.statblock.otaku:
+            # get free channel skill points
+            s = self.statblock
+            free_channel_points = ceil((s.intelligence + s.willpower + s.charisma) / 3)
+            # give discount of free points
+            total -= min(free_channel_points, channel_total)
+
         return total
+
+    def max_channel_rank(self) -> int:
+        """
+        Returns the max rank for a channel skill.
+        Note that you can end up with an invalid combo like 6,5,5.
+        Do a sanity check before finalization for this case.
+        """
+        ranks = []
+        for skill in self.statblock.skills:
+            print(skill.name)
+            if skill.name in ("Access", "Control", "Files", "Index", "Slave"):
+                ranks.append(skill.rank)
+
+        ranks.sort(reverse=True)
+        print(ranks)
+
+        # try to find 6,5,4 in ranks, search in reverse order
+        # if one isn't in there, that's the max rank
+        for n in (6, 5, 4):
+            if n not in ranks:
+                return n
+
+        # if we don't find anything, just return 3
+        return 3
 
     def calculate_total(self):
         self.statblock.gen_mode.update_total(self.get_total(), "skills")
@@ -453,6 +503,10 @@ class SkillsTab(NotebookTab):
         :return: The iid of the selected skill UI item
         """
         return self.skills_list.selection()[-1]
+
+    def update_karma_bar(self):
+        vals = self.gen_mode.karma_bar_vals["skills"]
+        app_data.top_bar.karma_bar.configure(variable=vals[0], maximum=vals[1].get())
 
     def reload_data(self):
         children = self.object_library.get_children()

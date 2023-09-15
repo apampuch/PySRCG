@@ -1,20 +1,24 @@
 from abc import ABC
-
 from tkinter import *
 
-from src.CharData.gear import find_gear_by_dict, Gear
+from src import app_data
+from src.CharData.gear import Gear
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.app_data import pay_cash
 
 
 class AmmoTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent, show_quantity=True, buy_from_list=True)
+        super().__init__(parent, "AmmoTab", show_quantity=True, buy_from_list=True)
+
+    @staticmethod
+    def name_for_list(x):
+        return f"{x.properties['name']} ({x.properties['count']})"
 
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Ammunition"]
+            return app_data.game_data["Ammunition"]
         except KeyError:
             return {}
 
@@ -39,10 +43,11 @@ class AmmoTab(ThreeColumnBuyTab, ABC):
             if exists_index >= 0:
                 self.statblock_inventory[exists_index].properties["count"] += count
                 # update label and report box
-                self.update_inventory_text_at_index(exists_index, f"{selected.name} ({self.statblock_inventory[exists_index].properties['count']})")
+                self.update_inventory_text_at_index(
+                    exists_index, f"{selected.name} ({self.statblock_inventory[exists_index].properties['count']})")
                 self.fill_description_box(self.statblock_inventory[exists_index].report())
             else:
-                self.add_inv_item(selected, listbox_string=lambda x: f"{x.name} ({x.properties['count']})")
+                self.add_inv_item(selected)
         else:
             print("Not enough money!")
 
@@ -51,14 +56,16 @@ class AmmoTab(ThreeColumnBuyTab, ABC):
         count = min(selected_item.properties["count"], int(self.amount_spinbox.get()))
 
         # return cash value
-        self.statblock.cash += selected_item.properties["cost"] * count
+        self.statblock.add_cash(selected_item.properties["cost"] * count)
 
         # remove amount or delete if all would be removed
         if count == selected_item.properties["count"]:
             self.remove_inv_item(self.inv_selected_index)
         elif count < selected_item.properties["count"]:
             selected_item.properties["count"] -= count
-            self.update_inventory_text_at_index(selected_index, f"{selected_item.name} ({self.statblock_inventory[selected_index].properties['count']})")
+            self.update_inventory_text_at_index(
+                selected_index,
+                f"{selected_item.name} ({self.statblock_inventory[selected_index].properties['count']})")
             self.fill_description_box(self.statblock_inventory[selected_index].report())
         else:
             item_count = selected_item.properties["count"]

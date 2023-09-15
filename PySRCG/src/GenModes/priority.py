@@ -5,26 +5,23 @@ from tkinter import *
 from src import app_data
 from src.CharData.race import all_races
 from src.GenModes.gen_mode import GenMode
-from src.Tabs.Attributes.attributes_tab import AttributesTab
-from src.Tabs.Augments.augments_tab import AugmentsTab
-from src.Tabs.Background.background_tab import BackgroundTab
-from src.Tabs.Background.edges_flaws_tab import EdgesFlawsTab
-from src.Tabs.Decking.decking_tab import DeckingTab
-from src.Tabs.Magic.magic_tab import MagicTab
-from src.Tabs.Skills.skills_tab import SkillsTab
 from src.utils import magic_tab_show_on_awakened_status
 
 
+def points_max():
+    return app_data.app_character.statblock.magic + app_data.app_character.statblock.bonus_power_points
+
+
 class Priority(GenMode, ABC):
-    def __init__(self, priority_order=None, race=None):
+    def __init__(self, data=None, **kwargs):
         super().__init__()
         self.starting_skills_max = 6
 
-        # 0 is highest priority, 4 is lowest
-        if priority_order is None:
+        # 0 is the highest priority, 4 is lowest
+        if data is None:
             self.priority_order = ["resources", "attributes", "race", "skills", "magic"]
         else:
-            self.priority_order = priority_order
+            self.priority_order = data
 
         # this _dict corresponds to the value of the priority of each option
         # e.g. magic C would be priority_value_dict["magic"][2]
@@ -60,10 +57,50 @@ class Priority(GenMode, ABC):
         self.max_magic_points.set(self.magic_val_from_string())
         self.max_attribute_points.set(self.get_generated_value("attributes"))
 
+        """
+        sr3 allows purchasing extra spell points at 25000 each
+        Note that these are also added to max_magic_points when purchased, this is only for tracking 
+        how many of those points are purchased separately.
+        """
+        self.purchased_magic_points = IntVar()
+        if "purchased_magic_points" in kwargs:
+            self.purchased_magic_points.set(kwargs["purchased_magic_points"])
+            p = self.max_magic_points.get()
+            self.max_magic_points.set(p + self.purchased_magic_points.get())
+        else:
+            self.purchased_magic_points.set(0)
+
+        # this dict is for getting karma bar stuff
+        # first in tuple is current, second in tuple is max
+        self.karma_bar_vals = {
+            "attributes": (self.cur_attribute_points, self.max_attribute_points),
+            "spells": (self.cur_magic_points, self.max_magic_points),
+            "skills": (self.cur_skill_points, self.max_skill_points),
+        }
+
         # after instantiating call AttributesTab.calculate_total
 
+    def increment_purchased_magic_points(self):
+        p = self.purchased_magic_points.get()
+        self.purchased_magic_points.set(p + 1)
+        p = self.max_magic_points.get()
+        self.max_magic_points.set(p + 1)
+
+    def decrement_purchased_magic_points(self):
+        """
+        Returns True and decrements purchased magic points if possible to do so.
+        Otherwise returns False.
+        """
+        if self.purchased_magic_points.get() > 0:
+            p = self.purchased_magic_points.get()
+            self.purchased_magic_points.set(p - 1)
+            p = self.max_magic_points.get()
+            self.max_magic_points.set(p - 1)
+            return True
+        else:
+            return False
+
     def point_purchase_allowed(self, amount: int, key: str) -> bool:
-        threshold = 0
         if key == "skills":
             threshold = self.max_skill_points.get()
         elif key == "magic":
@@ -77,63 +114,6 @@ class Priority(GenMode, ABC):
             return False
         else:
             return True
-
-    def update_karma_label(self, tab):
-        """
-        Updates the top bar's Karma label. Usually called when switching tabs.
-        This is what controls what the top bar shows.
-        """
-        progress_text = app_data.top_bar.karma_fraction
-        progress_bar = app_data.top_bar.karma_bar
-
-        def blank_set():
-            progress_text.set("")
-            progress_bar.configure(maximum=10000000, variable=0)
-
-        if type(tab) is AttributesTab:
-            progress_text.set("{}/{}".format(self.cur_attribute_points.get(), self.max_attribute_points.get()))
-            progress_bar.configure(maximum=self.max_attribute_points.get(), variable=self.cur_attribute_points)
-        elif type(tab) is MagicTab:
-            # if magic tab check the sub tab
-            # noinspection PyPep8Naming
-            SPELLS_TAB_INDEX = 0
-            POWERS_TAB_INDEX = 1
-            current_tab_index = tab.index("current")
-            if current_tab_index == SPELLS_TAB_INDEX:
-                progress_text.set("{}/{}".format(self.cur_magic_points.get(), self.max_magic_points.get()))
-                progress_bar.configure(maximum=self.max_magic_points.get(), variable=self.cur_magic_points)
-            elif current_tab_index == POWERS_TAB_INDEX:
-                points_cur = app_data.app_character.statblock.power_points
-                points_max = app_data.app_character.statblock.magic + app_data.app_character.statblock.bonus_power_points
-                progress_text.set("{}/{}".format(points_cur, points_max))
-                progress_bar.configure(maximum=points_max,
-                                       variable=app_data.app_character.statblock.power_points_ui_var)
-        elif type(tab) is SkillsTab:
-            progress_text.set("{}/{}".format(self.cur_skill_points.get(), self.max_skill_points.get()))
-            progress_bar.configure(maximum=self.max_skill_points.get(), variable=self.cur_skill_points)
-        elif type(tab) is AugmentsTab:
-            # hacky scope breaking bullshit, refactor this whole damn function to not be in the character gen modes
-            ess_amt = app_data.app_character.statblock.essence
-            ess_max = app_data.app_character.statblock.base_attributes["essence"]
-            progress_text.set("{}/{}".format(ess_amt, ess_max))
-            progress_bar.configure(maximum=ess_max, variable=app_data.app_character.statblock.ess_ui_var)
-        elif type(tab) is DeckingTab:
-            PERSONA_TAB_INDEX = 2
-            current_tab_index = tab.index("current")
-            if current_tab_index != PERSONA_TAB_INDEX:
-                blank_set()
-        elif type(tab) is BackgroundTab:
-            EDGES_FLAWS_INDEX = 1
-            current_tab_index = tab.index("current")
-            if current_tab_index == EDGES_FLAWS_INDEX:
-                progress_text.set("{}".format(self.cur_edge_flaw_points.get()))
-                progress_bar.configure(maximum=10000000, variable=0)
-        else:
-            blank_set()
-
-        # TODO check if we're over the maximum, if so, change to red
-        # if not, change to green
-        # need styles to do this
 
     def setup_ui_elements(self):
         super().setup_ui_elements()
@@ -154,27 +134,42 @@ class Priority(GenMode, ABC):
         self.fill_lists()
 
     def update_total(self, amount, key):
-        if key is "attributes":
+        if key == "attributes":
             self.cur_attribute_points.set(amount)
-            app_data.top_bar.update_karma_bar(self.cur_attribute_points.get(),
-                                              self.max_attribute_points.get(),
-                                              "Priority Mode")
+            app_data.top_bar.update_karma_label(self.cur_attribute_points.get(),
+                                                self.max_attribute_points.get(),
+                                                "Priority Mode")
 
-        elif key is "skills":
+        elif key == "skills":
             self.cur_skill_points.set(amount)
-            app_data.top_bar.update_karma_bar(self.cur_skill_points.get(),
-                                              self.max_skill_points.get(),
-                                              "Priority Mode")
-        elif key is "magic":
+            app_data.top_bar.update_karma_label(self.cur_skill_points.get(),
+                                                self.max_skill_points.get(),
+                                                "Priority Mode")
+        elif key == "magic":
             self.cur_magic_points.set(amount)
-            app_data.top_bar.update_karma_bar(self.cur_magic_points.get(),
-                                              self.max_magic_points.get(),
-                                              "Priority Mode")
+            app_data.top_bar.update_karma_label(self.cur_magic_points.get(),
+                                                self.max_magic_points.get(),
+                                                "Priority Mode")
 
     def swap_priority(self, direction):
+        """
+        Direction should be -1 for up or  for down
+        @param direction: int
+        @return: None
+        """
         # do nothing if nothing is selected
-        if len(self.priority_name_list.curselection()) is 0:
+        if len(self.priority_name_list.curselection()) == 0:
             return
+
+        if app_data.app_character is not None:
+            # do nothing if we're an otaku with magic selected
+            magic_selected = self.priority_order[self.priority_name_list.curselection()[0]] == "magic"
+            swapping_to_magic = self.priority_name_list.curselection()[0] == 1 and direction == -1
+            if app_data.app_character.statblock.otaku:
+                if magic_selected or swapping_to_magic:
+                    return
+
+        # do nothing if we're otaku and swapping with magic
 
         selected_item_index = self.priority_name_list.curselection()[-1]
         swap_index = selected_item_index + direction
@@ -203,9 +198,9 @@ class Priority(GenMode, ABC):
     # gets the magic point value from a string like Full or Aspected
     def magic_val_from_string(self):
         awakened_type = self.get_generated_value("magic")
-        if awakened_type is "Full":
+        if awakened_type == "Full":
             return 25
-        elif awakened_type is "Aspected":
+        elif awakened_type == "Aspected":
             return 35
         else:
             return 0
@@ -213,13 +208,14 @@ class Priority(GenMode, ABC):
     def on_priority_change(self, old_money):
         """set old values to new ones"""
         self.max_attribute_points.set(self.get_generated_value("attributes"))
-        self.max_magic_points.set(self.magic_val_from_string())
+        self.max_magic_points.set(self.magic_val_from_string() + self.purchased_magic_points.get())
         self.max_skill_points.set(self.get_generated_value("skills"))
 
         # breaking scope like this is SO hacky but fuck it
-        # set money
-        money_diff = self.get_generated_value("resources") - old_money
-        app_data.app_character.statblock.cash += money_diff
+        # set money, skip this step if we're otaku
+        if not app_data.app_character.statblock.otaku:
+            money_diff = self.get_generated_value("resources") - old_money
+            app_data.app_character.statblock.add_cash(money_diff)
 
         # reset to human if race isn't valid
         if app_data.app_character.statblock.race.name not in self.get_generated_value("race"):
@@ -227,10 +223,19 @@ class Priority(GenMode, ABC):
 
         # set magic
         awakened_val = self.get_generated_value("magic")
-        app_data.app_character.statblock.awakened = awakened_val
+
+        # always override to None if otaku
+        if app_data.app_character.statblock.otaku:
+            awakened_val = None
+
         # set aspect to Full Mage if magic is top priority
         if awakened_val == "Full":
             app_data.app_character.statblock.aspect = "Full Mage"
+        # refund all purchased spell points if set to mundane
+        elif awakened_val is None:
+            refund_value = 25000 * self.purchased_magic_points.get()
+            self.purchased_magic_points.set(0)
+            app_data.app_character.statblock.add_cash(refund_value)
 
         app_data.app_character.statblock.awakened = awakened_val
 
@@ -258,11 +263,19 @@ class Priority(GenMode, ABC):
         # fill both lists
         L = self.pretty_priority_values()
         for i in range(0, 5):
-            self.priority_name_list.insert(END, self.priority_order[i])
+            # rename magic to otaku if otaku
+            if app_data.app_character is not None \
+                    and app_data.app_character.statblock.otaku \
+                    and self.priority_order[i] == "magic":
+                self.priority_name_list.insert(END, "otaku")
+            else:
+                self.priority_name_list.insert(END, self.priority_order[i])
             self.priority_vals_list.insert(END, L[i])
 
     def serialize(self):
-        return {"type": "priority", "data": self.priority_order}
+        return {"type": "priority",
+                "data": self.priority_order,
+                "purchased_magic_points": self.purchased_magic_points.get()}
 
     def pretty_priority_values(self):
         L = self.priority_values()
@@ -272,19 +285,22 @@ class Priority(GenMode, ABC):
         L[cash_index] = "¥" + str(L[cash_index])
         # find race
         race_index = self.priority_order.index("race")
-        if race_index is 4:
+        if race_index == 4:
             L[race_index] = "Human"
-        elif race_index is 3:
+        elif race_index == 3:
             L[race_index] = "Dwarf/Ork"
-        elif race_index is 2:
+        elif race_index == 2:
             L[race_index] = "Elf/Troll"
         else:
             L[race_index] = "Any Race"
         # find magic
         magic_index = self.priority_order.index("magic")
-        if magic_index is 0:
-            L[magic_index] = "Full Mage"
-        elif magic_index is 1:
+        if magic_index == 0:
+            if app_data.app_character.statblock.otaku:
+                L[magic_index] = "Otaku"
+            else:
+                L[magic_index] = "Full Mage"
+        elif magic_index == 1:
             L[magic_index] = "Aspected Mage"
         else:
             L[magic_index] = "Mundane"
@@ -303,3 +319,55 @@ class Priority(GenMode, ABC):
             L.append(self.priority_value_dict[val][i])
 
         return L
+
+    def on_set_otaku(self):
+        """
+        Called when setting otaku to True.
+        Returns True if successful, False if not.
+        @rtype: bool
+        """
+        if not app_data.app_character.statblock.otaku:
+            raise ValueError("Should be otaku to call on_set_otaku()!")
+
+        old_money = self.get_generated_value("resources")
+        new_money = 5000
+
+        money_diff = new_money - old_money
+        # money check
+        if app_data.app_character.statblock.cash + money_diff < 0:
+            print("Not enough money to become an otaku!")
+            return False
+        app_data.app_character.statblock.add_cash(money_diff)
+
+        # pin otaku to top
+        magic_index = self.priority_order.index("magic")
+        first_half = self.priority_order[:magic_index]
+        last_half = self.priority_order[magic_index + 1:]
+        self.priority_order = ["magic"] + first_half + last_half
+
+        # call this to rename "magic" to "otaku" or vice versa
+        self.fill_lists()
+
+        return True
+
+    def on_unset_otaku(self):
+        if app_data.app_character.statblock.otaku:
+            raise ValueError("Should not be otaku to call on_set_otaku()!")
+
+        old_money = 5000
+        new_money = self.get_generated_value("resources")
+
+        # this should always add money, if it doesn't, something went horribly wrong
+        money_diff = new_money - old_money
+        app_data.app_character.statblock.add_cash(money_diff)
+
+        # call this to rename "magic" to "otaku" or vice versa
+        self.fill_lists()
+
+        return True
+
+    def get_otaku_complex_forms_resources(self):
+        """Returns amount from resources, not multiplied by 50."""
+        index = self.priority_order.index("resources")
+
+        return 4 - index

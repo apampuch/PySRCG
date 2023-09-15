@@ -1,29 +1,41 @@
 # noinspection PyUnresolvedReferences
 import json
-import pprint
 
-from pathlib import Path
-
-from src.CharData.character import *
 from src.Tabs.Attributes.attributes_tab import *
 from src.Tabs.Augments.augments_tab import *
+from src.Tabs.Augments.bioware_tab import BiowareTab
+from src.Tabs.Augments.cyberware_tab import CyberwareTab
 from src.Tabs.Background.background_tab import BackgroundTab
+from src.Tabs.Background.banking_tab import BankingTab
+from src.Tabs.Background.contacts_tab import ContactsTab
 from src.Tabs.Background.edges_flaws_tab import EdgesFlawsTab
+from src.Tabs.Background.lifestyles_tab import LifestylesTab
 from src.Tabs.Background.personal_info_tab import *
+from src.Tabs.Decking.complex_forms_tab import ComplexFormsTab
+from src.Tabs.Decking.deck_buy_tab import DeckBuyTab
 from src.Tabs.Decking.decking_tab import *  # imports app_data
+from src.Tabs.Decking.otaku_tab import OtakuTab
+from src.Tabs.Decking.persona_tab import PersonaTab
+from src.Tabs.Decking.programs_tab import ProgramsTab
+from src.Tabs.Decking.submersion_tab import SubmersionTab
 from src.Tabs.Gear.ammo_tab import AmmoTab
 from src.Tabs.Gear.armor_equip_tab import ArmorEquipTab
 from src.Tabs.Gear.firearm_accessories_tab import FirearmAccessoriesTab
+from src.Tabs.Gear.gear_tab import GearTab
 from src.Tabs.Gear.items_tab import ItemsTab
 from src.Tabs.Gear.wireless_tab import WirelessTab
+from src.Tabs.Magic.magic_background_tab import MagicBackgroundTab
+from src.Tabs.Magic.powers_tab import PowersTab
+from src.Tabs.Magic.spells_tab import SpellsTab
+from src.Tabs.Rigging.rigging_tab import RiggingTab
 from src.Tabs.Rigging.vehicle_accessories_tab import VehicleAccessoriesTab
 from src.Tabs.Rigging.vehicle_buy_tab import VehicleBuyTab
 from src.Tabs.karma_tab import KarmaTab
 from src.Tabs.Magic.magic_tab import *  # imports app_data
 from src.Tabs.Setup.setup_tab import *
 from src.Tabs.Skills.skills_tab import SkillsTab
-from src.Tabs.container_tab import ContainerTab
 from src.Tabs.top_menu import *  # imports app_data
+from src.game_data import GameData
 from src.utils import magic_tab_show_on_awakened_status
 
 DEBUG = False
@@ -43,40 +55,29 @@ class App(ttk.Notebook):
         self.bind("<<NotebookTabChanged>>", self.on_tab_changed)
 
         self.top_bar = top_bar
-        self.game_data = None
         self.LOAD_DEBUG = False
 
         self.load_game_data()
 
-    def on_tab_changed(self, event):
-        # overly complicated way to get the current tab
-        # because everything in tkinter is overly complicated the more I look at it
-        current_tab = self.select()
-        current_tab = current_tab.replace(".!app.", "")
-        current_tab = self.children[current_tab]
-        current_tab.on_switch()
-
-        app_data.app_character.statblock.gen_mode.update_karma_label(current_tab)
-
-    def load_game_data(self):
-        self.game_data = {}
+    @staticmethod
+    def load_game_data():
+        app_data.game_data = GameData()
 
         for filename in SourcesWindow.selected_source_files:
             full_path = SourcesWindow.source_directory / filename
             with open(full_path, "r") as json_file:
-                self.game_data.update(json.load(json_file))
+                app_data.game_data.add(json.load(json_file))
 
-                # load debug flag
-                if self.LOAD_DEBUG:
-                    pprint.pprint(self.game_data)
-                    print(type(self.game_data))
-                    print(self.game_data.keys())
-
-        # cleanup unnecessary data
-        clean_tags = ["book_abbr", "file_version", "schema_version", "book"]
-        for tag in clean_tags:
-            if tag in self.game_data:
-                del self.game_data[tag]
+    def on_tab_changed(self, event):
+        # overly complicated way to get the current tab
+        # because everything in tkinter is overly complicated the more I look at it
+        current_tab: NotebookTab | ContainerTab | Widget
+        tab_string: str
+        tab_string = self.select()
+        tab_string = tab_string.replace(".!app.", "")
+        current_tab = self.children[tab_string]
+        current_tab.update_karma_bar()
+        current_tab.on_switch()
 
 
 class TopBar(ttk.Frame):
@@ -108,7 +109,7 @@ class TopBar(ttk.Frame):
         self.cash_label.config(text=app_data.app_character.statblock.cash_str)
 
     # workaround for things that aren't explicitly in the priority system
-    def update_karma_bar(self, numer, denom, dbg_source):
+    def update_karma_label(self, numer, denom, dbg_source):
         if DEBUG:
             print("Updating from: " + dbg_source)
         self.karma_fraction.set("{}/{}".format(numer, denom))
@@ -123,6 +124,7 @@ def make_tab(tab_type, name, container_types=None, container_names=None):
     """
     Creates a tab and adds it to the window.
 
+    :param container_args: List of tuples or dicts of args for each contained tab
     :type tab_type: type
     :type name: string
     :type container_types: List(type)
@@ -139,8 +141,8 @@ def make_tab(tab_type, name, container_types=None, container_names=None):
         child_tabs = []
 
         # make new tabs from types, assign new_tab as parent
-        for type in container_types:
-            child_tabs.append(type(app_data.window))
+        for con_type in container_types:
+            child_tabs.append(con_type(new_tab))
 
         new_tab.add_tabs(child_tabs, container_names)
 
@@ -163,39 +165,43 @@ def main():
     app_data.top_bar = top_bar
     app_data.window = App(app_data.root, top_bar)
 
+    app_data.setup_tab = make_tab(SetupTab, "Character Setup")
+    app_data.attributes_tab = make_tab(AttributesTab, "Attributes")
+    app_data.background_tab = make_tab(BackgroundTab, "Background",
+                                       [PersonalInfoTab, EdgesFlawsTab, BankingTab, LifestylesTab, ContactsTab],
+                                       ["Personal Info", "Edges & Flaws", "Banking", "Lifestyles", "Contacts"])
+    app_data.skills_tab = make_tab(SkillsTab, "Skills")
+    app_data.gear_tab = make_tab(GearTab, "Gear",
+                                 [ItemsTab, AmmoTab, FirearmAccessoriesTab, ArmorEquipTab, WirelessTab],
+                                 ["Items", "Ammo", "Firearm Accessories", "Armor", "Wireless"])
+    app_data.magic_tab = make_tab(MagicTab, "Magic",
+                                  [MagicBackgroundTab, SpellsTab, PowersTab],
+                                  ["Background", "Spells", "Powers"])
+    app_data.augments_tab = make_tab(AugmentsTab, "Augments",
+                                     [CyberwareTab, BiowareTab],
+                                     ["Cyberware", "Bioware"])
+    app_data.decking_tab = make_tab(DeckingTab, "Decking",
+                                    [DeckBuyTab, ProgramsTab, PersonaTab, OtakuTab, ComplexFormsTab, SubmersionTab],
+                                    ["Hardware", "Software", "Persona", "Otaku", "Complex Forms", "Submersion"])
+    app_data.rigging_tab = make_tab(RiggingTab, "Rigging",
+                                    [VehicleBuyTab, VehicleAccessoriesTab],
+                                    ["Vehicles", "Accessories"])
+    app_data.karma_tab = make_tab(KarmaTab, "Karma")
+
     # setup character
     # this has to be done after setting up the window
     # if it's done before, the character will think that there is no window
-    app_data.app_character = Character()
+    char_io.new_char(lambda: app_data.root.winfo_children()[2].winfo_children())
 
     # update top bar cash text
     top_bar.update_cash_text()
-
-    setup_tab = make_tab(SetupTab, "Character Setup")
-    attributes_tab = make_tab(AttributesTab, "Attributes")
-    background_tab = make_tab(BackgroundTab, "Background",
-                              [PersonalInfoTab, EdgesFlawsTab],
-                              ["Personal Info", "Edges & Flaws"])
-    skills_tab = make_tab(SkillsTab, "Skills")
-    gear_tab = make_tab(ContainerTab, "Gear",
-                        [ItemsTab, AmmoTab, FirearmAccessoriesTab, ArmorEquipTab, WirelessTab],
-                        ["Items", "Ammo", "Firearm Accessories", "Armor", "Wireless"])
-    magic_tab = make_tab(MagicTab, "Magic")     # this one has its own tab because it needs to do special things
-    augments_tab = make_tab(ContainerTab, "Augments",
-                            [CyberwareTab, BiowareTab],
-                            ["Cyberware", "Bioware"])
-    decking_tab = make_tab(DeckingTab, "Decking")
-    rigging_tab = make_tab(ContainerTab, "Rigging",
-                           [VehicleBuyTab, VehicleAccessoriesTab],
-                           ["Vehicles", "Accessories"])
-    karma_tab = make_tab(KarmaTab, "Karma")
 
     top_bar.pack(fill=X)
     app_data.window.pack(fill=BOTH, expand=YES)
 
     magic_tab_show_on_awakened_status(app_data)
 
-    post_setup(attributes_tab)
+    post_setup(app_data.attributes_tab)
     app_data.root.mainloop()
 
 

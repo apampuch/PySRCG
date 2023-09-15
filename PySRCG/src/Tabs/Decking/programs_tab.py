@@ -1,3 +1,6 @@
+import re
+
+from src.CharData.cranial_deck import CranialDeck
 from src.CharData.program import Program
 from tkinter import *
 from tkinter import ttk
@@ -7,19 +10,16 @@ import src.app_data as app_data
 
 
 class ProgramsTab(ThreeColumnBuyTab):
-    def __init__(self, parent,
-                 buy_button_text,
-                 sell_button_text):
-
-        super().__init__(parent, buy_button_text, sell_button_text)
+    def __init__(self, parent):
+        super().__init__(parent, "ProgramsTab")
 
         # memobj is anything with in-game memory
         # key is name, value is matching thing with it
         self.memobj_dict = {}
 
         # fill stuff with memory
-        self.memory_things_box = ttk.Combobox(self, values=self.memobj_dict.keys(), state="readonly")
-        self.fill_combobox()
+        self.memory_things_box = ttk.Combobox(self, values=list(self.memobj_dict.keys()), state="readonly")
+        # self.fill_combobox()
 
         self.memory_things_box.bind("<<ComboboxSelected>>", self.get_memobj_memory)
 
@@ -29,6 +29,7 @@ class ProgramsTab(ThreeColumnBuyTab):
         self.memobj_dict = {}
         self.fill_stuff_with_memory(self.statblock.inventory)
         self.fill_stuff_with_memory(self.statblock.cyberware)
+        # we don't call all_decks because cyberware should cover cranial cyberdecks
         self.fill_stuff_with_memory(self.statblock.decks)
         self.memobj_dict["Misc Software"] = self.statblock.other_programs
         self.memory_things_box["values"] = list(self.memobj_dict.keys())
@@ -43,6 +44,9 @@ class ProgramsTab(ThreeColumnBuyTab):
         for node in char_list:
             # check for duplicate names
             key = node.name
+
+            if type(node) == CranialDeck:
+                key += " (Cranial)"
 
             # count names that contain the key we want to use
             # we use regex to strip any dupe counts that
@@ -59,6 +63,7 @@ class ProgramsTab(ThreeColumnBuyTab):
             if "stored_memory" in node.properties:
                 self.memobj_dict[key] = node.properties["stored_memory"]
 
+    # noinspection PyUnusedLocal
     def get_memobj_memory(self, event):
         """Fills the inventory box with software from the selected memobj"""
         # clear list box
@@ -70,7 +75,7 @@ class ProgramsTab(ThreeColumnBuyTab):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Programs"]
+            return app_data.game_data["Programs"]
         except KeyError:
             return {}
 
@@ -88,7 +93,7 @@ class ProgramsTab(ThreeColumnBuyTab):
             self.add_inv_item(item)
 
     def sell_callback(self, item_index):
-        self.statblock.cash += self.statblock_inventory[item_index].properties["cost"]
+        self.statblock.add_cash(self.statblock_inventory[item_index].properties["cost"])
         self.remove_inv_item(item_index)
 
     @property
@@ -107,6 +112,7 @@ class ProgramsTab(ThreeColumnBuyTab):
 
     def on_switch(self):
         self.fill_combobox()
+        super(ProgramsTab, self).on_switch()
         self.get_memobj_memory(None)
 
     def load_character(self):

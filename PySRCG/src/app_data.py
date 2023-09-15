@@ -1,14 +1,27 @@
 """
-This is global data for the whole program.
+This is global data for the whole program. Do not import anything from this program into here.
 """
 from src.adjustment import AdjustmentsContainer
 
 top_bar = None  # should be the top bar
 root = None  # should be the window for the program
 window = None  # should be the main notebook
-menu = None # should be the menu
+menu = None  # should be the menu
+game_data = None  # all data available
 # WHY THE FUCK IS THIS A STRING??? it becomes a Character but still wtf
-app_character = "None"  # should be a Character()
+app_character = None  # should be a Character()
+
+# all the top level tabs, set automatically on launch, DO NOT CHANGE
+setup_tab = None
+attributes_tab = None
+background_tab = None
+skills_tab = None
+gear_tab = None
+magic_tab = None
+augments_tab = None
+decking_tab = None
+rigging_tab = None
+karma_tab = None
 
 cash_update_events = []
 tab_switch_events = []
@@ -18,6 +31,8 @@ tab_switch_events = []
 
 
 def on_cash_updated():
+    app_character.statblock.cash_str = "¥{}".format(app_character.statblock.cash)
+
     for event in cash_update_events:
         event()
 

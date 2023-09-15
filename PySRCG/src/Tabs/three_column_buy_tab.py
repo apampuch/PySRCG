@@ -45,11 +45,11 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     def inv_selected_index(self):
         """ID of the index of the selected item"""
         selection = self.inventory_list.curselection()
-        if len(selection) is 0:
+        if len(selection) == 0:
             return None
         return selection[-1]
 
-    def __init__(self, parent,
+    def __init__(self, parent, name,
                  buy_button_text="Buy",
                  sell_button_text="Sell",
                  add_inv_callbacks: List[Callable] = None,      # callback functions when adding to inventory
@@ -58,6 +58,8 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                  show_quantity=False,
                  show_race_mods=False,
                  buy_from_list=False,
+                 show_cyberware_grades=False,
+                 show_bioware_grades=False,
                  plus_and_minus=False):  # allow buying the selected object from the inventory list
 
         # allow purchasing of duplicate items if False, set True in subclass init to disallow
@@ -69,7 +71,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         if remove_inv_callbacks is None:
             remove_inv_callbacks = []
 
-        super().__init__(parent)
+        super().__init__(parent, name)
         self.add_inv_callbacks = add_inv_callbacks
         self.remove_inv_callbacks = remove_inv_callbacks
         self.buy_from_list = buy_from_list
@@ -126,6 +128,45 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         self.dwarf_race_mod.pack(side=LEFT)
         self.troll_race_mod.pack(side=LEFT)
 
+        # cyberware grades
+        self.grade_var = StringVar(value="standard")
+        self.cyberware_grade_frame = LabelFrame(self, text="Grade")
+        self.standard_radio = Radiobutton(self.cyberware_grade_frame,
+                                          text="Standard",
+                                          variable=self.grade_var,
+                                          value="standard")
+        self.alpha_radio = Radiobutton(self.cyberware_grade_frame,
+                                       text="Alphaware",
+                                       variable=self.grade_var,
+                                       value="alpha")
+        self.beta_radio = Radiobutton(self.cyberware_grade_frame,
+                                      text="Betaware",
+                                      variable=self.grade_var,
+                                      value="beta")
+        self.delta_radio = Radiobutton(self.cyberware_grade_frame,
+                                       text="Deltaware",
+                                       variable=self.grade_var,
+                                       value="delta")
+
+        self.standard_radio.pack(side=LEFT)
+        self.alpha_radio.pack(side=LEFT)
+        self.beta_radio.pack(side=LEFT)
+        self.delta_radio.pack(side=LEFT)
+
+        self.bio_grade_var = StringVar(value="standard")
+        self.bioware_grade_frame = LabelFrame(self, text="Grade")
+        self.bio_standard_radio = Radiobutton(self.bioware_grade_frame,
+                                              text="Standard",
+                                              variable=self.bio_grade_var,
+                                              value="standard")
+        self.bio_cultured_radio = Radiobutton(self.bioware_grade_frame,
+                                              text="Cultured",
+                                              variable=self.bio_grade_var,
+                                              value="cultured")
+
+        self.bio_standard_radio.pack(side=LEFT)
+        self.bio_cultured_radio.pack(side=LEFT)
+
         # bind events and shit
         self.object_library.bind("<<TreeviewSelect>>", self.on_tree_item_click)
         self.object_library["yscrollcommand"] = self.object_library_scroll.set
@@ -138,12 +179,12 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                                 self.recurse_check_func, self.recurse_end_func)
 
         # grids
-        self.object_library.grid                (column=0, row=0, sticky=(N, S), columnspan=2)
-        self.object_library_scroll.grid         (column=2, row=0, sticky=(N, S))
-        self.desc_box.grid                      (column=3, row=0, sticky=(N, S), columnspan=2)
-        self.desc_box_scroll.grid               (column=5, row=0, sticky=(N, S))
-        self.inventory_list.grid                (column=6, row=0, sticky=(N, S), columnspan=2)
-        self.inventory_list_scroll.grid         (column=8, row=0, sticky=(N, S))
+        self.object_library.grid                (column=0, row=0, sticky=NS, columnspan=2)
+        self.object_library_scroll.grid         (column=2, row=0, sticky=NS)
+        self.desc_box.grid                      (column=3, row=0, sticky=NS, columnspan=2)
+        self.desc_box_scroll.grid               (column=5, row=0, sticky=NS)
+        self.inventory_list.grid                (column=6, row=0, sticky=NS, columnspan=2)
+        self.inventory_list_scroll.grid         (column=8, row=0, sticky=NS)
 
         self.sell_button.grid(column=0, row=0, sticky=N, padx=50)
         if plus_and_minus:
@@ -163,6 +204,12 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
         if show_race_mods:
             self.race_mods_frame.grid(column=3, row=2)
+
+        if show_cyberware_grades:
+            self.cyberware_grade_frame.grid(column=3, row=2)
+
+        if show_bioware_grades:
+            self.bioware_grade_frame.grid(column=3, row=2)
 
     def reload_data(self):
         children = self.object_library.get_children()
@@ -284,15 +331,16 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             cb()
 
     def check_for_duplicates(self, to_buy):
-        if not self.no_duplicates:
+        if "no_duplicates" not in to_buy.properties or not to_buy.properties["no_duplicates"]:
             return True
 
         # convert to set for sweet O(1) lookups
-        setList = set(self.statblock_inventory)
+        set_list = set(self.statblock_inventory)
 
         # return True if no duplicates were found
-        return to_buy not in setList
+        return to_buy not in set_list
 
+    # noinspection PyUnusedLocal
     def int_validate(self, action, index, value_if_allowed,
                      prior_value, text, validation_type, trigger_type, widget_name):
         """
@@ -325,6 +373,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             self.bell()
             return False
 
+    # noinspection PyUnusedLocal
     def on_inv_item_click(self, event):
         # clear the treeview selection
         self.object_library.selection_remove(self.object_library.selection())
@@ -338,8 +387,9 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         item_report = self.statblock_inventory[self.inventory_list.curselection()[-1]].report()
         self.fill_description_box(item_report)
 
+    # noinspection PyUnusedLocal
     def on_tree_item_click(self, event):
-        # removing things from the selection causes these events to fire so we need to add this check
+        # removing things from the selection causes these events to fire, so we need to add this check
         # on the selection length to make sure we're not throwing errors
         if len(self.object_library.selection()) > 0:
             # only select the last one selected if we've selected multiple things
@@ -395,14 +445,16 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
             if type(selected_object) is Power:
                 var_dict["power_level"] = 1
 
-            # TODO unfuck this by doing the window check at the start and making the ok func call this again but not open the window, add a force_ignore_window arg maybe?
+            # TODO unfuck this by doing the window check at the start and making the ok func call this again but not \
+            # open the window, add a force_ignore_window arg maybe?
+
             # find any "options" the item has and prompt the user to set them
             if "options" in selected_object.properties:
                 option_entries = {}
 
                 # define functions for ok and cancel
                 def ok_func():
-                    # set all of the options
+                    # set all the options
                     for entry in option_entries:
                         if option_entries[entry].get() == "":
                             messagebox.showerror(title="Error", message="No blank options allowed.")
@@ -444,7 +496,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
                 # setup new window
                 temp_window = Toplevel(self.parent)
                 temp_window.grab_set()
-                temp_window.resizable(0, 0)
+                temp_window.resizable(False, False)
 
                 # setup option labels and entries
                 for option in selected_object.properties["options"]:
@@ -474,7 +526,7 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
                 if not self.check_for_duplicates(selected_object):
                     messagebox.showerror(title="Error", message="No duplicates allowed.")
-                    raise ValueError("No duplicates allowed.")
+                    # raise ValueError("No duplicates allowed.")
                 self.buy_callback(selected_object)
         else:
             print("Can't buy that!")
@@ -494,11 +546,13 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
     @abstractmethod
     def on_switch(self):
-        pass
-
-    @abstractmethod
-    def load_character(self):
+        # refesh the list on switch
+        # hopefully this doesn't cause any bugs
         self.inventory_list.delete(0, END)
         for item in self.statblock_inventory:
             insert_value = self.name_for_list(item)
             self.inventory_list.insert(END, insert_value)
+
+    @abstractmethod
+    def load_character(self):
+        self.on_switch()

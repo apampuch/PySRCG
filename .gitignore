@@ -271,3 +271,6 @@ dist/
 PySRCG/test_skill_cost.py
 PySRCG/feedback.txt
 PySRCG/PySRCG-src.7z
+
+# ignore venv
+venv/

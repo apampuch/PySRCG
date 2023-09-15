@@ -6,8 +6,7 @@ class GenMode(ABC):
     gen_mode_frame = None
 
     def __init__(self):
-        # print(app_data.app_character)
-        pass
+        self.karma_bar_vals = {}
 
     @abstractmethod
     def setup_ui_elements(self):
@@ -19,10 +18,6 @@ class GenMode(ABC):
 
     @abstractmethod
     def serialize(self):
-        pass
-
-    @abstractmethod
-    def update_karma_label(self, tab):
         pass
 
     @abstractmethod
@@ -48,4 +43,19 @@ class GenMode(ABC):
     @abstractmethod
     def point_purchase_allowed(self, amount, key):
         """Amount is the total. Key is what you want to purchase."""
+        pass
+
+    @abstractmethod
+    def on_set_otaku(self):
+        """Reserves points or pins otaku to top of priority."""
+        pass
+
+    @abstractmethod
+    def on_unset_otaku(self):
+        """Undoes stuff from on_set_otaku()"""
+        pass
+
+    @abstractmethod
+    def get_otaku_complex_forms_resources(self):
+        """Gets the number of MP you have from resources / 50"""
         pass

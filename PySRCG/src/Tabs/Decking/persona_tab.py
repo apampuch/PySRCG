@@ -1,7 +1,8 @@
 from abc import ABC
+from typing import Any
 
 from src import app_data
-from src.CharData.deck import Deck
+from src.CharData.cranial_deck import CranialDeck
 from src.Tabs.notebook_tab import NotebookTab
 from tkinter import *
 from tkinter import ttk
@@ -18,7 +19,7 @@ class PersonaTab(NotebookTab, ABC):
     label updated with cur/max mp
     """
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "PersonaTab")
 
         self.slider_vars = {}
         self.slider_old_vals = {}
@@ -27,10 +28,10 @@ class PersonaTab(NotebookTab, ABC):
         self.attribute_labels = {}
         self.value_labels = {}
 
-        self.persona_total = IntVar(0)
+        self.persona_total = IntVar()
 
         # combobox with all decks
-        self.deck_box = ttk.Combobox(self, values=self.deck_list_names, state="readonly")
+        self.deck_box = ttk.Combobox(self, state="readonly")
         self.deck_box.bind("<<ComboboxSelected>>", self.on_choose_deck)
 
         self.persona_frame = ttk.LabelFrame(self, text="Persona")
@@ -40,8 +41,42 @@ class PersonaTab(NotebookTab, ABC):
         for attr in attributes:
             self.setup_slider_and_label(attr)
 
+        self.initiative_frame = ttk.LabelFrame(self, text="Initiative & Reaction")
+
+        self.natural_reaction_var = IntVar()
+        self.natural_initiative_var = StringVar()
+        self.natural_reaction_value = Label(self.initiative_frame, textvariable=self.natural_reaction_var)
+        self.natural_initiative_value = Label(self.initiative_frame, textvariable=self.natural_initiative_var)
+        self.dni_reaction_var = IntVar()
+        self.dni_initiative_var = StringVar()
+        self.dni_reaction_value = Label(self.initiative_frame, textvariable=self.dni_reaction_var)
+        self.dni_initiative_value = Label(self.initiative_frame, textvariable=self.dni_initiative_var)
+
+        self.other_info_frame = ttk.LabelFrame(self, text="Other Info")
+        self.hardening_var = IntVar()
+        self.hardening_value = Label(self.other_info_frame, textvariable=self.hardening_var)
+        self.io_speed_var = StringVar()
+        self.io_speed_value = Label(self.other_info_frame, textvariable=self.io_speed_var)
+
+        # grids
         self.deck_box.grid(column=1, row=1)
         self.persona_frame.grid(column=1, row=2)
+        self.initiative_frame.grid(column=1, row=3, sticky=W)
+        self.other_info_frame.grid(column=1, row=4, sticky=W)
+
+        Label(self.initiative_frame, text="Reaction (Physical)").grid(column=1, row=1)
+        self.natural_reaction_value.grid(column=2, row=1)
+        Label(self.initiative_frame, text="Initiative (Physical)").grid(column=1, row=2)
+        self.natural_initiative_value.grid(column=2, row=2)
+        Label(self.initiative_frame, text="Reaction (DNI)").grid(column=1, row=3)
+        self.dni_reaction_value.grid(column=2, row=3)
+        Label(self.initiative_frame, text="Initiative (DNI)").grid(column=1, row=4)
+        self.dni_initiative_value.grid(column=2, row=4)
+
+        Label(self.other_info_frame, text="Hardening").grid(column=1, row=1)
+        self.hardening_value.grid(column=2, row=1)
+        Label(self.other_info_frame, text="I/O Speed").grid(column=1, row=2)
+        self.io_speed_value.grid(column=2, row=2)
 
     def setup_slider_and_label(self, key):
         """Initial setup. Should only be run once per attribute."""
@@ -56,7 +91,7 @@ class PersonaTab(NotebookTab, ABC):
                                   from_=1, to=1,
                                   variable=self.slider_vars[key],
                                   command=lambda x: self.on_set_slider_value(key, x),
-                                  orient=HORIZONTAL, showvalue=0)
+                                  orient=HORIZONTAL, showvalue=False)
 
         self.attribute_labels[key].grid(column=1, row=self.current_row)
         self.value_labels[key].grid(column=2, row=self.current_row)
@@ -65,8 +100,8 @@ class PersonaTab(NotebookTab, ABC):
         self.current_row += 1
 
     @property
-    def current_deck(self) -> Deck:
-        if not self.deck_list:  # if empty
+    def current_deck(self) -> Any | None:
+        if not self.deck_list:  # if empty, this makes it shut up
             return None
         return self.deck_list[self.deck_box.current()]
 
@@ -74,14 +109,22 @@ class PersonaTab(NotebookTab, ABC):
     def deck_list(self):
         decks = []
 
-        for deck in self.statblock.decks:
+        # get regular decks
+        for deck in self.statblock.all_decks():
             decks.append(deck)
 
         return decks
 
     @property
     def deck_list_names(self):
-        return list(map(lambda x: x.name, self.deck_list))
+        names = []
+        for deck in self.deck_list:
+            n = deck.name
+            if type(deck) == CranialDeck:
+                n += " (Cranial)"
+            names.append(n)
+
+        return names
 
     def on_set_slider_value(self, key, value):
         value = int(value)
@@ -111,30 +154,43 @@ class PersonaTab(NotebookTab, ABC):
 
         self.calculate_total()
 
+    # noinspection PyUnusedLocal
     def on_choose_deck(self, event):
         # make it shut up if we have no decks
         # tab will be invisible if we have no decks anyway
         if self.current_deck is None:
             return
 
+        # setup sliders
         for key in self.sliders.keys():
-            # set slider maxmimums
+            # set slider maximums
             self.sliders[key].config(to=self.current_deck.properties["mpcp"])
             self.sliders[key].set(self.current_deck.properties["persona"][key])
 
-            # set slider values
-            # self.sliders[key].set(self.current_deck.properties["persona"][key])
+            # set other deck stats
+            response_increase = self.current_deck.properties["response_increase"]
+            natural_reaction = min(self.statblock.calculate_natural_attribute("reaction") + response_increase * 2, 10)
+            natural_initiative = \
+                f"{min(response_increase + self.statblock.calculate_natural_attribute('initiative'), 5)}d6"
+            dni_reaction = min(self.statblock.intelligence + response_increase * 2 + 2, 10)
+            dni_initiative = \
+                f"{min(response_increase + self.statblock.calculate_natural_attribute('initiative') + 1, 5)}d6"
+            self.natural_reaction_var.set(natural_reaction)
+            self.natural_initiative_var.set(natural_initiative)
+            self.dni_reaction_var.set(dni_reaction)
+            self.dni_initiative_var.set(dni_initiative)
+            self.hardening_var.set(self.current_deck.properties["hardening"])
+            self.io_speed_var.set(f"{self.current_deck.properties['io_speed']}")
 
-            # self.on_set_slider_value(key, self.current_deck.properties["persona"][key])
-
-        # setup top progress bar
-        progress_bar = app_data.top_bar.karma_bar
-        progress_bar.configure(maximum=self.current_deck.total_persona_points(), variable=self.persona_total)
-
+        self.update_karma_bar()
         self.calculate_total()
 
+    def update_karma_bar(self):
+        progress_bar = app_data.top_bar.karma_bar
+        progress_bar.configure(variable=self.persona_total, maximum=self.current_deck.total_persona_points())
+
     def on_switch(self):
-        selected_deck: str
+        selected_deck: str | None
 
         # get current deck before changing
         if self.deck_box.current() == -1:
@@ -159,4 +215,7 @@ class PersonaTab(NotebookTab, ABC):
 
         self.persona_total.set(total)
 
-        app_data.top_bar.update_karma_bar(total, self.current_deck.total_persona_points(), "Persona Tab")
+        app_data.top_bar.update_karma_label(total, self.current_deck.total_persona_points(), "Persona Tab")
+
+    def load_character(self):
+        pass

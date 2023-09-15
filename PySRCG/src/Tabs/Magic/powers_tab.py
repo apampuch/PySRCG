@@ -1,25 +1,20 @@
 from abc import ABC
-from copy import copy
 
 from src import app_data
 from src.CharData.power import Power
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.statblock_modifier import StatMod
-from src.utils import treeview_get, recursive_treeview_fill
-
-from tkinter import *
-from tkinter import ttk
 
 
 class PowersTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent, buy_button_text="Learn", sell_button_text="Unlearn", plus_and_minus=True)
+        super().__init__(parent, "PowersTab", buy_button_text="Learn", sell_button_text="Unlearn", plus_and_minus=True)
         self.no_duplicates = True
 
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Powers"]
+            return app_data.game_data["Powers"]
         except KeyError:
             return {}
 
@@ -54,9 +49,6 @@ class PowersTab(ThreeColumnBuyTab, ABC):
 
     def buy_callback(self, selected):
         total_power_points = self.statblock.power_points
-
-        # print("Library Selected: " + self.library_selected.name)
-        # power = copy(self.library_selected)
 
         # make sure we have enough power points remaining
         if total_power_points + selected.properties["cost"] * selected.properties["level"] <= \
@@ -162,6 +154,11 @@ class PowersTab(ThreeColumnBuyTab, ABC):
 
             self.calculate_total()
 
+    def update_karma_bar(self):
+        progress_bar = app_data.top_bar.karma_bar
+        progress_bar.configure(variable=self.statblock.power_points_ui_var,
+                               maximum=self.statblock.magic + self.statblock.bonus_power_points)
+
     def on_switch(self):
         self.calculate_total()
 
@@ -169,8 +166,8 @@ class PowersTab(ThreeColumnBuyTab, ABC):
         # unlike the other tabs places we directly manipulate the top bar
         # since this has nothing to do with the generation mode
         self.statblock.power_points_ui_var.set(self.statblock.power_points)
-        app_data.top_bar.update_karma_bar("{:.2f}".format(self.statblock.power_points),
-                                          self.statblock.total_power_points, "Powers Tab")
+        app_data.top_bar.update_karma_label("{:.2f}".format(self.statblock.power_points),
+                                            self.statblock.total_power_points, "Powers Tab")
 
     def load_character(self):
         super().load_character()

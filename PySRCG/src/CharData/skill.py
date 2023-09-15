@@ -17,6 +17,7 @@ class Specialization:
 
 class Skill:
     specializations: List[Specialization]
+
     def __repr__(self):
         return "{}: {}".format(self.name, self.rank)
 
@@ -26,7 +27,10 @@ class Skill:
         self.name = name
         self.attribute = attribute
         self.rank = rank
-        self.specializations = specializations
+        self.specializations = []
+        for spec in specializations:
+            self.specializations.append(Specialization(**spec))
+
         self.skill_type = skill_type
 
     def cost_to_increase(self):
@@ -37,6 +41,6 @@ class Skill:
             "name": self.name,
             "attribute": self.attribute,
             "rank": self.rank,
-            "specializations": self.specializations,
+            "specializations": list(map(lambda x: x.serialize(), self.specializations)),
             "skill_type": self.skill_type
         }

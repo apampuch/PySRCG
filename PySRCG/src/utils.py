@@ -61,7 +61,7 @@ def treeview_get(treeview, helper_dict, make_copy=True):
     selection = treeview.selection()
     ret_val = None
     if type(helper_dict) is dict:
-        if len(selection) is 0:
+        if len(selection) == 0:
             ret_val = None
         selected_id = selection[-1]
         if selected_id in helper_dict.keys():
@@ -169,7 +169,7 @@ def calculate_attributes(obj: Reportable, var_dict: Dict, attributes: List[str])
             keys: List[str] = list(tiered_dict_root.keys())
             values: List[dict] = list(tiered_dict_root.values())
 
-            not_one_root =  len(keys) != 1              # there should only be one root value
+            not_one_root = len(keys) != 1              # there should only be one root value
             root_not_string = type(keys[0]) != str      # root value should be a string
             value_not_dict = type(values[0]) != dict    # value should be a _dict
             if not_one_root or root_not_string or value_not_dict:
@@ -211,7 +211,7 @@ def calculate_mods(mods_dict, var_dict, name="NAMELESS"):
             keys: List[str] = list(val.keys())
             values: List[dict] = list(val.values())
 
-            not_one_root =  len(keys) != 1              # there should only be one root value
+            not_one_root = len(keys) != 1              # there should only be one root value
             root_not_string = type(keys[0]) != str      # root value should be a string
             value_not_dict = type(values[0]) != dict    # value should be a _dict
             if not_one_root or root_not_string or value_not_dict:
@@ -372,7 +372,7 @@ def set_modes(node):
     # print("SYM: " + node.symbol + " MODE: " + node.mode)
 
 
-def run_calc(node, vars):
+def run_calc(node, _vars):
     if node.mode == "OP":
         # figure out the operation
         operation = None
@@ -387,14 +387,14 @@ def run_calc(node, vars):
         else:
             raise ValueError("OP symbol is not +, -, *, or /.")
         # there should always only be two children
-        a = run_calc(node.children[0], vars)
-        b = run_calc(node.children[1], vars)
+        a = run_calc(node.children[0], _vars)
+        b = run_calc(node.children[1], _vars)
         return operation(a, b)
     elif node.mode == "NUM":
         # convert to number and return
         return float(node.symbol)
     elif node.mode == "VAR":
-        return vars[node.symbol]
+        return _vars[node.symbol]
     else:
         raise ValueError("Invalid expression.")
 

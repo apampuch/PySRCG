@@ -2,6 +2,7 @@ import re
 from abc import ABC
 from tkinter import ttk, END
 
+from src import app_data
 from src.CharData.firearm_accessory import FirearmAccessory
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.app_data import pay_cash
@@ -9,11 +10,11 @@ from src.app_data import pay_cash
 
 class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent, show_race_mods=True)
+        super().__init__(parent, "FirearmAccessoriesTab", show_race_mods=True)
 
         self.gunobj_dict = {}
-        self.gun_box = ttk.Combobox(self, values=self.gunobj_dict.keys(), state="readonly")
-        self.fill_combobox()
+        self.gun_box = ttk.Combobox(self, values=list(self.gunobj_dict.keys()), state="readonly")
+        # self.fill_combobox()
 
         self.gun_box.bind("<<ComboboxSelected>>", self.get_accobj)
 
@@ -22,7 +23,7 @@ class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Firearm Accessories"]
+            return app_data.game_data["Firearm Accessories"]
         except KeyError:
             return {}
 
@@ -66,6 +67,7 @@ class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
             if "firearm_accessories" in node.properties:
                 self.gunobj_dict[key] = node  # .accessories
 
+    # noinspection PyUnusedLocal
     def get_accobj(self, event):
         """Fills the inventory box with software from the selected memobj"""
         # clear list box
@@ -81,10 +83,10 @@ class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
             print("Not enough money!")
 
     def sell_callback(self, selected_index):
-        selected_item = self.statblock.inventory[self.inv_selected_index]
+        selected_item = self.statblock_inventory[self.inv_selected_index]
 
         # return cash value
-        self.statblock.cash += selected_item.properties["cost"]
+        self.statblock.add_cash(selected_item.properties["cost"])
 
         self.remove_inv_item(self.inv_selected_index)
 

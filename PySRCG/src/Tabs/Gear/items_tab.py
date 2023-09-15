@@ -1,5 +1,6 @@
 from abc import ABC
 
+from src import app_data
 from src.app_data import pay_cash
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.CharData.gear import *
@@ -7,7 +8,7 @@ from src.CharData.gear import *
 
 class ItemsTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent, show_quantity=True, show_race_mods=True)
+        super().__init__(parent, "ItemsTab", show_quantity=True, show_race_mods=True)
 
     @property
     def recurse_check_func(self):
@@ -48,14 +49,14 @@ class ItemsTab(ThreeColumnBuyTab, ABC):
         selected_item = self.statblock_inventory[self.inv_selected_index]
 
         # return cash value
-        self.statblock.cash += selected_item.properties["cost"]
+        self.statblock.add_cash(selected_item.properties["cost"])
 
         self.remove_inv_item(self.inv_selected_index)
 
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Items"]
+            return app_data.game_data["Items"]
         except KeyError:
             return {}
 
@@ -64,7 +65,7 @@ class ItemsTab(ThreeColumnBuyTab, ABC):
         return self.statblock.inventory
 
     def on_switch(self):
-        pass
+        super().on_switch()
 
     def load_character(self):
         super().load_character()

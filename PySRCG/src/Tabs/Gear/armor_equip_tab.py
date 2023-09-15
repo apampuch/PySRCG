@@ -9,7 +9,7 @@ from tkinter import ttk
 class ArmorEquipTab(NotebookTab, ABC):
 
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "ArmorEquipTab")
 
         self.armor_list = []
         self.selected_armor_list = []
@@ -21,7 +21,8 @@ class ArmorEquipTab(NotebookTab, ABC):
         self.selected_helmet_list = []
 
         # use a listbox for now and find a better way to do this
-        self.instruction_label = ttk.Label(self, text="Highlighted armors are equipped. You may layer armors as per SR3 rules on page 285.")
+        self.instruction_label = ttk.Label(self, text="Highlighted armors are equipped.\
+         You may layer armors as per SR3 rules on page 285.")
 
         self.armor_listbox = Listbox(self, selectmode=MULTIPLE, activestyle=NONE, height=20)
         self.armor_listbox.bind("<<ListboxSelect>>", self.on_click_armor)
@@ -50,16 +51,16 @@ class ArmorEquipTab(NotebookTab, ABC):
         self.instruction_label.grid(column=0, row=0, columnspan=9999)
 
         ttk.Label(self, text="Body Armor").grid(column=0, row=2)
-        self.armor_listbox.grid(column=0, row=1, sticky=(N, S))
-        self.armor_scroll_bar.grid(column=1, row=1, sticky=(N, S))
+        self.armor_listbox.grid(column=0, row=1, sticky=NS)
+        self.armor_scroll_bar.grid(column=1, row=1, sticky=NS)
 
         ttk.Label(self, text="Shield").grid(column=2, row=2)
-        self.shield_listbox.grid(column=2, row=1, sticky=(N, S))
-        self.shield_scroll_bar.grid(column=3, row=1, sticky=(N, S))
+        self.shield_listbox.grid(column=2, row=1, sticky=NS)
+        self.shield_scroll_bar.grid(column=3, row=1, sticky=NS)
 
         ttk.Label(self, text="Helmet").grid(column=4, row=2)
-        self.helmet_listbox.grid(column=4, row=1, sticky=(N, S))
-        self.helmet_scroll_bar.grid(column=5, row=1, sticky=(N, S))
+        self.helmet_listbox.grid(column=4, row=1, sticky=NS)
+        self.helmet_scroll_bar.grid(column=5, row=1, sticky=NS)
 
         self.ballistic_armor_label.grid(column=0, row=3)
         self.impact_armor_label.grid(column=0, row=4)
@@ -80,6 +81,7 @@ class ArmorEquipTab(NotebookTab, ABC):
         """
         return self.armor_list[index].properties[prop]
 
+    # noinspection PyUnusedLocal
     def on_click_armor(self, event):
         """
         Recalculates all armor values
@@ -87,7 +89,7 @@ class ArmorEquipTab(NotebookTab, ABC):
         :return: Nothing
         """
 
-        # mark all equipped armors and unmark all unequipped armors
+        # mark all equipped armors and un-mark all unequipped armors
         size = self.armor_listbox.size()
         for i in range(0, size):
             self.armor_list[i].properties["equipped"] = self.armor_listbox.selection_includes(i)

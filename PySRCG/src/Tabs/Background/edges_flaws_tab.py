@@ -8,13 +8,13 @@ from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 
 class EdgesFlawsTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "EdgesFlawsTab")
         self.no_duplicates = True
 
     @property
     def library_source(self):
         try:
-            return self.parent.game_data["Edges/Flaws"]
+            return app_data.game_data["Edges/Flaws"]
         except KeyError:
             return {}
 
