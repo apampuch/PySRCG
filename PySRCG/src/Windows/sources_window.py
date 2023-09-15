@@ -82,7 +82,7 @@ class SourcesWindow(Toplevel):
 
     def browse_callback(self):
         new_path = filedialog.askdirectory()
-        if new_path is not "":
+        if new_path != "":
             self.path_var.set(new_path)
             SourcesWindow.source_directory = Path(new_path)
             self.fill_listbox()
