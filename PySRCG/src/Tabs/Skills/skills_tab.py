@@ -13,8 +13,8 @@ from src.Tabs.notebook_tab import NotebookTab
 
 
 class SkillsTab(NotebookTab):
-    tree_library_dict: Dict[str, tuple]
-    tree_list_dict: Dict[str, Skill]  # or str, Specialization
+    tree_library_dict: Dict[str, Skill]
+    tree_list_dict: Dict[str, Skill | Specialization]  # or str, Specialization
 
     @property
     def library_selected(self):
@@ -142,7 +142,7 @@ class SkillsTab(NotebookTab):
         # add child specializations
         for spec in skill.specializations:
             # make the child of the skill tree item
-            s_iid = self.skills_list.insert(iid, "end", text=spec.name, value=spec.rank)
+            s_iid = self.skills_list.insert(iid, "end", text=spec.name, values=spec.rank)
             # add it to the dictionary mapping the id to spec name
             self.tree_list_dict[s_iid] = spec
             # self.tree_spec_dict[iid][s_iid] = spec
@@ -200,7 +200,7 @@ class SkillsTab(NotebookTab):
                         parent_item.specializations.remove(spec)
                 # increase the rank and update the UI
                 parent_item.rank += 1
-                self.skills_list.item(parent_ui_item_iid, value=(parent_item.rank, parent_item.attribute))
+                self.skills_list.item(parent_ui_item_iid, values=(parent_item.rank, parent_item.attribute))
             # otherwise it's a skill and we need to remove all of its children (specializations) too
             else:
                 skill = self.tree_list_dict[selected_list_item_iid]
@@ -253,7 +253,7 @@ class SkillsTab(NotebookTab):
             if name_entry.get() != "":
                 # make a new item in the UI with the value equal to 1 plus the current rank
                 new_item_iid = self.skills_list.insert(self.selected_skill_ui_iid(), "end", text=name_entry.get(),
-                                                       value=self.list_selected.rank + 1)
+                                                       values=self.list_selected.rank + 1)
                 # if we aren't finalized, decrease the rank by 1 and set the specialization value to 2 plus rank
                 if type(self.gen_mode) is not Finalized:
                     self.list_selected.rank -= 1
@@ -269,8 +269,8 @@ class SkillsTab(NotebookTab):
                     # self.list_selected_skill.specializations[name_entry.get()] = 1
 
                 # update the parent skill in the UI
-                self.skills_list.item(self.selected_skill_ui_iid(), value=(self.list_selected.rank,
-                                                                           self.list_selected.attribute))
+                self.skills_list.item(self.selected_skill_ui_iid(), values=(self.list_selected.rank,
+                                                                            self.list_selected.attribute))
                 self.tree_list_dict[new_item_iid] = new_spec
                 # self.tree_spec_dict[selected][new_item] = name_entry.get()
                 temp_window.destroy()
@@ -345,11 +345,11 @@ class SkillsTab(NotebookTab):
                     spec.rank += 1
                 for spec_ui_iid in self.skills_list.get_children(self.selected_skill_ui_iid()):
                     spec_rank = int(self.skills_list.item(spec_ui_iid)["values"][0])  # convert first value to int
-                    self.skills_list.item(spec_ui_iid, value=spec_rank + 1)  # set new value in UI
+                    self.skills_list.item(spec_ui_iid, values=spec_rank + 1)  # set new value in UI
 
         # update the value in the ui
         self.skills_list.item(self.selected_skill_ui_iid(),
-                              value=(self.list_selected.rank, self.list_selected.attribute))
+                              values=(self.list_selected.rank, self.list_selected.attribute))
 
         # calculate total no matter what
         self.calculate_total()
@@ -366,7 +366,7 @@ class SkillsTab(NotebookTab):
             undo_type = undo_prefix + self.list_selected.name
             self.statblock.gen_mode.undo(undo_type)
             self.skills_list.item(self.selected_skill_ui_iid(),
-                                  value=(self.list_selected.rank, self.list_selected.attribute))
+                                  values=(self.list_selected.rank, self.list_selected.attribute))
         else:
             # check if we're a specialization or not
             if type(self.list_selected) == Specialization:
@@ -385,10 +385,10 @@ class SkillsTab(NotebookTab):
                 # update specializations
                 for spec_ui_iid in self.skills_list.get_children(self.selected_skill_ui_iid()):
                     spec_rank = int(self.skills_list.item(spec_ui_iid)["values"][0])  # convert first value to int
-                    self.skills_list.item(spec_ui_iid, value=spec_rank - 1)  # set new value in UI
+                    self.skills_list.item(spec_ui_iid, values=spec_rank - 1)  # set new value in UI
 
                 self.skills_list.item(self.selected_skill_ui_iid(),
-                                      value=(self.list_selected.rank, self.list_selected.attribute))
+                                      values=(self.list_selected.rank, self.list_selected.attribute))
 
         # calculate total no matter what
         self.calculate_total()

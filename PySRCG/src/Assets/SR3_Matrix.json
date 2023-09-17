@@ -7,23 +7,28 @@
     "Channel Skills": {
       "Access": {
         "attribute": "willpower",
-        "skill_type": "active"
+        "skill_type": "active",
+        "page": 137
       },
       "Control": {
         "attribute": "willpower",
-        "skill_type": "active"
+        "skill_type": "active",
+        "page": 137
       },
       "Files": {
         "attribute": "willpower",
-        "skill_type": "active"
+        "skill_type": "active",
+        "page": 137
       },
       "Index": {
         "attribute": "willpower",
-        "skill_type": "active"
+        "skill_type": "active",
+        "page": 137
       },
       "Slave": {
         "attribute": "willpower",
-        "skill_type": "active"
+        "skill_type": "active",
+        "page": 137
       }
     }
   },

@@ -11,6 +11,11 @@ DEBUG = False
 STRINGS_THAT_ARE_NOT_VARIABLES = ["See", "rules", "yeah,", "right", "As", "weapon", "Special"]
 
 
+def SET_DEBUG(val):
+    global DEBUG
+    DEBUG = val
+
+
 def combine_tree_dict(dict1, dict2):
     # NYI
     final_dict = {}
@@ -38,6 +43,9 @@ def recursive_treeview_fill(_dict, parent_iid, treeview, recurse_check, recurse_
     :param extra_keys: Extra keys to look for. This is used for treedicts with multiple columns, specifically in the
         Powers tab.
     """
+
+    if DEBUG:
+        pass  # breakpoint catcher
 
     for key in _dict.keys():
         val = _dict[key]

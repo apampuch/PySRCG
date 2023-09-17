@@ -1,6 +1,6 @@
 {
   "book_abbr": "sr3",
-  "file_version": "1.6",
+  "file_version": "1.7",
   "schema_version": "1.3",
   "book": "Shadowrun 3 Core (FASA 7001)",
   "Items": {
@@ -4322,193 +4322,238 @@
       "Combat Skills": {
         "Assault Rifles": {
           "attribute": "quickness",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 85
         },
         "Clubs": {
           "attribute": "strength",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 85
         },
         "Cyber-Implant Combat": {
           "attribute": "strength",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 85
         },
         "Edged Weapons": {
           "attribute": "strength",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Gunnery": {
           "attribute": "intelligence",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Heavy Weapons": {
           "attribute": "strength",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Laser Weapons": {
           "attribute": "quickness",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Launch Weapons": {
           "attribute": "intelligence",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Pistols": {
           "attribute": "quickness",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Pole Arms/Staffs": {
           "attribute": "strength",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Projectile Weapons": {
           "attribute": "strength",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Rifles": {
           "attribute": "quickness",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Shotguns": {
           "attribute": "quickness",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Submachine Guns": {
           "attribute": "quickness",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Throwing Weapons": {
           "attribute": "strength",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Unarmed Combat": {
           "attribute": "strength",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Underwater Combat": {
           "attribute": "strength",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Whips": {
           "attribute": "quickness",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         }
       },
       "Magical Skills": {
         "Aura Reading": {
           "attribute": "intelligence",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 86
         },
         "Sorcery": {
           "attribute": "willpower",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 87
         },
         "Conjuring": {
           "attribute": "willpower",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 87
         }
       },
       "Physical Skills": {
         "Athletics": {
           "attribute": "body",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 87
         },
         "Diving": {
           "attribute": "body",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 87
         },
         "Stealth": {
           "attribute": "quickness",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 87
         }
       },
       "Social Skills": {
         "Etiquette": {
           "attribute": "charisma",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 87
         },
         "Instruction": {
           "attribute": "charisma",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 87
         },
         "Interrogation": {
           "attribute": "charisma",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 87
         },
         "Intimidation": {
           "attribute": "charisma",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 87
         },
         "Leadership": {
           "attribute": "charisma",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 87
         },
         "Negotiation": {
           "attribute": "charisma",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 88
         }
       },
       "Technical Skills": {
         "Biotech": {
           "attribute": "intelligence",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 88
         },
         "Computer": {
           "attribute": "intelligence",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 88
         },
         "Demolitions": {
           "attribute": "intelligence",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 88
         },
         "Electronics": {
           "attribute": "intelligence",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 88
         }
       },
       "Vehicle Skills": {
         "Bike": {
           "attribute": "reaction",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 88
         },
         "Car": {
           "attribute": "reaction",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 89
         },
         "Fixed-Wng Aircraft": {
           "attribute": "reaction",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 89
         },
         "Hovercraft": {
           "attribute": "reaction",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 89
         },
         "LTA Aircraft": {
           "attribute": "reaction",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 89
         },
         "Motorboat": {
           "attribute": "reaction",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 89
         },
         "Rotor Aircraft": {
           "attribute": "reaction",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 89
         },
         "Sailboat": {
           "attribute": "reaction",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 89
         },
         "Ship": {
           "attribute": "reaction",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 89
         },
         "Submarine": {
           "attribute": "reaction",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 89
         },
         "Vectored Thrust Aircraft": {
           "attribute": "reaction",
-          "skill_type": "active"
+          "skill_type": "active",
+          "page": 89
         }
       }
     },

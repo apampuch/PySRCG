@@ -21,7 +21,7 @@ class Skill:
     def __repr__(self):
         return "{}: {}".format(self.name, self.rank)
 
-    def __init__(self, name, attribute, rank, skill_type, specializations=None):
+    def __init__(self, name, attribute, rank, skill_type, book, page, specializations=None):
         if specializations is None:
             specializations = []
         self.name = name
@@ -32,6 +32,8 @@ class Skill:
             self.specializations.append(Specialization(**spec))
 
         self.skill_type = skill_type
+        self.book = book
+        self.page = page
 
     def cost_to_increase(self):
         pass
@@ -42,5 +44,7 @@ class Skill:
             "attribute": self.attribute,
             "rank": self.rank,
             "specializations": list(map(lambda x: x.serialize(), self.specializations)),
-            "skill_type": self.skill_type
+            "skill_type": self.skill_type,
+            "book": self.book,
+            "page": self.page
         }
