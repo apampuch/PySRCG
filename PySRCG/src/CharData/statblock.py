@@ -172,6 +172,9 @@ class Statblock(object):
         self.aspect = None
         self.focus = None
         self.spells = []
+        self.geasa = []
+        self.grade = 0
+        self.metamagics = []
 
         """
         self.otaku: Can be True or False.
@@ -424,10 +427,18 @@ class Statblock(object):
 
     @property
     def magic(self):
-        return int(self.essence)
+        if self.awakened is None:
+            return 0
+        else:
+            total = int(self.essence) + self.grade + len(self.geasa)
+
+            if total > 6 + self.grade:  # 6 is theoretical maximum of essence
+                total = 6 + self.grade
+
+            return total
 
     @property
-    def essence(self):
+    def essence(self) -> float:
         essence_total = 6  # I am SURE there are races that have more essence
 
         fit_dict = self.make_fit_dict()
@@ -439,7 +450,7 @@ class Statblock(object):
             line_total = max(line_total, 0)
             essence_total -= line_total
 
-        # set the essence UI control variable so it properly updates the UI
+        # set the essence UI control variable so that it properly updates the UI
         self.ess_ui_var.set(essence_total)
         return essence_total
 
@@ -576,6 +587,9 @@ class Statblock(object):
             "tradition": tradition,
             "aspect": self.aspect,
             "focus": self.focus,
+            "geasa": self.geasa,
+            "grade": self.grade,
+            "metamagics": self.metamagics,
             "decks": decks,
             "vehicles": vehicles,
             "other_programs": other_programs,

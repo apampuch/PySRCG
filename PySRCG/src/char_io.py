@@ -207,6 +207,9 @@ def load(tabs):
                 spell_obj = Spell(**spell)
                 new_character.statblock.spells.append(spell_obj)
 
+            # add geasa
+            new_character.statblock.geasa = copy(character_dict["statblock"]["geasa"])
+
             # add cyberware
             for cyber in character_dict["statblock"]["cyberware"]:
                 if "mpcp" in cyber:

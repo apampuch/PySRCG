@@ -36,12 +36,12 @@ class MagicBackgroundTab(NotebookTab, ABC):
 
         # listbox for geasa
         self.geasa_labelframe = ttk.LabelFrame(self, text="Geasa")
-        self.geasa_listbox = Listbox(self.geasa_labelframe, width=40, height=7)
+        self.geasa_listbox = Listbox(self.geasa_labelframe, width=40, height=7, selectmode=SINGLE)
         self.geasa_scroll = Scrollbar(self.geasa_labelframe, orient="vertical", command=self.geasa_listbox.yview)
         self.geasa_listbox["yscrollcommand"] = self.geasa_scroll.set
-        self.new_button = ttk.Button(self.geasa_labelframe, text="New")
-        self.edit_button = ttk.Button(self.geasa_labelframe, text="Edit")
-        self.delete_button = ttk.Button(self.geasa_labelframe, text="Delete")
+        self.new_button = ttk.Button(self.geasa_labelframe, text="New", command=self.new_geas)
+        self.edit_button = ttk.Button(self.geasa_labelframe, text="Edit", command=self.edit_geas)
+        self.delete_button = ttk.Button(self.geasa_labelframe, text="Delete", command=self.delete_geas)
 
         self.geasa_listbox.grid(column=0, row=0, rowspan=3)
         self.geasa_scroll.grid(column=1, row=0, rowspan=3, sticky=NS)
@@ -150,6 +150,67 @@ class MagicBackgroundTab(NotebookTab, ABC):
         if not self.statblock.tradition.always_has_focus and self.statblock.aspect not in self.focus_aspects:
             self.focus_box.set("")
 
+    def new_geas(self):
+        # check if we even CAN get a new geas
+        if self.statblock.magic >= self.statblock.essence:
+            print("Can't take a geas.")
+            return
+
+        # setup new window
+        ask_window = Toplevel(self.parent)
+        ask_window.grab_set()
+        ask_window.resizable(None, None)
+
+        geas_entry = Entry(ask_window)
+
+        def ok_func():
+            new_geas = geas_entry.get()
+            self.statblock.geasa.append(new_geas)
+            self.geasa_listbox.insert(END, new_geas)
+            ask_window.destroy()
+
+        def cancel_func():
+            ask_window.destroy()
+
+        Label(ask_window, text="Geas:").pack()
+        geas_entry.pack(fill=X)
+        Button(ask_window, text="OK", command=ok_func).pack(side=LEFT)
+        Button(ask_window, text="Cancel", command=cancel_func).pack(side=RIGHT)
+
+    def edit_geas(self):
+        # do nothing if nothing is selected
+        if len(self.geasa_listbox.curselection()) == 0:
+            return
+
+        ask_window = Toplevel(self.parent)
+        ask_window.grab_set()
+        ask_window.resizable(None, None)
+
+        geas_entry = Entry(ask_window)
+        selection = self.geasa_listbox.curselection()[0]
+        geas_entry.insert(0, self.geasa_listbox.get(selection))
+
+        def ok_func():
+            self.statblock.geasa[selection] = geas_entry.get()
+            self.geasa_listbox.delete(selection)
+            self.geasa_listbox.insert(selection, geas_entry.get())
+            ask_window.destroy()
+
+        def cancel_func():
+            ask_window.destroy()
+
+        Label(ask_window, text="Geas:").pack()
+        geas_entry.pack(fill=X)
+        Button(ask_window, text="OK", command=ok_func).pack(side=LEFT)
+        Button(ask_window, text="Cancel", command=cancel_func).pack(side=RIGHT)
+
+    def delete_geas(self):
+        # do nothing if nothing is selected
+        if len(self.geasa_listbox.curselection()) == 0:
+            return
+
+        self.geasa_listbox.delete(self.geasa_listbox.curselection()[0])
+
     # noinspection PyUnusedLocal
     def on_change_focus(self, *args):
         self.statblock.focus = self.focus_box.get()
@@ -205,6 +266,10 @@ class MagicBackgroundTab(NotebookTab, ABC):
         else:
             self.aspects_box.configure(values=[])
             self.focus_box.configure(values=[])
+
+        self.geasa_listbox.delete(0, END)
+        if len(self.statblock.geasa) > 0:
+            self.geasa_listbox.insert(END, *self.statblock.geasa)
 
         self.on_switch()
 
