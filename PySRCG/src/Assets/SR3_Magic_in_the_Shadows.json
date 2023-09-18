@@ -1,0 +1,34 @@
+{
+  "book_abbr": "mits",
+  "file_version": "1.0",
+  "schema_version": "1.3",
+  "book": "Magic in the Shadows (FAS7907)",
+  "metamagic": {
+  },
+  "ordeals": {
+    "Astral Quest": {
+      "page": 60
+    },
+    "Asceticism": {
+      "page": 60
+    },
+    "Deed": {
+      "page": 60
+    },
+    "Familiar": {
+      "page": 60
+    },
+    "Geas": {
+      "page": 60
+    },
+    "Meditation": {
+      "page": 61
+    },
+    "Oath": {
+      "page": 61
+    },
+    "Thesis": {
+      "page": 61
+    }
+  }
+}
