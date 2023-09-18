@@ -4,6 +4,33 @@
   "schema_version": "1.3",
   "book": "Magic in the Shadows (FAS7907)",
   "metamagic": {
+    "Anchoring": {
+      "page": 70
+    },
+    "Centering": {
+      "page": 72
+    },
+    "Divining": {
+      "page": 74
+    },
+    "Invoking": {
+      "page": 75
+    },
+    "Masking": {
+      "page": 76
+    },
+    "Possessing": {
+      "page": 76
+    },
+    "Quickening": {
+      "page": 77
+    },
+    "Reflecting": {
+      "page": 78
+    },
+    "Shielding": {
+      "page": 79
+    }
   },
   "ordeals": {
     "Astral Quest": {
