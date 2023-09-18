@@ -11,6 +11,9 @@ class MagicBackgroundTab(NotebookTab, ABC):
     def __init__(self, parent):
         super().__init__(parent, "MagicBackgroundTab")
 
+        # formatting shit
+        self.rowconfigure(2, weight=9)  # to make the rows look nice and stack perfectly
+
         # the tradition box should be unchanging
         self.traditions_labelframe = ttk.LabelFrame(self, text="Tradition")
         self.tradition_box = ttk.Combobox(self.traditions_labelframe, state="readonly")
@@ -53,18 +56,25 @@ class MagicBackgroundTab(NotebookTab, ABC):
         self.initiations_labelframe = ttk.LabelFrame(self, text="Initiations")
         self.initiations_listbox = Listbox(self.initiations_labelframe, height=10)
 
+        # group stuff
+        self.group_labelframe = ttk.LabelFrame(self, text="Groups")
+        self.group_listbox = Listbox(self.group_labelframe, height=10)
+
         # purchase options
-        self.purchase_labelframe = ttk.LabelFrame(self.initiations_labelframe, text="New Initiation", width=6000)
+        self.purchase_labelframe = ttk.LabelFrame(self, text="New Initiation", width=6000)
         # self vs group initiation
         self.self_group_var = StringVar()
-        self.self_radio = Radiobutton(self.purchase_labelframe, text="Self Initiation",
-                                      variable=self.self_group_var, value="self")
-        self.group_radio = Radiobutton(self.purchase_labelframe, text="Group Initiation",
-                                       variable=self.self_group_var, value="group")
+        self.self_group_var.set("self")
+        self.self_radio = Radiobutton(self.purchase_labelframe, text="Self Initiation", variable=self.self_group_var,
+                                      value="self", command=self.update_karma_cost)
+        self.group_radio = Radiobutton(self.purchase_labelframe, text="Group Initiation", variable=self.self_group_var,
+                                       value="group", command=self.update_karma_cost)
 
         # ordeal
         self.ordeal_var = IntVar()
-        self.ordeal_checkbox = Checkbutton(self.purchase_labelframe, text="Ordeal", variable=self.ordeal_var)
+        self.ordeal_var.set(0)
+        self.ordeal_checkbox = Checkbutton(self.purchase_labelframe, text="Ordeal", variable=self.ordeal_var,
+                                           command=self.update_karma_cost)
 
         # karma cost label
         self.karma_cost_label = Label(self.purchase_labelframe, text="Karma Cost")
@@ -74,7 +84,8 @@ class MagicBackgroundTab(NotebookTab, ABC):
                                     width=4)
 
         # buy button
-        self.buy_button = Button(self.purchase_labelframe, text="Initiate")
+        self.buy_button = Button(self.purchase_labelframe, text="Initiate", command=self.add_initiation)
+        self.sell_button = Button(self.purchase_labelframe, text="Delete", command=self.delete_initiation)
 
         self.self_radio.grid(column=0, row=0, sticky=W)
         self.group_radio.grid(column=0, row=1, sticky=W)
@@ -84,7 +95,7 @@ class MagicBackgroundTab(NotebookTab, ABC):
         self.buy_button.grid(column=0, row=4, sticky=W)
 
         # initiation benefit
-        self.benefit_labelframe = ttk.LabelFrame(self.initiations_labelframe, text="Benefit")
+        self.benefit_labelframe = ttk.LabelFrame(self, text="Benefit")
         # radiobutton var
         self.benefit_var = StringVar()
         self.new_metamagic_button = Radiobutton(self.benefit_labelframe, text="Learn New Metamagic",
@@ -100,14 +111,14 @@ class MagicBackgroundTab(NotebookTab, ABC):
 
         # learn metamagic technique
 
-        self.ordeal_labelframe = ttk.LabelFrame(self.initiations_labelframe, text="Ordeal")
+        self.ordeal_labelframe = ttk.LabelFrame(self, text="Ordeal")
         self.ordeal_listbox = Listbox(self.ordeal_labelframe, height=8)
         self.ordeal_scroll = Scrollbar(self.ordeal_labelframe, orient="vertical", command=self.ordeal_listbox.yview)
         self.ordeal_listbox["yscrollcommand"] = self.ordeal_scroll.set
         self.ordeal_listbox.grid(column=0, row=0)
         self.ordeal_scroll.grid(column=1, row=0, sticky=NS)
 
-        self.metamagic_labelframe = ttk.LabelFrame(self.initiations_labelframe, text="Metamagic")
+        self.metamagic_labelframe = ttk.LabelFrame(self, text="Metamagic")
         self.metamagic_listbox = Listbox(self.metamagic_labelframe, height=8)
         self.metamagic_scroll = Scrollbar(self.metamagic_labelframe, orient="vertical",
                                           command=self.metamagic_listbox.yview)
@@ -115,17 +126,24 @@ class MagicBackgroundTab(NotebookTab, ABC):
         self.metamagic_listbox.grid(column=0, row=0)
         self.metamagic_scroll.grid(column=1, row=0, sticky=NS)
 
-        self.initiations_listbox.grid(column=0, row=0, columnspan=4, sticky=EW)
+        self.initiations_listbox.grid(column=0, row=0, columnspan=10, sticky=EW)
+        self.group_listbox.grid(column=0, row=0,  sticky=EW)
 
-        self.purchase_labelframe.grid(column=0, row=1, sticky=NS)
-        self.benefit_labelframe.grid(column=1, row=1, sticky=NS)
-        self.ordeal_labelframe.grid(column=2, row=1, sticky=NS)
-        self.metamagic_labelframe.grid(column=3, row=1, sticky=NS)
+        # top row
+        self.traditions_labelframe.grid(column=0, row=0, columnspan=3, sticky=N)
+        self.geasa_labelframe.grid(column=3, row=0, columnspan=9, rowspan=3, sticky=EW)
 
-        # grids
-        self.traditions_labelframe.grid(column=0, row=0, sticky=N)
-        self.geasa_labelframe.grid(column=1, row=0, rowspan=10, sticky=EW)
-        self.initiations_labelframe.grid(column=0, row=10, columnspan=2)
+        # mid row
+        self.initiations_labelframe.grid(column=0, row=3, columnspan=6, sticky=EW)
+        self.initiations_labelframe.columnconfigure(0, weight=1)
+        self.group_labelframe.grid(column=6, row=3, columnspan=6, sticky=EW)
+        self.group_labelframe.columnconfigure(0, weight=1)
+
+        # bot row
+        self.purchase_labelframe.grid(column=0, row=4, columnspan=3, sticky=NS)
+        self.benefit_labelframe.grid(column=3, row=4, columnspan=3, sticky=NS)
+        self.ordeal_labelframe.grid(column=6, row=4, columnspan=3, sticky=NS)
+        self.metamagic_labelframe.grid(column=9, row=4, columnspan=3, sticky=NS)
 
     # noinspection PyUnusedLocal
     def on_change_tradition(self, *args):
@@ -211,6 +229,12 @@ class MagicBackgroundTab(NotebookTab, ABC):
 
         self.geasa_listbox.delete(self.geasa_listbox.curselection()[0])
 
+    def add_initiation(self):
+        pass
+
+    def delete_initiation(self):
+        pass
+
     # noinspection PyUnusedLocal
     def on_change_focus(self, *args):
         self.statblock.focus = self.focus_box.get()
@@ -235,7 +259,8 @@ class MagicBackgroundTab(NotebookTab, ABC):
         # has a focus
         if self.statblock.tradition is not None and \
                 (self.statblock.tradition.always_has_focus or self.statblock.aspect in self.focus_aspects):
-            self.focus_labelframe.grid(column=0, row=2, sticky="N")
+            self.focus_labelframe.grid(column=0, row=2, columnspan=3, sticky=N)
+            self.rowconfigure(1, weight=1)  # to make the rows look nice and stack perfectly
             self.focus_box.configure(values=list(self.statblock.tradition.allowed_foci))
             self.focus_labelframe.configure(text=self.statblock.tradition.focus_name)
         else:
@@ -252,6 +277,24 @@ class MagicBackgroundTab(NotebookTab, ABC):
             self.traditions_dict[tradition] = Tradition(tradition, **app_data.game_data["Traditions"][tradition])
 
         self.tradition_box.configure(values=list(self.traditions_dict.keys()))
+
+    def calc_karma_cost(self):
+        base_cost = 6 + self.statblock.grade
+
+        if self.self_group_var.get() == "self":
+            mult = 3.0
+        elif self.self_group_var.get() == "group":
+            mult = 2.0
+        else:
+            raise ValueError(f"Invalid self/group selection: {self.self_group_var.get()}")
+
+        if self.ordeal_var.get():
+            mult -= 0.5
+
+        return int(base_cost * mult)
+
+    def update_karma_cost(self):
+        self.karma_cost_var.set(str(self.calc_karma_cost()))
 
     def load_character(self):
         if self.statblock.tradition is not None:
@@ -276,8 +319,10 @@ class MagicBackgroundTab(NotebookTab, ABC):
     def on_switch(self):
         # show or hide aspects box
         if self.statblock.awakened == "Aspected":
-            self.aspects_labelframe.grid(column=0, row=1, sticky="N")
+            self.aspects_labelframe.grid(column=0, row=1, columnspan=3, sticky=N)
+            self.rowconfigure(1, weight=9)  # to make the rows look nice and stack perfectly
         else:
             self.aspects_labelframe.grid_forget()
 
+        self.update_karma_cost()
         self.check_focus_box()

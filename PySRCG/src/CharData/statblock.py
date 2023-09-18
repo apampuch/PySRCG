@@ -81,6 +81,10 @@ class Statblock(object):
         # callback magic tab
         app_data.window.nametowidget(".!app.!magictab").show_hide_tabs(self.awakened, self.tradition)
 
+    @property
+    def grade(self):
+        return len(self.initiations)
+
     # we do this because we need to accommodate cranial cyberdecks
     def all_decks(self):
         decks = copy(self.decks)
@@ -128,7 +132,7 @@ class Statblock(object):
 
         # always start with 6 essence
         self.base_attributes["essence"] = 6.0
-        self.ess_ui_var = IntVar()  # this only exists so we can control the progress bar with the essence value
+        self.ess_ui_var = IntVar()  # this only exists so that we can control the progress bar with the essence value
         self.power_points_ui_var = IntVar()  # same as above but for power points
         self.ess_index_ui_var = IntVar()  # same as above but for essence index
         self.ess_ui_var.set(6)
@@ -173,7 +177,7 @@ class Statblock(object):
         self.focus = None
         self.spells = []
         self.geasa = []
-        self.grade = 0
+        self.initiations = []
         self.metamagics = []
 
         """
