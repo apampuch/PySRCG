@@ -210,6 +210,9 @@ def load(tabs):
             # add geasa
             new_character.statblock.geasa = copy(character_dict["statblock"]["geasa"])
 
+            # add magical groups
+            new_character.statblock.magical_groups = copy(character_dict["statblock"]["magical_groups"])
+
             # add cyberware
             for cyber in character_dict["statblock"]["cyberware"]:
                 if "mpcp" in cyber:

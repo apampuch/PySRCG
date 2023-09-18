@@ -177,6 +177,7 @@ class Statblock(object):
         self.focus = None
         self.spells = []
         self.geasa = []
+        self.magical_groups = []
         self.initiations = []
         self.metamagics = []
 
@@ -592,6 +593,7 @@ class Statblock(object):
             "aspect": self.aspect,
             "focus": self.focus,
             "geasa": self.geasa,
+            "magical_groups": self.magical_groups,
             "grade": self.grade,
             "metamagics": self.metamagics,
             "decks": decks,

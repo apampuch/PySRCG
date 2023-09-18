@@ -4,14 +4,16 @@ from tkinter import ttk
 
 from src import app_data
 from src.CharData.tradition import Tradition
+from src.GenModes.finalized import Finalized
 from src.Tabs.notebook_tab import NotebookTab
+from src.adjustment import Adjustment
 
 
 class MagicBackgroundTab(NotebookTab, ABC):
     def __init__(self, parent):
         super().__init__(parent, "MagicBackgroundTab")
 
-        # formatting shit
+        # formatting
         self.rowconfigure(2, weight=9)  # to make the rows look nice and stack perfectly
 
         # the tradition box should be unchanging
@@ -58,7 +60,11 @@ class MagicBackgroundTab(NotebookTab, ABC):
 
         # group stuff
         self.group_labelframe = ttk.LabelFrame(self, text="Groups")
-        self.group_listbox = Listbox(self.group_labelframe, height=10)
+        self.group_listbox = Listbox(self.group_labelframe, height=8)
+
+        self.join_button = Button(self.group_labelframe, text="Join", command=self.join_group)
+        self.edit_group_button = Button(self.group_labelframe, text="Edit", command=self.edit_group)
+        self.leave_button = Button(self.group_labelframe, text="Leave", command=self.leave_group)
 
         # purchase options
         self.purchase_labelframe = ttk.LabelFrame(self, text="New Initiation", width=6000)
@@ -109,8 +115,6 @@ class MagicBackgroundTab(NotebookTab, ABC):
         self.alter_signature_button.grid(column=0, row=1)
         self.shed_geas_button.grid(column=0, row=2)
 
-        # learn metamagic technique
-
         self.ordeal_labelframe = ttk.LabelFrame(self, text="Ordeal")
         self.ordeal_listbox = Listbox(self.ordeal_labelframe, height=8)
         self.ordeal_scroll = Scrollbar(self.ordeal_labelframe, orient="vertical", command=self.ordeal_listbox.yview)
@@ -126,8 +130,11 @@ class MagicBackgroundTab(NotebookTab, ABC):
         self.metamagic_listbox.grid(column=0, row=0)
         self.metamagic_scroll.grid(column=1, row=0, sticky=NS)
 
-        self.initiations_listbox.grid(column=0, row=0, columnspan=10, sticky=EW)
-        self.group_listbox.grid(column=0, row=0,  sticky=EW)
+        self.initiations_listbox.grid(column=0, row=0, sticky=EW)
+        self.group_listbox.grid(column=0, row=0, columnspan=3, sticky=EW)
+        self.join_button.grid(column=0, row=1, sticky=W, padx=10, pady=2)
+        self.edit_group_button.grid(column=1, row=1, sticky=W, padx=10, pady=2)
+        self.leave_button.grid(column=2, row=1, sticky=E, padx=10, pady=2)
 
         # top row
         self.traditions_labelframe.grid(column=0, row=0, columnspan=3, sticky=N)
@@ -136,8 +143,9 @@ class MagicBackgroundTab(NotebookTab, ABC):
         # mid row
         self.initiations_labelframe.grid(column=0, row=3, columnspan=6, sticky=EW)
         self.initiations_labelframe.columnconfigure(0, weight=1)
-        self.group_labelframe.grid(column=6, row=3, columnspan=6, sticky=EW)
+        self.group_labelframe.grid(column=6, row=3, columnspan=6, sticky=NSEW)
         self.group_labelframe.columnconfigure(0, weight=1)
+        self.group_labelframe.columnconfigure(1, weight=1)
 
         # bot row
         self.purchase_labelframe.grid(column=0, row=4, columnspan=3, sticky=NS)
@@ -168,59 +176,55 @@ class MagicBackgroundTab(NotebookTab, ABC):
         if not self.statblock.tradition.always_has_focus and self.statblock.aspect not in self.focus_aspects:
             self.focus_box.set("")
 
+    def prompt_window(self, ok_func, label, insert=None):        # setup new window
+        ask_window = Toplevel(self.parent)
+        ask_window.grab_set()
+        ask_window.resizable(None, None)
+
+        prompt_entry = Entry(ask_window)
+
+        if insert is not None:
+            insert(prompt_entry)
+
+        def cancel_func():
+            ask_window.destroy()
+
+        Label(ask_window, text=label).pack()
+        prompt_entry.pack(fill=X)
+        Button(ask_window, text="OK", command=lambda: ok_func(prompt_entry, ask_window)).pack(side=LEFT)
+        Button(ask_window, text="Cancel", command=cancel_func).pack(side=RIGHT)
+
     def new_geas(self):
         # check if we even CAN get a new geas
         if self.statblock.magic >= self.statblock.essence:
             print("Can't take a geas.")
             return
 
-        # setup new window
-        ask_window = Toplevel(self.parent)
-        ask_window.grab_set()
-        ask_window.resizable(None, None)
-
-        geas_entry = Entry(ask_window)
-
-        def ok_func():
-            new_geas = geas_entry.get()
+        def ok_func(entry, window):
+            new_geas = entry.get()
             self.statblock.geasa.append(new_geas)
             self.geasa_listbox.insert(END, new_geas)
-            ask_window.destroy()
+            window.destroy()
 
-        def cancel_func():
-            ask_window.destroy()
-
-        Label(ask_window, text="Geas:").pack()
-        geas_entry.pack(fill=X)
-        Button(ask_window, text="OK", command=ok_func).pack(side=LEFT)
-        Button(ask_window, text="Cancel", command=cancel_func).pack(side=RIGHT)
+        self.prompt_window(ok_func, "Geas ")
 
     def edit_geas(self):
         # do nothing if nothing is selected
         if len(self.geasa_listbox.curselection()) == 0:
             return
 
-        ask_window = Toplevel(self.parent)
-        ask_window.grab_set()
-        ask_window.resizable(None, None)
-
-        geas_entry = Entry(ask_window)
         selection = self.geasa_listbox.curselection()[0]
-        geas_entry.insert(0, self.geasa_listbox.get(selection))
 
-        def ok_func():
-            self.statblock.geasa[selection] = geas_entry.get()
+        def insert(entry):
+            entry.insert(0, self.geasa_listbox.get(selection))
+
+        def ok_func(entry, window):
+            self.statblock.geasa[selection] = entry.get()
             self.geasa_listbox.delete(selection)
-            self.geasa_listbox.insert(selection, geas_entry.get())
-            ask_window.destroy()
+            self.geasa_listbox.insert(selection, entry.get())
+            window.destroy()
 
-        def cancel_func():
-            ask_window.destroy()
-
-        Label(ask_window, text="Geas:").pack()
-        geas_entry.pack(fill=X)
-        Button(ask_window, text="OK", command=ok_func).pack(side=LEFT)
-        Button(ask_window, text="Cancel", command=cancel_func).pack(side=RIGHT)
+        self.prompt_window(ok_func, "Geas ", insert)
 
     def delete_geas(self):
         # do nothing if nothing is selected
@@ -228,6 +232,58 @@ class MagicBackgroundTab(NotebookTab, ABC):
             return
 
         self.geasa_listbox.delete(self.geasa_listbox.curselection()[0])
+
+    def join_group(self):
+        if type(self.statblock.gen_mode) is not Finalized:
+            print("Must be finalized!")
+            return
+
+        # charge 3 karma
+        if self.statblock.gen_mode.point_purchase_allowed(3, None):
+            def ok_func(entry, window):
+                new_group = entry.get()
+
+                # key should not matter because it's always 3 karma
+                key = "join_group"
+                adjustment = Adjustment(3, key, lambda: None)
+                self.statblock.gen_mode.add_adjustment(adjustment)
+
+                self.statblock.magical_groups.append(new_group)
+                self.group_listbox.insert(END, new_group)
+                window.destroy()
+
+            self.prompt_window(ok_func, "Group Name ")
+        else:
+            print("Not enough karma!")
+
+    def edit_group(self):
+        # do nothing if nothing is selected
+        if len(self.group_listbox.curselection()) == 0:
+            return
+
+        selection = self.group_listbox.curselection()[0]
+
+        def insert(entry):
+            entry.insert(0, self.group_listbox.get(selection))
+
+        def ok_func(entry, window):
+            self.statblock.magical_groups[selection] = entry.get()
+            self.group_listbox.delete(selection)
+            self.group_listbox.insert(selection, entry.get())
+            window.destroy()
+
+        self.prompt_window(ok_func, "Group Name ", insert)
+
+    def leave_group(self):
+        if len(self.group_listbox.curselection()) == 0:
+            return
+
+        sel = self.group_listbox.curselection()[0]
+
+        # check if we have an adjustment and undo it if we do
+        key = "join_group"
+        self.statblock.gen_mode.undo(key)
+        self.group_listbox.delete(sel)
 
     def add_initiation(self):
         pass
@@ -313,6 +369,8 @@ class MagicBackgroundTab(NotebookTab, ABC):
         self.geasa_listbox.delete(0, END)
         if len(self.statblock.geasa) > 0:
             self.geasa_listbox.insert(END, *self.statblock.geasa)
+        if len(self.statblock.magical_groups) > 0:
+            self.group_listbox.insert(END, *self.statblock.magical_groups)
 
         self.on_switch()
 
