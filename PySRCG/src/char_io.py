@@ -16,6 +16,7 @@ from src.CharData.edge_flaw import EdgeFlaw
 from src.CharData.firearm_accessory import FirearmAccessory
 from src.CharData.gear import Gear
 from src.CharData.lifestyle import SimpleLifestyle, AdvancedLifestyle
+from src.CharData.metamagic import Metamagic
 from src.CharData.power import Power
 from src.CharData.program import Program
 from src.CharData.race import all_races
@@ -212,6 +213,14 @@ def load(tabs):
 
             # add magical groups
             new_character.statblock.magical_groups = copy(character_dict["statblock"]["magical_groups"])
+
+            # add initiations
+            new_character.statblock.initiations = copy(character_dict["statblock"]["initiations"])
+
+            # add metamagics
+            for metamagic in character_dict["statblock"]["metamagic"]:
+                metamagic_obj = Metamagic(**metamagic)
+                new_character.statblock.metamagic.append(metamagic_obj)
 
             # add cyberware
             for cyber in character_dict["statblock"]["cyberware"]:

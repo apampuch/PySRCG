@@ -179,7 +179,7 @@ class Statblock(object):
         self.geasa = []
         self.magical_groups = []
         self.initiations = []
-        self.metamagics = []
+        self.metamagic = []
 
         """
         self.otaku: Can be True or False.
@@ -594,8 +594,8 @@ class Statblock(object):
             "focus": self.focus,
             "geasa": self.geasa,
             "magical_groups": self.magical_groups,
-            "grade": self.grade,
-            "metamagics": self.metamagics,
+            "initiations": self.initiations,
+            "metamagic": list(map(lambda x: x.serialize(), self.metamagic)),
             "decks": decks,
             "vehicles": vehicles,
             "other_programs": other_programs,

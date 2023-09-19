@@ -1,8 +1,11 @@
 from abc import ABC
+from copy import copy
 from tkinter import *
 from tkinter import ttk
 
 from src import app_data
+from src.CharData.metamagic import Metamagic
+from src.CharData.ordeal import Ordeal
 from src.CharData.tradition import Tradition
 from src.GenModes.finalized import Finalized
 from src.Tabs.notebook_tab import NotebookTab
@@ -24,7 +27,6 @@ class MagicBackgroundTab(NotebookTab, ABC):
 
         # setup and populate tradition _dict
         self.traditions_dict = None
-        self.reload_data()
 
         # aspects combobox
         self.focus_aspects = []
@@ -104,6 +106,7 @@ class MagicBackgroundTab(NotebookTab, ABC):
         self.benefit_labelframe = ttk.LabelFrame(self, text="Benefit")
         # radiobutton var
         self.benefit_var = StringVar()
+        self.benefit_var.set("new_metamagic")
         self.new_metamagic_button = Radiobutton(self.benefit_labelframe, text="Learn New Metamagic",
                                                 variable=self.benefit_var, value="new_metamagic")
         self.alter_signature_button = Radiobutton(self.benefit_labelframe, text="Alter Astral Signature",
@@ -115,15 +118,17 @@ class MagicBackgroundTab(NotebookTab, ABC):
         self.alter_signature_button.grid(column=0, row=1)
         self.shed_geas_button.grid(column=0, row=2)
 
+        self.ordeal_library = []
         self.ordeal_labelframe = ttk.LabelFrame(self, text="Ordeal")
-        self.ordeal_listbox = Listbox(self.ordeal_labelframe, height=8)
+        self.ordeal_listbox = Listbox(self.ordeal_labelframe, height=8, exportselection=0)
         self.ordeal_scroll = Scrollbar(self.ordeal_labelframe, orient="vertical", command=self.ordeal_listbox.yview)
         self.ordeal_listbox["yscrollcommand"] = self.ordeal_scroll.set
         self.ordeal_listbox.grid(column=0, row=0)
         self.ordeal_scroll.grid(column=1, row=0, sticky=NS)
 
+        self.metamagic_library = []
         self.metamagic_labelframe = ttk.LabelFrame(self, text="Metamagic")
-        self.metamagic_listbox = Listbox(self.metamagic_labelframe, height=8)
+        self.metamagic_listbox = Listbox(self.metamagic_labelframe, height=8, exportselection=0)
         self.metamagic_scroll = Scrollbar(self.metamagic_labelframe, orient="vertical",
                                           command=self.metamagic_listbox.yview)
         self.metamagic_listbox["yscrollcommand"] = self.metamagic_scroll.set
@@ -152,6 +157,8 @@ class MagicBackgroundTab(NotebookTab, ABC):
         self.benefit_labelframe.grid(column=3, row=4, columnspan=3, sticky=NS)
         self.ordeal_labelframe.grid(column=6, row=4, columnspan=3, sticky=NS)
         self.metamagic_labelframe.grid(column=9, row=4, columnspan=3, sticky=NS)
+
+        self.reload_data()
 
     # noinspection PyUnusedLocal
     def on_change_tradition(self, *args):
@@ -286,9 +293,99 @@ class MagicBackgroundTab(NotebookTab, ABC):
         self.group_listbox.delete(sel)
 
     def add_initiation(self):
-        pass
+        # check that we're finalized
+        if type(self.statblock.gen_mode) is not Finalized:
+            print("Must be finalized!")
+            return
+
+        # check we have enough karma
+        karma_cost = self.calc_karma_cost()
+        if self.statblock.gen_mode.point_purchase_allowed(karma_cost, "initiate_grade"):
+            # if group initiation, make sure a group is selected
+            if self.self_group_var.get() == "group" and len(self.group_listbox.curselection()) == 0:
+                print("Need to select a group to initiate with.")
+                return
+
+            # if ordeal, make sure an ordeal is selected
+            if self.ordeal_var.get() and len(self.ordeal_listbox.curselection()) == 0:
+                print("Need to select an ordeal to initiate with.")
+                return
+
+            # if metamagic, make sure a metamagic is selected
+            if self.benefit_var.get() == "new_metamagic" and len(self.metamagic_listbox.curselection()) == 0:
+                print("Need to select a metamagic to learn.")
+                return
+
+            # if shed_geas, make sure a geas is selected
+            if self.benefit_var.get() == "shed_geas" and len(self.geasa_listbox.curselection()) == 0:
+                print("Need to select a geas to shed.")
+                return
+
+            # build the string
+            initiation_string = ""
+            if self.self_group_var.get() == "self":
+                initiation_string += "Self Initiation"
+            elif self.self_group_var.get() == "group":
+                initiation_string += "Group Initiation with "
+                initiation_string += self.group_listbox.get(self.group_listbox.curselection()[0]) + " "
+            else:
+                raise ValueError(f"Invalid self_group_var: {self.self_group_var}")
+
+            # add ordeal
+            if self.ordeal_var.get():
+                ordeal_index = self.ordeal_listbox.curselection()[0]
+                ordeal = self.ordeal_library[ordeal_index]
+
+                initiation_string += f"through {ordeal.name}"
+
+            initiation_string += ": "
+
+            if self.benefit_var.get() == "new_metamagic":
+                metamagic_index = self.metamagic_listbox.curselection()[0]
+                metamagic = self.metamagic_library[metamagic_index]
+
+                # check to see if we already know a metamagic
+                if metamagic.name in map(lambda x: x.name, self.statblock.metamagic):
+                    print("Already know that metamagic!")
+                    return
+
+                # check to see if we know the metamagic's requirements
+                # this is untested
+                if "requirements" in metamagic.properties:
+                    known = set(map(lambda x: x.name, self.statblock.metamagic))
+                    requirements = set(metamagic.properties["requirements"])
+                    if not known <= requirements:
+                        need = requirements - known
+                        print(f"Need {need} to learn {metamagic.name}.")
+
+                self.statblock.metamagic.append(copy(metamagic))
+                initiation_string += f"Learned {metamagic.name}"
+            elif self.benefit_var.get() == "alter_signature":
+                initiation_string += "Altered Signature"
+            elif self.benefit_var.get() == "shed_geas":
+                index = self.geasa_listbox.curselection()[0]
+                geas = self.geasa_listbox.get(index)
+
+                del self.statblock.geasa[index]
+                self.geasa_listbox.delete(index)
+
+                initiation_string += f"Shed {geas}"
+            else:
+                raise ValueError(f"Invalid benefit_var: {self.benefit_var.get()}")
+
+            # add karma cost to sting
+            initiation_string += f" ({karma_cost})"
+
+            self.statblock.initiations.append(initiation_string)
+            self.initiations_listbox.insert(END, initiation_string)
+            adjustment = Adjustment(karma_cost, "initiate_grade", lambda x: None)
+            self.statblock.gen_mode.add_adjustment(adjustment)
+            self.update_karma_cost()
+        else:
+            print("Not enough karma!")
 
     def delete_initiation(self):
+        # I will only allow LIFO deleting to make things sane
         pass
 
     # noinspection PyUnusedLocal
@@ -323,6 +420,7 @@ class MagicBackgroundTab(NotebookTab, ABC):
             self.focus_labelframe.grid_forget()
 
     def reload_data(self):
+        # load traditions
         self.traditions_dict = {}
         try:
             tradition_data = app_data.game_data["Traditions"]
@@ -333,6 +431,26 @@ class MagicBackgroundTab(NotebookTab, ABC):
             self.traditions_dict[tradition] = Tradition(tradition, **app_data.game_data["Traditions"][tradition])
 
         self.tradition_box.configure(values=list(self.traditions_dict.keys()))
+
+        # load metamagic
+        try:
+            metamagic_data = app_data.game_data["Metamagic"]
+        except KeyError:
+            metamagic_data = {}
+
+        for metamagic in metamagic_data:
+            self.metamagic_library.append(Metamagic(name=metamagic, **metamagic_data[metamagic]))
+            self.metamagic_listbox.insert(END, metamagic)
+
+        # load ordeals
+        try:
+            ordeal_data = app_data.game_data["Ordeals"]
+        except KeyError:
+            ordeal_data = {}
+
+        for ordeal in ordeal_data:
+            self.ordeal_library.append(Ordeal(name=ordeal, **ordeal_data[ordeal]))
+            self.ordeal_listbox.insert(END, ordeal)
 
     def calc_karma_cost(self):
         base_cost = 6 + self.statblock.grade
@@ -369,8 +487,14 @@ class MagicBackgroundTab(NotebookTab, ABC):
         self.geasa_listbox.delete(0, END)
         if len(self.statblock.geasa) > 0:
             self.geasa_listbox.insert(END, *self.statblock.geasa)
+
+        self.geasa_listbox.delete(0, END)
         if len(self.statblock.magical_groups) > 0:
             self.group_listbox.insert(END, *self.statblock.magical_groups)
+
+        self.initiations_listbox.delete(0, END)
+        if len(self.statblock.initiations) > 0:
+            self.initiations_listbox.insert(END, *self.statblock.initiations)
 
         self.on_switch()
 
