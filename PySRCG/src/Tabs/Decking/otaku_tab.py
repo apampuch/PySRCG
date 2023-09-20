@@ -5,6 +5,7 @@ from tkinter import ttk
 from tkinter.ttk import Combobox
 
 from src.Tabs.notebook_tab import NotebookTab
+from src.statblock_modifier import StatMod
 
 
 # should be hidden if character is not an otaku
@@ -66,15 +67,16 @@ class OtakuTab(NotebookTab, ABC):
 
     def calculate_persona(self):
         s = self.statblock
-        self.mpcp_label.config(text=ceil((s.intelligence + s.willpower + s.charisma) / 3))
-        self.bod_label.config(text=s.willpower)
-        self.evasion_label.config(text=s.intelligence)
-        self.masking_label.config(text=ceil((s.willpower + s.charisma) / 2))
-        self.sensor_label.config(text=s.intelligence)
-        self.reaction_label.config(text=s.intelligence)  # TODO include other stuff that might boost this
-        self.initiative_label.config(text=f"4d6 + {s.intelligence}")  # TODO include other stuff that might boost this
-        self.hardening_label.config(text=ceil(s.willpower / 2))
-        self.io_speed_label.config(text=f"{s.intelligence * 100} Mp")
+        m = StatMod.get_mod_total
+        self.mpcp_label.config(text=ceil((s.intelligence + s.willpower + s.charisma) / 3) + m("other_otakumpcp"))
+        self.bod_label.config(text=s.willpower + m("other_otakubod"))
+        self.evasion_label.config(text=s.intelligence + m("other_otakuevasion"))
+        self.masking_label.config(text=ceil((s.willpower + s.charisma) / 2) + m("other_otakumasking"))
+        self.sensor_label.config(text=s.intelligence + m("other_otakusensor"))
+        self.reaction_label.config(text=s.intelligence + m("other_otakureaction"))
+        self.initiative_label.config(text=f"{4 +  + m('other_otakuinitiative')}d6 + {s.intelligence + m('other_otakureaction')}")
+        self.hardening_label.config(text=ceil(s.willpower / 2) + m("other_otakuhardening"))
+        self.io_speed_label.config(text=f"{s.intelligence * 100 + m('other_otakuiospeed')} Mp")
         self.channels_label.config(text=f"Free Channels: {ceil((s.intelligence + s.willpower + s.charisma) / 3)}")
 
     def reload_data(self):

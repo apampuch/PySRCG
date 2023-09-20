@@ -237,22 +237,42 @@
   "Echoes": {
     "Improved I/O Speed": {
       "no_duplicates": false,
+      "mods": {"other_otakuiospeed": 100},
       "page": 144
     },
     "Improved Hardening": {
       "no_duplicates": false,
+      "mods": {"other_otakuhardening": 1},
       "page": 144
     },
     "Improved MPCP": {
       "no_duplicates": false,
+      "mods": {"other_otakumpcp": 1},
       "page": 144
     },
-    "Improved Persona": {
+    "Improved Bod": {
       "no_duplicates": false,
+      "mods": {"other_otakubod": 1},
+      "page": 144
+    },
+    "Improved Evasion": {
+      "no_duplicates": false,
+      "mods": {"other_otakuevasion": 1},
+      "page": 144
+    },
+    "Improved Masking": {
+      "no_duplicates": false,
+      "mods": {"other_otakumasking": 1},
+      "page": 144
+    },
+    "Improved Sensor": {
+      "no_duplicates": false,
+      "mods": {"other_otakusensor": 1},
       "page": 144
     },
     "Improved Reaction": {
       "no_duplicates": false,
+      "mods": {"other_otakureaction": 1},
       "page": 145
     },
     "Daemon Summoning": {
@@ -261,6 +281,7 @@
     },
     "Ghosting": {
       "no_duplicates": true,
+      "mods": {"other_otakudetection": 1},
       "page": 145
     },
     "Info Sortilage": {
@@ -273,6 +294,7 @@
     },
     "Overclock": {
       "no_duplicates": true,
+      "mods": {"other_otakuinitiative": 1},
       "page": 145
     },
     "Resonance Link": {

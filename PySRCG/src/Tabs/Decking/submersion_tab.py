@@ -43,6 +43,8 @@ class SubmersionTab(ThreeColumnBuyTab, ABC):
             self.gen_mode.add_adjustment(adjustment)
 
             self.add_inv_item(selected)
+        else:
+            print("Not enough karma!")
 
     def sell_callback(self, selected_index):
         selected_echo = self.statblock.echoes[selected_index]

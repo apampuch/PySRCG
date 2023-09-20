@@ -6,6 +6,7 @@ class Echo(Reportable):
         super().__init__()
         necessary_fields = ("name", "no_duplicates", "page")
         self.fill_necessary_fields(necessary_fields, kwargs)
+        self.fill_miscellaneous_fields(kwargs)
 
     def serialize(self):
         return self.properties
