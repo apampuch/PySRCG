@@ -468,13 +468,21 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
 
                         # if we have mods, replace any ambiguities in mods with the chosen option
                         if "mods" in selected_object.properties:
+                            new_old_dict = {}
+
                             for old_key in selected_object.properties["mods"]:
                                 # replace "attribute" with the correct attribute in something like "cyber_attribute"
                                 if chosen_option_key in old_key:
-                                    val = selected_object.properties["mods"][old_key]
                                     new_key = old_key.replace(chosen_option_key, chosen_option_val)
-                                    selected_object.properties["mods"][new_key] = val
-                                    del selected_object.properties["mods"][old_key]
+                                    new_old_dict[new_key] = old_key
+
+                            for new_key in new_old_dict:
+                                old_key = new_old_dict[new_key]
+                                val = selected_object.properties["mods"][old_key]
+
+                                # does it matter what order I do these in?
+                                del selected_object.properties["mods"][old_key]
+                                selected_object.properties["mods"][new_key] = val
 
                     if not self.check_for_duplicates(selected_object):
                         messagebox.showerror(title="Error", message="No duplicates allowed.")

@@ -57,7 +57,7 @@ class EdgesFlawsTab(ThreeColumnBuyTab, ABC):
             app_data.top_bar.karma_fraction.set("{}".format(self.statblock.gen_mode.cur_edge_flaw_points.get()))
 
     def on_switch(self):
-        pass
+        super().on_switch()
 
     def load_character(self):
         super().load_character()
