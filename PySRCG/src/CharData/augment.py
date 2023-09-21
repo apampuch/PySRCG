@@ -42,3 +42,6 @@ class Bioware(Reportable):
 
         # add the other fields
         self.fill_miscellaneous_fields(kwargs, do_not_report)
+
+    def serialize(self):
+        return self.properties.copy()

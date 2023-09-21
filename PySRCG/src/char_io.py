@@ -4,7 +4,7 @@ import tempfile
 from tkinter import filedialog
 from typing import TextIO
 
-from src.CharData.augment import Cyberware
+from src.CharData.augment import Cyberware, Bioware
 from src.CharData.character import *
 from src.CharData.complex_form import ComplexForm
 from src.CharData.contact import Contact
@@ -241,6 +241,17 @@ def load(tabs):
                         StatMod.add_mod(key, value)
                 # check if it's a cranial deck
                 new_character.statblock.cyberware.append(cyber_obj)
+
+            # add bioware
+            for bio in character_dict["statblock"]["bioware"]:
+                bio_obj = Bioware(**bio)
+                # add mods
+                if "mods" in bio_obj.properties:
+                    for key in bio_obj.properties["mods"].keys():
+                        value = bio_obj.properties["mods"][key]
+                        StatMod.add_mod(key, value)
+                # check if it's a cranial deck
+                new_character.statblock.bioware.append(bio_obj)
 
             # add powers
             for power in character_dict["statblock"]["powers"]:

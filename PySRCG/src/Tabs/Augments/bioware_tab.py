@@ -122,6 +122,7 @@ class BiowareTab(ThreeColumnBuyTab, ABC):
         progress_bar.configure(variable=self.statblock.ess_index_ui_var, maximum=self.statblock.essence_index)
 
     def on_switch(self):
+        super().on_switch()
         self.calculate_total()
 
     def load_character(self):

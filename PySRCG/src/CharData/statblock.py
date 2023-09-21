@@ -569,7 +569,7 @@ class Statblock(object):
             "skills": list(map(lambda x: x.serialize(), self.skills)),
             "spells": list(map(lambda x: x.serialize(), self.spells)),
             "cyberware": list(map(lambda x: x.serialize(), self.cyberware)),
-            # "bioware": list(map(lambda x: x.serialize(), self.bioware)),
+            "bioware": list(map(lambda x: x.serialize(), self.bioware)),
             "powers": list(map(lambda x: x.serialize(), self.powers)),
             "bonus_power_points": self.bonus_power_points,
             "awakened": self.awakened,
