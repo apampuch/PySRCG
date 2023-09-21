@@ -24,6 +24,7 @@ from src.Tabs.Gear.firearm_accessories_tab import FirearmAccessoriesTab
 from src.Tabs.Gear.gear_tab import GearTab
 from src.Tabs.Gear.items_tab import ItemsTab
 from src.Tabs.Gear.wireless_tab import WirelessTab
+from src.Tabs.Magic.foci_tab import FociTab
 from src.Tabs.Magic.magic_background_tab import MagicBackgroundTab
 from src.Tabs.Magic.powers_tab import PowersTab
 from src.Tabs.Magic.spells_tab import SpellsTab
@@ -175,8 +176,8 @@ def main():
                                  [ItemsTab, AmmoTab, FirearmAccessoriesTab, ArmorEquipTab, WirelessTab],
                                  ["Items", "Ammo", "Firearm Accessories", "Armor", "Wireless"])
     app_data.magic_tab = make_tab(MagicTab, "Magic",
-                                  [MagicBackgroundTab, SpellsTab, PowersTab],
-                                  ["Background", "Spells", "Powers"])
+                                  [MagicBackgroundTab, SpellsTab, PowersTab, FociTab],
+                                  ["Background", "Spells", "Powers", "Foci"])
     app_data.augments_tab = make_tab(AugmentsTab, "Augments",
                                      [CyberwareTab, BiowareTab],
                                      ["Cyberware", "Bioware"])

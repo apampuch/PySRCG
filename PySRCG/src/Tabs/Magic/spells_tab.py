@@ -169,15 +169,15 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
         for spell in self.statblock.spells:
             total += spell.properties["force"]
 
+        for focus in self.statblock.foci:
+            if focus.properties["bound"]:
+                total += focus.properties["karma_cost"]
+
         return total
 
     def calculate_total(self):
         """Totals all spell points and updates the top karma bar."""
         self.statblock.gen_mode.update_total(self.get_total(), "magic")
-
-    @property
-    def char_tradition(self):
-        return self.statblock.magic_tradition
 
     def on_tradition_change(self):
         return

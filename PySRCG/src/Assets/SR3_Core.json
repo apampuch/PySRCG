@@ -3521,122 +3521,6 @@
       }
     },
     "Magical Equipment": {
-      "Foci": {
-        "Expendable Spell Focus": {
-          "concealability": null,
-          "weight": null,
-          "availability_rating": 3,
-          "availability_time": 26,
-          "availability_unit": "hrs",
-          "legality": "Legal",
-          "force": "force",
-          "cost": "force * 1500",
-          "street_index": 1,
-          "page": 189,
-          "attributes_to_calculate": [
-            "force",
-            "cost"
-          ]
-        },
-        "Specific Spell Focus": {
-          "concealability": null,
-          "weight": null,
-          "availability_rating": 4,
-          "availability_time": 48,
-          "availability_unit": "hrs",
-          "legality": "Legal",
-          "force": "force",
-          "cost": "force * 45000",
-          "street_index": 2,
-          "page": 189,
-          "attributes_to_calculate": [
-            "force",
-            "cost"
-          ]
-        },
-        "Spell Category Focus": {
-          "concealability": null,
-          "weight": null,
-          "availability_rating": 5,
-          "availability_time": 48,
-          "availability_unit": "hrs",
-          "legality": "Legal",
-          "force": "force",
-          "cost": "force * 75000",
-          "street_index": 2,
-          "page": 189,
-          "attributes_to_calculate": [
-            "force",
-            "cost"
-          ]
-        },
-        "Spirit Focus": {
-          "concealability": null,
-          "weight": null,
-          "availability_rating": 4,
-          "availability_time": 48,
-          "availability_unit": "hrs",
-          "legality": "Legal",
-          "force": "force",
-          "cost": "force * 60000",
-          "street_index": 2,
-          "page": 189,
-          "attributes_to_calculate": [
-            "force",
-            "cost"
-          ]
-        },
-        "Power Focus": {
-          "concealability": null,
-          "weight": null,
-          "availability_rating": 6,
-          "availability_time": 72,
-          "availability_unit": "hrs",
-          "legality": "Legal",
-          "force": "force",
-          "cost": "force * 105000",
-          "street_index": 2,
-          "page": 189,
-          "attributes_to_calculate": [
-            "force",
-            "cost"
-          ]
-        },
-        "Sustaining Focus": {
-          "concealability": null,
-          "weight": null,
-          "availability_rating": 2,
-          "availability_time": 48,
-          "availability_unit": "hrs",
-          "legality": "Legal",
-          "force": "force",
-          "cost": "force * 15000",
-          "street_index": 2,
-          "page": 189,
-          "attributes_to_calculate": [
-            "force",
-            "cost"
-          ]
-        },
-        "Weapon Focus": {
-          "concealability": null,
-          "weight": null,
-          "availability_rating": 2,
-          "availability_time": 48,
-          "availability_unit": "hrs",
-          "legality": "Legal",
-          "force": "force",
-          "reach": "reach",
-          "cost": "reach * 100000 + 100000 + force * 90000",
-          "street_index": 2,
-          "page": 189,
-          "attributes_to_calculate": [
-            "force",
-            "reach",
-            "cost"
-          ]
-        }
-      },
       "Magical Supplies": {
         "Elemental Conjuring Materials": {
           "concealability": null,
@@ -5373,6 +5257,123 @@
       "max_levels": 1,
       "page": 170,
       "no_duplicates": true
+    }
+  },
+  "Foci": {
+    "Expendable Spell Focus": {
+      "availability_rating": 3,
+      "availability_time": 26,
+      "availability_unit": "hrs",
+      "legality": "Legal",
+      "force": "force",
+      "karma_cost": 0,
+      "cost": "force * 1500",
+      "street_index": 1,
+      "page": 189,
+      "attributes_to_calculate": [
+        "force",
+        "cost"
+      ]
+    },
+    "Specific Spell Focus": {
+      "availability_rating": 4,
+      "availability_time": 48,
+      "availability_unit": "hrs",
+      "legality": "Legal",
+      "force": "force",
+      "karma_cost": "force",
+      "cost": "force * 45000",
+      "street_index": 2,
+      "page": 189,
+      "attributes_to_calculate": [
+        "force",
+        "cost",
+        "karma_cost"
+      ]
+    },
+    "Spell Category Focus": {
+      "availability_rating": 5,
+      "availability_time": 48,
+      "availability_unit": "hrs",
+      "legality": "Legal",
+      "force": "force",
+      "karma_cost": "force * 3",
+      "cost": "force * 75000",
+      "street_index": 2,
+      "page": 189,
+      "attributes_to_calculate": [
+        "force",
+        "cost",
+        "karma_cost"
+      ]
+    },
+    "Spirit Focus": {
+      "availability_rating": 4,
+      "availability_time": 48,
+      "availability_unit": "hrs",
+      "legality": "Legal",
+      "force": "force",
+      "karma_cost": "force * 2",
+      "cost": "force * 60000",
+      "street_index": 2,
+      "page": 189,
+      "attributes_to_calculate": [
+        "force",
+        "cost",
+        "karma_cost"
+      ]
+    },
+    "Power Focus": {
+      "availability_rating": 6,
+      "availability_time": 72,
+      "availability_unit": "hrs",
+      "legality": "Legal",
+      "force": "force",
+      "karma_cost": "force * 5",
+      "cost": "force * 105000",
+      "street_index": 2,
+      "page": 189,
+      "attributes_to_calculate": [
+        "force",
+        "cost",
+        "karma_cost"
+      ]
+    },
+    "Sustaining Focus": {
+      "availability_rating": 2,
+      "availability_time": 48,
+      "availability_unit": "hrs",
+      "legality": "Legal",
+      "force": "force",
+      "karma_cost": "force * 3",
+      "cost": "force * 15000",
+      "street_index": 2,
+      "page": 189,
+      "attributes_to_calculate": [
+        "force",
+        "cost",
+        "karma_cost"
+      ]
+    },
+    "Weapon Focus": {
+      "concealability": null,
+      "weight": null,
+      "availability_rating": 8,
+      "availability_time": 72,
+      "availability_unit": "hrs",
+      "legality": "Legal",
+      "force": "force",
+      "karma_cost": "3 * force + reach * force",
+      "reach": "reach",
+      "cost": "reach * 100000 + 100000 + force * 90000",
+      "street_index": 2,
+      "page": 189,
+      "attributes_to_calculate": [
+        "force",
+        "reach",
+        "cost",
+        "karma_cost"
+      ]
     }
   },
   "Cyberware": {

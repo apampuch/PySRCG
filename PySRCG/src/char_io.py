@@ -14,6 +14,7 @@ from src.CharData.deck import Deck
 from src.CharData.echo import Echo
 from src.CharData.edge_flaw import EdgeFlaw
 from src.CharData.firearm_accessory import FirearmAccessory
+from src.CharData.focus import Focus
 from src.CharData.gear import Gear
 from src.CharData.lifestyle import SimpleLifestyle, AdvancedLifestyle
 from src.CharData.metamagic import Metamagic
@@ -221,6 +222,11 @@ def load(tabs):
             for metamagic in character_dict["statblock"]["metamagic"]:
                 metamagic_obj = Metamagic(**metamagic)
                 new_character.statblock.metamagic.append(metamagic_obj)
+
+            # add foci
+            for focus in character_dict["statblock"]["foci"]:
+                focus_obj = Focus(**focus)
+                new_character.statblock.foci.append(focus_obj)
 
             # add cyberware
             for cyber in character_dict["statblock"]["cyberware"]:

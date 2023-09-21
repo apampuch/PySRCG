@@ -180,6 +180,7 @@ class Statblock(object):
         self.magical_groups = []
         self.initiations = []
         self.metamagic = []
+        self.foci = []
 
         """
         self.otaku: Can be True or False.
@@ -555,56 +556,40 @@ class Statblock(object):
         """
         Serializes this into a _dict for turning into a json.
         """
-        currencies = list(map(lambda x: x.serialize(), self.currencies))
-        inventory = list(map(lambda x: x.serialize(), self.inventory))
-        ammunition = list(map(lambda x: x.serialize(), self.ammunition))
-        misc_firearm_accessories = list(map(lambda x: x.serialize(), self.misc_firearm_accessories))
-        misc_wireless_accessories = list(map(lambda x: x.serialize(), self.misc_wireless_accessories))
-        gen_mode = self.gen_mode.serialize()
-        skills = list(map(lambda x: x.serialize(), self.skills))
-        edges_flaws = list(map(lambda x: x.serialize(), self.edges_flaws))
-        tradition = self.tradition.serialize() if self.tradition is not None else None
-        spells = list(map(lambda x: x.serialize(), self.spells))
-        cyberware = list(map(lambda x: x.serialize(), self.cyberware))
-        # bioware = list(map(lambda x: x.serialize(), self.bioware))
-        powers = list(map(lambda x: x.serialize(), self.powers))
-        decks = list(map(lambda x: x.serialize(), self.decks))
-        vehicles = list(map(lambda x: x.serialize(), self.vehicles))
-        other_accessories = list(map(lambda x: x.serialize(), self.misc_vehicle_accessories))
-        other_programs = list(map(lambda x: x.serialize(), self.other_programs))
-        echoes = list(map(lambda x: x.serialize(), self.echoes))
         return {
             "race": self.__race.name,
             "base_attributes": self.base_attributes,
-            "currencies": currencies,
-            "inventory": inventory,
-            "ammunition": ammunition,
-            "misc_firearm_accessories": misc_firearm_accessories,
-            "misc_wireless_accessories": misc_wireless_accessories,
-            "gen_mode": gen_mode,
-            "edges_flaws": edges_flaws,
-            "skills": skills,
-            "spells": spells,
-            "cyberware": cyberware,
-            "powers": powers,
+            "currencies": list(map(lambda x: x.serialize(), self.currencies)),
+            "inventory": list(map(lambda x: x.serialize(), self.inventory)),
+            "ammunition": list(map(lambda x: x.serialize(), self.ammunition)),
+            "misc_firearm_accessories": list(map(lambda x: x.serialize(), self.misc_firearm_accessories)),
+            "misc_wireless_accessories": list(map(lambda x: x.serialize(), self.misc_wireless_accessories)),
+            "gen_mode": self.gen_mode.serialize(),
+            "edges_flaws": list(map(lambda x: x.serialize(), self.edges_flaws)),
+            "skills": list(map(lambda x: x.serialize(), self.skills)),
+            "spells": list(map(lambda x: x.serialize(), self.spells)),
+            "cyberware": list(map(lambda x: x.serialize(), self.cyberware)),
+            # "bioware": list(map(lambda x: x.serialize(), self.bioware)),
+            "powers": list(map(lambda x: x.serialize(), self.powers)),
             "bonus_power_points": self.bonus_power_points,
             "awakened": self.awakened,
-            "tradition": tradition,
+            "tradition": self.tradition.serialize() if self.tradition is not None else None,
             "aspect": self.aspect,
             "focus": self.focus,
             "geasa": self.geasa,
             "magical_groups": self.magical_groups,
             "initiations": self.initiations,
             "metamagic": list(map(lambda x: x.serialize(), self.metamagic)),
-            "decks": decks,
-            "vehicles": vehicles,
-            "other_programs": other_programs,
-            "misc_vehicle_accessories": other_accessories,
+            "foci": list(map(lambda x: x.serialize(), self.foci)),
+            "decks": list(map(lambda x: x.serialize(), self.decks)),
+            "vehicles": list(map(lambda x: x.serialize(), self.vehicles)),
+            "other_programs": list(map(lambda x: x.serialize(), self.other_programs)),
+            "misc_vehicle_accessories": list(map(lambda x: x.serialize(), self.misc_vehicle_accessories)),
             "otaku": self.otaku,
             "otaku_path": self.otaku_path,
             "runt_otaku": self.runt_otaku,
             "complex_forms": self.complex_forms,
-            "echoes": echoes
+            "echoes": list(map(lambda x: x.serialize(), self.echoes))
         }
 
     def pay_cash(self, amount, *args) -> bool:

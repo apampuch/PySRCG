@@ -83,50 +83,6 @@ class Finalized(GenMode, ABC):
                 "data": {"total_karma": self.total_karma(),
                          "applied_karma": self.applied_karma.get()}}
 
-    # def update_karma_label(self, tab):
-    #     progress_text = app_data.top_bar.karma_fraction
-    #     progress_bar = app_data.top_bar.karma_bar
-    #
-    #     def blank_set():
-    #         progress_text.set("")
-    #         progress_bar.configure(maximum=10000000, variable=0)
-    #
-    #     # do these imports here to avoid circular import bullshit
-    #     from src.Tabs.Augments.augments_tab import AugmentsTab
-    #     from src.Tabs.Background.personal_info_tab import PersonalInfoTab
-    #     from src.Tabs.Decking.decking_tab import DeckingTab
-    #     from src.Tabs.Gear.items_tab import ItemsTab
-    #     from src.Tabs.Setup.setup_tab import SetupTab
-    #     from src.Tabs.Magic.magic_tab import MagicTab
-    #
-    #     # list of types of tabs that should be set the top bar to blank
-    #     blank_set_types = (ItemsTab, SetupTab, PersonalInfoTab, DeckingTab, VehicleBuyTab, VehicleAccessoriesTab)
-    #
-    #     if type(tab) in blank_set_types:
-    #         blank_set()
-    #     elif type(tab) is AugmentsTab:
-    #         # hacky scope breaking bullshit, refactor this whole damn function to not be in the character gen modes
-    #         ess_amt = app_data.app_character.statblock.essence
-    #         ess_max = app_data.app_character.statblock.base_attributes["essence"]
-    #         progress_text.set("{}/{}".format(ess_amt, ess_max))
-    #         progress_bar.configure(maximum=ess_max, variable=app_data.app_character.statblock.ess_ui_var)
-    #     elif type(tab) is MagicTab:
-    #         # if magic tab check the sub tab
-    #         # noinspection PyPep8Naming
-    #         SPELLS_TAB_INDEX = 0
-    #         POWERS_TAB_INDEX = 1
-    #         current_tab_index = tab.index("current")
-    #         if current_tab_index == SPELLS_TAB_INDEX:
-    #             progress_text.set("{}/{}".format(self.spent_karma, self.good_karma.get()))
-    #             progress_bar.configure(variable=self.adjustments, maximum=self.good_karma.get())
-    #         elif current_tab_index == POWERS_TAB_INDEX:
-    #             points_cur = app_data.app_character.statblock.power_points
-    #             points_max = app_data.app_character.statblock.magic + app_data.app_character.statblock.bonus_power_points
-    #             progress_text.set("{}/{}".format(points_cur, points_max))
-    #     else:
-    #         progress_text.set("{}/{}".format(self.spent_karma, self.good_karma.get()))
-    #         progress_bar.configure(variable=self.adjustments, maximum=self.good_karma.get())
-
     def update_total(self, amount=None, key=None):  # set defaults here so we can call without args
         # Literally ignore everything and just refresh the karma bar.
         app_data.top_bar.update_karma_label(self.spent_karma,

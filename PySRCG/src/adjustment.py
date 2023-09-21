@@ -39,7 +39,7 @@ class AdjustmentsContainer(IntVar):
     def __contains__(self, type_):
         return type_ in (adj.type for adj in self.container)
 
-    def make_and_add(self, karma_cost, type_, undo):
+    def make_and_add(self, karma_cost, type_, undo=lambda: None):
         """Add and auto-increment order"""
         adj = Adjustment(karma_cost, type_, undo)
         self.add(adj)
