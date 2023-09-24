@@ -1,6 +1,6 @@
 {
   "book_abbr": "sr3",
-  "file_version": "1.7",
+  "file_version": "1.8",
   "schema_version": "1.3",
   "book": "Shadowrun 3 Core (FASA 7001)",
   "Items": {
@@ -225,20 +225,6 @@
             "availability_rating": 3,
             "availability_unit": "hrs"
           },
-          "Arrows": {
-            "concealability": 3,
-            "str_min": null,
-            "damage": "As bow",
-            "weight": 0.1,
-            "cost": 10,
-            "street_index": 1,
-            "legality": "10-D",
-            "page": 276,
-            "availability_time": 36,
-            "availability_rating": 3,
-            "availability_unit": "hrs"
-          }
-        },
         "Crossbows": {
           "Light Crossbow": {
             "concealability": 2,
@@ -277,19 +263,6 @@
             "page": 276,
             "availability_time": 36,
             "availability_rating": 6,
-            "availability_unit": "hrs"
-          },
-          "Bolts": {
-            "concealability": 4,
-            "str_min": null,
-            "damage": "As crossbow",
-            "weight": 0.5,
-            "cost": 5,
-            "street_index": 1,
-            "legality": "10-D",
-            "page": 276,
-            "availability_time": 36,
-            "availability_rating": 5,
             "availability_unit": "hrs"
           }
         },
@@ -4199,7 +4172,36 @@
         "legality": "As weapon",
         "page": 281
       }
+    },
+    "Projectiles": {
+      "Arrows": {
+        "concealability": 3,
+        "str_min": null,
+        "damage": "As bow",
+        "weight": 0.1,
+        "cost": 10,
+        "street_index": 1,
+        "legality": "10-D",
+        "page": 276,
+        "availability_time": 36,
+        "availability_rating": 3,
+        "availability_unit": "hrs"
+      },
+      "Bolts": {
+        "concealability": 4,
+        "str_min": null,
+        "damage": "As crossbow",
+        "weight": 0.5,
+        "cost": 5,
+        "street_index": 1,
+        "legality": "10-D",
+        "page": 276,
+        "availability_time": 36,
+        "availability_rating": 5,
+        "availability_unit": "hrs"
+      }
     }
+  }
   },
   "Skills": {
     "Active Skills": {
