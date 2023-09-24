@@ -31,10 +31,10 @@ class PersonalInfoTab(NotebookTab, ABC):
         # height and weight
         ttk.Label(self.physical_appearance_frame, text="Height").grid(column=0, row=1, padx=5, pady=5)
         self.height_box = Entry(self.physical_appearance_frame, width=5)
-        ttk.Label(self.physical_appearance_frame, text="kg").grid(column=2, row=1, padx=5, pady=5)
+        ttk.Label(self.physical_appearance_frame, text="cm").grid(column=2, row=1, padx=5, pady=5)
         ttk.Label(self.physical_appearance_frame, text="Weight").grid(column=0, row=2, padx=5, pady=5)
         self.weight_box = Entry(self.physical_appearance_frame, width=5)
-        ttk.Label(self.physical_appearance_frame, text="cm").grid(column=2, row=2, padx=5, pady=5)
+        ttk.Label(self.physical_appearance_frame, text="kg").grid(column=2, row=2, padx=5, pady=5)
         # hair
         ttk.Label(self.physical_appearance_frame, text="Hair").grid(column=0, row=3, padx=5, pady=5)
         self.hair_box = Entry(self.physical_appearance_frame)
