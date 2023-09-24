@@ -131,7 +131,8 @@ class ComplexFormsTab(ThreeColumnBuyTab, ABC):
             progress_bar.configure(variable=self.gen_mode.adjustments, maximum=self.gen_mode.good_karma.get())
 
     def on_switch(self):
+        super().on_switch()
         self.calculate_total()
 
     def load_character(self):
-        self.on_switch()
+        super().load_character()

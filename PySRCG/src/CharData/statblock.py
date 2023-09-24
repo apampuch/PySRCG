@@ -588,7 +588,7 @@ class Statblock(object):
             "otaku": self.otaku,
             "otaku_path": self.otaku_path,
             "runt_otaku": self.runt_otaku,
-            "complex_forms": self.complex_forms,
+            "complex_forms": list(map(lambda x: x.serialize(), self.complex_forms)),
             "echoes": list(map(lambda x: x.serialize(), self.echoes))
         }
 
