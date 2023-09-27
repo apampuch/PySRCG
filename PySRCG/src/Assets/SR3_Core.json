@@ -224,7 +224,8 @@
             "availability_time": 36,
             "availability_rating": 3,
             "availability_unit": "hrs"
-          },
+          }
+        },
         "Crossbows": {
           "Light Crossbow": {
             "concealability": 2,
@@ -4201,7 +4202,6 @@
         "availability_unit": "hrs"
       }
     }
-  }
   },
   "Skills": {
     "Active Skills": {
