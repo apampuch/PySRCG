@@ -99,11 +99,19 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
         if "cf_cost" in item.properties:
             enough_cargo = self.has_cargo(item)
 
+        if not enough_cargo:
+            print("Not enough cargo!")
+            return
+
         can_mount = True
         if "body_cost" in item.properties:
             can_mount = self.mount_callback(item)
 
-        if app_data.pay_cash(item.properties["cost"], can_mount, enough_cargo):
+        if not can_mount:
+            print("Not enough room to mount!")
+            return
+
+        if app_data.pay_cash(item.properties["cost"]):
             self.add_inv_item(item)
 
     def has_cargo(self, new_item):
@@ -119,7 +127,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
             if "cf_cost" in item.properties:
                 cargo_total += item.properties["cf_cost"]
 
-        return cargo_total + new_item.properties["cf_cost"] <= v.cargo
+        return cargo_total + new_item.properties["cf_cost"] <= v.properties["cargo"]
 
     def mount_callback(self, new_mount) -> bool:
         """Checks the mounts already on the vehicle, returns true if we can fit the new mount, false if we can't."""
@@ -134,7 +142,7 @@ class VehicleAccessoriesTab(ThreeColumnBuyTab, ABC):
             if "body_cost" in item.properties:
                 mount_total += item.properties["body_cost"]
 
-        return mount_total + new_mount.properties["body_cost"] <= v.body
+        return mount_total + new_mount.properties["body_cost"] <= v.properties["body"]
 
     def sell_callback(self, item_index):
         self.statblock.add_cash(self.statblock_inventory[item_index].properties["cost"])
