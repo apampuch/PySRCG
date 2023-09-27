@@ -14,6 +14,7 @@ from src.Tabs.Background.personal_info_tab import *
 from src.Tabs.Decking.complex_forms_tab import ComplexFormsTab
 from src.Tabs.Decking.deck_buy_tab import DeckBuyTab
 from src.Tabs.Decking.decking_tab import *  # imports app_data
+from src.Tabs.Decking.frames_tab import FramesTab
 from src.Tabs.Decking.otaku_tab import OtakuTab
 from src.Tabs.Decking.persona_tab import PersonaTab
 from src.Tabs.Decking.programs_tab import ProgramsTab
@@ -182,8 +183,8 @@ def main():
                                      [CyberwareTab, BiowareTab],
                                      ["Cyberware", "Bioware"])
     app_data.decking_tab = make_tab(DeckingTab, "Decking",
-                                    [DeckBuyTab, ProgramsTab, PersonaTab, OtakuTab, ComplexFormsTab, SubmersionTab],
-                                    ["Hardware", "Software", "Persona", "Otaku", "Complex Forms", "Submersion"])
+                                    [DeckBuyTab, ProgramsTab, PersonaTab, OtakuTab, ComplexFormsTab, SubmersionTab, FramesTab],
+                                    ["Hardware", "Software", "Persona", "Otaku", "Complex Forms", "Submersion", "Frames"])
     app_data.rigging_tab = make_tab(RiggingTab, "Rigging",
                                     [VehicleBuyTab, VehicleAccessoriesTab],
                                     ["Vehicles", "Accessories"])

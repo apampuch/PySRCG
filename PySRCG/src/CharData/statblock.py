@@ -539,6 +539,27 @@ class Statblock(object):
 
         return fit_dict
 
+    def skill_or_specialization_rank(self, skill, specialization):
+        """
+        Returns specialization if found in skill.
+        Returns skill if just skill is found.
+        Returns 0 if none is found.
+        """
+        filtered_skills = tuple(filter(lambda x: x.name == skill, self.skills))
+        if len(filtered_skills) == 0:
+            return 0
+        if len(filtered_skills) > 1:
+            raise ValueError(f"Multiple skills with name {skill} found!")
+
+        found = filtered_skills[0]
+        filtered_specializations = tuple(filter(lambda x: x.name == specialization, found.specializations))
+        if len(filtered_specializations) == 0:
+            return found.rank
+        if len(filtered_specializations) > 1:
+            raise ValueError(f"Multiple specializations with name {specialization} found!")
+
+        return filtered_specializations[0].rank
+
     @property
     # power points from adept powers
     def power_points(self):
