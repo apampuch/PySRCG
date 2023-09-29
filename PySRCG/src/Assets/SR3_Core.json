@@ -4694,7 +4694,7 @@
       }
     },
     "Health": {
-      "Antidote (TOX LEV)": {
+      "Antidote": {
         "type": "Mana",
         "target": "Toxin Strength (Voluntary)",
         "duration": "Permanent",

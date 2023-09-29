@@ -274,3 +274,5 @@ PySRCG/PySRCG-src.7z
 
 # ignore venv
 venv/
+/PySRCG/dev_tools/nsrcg_dats/
+/PySRCG/dev_tools/new_spells.json

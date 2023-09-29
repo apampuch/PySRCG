@@ -1,0 +1,73 @@
+{
+  "book_abbr": "twl",
+  "file_version": "1.0",
+  "schema_version": "1.3",
+  "book": "Target: Wastelands (FASA 10653)",
+  "Spells": {
+    "Manipulation": {
+      "Splash": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "(DL)",
+        "class": "Elemental Manipulation",
+        "page": 124
+      },
+      "Waterbolt": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "(DL)",
+        "class": "Elemental Manipulation",
+        "page": 124
+      },
+      "Alter Pressure": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(S)",
+        "class": "Transformation Manipulation",
+        "page": 131
+      },
+      "Personal Thermostat": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+2(L)",
+        "class": "Transformation Manipulation",
+        "page": 119
+      },
+      "Radiation Barrier": {
+        "type": "Physical",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(S)",
+        "class": "Transformation Manipulation",
+        "page": 111
+      },
+      "Radiation Shield": {
+        "type": "Physical",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Transformation Manipulation",
+        "page": 111
+      },
+      "Shape Snow/Ice": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+2(M)",
+        "class": "Transformation Manipulation",
+        "page": 124
+      }
+    }
+  }
+}
