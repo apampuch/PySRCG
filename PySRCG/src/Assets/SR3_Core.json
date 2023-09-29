@@ -4505,556 +4505,706 @@
   "Spells": {
     "Combat": {
       "Death Touch": {
-        "type": "M",
-        "target": "W",
-        "duration": "I",
-        "drain": "(Damage Level - 1)",
-        "page": 191
-      },
-      "Manabolt": {
-        "type": "M",
-        "target": "W",
-        "duration": "I",
-        "drain": "(Damage Level)",
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Touch",
+        "drain": "(DL-1)",
+        "class": "Combat",
         "page": 191
       },
       "Manaball": {
-        "type": "M",
-        "target": "W",
-        "duration": "I",
-        "drain": "(Damage Level + 1)",
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(DL+1)",
+        "class": "Combat",
         "page": 191
       },
-      "Powerbolt": {
-        "type": "P",
-        "target": "B",
-        "duration": "I",
-        "drain": "+1 (Damage Level)",
+      "Manabolt": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "(DL)",
+        "class": "Combat",
         "page": 191
       },
       "Powerball": {
-        "type": "P",
-        "target": "B",
-        "duration": "I",
-        "drain": "+1 (Damage Level + 1)",
+        "type": "Physical",
+        "target": "Body (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(DL+1)",
+        "class": "Combat",
         "page": 191
       },
-      "Stunbolt": {
-        "type": "M",
-        "target": "W",
-        "duration": "I",
-        "drain": "-1 (Damage Level)",
+      "Powerbolt": {
+        "type": "Physical",
+        "target": "Body (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "+1(DL)",
+        "class": "Combat",
         "page": 191
       },
       "Stunball": {
-        "type": "M",
-        "target": "W",
-        "duration": "I",
-        "drain": "-1 (Damage Level + 1)",
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "-1(DL+1)",
+        "class": "Combat",
+        "page": 191
+      },
+      "Stunbolt": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "-1(DL)",
+        "class": "Combat",
         "page": 191
       }
     },
     "Detection": {
       "Analyze Device": {
-        "type": "P",
-        "target": "OR",
-        "duration": "S",
+        "type": "Physical",
+        "target": "Object Resistance",
+        "duration": "Sustained",
+        "range": "Touch (Directional)",
         "drain": "+1(M)",
+        "class": "Detection",
         "page": 192
       },
       "Analyze Truth": {
-        "type": "M",
-        "target": "W",
-        "duration": "S",
-        "drain": "L",
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Directional)",
+        "drain": "(L)",
+        "class": "Detection",
         "page": 192
       },
       "Clairaudience": {
-        "type": "M",
-        "target": "6",
-        "duration": "S",
-        "drain": "M",
+        "type": "Mana",
+        "target": "6 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Directional)",
+        "drain": "(M)",
+        "class": "Detection",
         "page": 192
       },
       "Clairvoyance": {
-        "type": "M",
-        "target": "6",
-        "duration": "S",
-        "drain": "M",
+        "type": "Mana",
+        "target": "6 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Directional)",
+        "drain": "(M)",
+        "class": "Detection",
         "page": 192
       },
       "Combat Sense": {
-        "type": "M",
+        "type": "Mana",
         "target": "4",
-        "duration": "S",
-        "drain": "S",
+        "duration": "Sustained",
+        "range": "Touch",
+        "drain": "(S)",
+        "class": "Detection",
         "page": 192
       },
       "Detect Enemies": {
-        "type": "M",
-        "target": "See table on sr3 p192",
-        "duration": "S",
-        "drain": "M",
+        "type": "Mana",
+        "target": "Detection Table (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Area)",
+        "drain": "(M)",
+        "class": "Detection",
         "page": 192
       },
       "Detect Individual": {
-        "type": "M",
-        "target": "See table on sr3 p192",
-        "duration": "S",
-        "drain": "L",
+        "type": "Mana",
+        "target": "Detection Table (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Area)",
+        "drain": "(L)",
+        "class": "Detection",
         "page": 192
       },
       "Detect Life": {
-        "type": "M",
-        "target": "See table on sr3 p192",
-        "duration": "S",
-        "drain": "L",
+        "type": "Mana",
+        "target": "Detection Table (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Area)",
+        "drain": "(L)",
+        "class": "Detection",
         "page": 192
       },
-      "Detect (Life Form)": {
-        "type": "M",
-        "target": "See table on sr3 p192",
-        "duration": "S",
+      "Detect(Life Form)": {
+        "type": "Mana",
+        "target": "Detection Table (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Area)",
         "drain": "-1(L)",
+        "class": "Detection",
+        "options": {
+          "Type": null
+        },
         "page": 193
       },
       "Detect Magic": {
-        "type": "M",
-        "target": "See table on sr3 p192",
-        "duration": "S",
-        "drain": "L",
+        "type": "Mana",
+        "target": "Detection Table (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Area)",
+        "drain": "(L)",
+        "class": "Detection",
         "page": 193
       },
-      "Detect (Object)": {
-        "type": "P",
-        "target": "See table on sr3 p192",
-        "duration": "S",
+      "Detect(Object)": {
+        "type": "Physical",
+        "target": "Detection Table",
+        "duration": "Sustained",
+        "range": "Touch (Area)",
         "drain": "+1(M)",
+        "class": "Detection",
+        "options": {
+          "Type": null
+        },
         "page": 193
       },
       "Mindlink": {
-        "type": "M",
-        "target": "4",
-        "duration": "S",
-        "drain": "S",
+        "type": "Mana",
+        "target": "4 (Voluntary)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Directional)",
+        "drain": "(S)",
+        "class": "Detection",
         "page": 193
       },
-      "Mind Probe": {
-        "type": "M",
-        "target": "W",
-        "duration": "S",
-        "drain": "S",
+      "Mindprobe": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Directional)",
+        "drain": "(S)",
+        "class": "Detection",
         "page": 193
       }
     },
     "Health": {
-      "Antidote": {
-        "type": "M",
-        "target": "Toxin Strength",
-        "duration": "P",
-        "drain": "(Toxin Damage Level)",
+      "Antidote (TOX LEV)": {
+        "type": "Mana",
+        "target": "Toxin Strength (Voluntary)",
+        "duration": "Permanent",
+        "range": "Touch",
+        "drain": "(TOX DL)",
+        "class": "Health",
         "page": 193
       },
       "Cure Disease": {
-        "type": "M",
-        "target": "Power",
-        "duration": "P",
-        "drain": "(Disease Damage Level)",
+        "type": "Mana",
+        "target": "Disease Power (Threshold)",
+        "duration": "Permanent",
+        "range": "Touch",
+        "drain": "(DIS DL)",
+        "class": "Health",
         "page": 193
       },
-      "Decrease (Attribute)": {
-        "type": "M",
-        "target": "10 - Essence",
-        "duration": "S",
+      "Decrease Attribute": {
+        "type": "Mana",
+        "target": "10 - Essence (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch",
         "drain": "+1(S)",
+        "class": "Health",
+        "options": {"Attribute": ["Body", "Quickness", "Strength", "Charisma", "Intelligence", "Willpower"]},
         "page": 193
       },
-      "Decrease (Cybered Attribute)": {
-        "type": "P",
-        "target": "10 - Essence",
-        "duration": "S",
+      "Decrease Cyber Attribute": {
+        "type": "Physical",
+        "target": "10 - Essence (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch",
         "drain": "+2(S)",
+        "class": "Health",
+        "options": {"Attribute": ["Body", "Quickness", "Strength", "Charisma", "Intelligence", "Willpower"]},
         "page": 193
       },
       "Detox": {
-        "type": "M",
-        "target": "Toxin Strength",
-        "duration": "P",
-        "drain": "-2(Toxin Damage)",
+        "type": "Mana",
+        "target": "Toxin Strength (Voluntary)",
+        "duration": "Permanent",
+        "range": "Touch",
+        "drain": "-2(TOX DL)",
+        "class": "Health",
         "page": 193
       },
       "Heal": {
-        "type": "M",
-        "target": "10 - Essence",
-        "duration": "P",
-        "drain": "(Wound Level)",
-        "page": 193
-      },
-      "Treat": {
-        "type": "M",
-        "target": "10 - Essence",
-        "duration": "P",
-        "drain": "-1(Wound Level)",
+        "type": "Mana",
+        "target": "10 - Essence (Voluntary)",
+        "duration": "Permanent",
+        "range": "Touch",
+        "drain": "(DL)",
+        "class": "Health",
         "page": 193
       },
       "Healthy Glow": {
-        "type": "M",
-        "target": "4",
-        "duration": "P",
-        "drain": "L",
+        "type": "Mana",
+        "target": "4 (Voluntary)",
+        "duration": "Permanent",
+        "range": "Touch",
+        "drain": "(L)",
+        "class": "Health",
         "page": 194
       },
       "Hibernate": {
-        "type": "M",
-        "target": "4",
-        "duration": "S",
+        "type": "Mana",
+        "target": "4 (Voluntary)",
+        "duration": "Sustained",
+        "range": "Touch",
         "drain": "+1(M)",
+        "class": "Health",
         "page": 194
       },
-      "Increase (Attribute)": {
-        "type": "M",
-        "target": "Attribute",
-        "duration": "S",
+      "Increase Attribute": {
+        "type": "Mana",
+        "target": "Attribute (Voluntary)",
+        "duration": "Sustained",
+        "range": "Touch",
         "drain": "+1(M)",
+        "class": "Health",
+        "options": {"Attribute": ["Body", "Quickness", "Strength", "Charisma", "Intelligence", "Willpower"]},
         "page": 194
       },
-      "Increase (Attribute) (copy)": {
-        "type": "M",
-        "target": "Attribute",
-        "duration": "S",
+      "Increase Cyber Attribute": {
+        "type": "Physical",
+        "target": "Attribute (Voluntary)",
+        "duration": "Sustained",
+        "range": "Touch",
         "drain": "+2(M)",
+        "class": "Health",
+        "options": {"Attribute": ["Body", "Quickness", "Strength", "Charisma", "Intelligence", "Willpower"]},
         "page": 194
       },
       "Increase Reaction": {
-        "type": "M",
-        "target": "Reaction",
-        "duration": "S",
+        "type": "Mana",
+        "target": "Reaction (Voluntary)",
+        "duration": "Sustained",
+        "range": "Touch",
         "drain": "+1(S)",
+        "class": "Health",
         "page": 194
       },
       "Increase Reflexes +1": {
-        "type": "M",
-        "target": "Reaction",
-        "duration": "S",
+        "type": "Mana",
+        "target": "Reaction (Voluntary)",
+        "duration": "Sustained",
+        "range": "Touch",
         "drain": "+1(S)",
+        "class": "Health",
         "page": 194
       },
       "Increase Reflexes +2": {
-        "type": "M",
-        "target": "Reaction",
-        "duration": "S",
+        "type": "Mana",
+        "target": "Reaction (Voluntary)",
+        "duration": "Sustained",
+        "range": "Touch",
         "drain": "+1(D)",
+        "class": "Health",
         "page": 194
       },
       "Increase Reflexes +3": {
-        "type": "M",
-        "target": "Reaction",
-        "duration": "S",
+        "type": "Mana",
+        "target": "Reaction (Voluntary)",
+        "duration": "Sustained",
+        "range": "Touch",
         "drain": "+3(D)",
+        "class": "Health",
         "page": 194
       },
       "Oxygenate": {
-        "type": "P",
-        "target": "4",
-        "duration": "S",
+        "type": "Physical",
+        "target": "4 (Voluntary)",
+        "duration": "Sustained",
+        "range": "Touch",
         "drain": "+2(L)",
+        "class": "Health",
         "page": 194
       },
       "Prophylaxis": {
-        "type": "M",
-        "target": "4",
-        "duration": "S",
+        "type": "Mana",
+        "target": "4 (Voluntary)",
+        "duration": "Sustained",
+        "range": "Touch",
         "drain": "+1(L)",
+        "class": "Health",
         "page": 194
       },
       "Resist Pain": {
-        "type": "M",
-        "target": "4",
-        "duration": "P",
-        "drain": "-2(Damage)",
+        "type": "Mana",
+        "target": "4 (Voluntary)",
+        "duration": "Permanent",
+        "range": "Touch",
+        "drain": "-2(DL)",
+        "class": "Health",
         "page": 194
       },
       "Stabilize": {
-        "type": "M",
-        "target": "4 + minutes",
-        "duration": "P",
+        "type": "Mana",
+        "target": "4 + Minutes",
+        "duration": "Permanent",
+        "range": "Touch",
         "drain": "+1(M)",
+        "class": "Health",
         "page": 194
+      },
+      "Treat": {
+        "type": "Mana",
+        "target": "10 - Essence (Voluntary)",
+        "duration": "Permanent",
+        "range": "Touch",
+        "drain": "-1(DL)",
+        "class": "Health",
+        "page": 193
       }
     },
     "Illusion": {
-      "Directed Illusion": {
-        "Confusion": {
-          "type": "M",
-          "target": "W",
-          "duration": "S",
-          "drain": "S",
-          "page": 195
-        },
-        "Mass Confusion": {
-          "type": "M",
-          "target": "W",
-          "duration": "S",
-          "drain": "D",
-          "page": 195
-        },
-        "Chaos": {
-          "type": "P",
-          "target": "I",
-          "duration": "S",
-          "drain": "+1(S)",
-          "page": 195
-        },
-        "Chaotic World": {
-          "type": "P",
-          "target": "I",
-          "duration": "S",
-          "drain": "+1(D)",
-          "page": 195
-        },
-        "Entertainment": {
-          "type": "M",
-          "target": "W",
-          "duration": "S",
-          "drain": "L",
-          "page": 195
-        },
-        "Trid Entertainment": {
-          "type": "P",
-          "target": "I",
-          "duration": "S",
-          "drain": "+1(L)",
-          "page": 195
-        }
+      "Chaos": {
+        "type": "Physical",
+        "target": "Intelligence (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(S)",
+        "class": "Directed Illusion",
+        "page": 195
       },
-      "Indirect Illusion": {
-        "Invisibility": {
-          "type": "M",
-          "target": "4",
-          "duration": "S",
-          "drain": "M",
-          "page": 195
-        },
-        "Improved Invisibility": {
-          "type": "P",
-          "target": "4",
-          "duration": "S",
-          "drain": "+1(M)",
-          "page": 195
-        },
-        "Mask": {
-          "type": "M",
-          "target": "4",
-          "duration": "S",
-          "drain": "M",
-          "page": 195
-        },
-        "Physical Mask": {
-          "type": "P",
-          "target": "4",
-          "duration": "S",
-          "drain": "+1(M)",
-          "page": 195
-        },
-        "Phantasm": {
-          "type": "M",
-          "target": "4",
-          "duration": "S",
-          "drain": "D",
-          "page": 195
-        },
-        "Trid Phantasm": {
-          "type": "P",
-          "target": "4",
-          "duration": "S",
-          "drain": "+1(D)",
-          "page": 195
-        },
-        "Silence": {
-          "type": "P",
-          "target": "4",
-          "duration": "S",
-          "drain": "+1(S)",
-          "page": 196
-        },
-        "Stealth": {
-          "type": "P",
-          "target": "4",
-          "duration": "S",
-          "drain": "+1(M)",
-          "page": 196
-        }
+      "Chaotic World": {
+        "type": "Physical",
+        "target": "Intelligence (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(D)",
+        "class": "Directed Illusion",
+        "page": 195
+      },
+      "Confusion": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "(S)",
+        "class": "Directed Illusion",
+        "page": 195
+      },
+      "Entertainment": {
+        "type": "Mana",
+        "target": "Willpower (Voluntary)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(L)",
+        "class": "Directed Illusion",
+        "page": 195
+      },
+      "Mass Confusion": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(D)",
+        "class": "Directed Illusion",
+        "page": 195
+      },
+      "Trid Entertainment": {
+        "type": "Physical",
+        "target": "Intelligence (Voluntary)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(L)",
+        "class": "Directed Illusion",
+        "page": 195
+      },
+      "Improved Invisibility": {
+        "type": "Physical",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Indirect Illusion",
+        "page": 195
+      },
+      "Invisibility": {
+        "type": "Mana",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "(M)",
+        "class": "Indirect Illusion",
+        "page": 195
+      },
+      "Mask": {
+        "type": "Mana",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "(M)",
+        "class": "Indirect Illusion",
+        "page": 195
+      },
+      "Phantasm": {
+        "type": "Mana",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(D)",
+        "class": "Indirect Illusion",
+        "page": 195
+      },
+      "Physical Mask": {
+        "type": "Physical",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Indirect Illusion",
+        "page": 195
+      },
+      "Silence": {
+        "type": "Physical",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(S)",
+        "class": "Indirect Illusion",
+        "page": 196
+      },
+      "Stealth": {
+        "type": "Physical",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Indirect Illusion",
+        "page": 196
+      },
+      "Trid Phantasm": {
+        "type": "Physical",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(D)",
+        "class": "Indirect Illusion",
+        "page": 195
       }
     },
-    "Manupulation": {
-      "Control": {
-        "Control Actions": {
-          "type": "M",
-          "target": "W",
-          "duration": "S",
-          "drain": "+1(M)",
-          "page": 196
-        },
-        "Control Emotion": {
-          "type": "M",
-          "target": "W",
-          "duration": "S",
-          "drain": "+1(M)",
-          "page": 196
-        },
-        "Control Thoughts": {
-          "type": "M",
-          "target": "W",
-          "duration": "S",
-          "drain": "+1(S)",
-          "page": 196
-        },
-        "Influence": {
-          "type": "M",
-          "target": "P",
-          "duration": "S",
-          "drain": "S",
-          "page": 196
-        }
+    "Manipulation": {
+      "Control Actions": {
+        "type": "Mana",
+        "target": "Willpower (Threshold)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Control Manipulation",
+        "page": 196
       },
-      "Elemental": {
-        "Acid Stream": {
-          "type": "P",
-          "target": "4",
-          "duration": "I",
-          "drain": "+1(Damage Level + 1)",
-          "page": 196
-        },
-        "Toxic Wave": {
-          "type": "P",
-          "target": "4",
-          "duration": "I",
-          "drain": "+1(Damage Level + 2)",
-          "page": 196
-        },
-        "Flamethrower": {
-          "type": "P",
-          "target": "4",
-          "duration": "I",
-          "drain": "+1(Damage Level + 1)",
-          "page": 197
-        },
-        "Fireball": {
-          "type": "P",
-          "target": "4",
-          "duration": "I",
-          "drain": "+1(Damage Level + 2)",
-          "page": 197
-        },
-        "Lightning Bolt": {
-          "type": "P",
-          "target": "4",
-          "duration": "I",
-          "drain": "+1(Damage Level + 1)",
-          "page": 197
-        },
-        "Ball Lightning": {
-          "type": "P",
-          "target": "4",
-          "duration": "I",
-          "drain": "+1(Damage Level + 2)",
-          "page": 197
-        }
+      "Control Emotion": {
+        "type": "Mana",
+        "target": "Willpower (Threshold)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Control Manipulation",
+        "page": 196
       },
-      "Telekinetic": {
-        "Clout": {
-          "type": "P",
-          "target": "4",
-          "duration": "I",
-          "drain": "(Damage Level)",
-          "page": 197
-        },
-        "Fling": {
-          "type": "P",
-          "target": "See text sr3 p197",
-          "duration": "I",
-          "drain": "+1(M)",
-          "page": 197
-        },
-        "Levitate": {
-          "type": "P",
-          "target": "4",
-          "duration": "S",
-          "drain": "+2(M)",
-          "page": 197
-        },
-        "Magic Fingers": {
-          "type": "P",
-          "target": "6",
-          "duration": "S",
-          "drain": "+2(M)",
-          "page": 197
-        },
-        "Poltergeist": {
-          "type": "P",
-          "target": "4",
-          "duration": "S",
-          "drain": "+1(M)",
-          "page": 197
-        }
+      "Control Thoughts": {
+        "type": "Mana",
+        "target": "Willpower (Threshold)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(S)",
+        "class": "Control Manipulation",
+        "page": 196
       },
-      "Transformation": {
-        "Armor": {
-          "type": "P",
-          "target": "6",
-          "duration": "S",
-          "drain": "+2(M)",
-          "page": 198
-        },
-        "Physical Barrier": {
-          "type": "P",
-          "target": "6",
-          "duration": "S",
-          "drain": "+2(S)",
-          "page": 198
-        },
-        "Astral Barrier": {
-          "type": "M",
-          "target": "6",
-          "duration": "S",
-          "drain": "+1(S)",
-          "page": 198
-        },
-        "Ice Sheet": {
-          "type": "P",
-          "target": "4",
-          "duration": "I",
-          "drain": "+1(S)",
-          "page": 198
-        },
-        "Ignite": {
-          "type": "P",
-          "target": "4",
-          "duration": "P",
-          "drain": "+1(D)",
-          "page": 198
-        },
-        "Light": {
-          "type": "P",
-          "target": "4",
-          "duration": "S",
-          "drain": "+2(M)",
-          "page": 198
-        },
-        "Petrify": {
-          "type": "P",
-          "target": "B",
-          "duration": "S",
-          "drain": "+1(S)",
-          "page": 198
-        },
-        "Shadow": {
-          "type": "P",
-          "target": "4",
-          "duration": "S",
-          "drain": "+2(M)",
-          "page": 198
-        }
+      "Influence": {
+        "type": "Mana",
+        "target": "Willpower (Threshold)",
+        "duration": "Permanent",
+        "range": "Line of Sight",
+        "drain": "(S)",
+        "class": "Control Manipulation",
+        "page": 196
+      },
+      "Acid Stream": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "+1(DL+1)",
+        "class": "Elemental Manipulation",
+        "page": 196
+      },
+      "Ball Lightning": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(DL+2)",
+        "class": "Elemental Manipulation",
+        "page": 197
+      },
+      "Fireball": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(DL+2)",
+        "class": "Elemental Manipulation",
+        "page": 197
+      },
+      "Flamethrower": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "+1(DL+1)",
+        "class": "Elemental Manipulation",
+        "page": 197
+      },
+      "Lightning Bolt": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "+1(DL+1)",
+        "class": "Elemental Manipulation",
+        "page": 197
+      },
+      "Toxic Wave": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(DL+2)",
+        "class": "Elemental Manipulation",
+        "page": 196
+      },
+      "Clout": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "(DL)",
+        "class": "Telekinetic Manipulation",
+        "page": 197
+      },
+      "Fling": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Touch",
+        "drain": "+1(M)",
+        "class": "Telekinetic Manipulation",
+        "page": 197
+      },
+      "Levitate": {
+        "type": "Physical",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+2(M)",
+        "class": "Telekinetic Manipulation",
+        "page": 197
+      },
+      "Magic Fingers": {
+        "type": "Physical",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+2(M)",
+        "class": "Telekinetic Manipulation",
+        "page": 197
+      },
+      "Poltergeist": {
+        "type": "Physical",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(M)",
+        "class": "Telekinetic Manipulation",
+        "page": 197
+      },
+      "Armor": {
+        "type": "Physical",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+2(M)",
+        "class": "Transformation Manipulation",
+        "page": 198
+      },
+      "Astral Barrior": {
+        "type": "Mana",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(S)",
+        "class": "Transformation Manipulation",
+        "page": 198
+      },
+      "Ice Sheet": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(S)",
+        "class": "Transformation Manipulation",
+        "page": 198
+      },
+      "Ignite": {
+        "type": "Physical",
+        "target": "4 (Threshold)",
+        "duration": "Permanent",
+        "range": "Line of Sight",
+        "drain": "+1(D)",
+        "class": "Transformation Manipulation",
+        "page": 198
+      },
+      "Light": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(M)",
+        "class": "Transformation Manipulation",
+        "page": 198
+      },
+      "Petrify": {
+        "type": "Physical",
+        "target": "Body (Threshold)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(S)",
+        "class": "Transformation Manipulation",
+        "page": 198
+      },
+      "Physical Barrier": {
+        "type": "Physical",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(S)",
+        "class": "Transformation Manipulation",
+        "page": 198
+      },
+      "Shadow": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(M)",
+        "class": "Transformation Manipulation",
+        "page": 198
       }
     }
   },

@@ -3,6 +3,916 @@
   "file_version": "1.0",
   "schema_version": "1.3",
   "book": "Magic in the Shadows (FAS7907)",
+  "Spells": {
+    "Combat": {
+      "Ram": {
+        "type": "Physical",
+        "target": "Object Resistance",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "+1(DL-2)",
+        "class": "Combat",
+        "options": { "Type": null },
+        "page": 140
+      },
+      "Shattershield": {
+        "type": "Mana",
+        "target": "Force (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Touch",
+        "drain": "(M)",
+        "class": "Combat",
+        "page": 140
+      },
+      "Slaughter(Race/Species)": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(D)",
+        "class": "Combat",
+        "options": { "Race/Species": null },
+        "page": 140
+      },
+      "Slay(Race/Species)": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "-1(D)",
+        "class": "Combat",
+        "options": { "Race/Species": null },
+        "page": 140
+      },
+      "Spiritblast": {
+        "type": "Mana",
+        "target": "Force (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "-1(DL+1)",
+        "class": "Combat",
+        "page": 140
+      },
+      "Spiritbolt": {
+        "type": "Mana",
+        "target": "Force (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "-1(DL)",
+        "class": "Combat",
+        "page": 140
+      },
+      "Stuntouch": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Touch",
+        "drain": "-1(DL-1)",
+        "class": "Combat",
+        "page": 140
+      },
+      "Wreck": {
+        "type": "Physical",
+        "target": "Object Resistance",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "+1(DL-1)",
+        "class": "Combat",
+        "options": { "Type": null },
+        "page": 140
+      }
+    },
+    "Detection": {
+      "Analyze Magic": {
+        "type": "Mana",
+        "target": "Force (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Directional)",
+        "drain": "(L)",
+        "class": "Detection",
+        "page": 140
+      },
+      "Animal (Sense)": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Directional)",
+        "drain": "(M)",
+        "class": "Detection",
+        "options": {"Sense": null},
+        "page": 140
+      },
+      "Astral Window": {
+        "type": "Mana",
+        "target": "Force (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Directional)",
+        "drain": "(L)",
+        "class": "Detection",
+        "page": 140
+      },
+      "Catalog": {
+        "type": "Physical",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Touch (Area)",
+        "drain": "+1(M)",
+        "class": "Detection",
+        "page": 141
+      },
+      "Diagnose": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Directional)",
+        "drain": "-1(L)",
+        "class": "Detection",
+        "page": 141
+      },
+      "Enhance Aim": {
+        "type": "Mana",
+        "target": "6 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Directional)",
+        "drain": "(M)",
+        "class": "Detection",
+        "page": 141
+      },
+      "Eyes of the Pack": {
+        "type": "Mana",
+        "target": "6 (Voluntary)",
+        "duration": "Sustained",
+        "range": "Touch (Directional)",
+        "drain": "(M)",
+        "class": "Detection",
+        "page": 141
+      },
+      "Nightvision": {
+        "type": "Physical",
+        "target": "6 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch (Directional)",
+        "drain": "+1(M)",
+        "class": "Detection",
+        "page": 141
+      },
+      "Translate": {
+        "type": "Mana",
+        "target": "4 (Voluntary)",
+        "duration": "Sustained",
+        "range": "Touch (Directional)",
+        "drain": "(M)",
+        "class": "Detection",
+        "page": 141
+      }
+    },
+    "Health": {
+      "Alleviate Allergy": {
+        "type": "Physical",
+        "target": "10 - Essence (Voluntary)",
+        "duration": "Sustained",
+        "range": "Touch",
+        "drain": "(Al. Level)",
+        "class": "Health",
+        "page": 141
+      },
+      "Awaken": {
+        "type": "Mana",
+        "target": "4 (Voluntary)",
+        "duration": "Instant",
+        "range": "Touch",
+        "drain": "-2(SDL)",
+        "class": "Health",
+        "page": 141
+      },
+      "Cause Allergy": {
+        "type": "Physical",
+        "target": "10 - Essence (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch",
+        "drain": "+2(AL LEV+1)",
+        "class": "Health",
+        "page": 142
+      },
+      "Cripple Limb": {
+        "type": "Physical",
+        "target": "Body (Threshold)",
+        "duration": "Sustained",
+        "range": "Touch",
+        "drain": "+1(S)",
+        "class": "Health",
+        "page": 142
+      },
+      "Decrease Cyber Reaction": {
+        "type": "Physical",
+        "target": "10 - Essence (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch",
+        "drain": "+2(D)",
+        "class": "Health",
+        "page": 142
+      },
+      "Decrease Reaction": {
+        "type": "Mana",
+        "target": "10 - Essence (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch",
+        "drain": "+1(D)",
+        "class": "Health",
+        "page": 142
+      },
+      "Decrease Reflexes -1": {
+        "type": "Physical",
+        "target": "10 - Essence (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch",
+        "drain": "+2(D)",
+        "class": "Health",
+        "page": 142
+      },
+      "Decrease Reflexes -2": {
+        "type": "Physical",
+        "target": "10 - Essence (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch",
+        "drain": "+4(D)",
+        "class": "Health",
+        "page": 142
+      },
+      "Decrease Reflexes -3": {
+        "type": "Physical",
+        "target": "10 - Essence (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch",
+        "drain": "+6(D)",
+        "class": "Health",
+        "page": 142
+      },
+      "Fast": {
+        "type": "Mana",
+        "target": "4 (Voluntary)",
+        "duration": "Permanent",
+        "range": "Touch",
+        "drain": "-2(M)",
+        "class": "Health",
+        "page": 142
+      },
+      "Intoxication": {
+        "type": "Physical",
+        "target": "Body (Threshold)",
+        "duration": "Permanent",
+        "range": "Touch",
+        "drain": "+1(D)",
+        "class": "Health",
+        "page": 142
+      },
+      "Nutrition": {
+        "type": "Physical",
+        "target": "4 (Voluntary)",
+        "duration": "Permanent",
+        "range": "Touch",
+        "drain": "+1(M)",
+        "class": "Health",
+        "page": 142
+      },
+      "Preserve": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Permanent",
+        "range": "Touch",
+        "drain": "+1(M)",
+        "class": "Health",
+        "page": 142
+      }
+    },
+    "Illusion": {
+      "Agony": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "(M)",
+        "class": "Directed Illusion",
+        "page": 142
+      },
+      "Blindness": {
+        "type": "Physical",
+        "target": "Intelligence (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Directed Illusion",
+        "page": 143
+      },
+      "Chaff": {
+        "type": "Physical",
+        "target": "Object Resistance",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "(S)",
+        "class": "Directed Illusion",
+        "page": 143
+      },
+      "Dream": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "(M)",
+        "class": "Directed Illusion",
+        "page": 143
+      },
+      "Flak": {
+        "type": "Physical",
+        "target": "Object Resistance",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(D)",
+        "class": "Directed Illusion",
+        "page": 143
+      },
+      "Flash": {
+        "type": "Physical",
+        "target": "Intelligence (Spell Resistance)",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(S)",
+        "class": "Directed Illusion",
+        "page": 143
+      },
+      "Mass Agony": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(S)",
+        "class": "Directed Illusion",
+        "page": 142
+      },
+      "Mass Blindness": {
+        "type": "Mana",
+        "target": "Intelligence (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(S)",
+        "class": "Directed Illusion",
+        "page": 143
+      },
+      "Stench": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(S)",
+        "class": "Directed Illusion",
+        "page": 143
+      },
+      "Stink": {
+        "type": "Mana",
+        "target": "Willpower (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "(M)",
+        "class": "Directed Illusion",
+        "page": 143
+      },
+      "Camouflage": {
+        "type": "Mana",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "(L)",
+        "class": "Indirect Illusion",
+        "page": 143
+      },
+      "Double Image": {
+        "type": "Mana",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch",
+        "drain": "(S)",
+        "class": "Indirect Illusion",
+        "page": 143
+      },
+      "Foreboding": {
+        "type": "Mana",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(D)",
+        "class": "Indirect Illusion",
+        "page": 143
+      },
+      "Hot Potatoe": {
+        "type": "Mana",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(M)",
+        "class": "Indirect Illusion",
+        "page": 143
+      },
+      "Physical Camouflage": {
+        "type": "Physical",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(L)",
+        "class": "Indirect Illusion",
+        "page": 143
+      },
+      "Physical Double Image": {
+        "type": "Physical",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Touch",
+        "drain": "+1(S)",
+        "class": "Indirect Illusion",
+        "page": 143
+      },
+      "Vehicle Mask": {
+        "type": "Physical",
+        "target": "4 (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(S)",
+        "class": "Indirect Illusion",
+        "page": 144
+      }
+    },
+    "Manipulation": {
+      "Alter Memory": {
+        "type": "Mana",
+        "target": "Willpower (Threshold)",
+        "duration": "Permanent",
+        "range": "Line of Sight",
+        "drain": "(D)",
+        "class": "Control Manipulation",
+        "page": 144
+      },
+      "Calm Animal": {
+        "type": "Mana",
+        "target": "Willpower (Threshold)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "(M)",
+        "class": "Control Manipulation",
+        "page": 144
+      },
+      "Calm Pack": {
+        "type": "Mana",
+        "target": "Willpower (Threshold)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(S)",
+        "class": "Control Manipulation",
+        "page": 144
+      },
+      "Compel Truth": {
+        "type": "Mana",
+        "target": "Willpower (Threshold)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Control Manipulation",
+        "page": 144
+      },
+      "Control Animal": {
+        "type": "Mana",
+        "target": "Willpower (Threshold)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "(S)",
+        "class": "Control Manipulation",
+        "page": 144
+      },
+      "Control Pack": {
+        "type": "Mana",
+        "target": "Willpower (Threshold)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(D)",
+        "class": "Control Manipulation",
+        "page": 144
+      },
+      "Mob Mind": {
+        "type": "Mana",
+        "target": "Willpower (Threshold)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(D)",
+        "class": "Control Manipulation",
+        "page": 145
+      },
+      "Mob Mood": {
+        "type": "Mana",
+        "target": "Willpower (Threshold)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(S)",
+        "class": "Control Manipulation",
+        "page": 145
+      },
+      "Laser": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "+1(DL+1)",
+        "class": "Elemental Manipulation",
+        "page": 145
+      },
+      "Nova": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(DL+2)",
+        "class": "Elemental Manipulation",
+        "page": 145
+      },
+      "Smoke Cloud": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(DL+2)",
+        "class": "Elemental Manipulation",
+        "page": 145
+      },
+      "Steam": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "(DL+1)",
+        "class": "Elemental Manipulation",
+        "page": 145
+      },
+      "Thunderbolt": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "(DL+1)",
+        "class": "Elemental Manipulation",
+        "page": 145
+      },
+      "Thunderclap": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(DL+2)",
+        "class": "Elemental Manipulation",
+        "page": 145
+      },
+      "Animate": {
+        "type": "Physical",
+        "target": "Object Resistance",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Telekinetic Manipulation",
+        "page": 145
+      },
+      "Bind": {
+        "type": "Physical",
+        "target": "Quickness (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+2(M)",
+        "class": "Telekinetic Manipulation",
+        "page": 145
+      },
+      "Catfall": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Telekinetic Manipulation",
+        "page": 145
+      },
+      "Deflect": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+2(M)",
+        "class": "Telekinetic Manipulation",
+        "page": 145
+      },
+      "Gecko Crawl": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+2(M)",
+        "class": "Telekinetic Manipulation",
+        "page": 146
+      },
+      "Lock": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+2(M)",
+        "class": "Telekinetic Manipulation",
+        "page": 146
+      },
+      "Mana Bind": {
+        "type": "Mana",
+        "target": "Quickness",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Telekinetic Manipulation",
+        "page": 146
+      },
+      "Mana Net": {
+        "type": "Mana",
+        "target": "Quickness",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(S)",
+        "class": "Telekinetic Manipulation",
+        "page": 146
+      },
+      "Net": {
+        "type": "Physical",
+        "target": "Quickness (Spell Resistance)",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(S)",
+        "class": "Telekinetic Manipulation",
+        "page": 145
+      },
+      "Redirect": {
+        "type": "Physical",
+        "target": "4 (Ranged Combat)",
+        "duration": "Instant",
+        "range": "Line of Sight",
+        "drain": "+1(DL)",
+        "class": "Telekinetic Manipulation",
+        "page": 146
+      },
+      "Shape Earth": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(M)",
+        "class": "Telekinetic Manipulation",
+        "page": 146
+      },
+      "Shape Water": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(M)",
+        "class": "Telekinetic Manipulation",
+        "page": 146
+      },
+      "Use(Skill)": {
+        "type": "Physical",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+2(L)",
+        "class": "Telekinetic Manipulation",
+        "options": { "Skill": null },
+        "page": 146
+      },
+      "Alter Temperature": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(M)",
+        "class": "Transformation Manipulation",
+        "page": 146
+      },
+      "Astral Armor": {
+        "type": "Mana",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Transformation Manipulation",
+        "page": 146
+      },
+      "Clean(Element)": {
+        "type": "Physical",
+        "target": "6",
+        "duration": "Permanent",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(S)",
+        "class": "Transformation Manipulation",
+        "options": { "Element": null },
+        "page": 146
+      },
+      "Control Fire": {
+        "type": "Physical",
+        "target": "Power rating of fire",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(M)",
+        "class": "Transformation Manipulation",
+        "page": 146
+      },
+      "Create Food": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Permanent",
+        "range": "Line of Sight",
+        "drain": "+1(S)",
+        "class": "Transformation Manipulation",
+        "page": 147
+      },
+      "Fashion": {
+        "type": "Physical",
+        "target": "6",
+        "duration": "Permanent",
+        "range": "Touch",
+        "drain": "+1(L)",
+        "class": "Transformation Manipulation",
+        "page": 147
+      },
+      "Firewall": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(S)",
+        "class": "Transformation Manipulation",
+        "page": 147
+      },
+      "Fix": {
+        "type": "Physical",
+        "target": "Object Resistance",
+        "duration": "Permanent",
+        "range": "Touch",
+        "drain": "(S)",
+        "class": "Transformation Manipulation",
+        "page": 147
+      },
+      "Flame Aura": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(M)",
+        "class": "Transformation Manipulation",
+        "page": 147
+      },
+      "Freeze Water": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(M)",
+        "class": "Transformation Manipulation",
+        "page": 147
+      },
+      "Glue": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(M)",
+        "class": "Transformation Manipulation",
+        "page": 147
+      },
+      "Glue Strip": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(S)",
+        "class": "Transformation Manipulation",
+        "page": 147
+      },
+      "Limited Armor": {
+        "type": "Physical",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+2(L)",
+        "class": "Transformation Manipulation",
+        "page": 147
+      },
+      "Limited Physical Barrier": {
+        "type": "Physical",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(M)",
+        "class": "Transformation Manipulation",
+        "page": 147
+      },
+      "Makeover": {
+        "type": "Physical",
+        "target": "6 (Voluntary)",
+        "duration": "Permanent",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Transformation Manipulation",
+        "page": 147
+      },
+      "Mana Static": {
+        "type": "Mana",
+        "target": "4",
+        "duration": "Permanent",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(D)",
+        "class": "Transformation Manipulation",
+        "page": 148
+      },
+      "Mist": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(M)",
+        "class": "Transformation Manipulation",
+        "page": 148
+      },
+      "Reinforce": {
+        "type": "Physical",
+        "target": "Object Resistance",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Transformation Manipulation",
+        "page": 148
+      },
+      "Shapechange": {
+        "type": "Physical",
+        "target": "Body (Voluntary) (Threshold)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(M)",
+        "class": "Transformation Manipulation",
+        "page": 148
+      },
+      "Spell Shield": {
+        "type": "Mana",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "(M)",
+        "class": "Transformation Manipulation",
+        "page": 148
+      },
+      "Spell Wall": {
+        "type": "Mana",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(S)",
+        "class": "Transformation Manipulation",
+        "page": 148
+      },
+      "Spirit Barrier": {
+        "type": "Mana",
+        "target": "6",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "(S)",
+        "class": "Transformation Manipulation",
+        "page": 148
+      },
+      "Sterilize": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Instant",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+1(M)",
+        "class": "Transformation Manipulation",
+        "page": 148
+      },
+      "Transform": {
+        "type": "Physical",
+        "target": "Body (Threshold)",
+        "duration": "Sustained",
+        "range": "Line of Sight",
+        "drain": "+1(S)",
+        "class": "Transformation Manipulation",
+        "page": 148
+      },
+      "Wind": {
+        "type": "Physical",
+        "target": "4",
+        "duration": "Sustained",
+        "range": "Line of Sight (Area Effect)",
+        "drain": "+2(M)",
+        "class": "Transformation Manipulation",
+        "page": 148
+      }
+    }
+  },
   "Metamagic": {
     "Anchoring": {
       "page": 70
