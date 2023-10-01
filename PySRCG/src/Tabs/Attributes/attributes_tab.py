@@ -37,7 +37,7 @@ class AttributesTab(NotebookTab, ABC):
         self.attribute_labels = {}
         self.mod_labels = {
             "slider": {},
-            "race": {},
+            "metatype": {},
             "bio": {},
             "cyber": {},
             "other": {},
@@ -48,15 +48,15 @@ class AttributesTab(NotebookTab, ABC):
 
         # place labels, actual labels, not ttk labels
 
-        self.race_label = ttk.Label(self, text="Attribute", padding=5)
-        self.race_label.grid(column=0, row=self.current_row)
+        self.metatype_label = ttk.Label(self, text="Attribute", padding=5)
+        self.metatype_label.grid(column=0, row=self.current_row)
 
         # leave slider space blank
         self.blank_space = ttk.Label(self, text="Slider", padding=5)
         self.blank_space.grid(column=1, columnspan=2, row=self.current_row)
 
-        self.race_mod_label = ttk.Label(self, text="Race", padding=5)
-        self.race_mod_label.grid(column=3, row=self.current_row)
+        self.Metatype_mod_label = ttk.Label(self, text="Metatype", padding=5)
+        self.Metatype_mod_label.grid(column=3, row=self.current_row)
 
         self.bio_mod_label = ttk.Label(self, text="Bio", padding=5)
         self.bio_mod_label.grid(column=4, row=self.current_row)
@@ -234,15 +234,15 @@ class AttributesTab(NotebookTab, ABC):
 
         # the slider itself
         if other_attribute:
-            racial_slider_minimum = 0
+            metatype_slider_minimum = 0
         elif first_setup:  # just set to 1 if it's the very first setup on boot
-            racial_slider_minimum = 1
+            metatype_slider_minimum = 1
         else:
-            racial_slider_minimum = self.race.racial_slider_minimum(key)
+            metatype_slider_minimum = self.statblock.metatype.metatype_slider_minimum(key)
 
         # The from_ and to values on the sliders themselves are different from what the actual values are.
         self.sliders[key] = Scale(adjustment_container_frame,
-                                  from_=racial_slider_minimum, to=6,
+                                  from_=metatype_slider_minimum, to=6,
                                   variable=self.slider_vars[key],
                                   command=lambda x: self.on_set_attribute_value(key, x),
                                   orient=HORIZONTAL, showvalue=False)
@@ -258,8 +258,8 @@ class AttributesTab(NotebookTab, ABC):
         # slider value
         self.mod_labels["slider"][key] = ttk.Label(adjustment_container_frame, text=0)
 
-        # race mod
-        self.mod_labels["race"][key] = ttk.Label(self, text="0")
+        # metatype mod
+        self.mod_labels["metatype"][key] = ttk.Label(self, text="0")
 
         # bio
         self.mod_labels["bio"][key] = ttk.Label(self, text="0")
@@ -281,7 +281,7 @@ class AttributesTab(NotebookTab, ABC):
         adjustment_container_frame.grid(column=1, row=self.current_row)
         # self.sliders[key].grid(column=1, row=self.current_row)
         # self.mod_labels["slider"][key].grid(column=2, row=self.current_row)
-        self.mod_labels["race"][key].grid(column=3, row=self.current_row)
+        self.mod_labels["metatype"][key].grid(column=3, row=self.current_row)
         self.mod_labels["bio"][key].grid(column=4, row=self.current_row)
         self.mod_labels["cyber"][key].grid(column=5, row=self.current_row)
         self.mod_labels["other"][key].grid(column=6, row=self.current_row)
@@ -331,11 +331,11 @@ class AttributesTab(NotebookTab, ABC):
 
     def plus_button_func(self, key):
         # check if we're at the absolute maximum
-        if self.statblock.base_attributes[key] >= self.statblock.racial_max(key):
+        if self.statblock.base_attributes[key] >= self.statblock.metatype_max(key):
             print(f"{key} already at maximum!")
             return
 
-        if self.statblock.base_attributes[key] >= self.statblock.racial_limit(key):
+        if self.statblock.base_attributes[key] >= self.statblock.metatype_limit(key):
             karma_cost = (self.statblock.calculate_natural_attribute(key) + 1) * 3
         else:
             karma_cost = (self.statblock.calculate_natural_attribute(key) + 1) * 2
@@ -415,12 +415,12 @@ class AttributesTab(NotebookTab, ABC):
         slider_val = self.sliders[key].get()
         self.mod_labels["slider"][key].config(text=str(slider_val))
 
-        # set the racial bonus column
+        # set the metatype bonus column
         if key == "reaction" or key == "initiative":  # fuck it hardcode this exception
-            race_val = 0
+            metatype_val = 0
         else:
-            race_val = int(self.race.racial_attributes[key])
-        self.mod_labels["race"][key].config(text=race_val)
+            metatype_val = int(self.statblock.metatype.metatype_attributes[key])
+        self.mod_labels["metatype"][key].config(text=metatype_val)
 
         # set the bio bonus column
         bio_key = "bio_" + key
@@ -441,7 +441,7 @@ class AttributesTab(NotebookTab, ABC):
         self.mod_labels["other"][key].config(text=other_val)
 
         # set the total, force it to be an integer
-        total_val = int(slider_val + race_val + bio_val + cyber_val + other_val)
+        total_val = int(slider_val + metatype_val + bio_val + cyber_val + other_val)
         self.mod_labels["total"][key].config(text=total_val)
 
         if set_pool:
@@ -472,10 +472,10 @@ class AttributesTab(NotebookTab, ABC):
 
         return total
 
-    def racial_slider_calc(self, key):
-        """Gets the total of the slider value and the racial attribute mod."""
+    def metatype_slider_calc(self, key):
+        """Gets the total of the slider value and the metatype attribute mod."""
         slider_val = self.sliders[key].get()
-        return slider_val + self.race.racial_attributes[key]
+        return slider_val + self.statblock.metatype.metatype_attributes[key]
 
     def calculate_total(self):
         """Totals all attributes' point values and updates the top karma bar."""
@@ -510,8 +510,8 @@ class AttributesTab(NotebookTab, ABC):
         for item in forgets:
             item.pack_forget()
 
-        # get name of current race and set the label
-        self.race_label.config(text=self.race.name)
+        # get name of current metatype and set the label
+        self.metatype_label.config(text=self.statblock.metatype.name)
 
         # get a list of equipped armors
         self.equipped_armors = list(filter(lambda x: "equipped" in x.properties and x.properties["equipped"] is True,
@@ -528,7 +528,7 @@ class AttributesTab(NotebookTab, ABC):
                 if self.character is not None and self.statblock.otaku:
                     if self.statblock.runt_otaku:
                         if key in ("strength", "body", "quickness"):
-                            limit = max(1, self.statblock.race.racial_slider_minimum(key))
+                            limit = max(1, self.statblock.metatype.metatype_slider_minimum(key))
                         elif key in ("intelligence", "willpower", "charisma"):
                             limit = 8
                     else:
@@ -554,12 +554,12 @@ class AttributesTab(NotebookTab, ABC):
             # they're just hidden
 
             # set slider minimum
-            racial_slider_minimum = self.race.racial_slider_minimum(key)
-            self.sliders[key].config(from_=racial_slider_minimum)
+            metatype_slider_minimum = self.statblock.metatype.metatype_slider_minimum(key)
+            self.sliders[key].config(from_=metatype_slider_minimum)
 
-            # set slider to the lowest of the current value and the racial minimum
-            # this way races like trolls and orks will buy up new shit
-            slider_set_val = max(self.sliders[key].get(), racial_slider_minimum)
+            # set slider to the lowest of the current value and the metatype minimum
+            # this way metatypess like trolls and orks will buy up new shit
+            slider_set_val = max(self.sliders[key].get(), metatype_slider_minimum)
             self.sliders[key].set(slider_set_val)
 
             self.on_set_attribute_value(key, slider_set_val)
@@ -572,13 +572,13 @@ class AttributesTab(NotebookTab, ABC):
         self.on_set_attribute_value("reaction", self.statblock.base_reaction)
 
         # setup armor
-        bal_total = self.statblock.ballistic_armor + StatMod.get_mod_total("race_ballistic") \
+        bal_total = self.statblock.ballistic_armor + StatMod.get_mod_total("metatype_ballistic") \
                                                    + StatMod.get_mod_total("bio_ballistic") \
                                                    + StatMod.get_mod_total("cyber_ballistic") \
                                                    + StatMod.get_mod_total("other_ballistic")
         self.ballistic_armor_val.set(bal_total)
 
-        imp_total = self.statblock.impact_armor + StatMod.get_mod_total("race_impact") \
+        imp_total = self.statblock.impact_armor + StatMod.get_mod_total("metatype_impact") \
                                                 + StatMod.get_mod_total("bio_impact") \
                                                 + StatMod.get_mod_total("cyber_impact") \
                                                 + StatMod.get_mod_total("other_impact")

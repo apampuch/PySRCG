@@ -3,7 +3,7 @@ import re
 
 class StatMod:
     """
-    Just about anything in the chargen could theoretically have a StatMod.
+    Just about anything in the character generation could theoretically have a StatMod.
     StatMods are things that add or subtract from numeric values if they're equipped/attached/whatever.
     They are supposed to be ridiculously dynamic so expect them to be really buggy.
     """
@@ -14,7 +14,7 @@ class StatMod:
     _all_stat_mods = {}
 
     # if it's one of these:
-    # Race
+    # Metatype
     # Cyber
     # Bio
     # put it in the correct column
@@ -33,7 +33,7 @@ class StatMod:
             raise ValueError(f"{key} is not a valid key.")
 
         # correct the key
-        legit_prefixes = ("race_", "cyber_", "bio_")
+        legit_prefixes = ("metatype_", "cyber_", "bio_")
 
         for prefix in legit_prefixes:
             if key.startswith(prefix):
@@ -47,7 +47,7 @@ class StatMod:
     @staticmethod
     def add_mod(key, value):
         """
-        IF the key doesn't start with "race_", "cyber_", or "bio_", change the start to "other_"
+        IF the key doesn't start with "metatype_", "cyber_", or "bio_", change the start to "other_"
         If the key does not exist, add a blank list.
         Then append to the list.
         """

@@ -29,6 +29,18 @@ def extract_book_page(item: List[str]) -> List[str]:
     return item[:1] + page_book + item[2:]
 
 
+def remove_rating(name: str) -> bool:
+    """Returns false if no rating present. Returns true and strips if present."""
+    ratings = {"[1]": 1, "[2]": 2, "[3]": 3, "[4]": 4, "[5]": 5, "[6]": 6, "[7]": 7, "[8]": 8, "[9]": 9, "[10]": 10}
+
+    for r in ratings:
+        if r in name:
+            name.replace(r, "")
+            return ratings[r]
+
+    return False
+
+
 def parse_text(filename, allowed_books):
     """
     Turns text into some kind of usable data.
@@ -107,6 +119,34 @@ def parse_text(filename, allowed_books):
         return json_dict
 
 
+# def fix_cyberware(cyber_dict):
+#     new_dict = {}  # a duplicate dict to build so we can loop
+#
+#     for name in cyber_dict["cyberware"].keys():
+#         obj = cyber_dict["cyberware"][name]
+#
+#         # check to see if we have a rating
+#         rating = remove_rating(name)
+#         if rating:
+#             # if we find it has a rating, check the dict to see if we already that in it
+#             for category in new_dict:
+#                 # if it's there, append to the list
+#                 if name in new_dict[category]:
+#                     completed_obj = new_dict[category][name]
+#                     for k in completed_obj:
+#                         completed_obj[k].append(obj[k])
+#             # otherwise fix it up and add it to the dict
+#             # make everything a list
+#             for k in obj:
+#                 obj[k] = [obj[k]]
+#
+#             category =
+#
+#             new_dict[category][name] = obj
+#
+#     return new_dict
+
+
 def fix_spells(spells_dict):
     class_correction_dict = {
         "C": "Combat",
@@ -119,13 +159,11 @@ def fix_spells(spells_dict):
         "T": "Telekinetic Manipulation",
         "Z": "Transformation Manipulation"
     }
-
     duration_correction_dict = {
         "I": "Instant",
         "S": "Sustained",
         "P": "Permanent"
     }
-
     range_correction_dict = {
         "T": "Touch",
         "T(V)": "Touch",
@@ -137,12 +175,10 @@ def fix_spells(spells_dict):
         "P": "Personal",
         "L": "Line of Sight"
     }
-
     type_correction_dict = {
         "M": "Mana",
         "P": "Physical"
     }
-
     target_correction_list = {
         "W": "Willpower",
         "I": "Intelligence",
@@ -207,9 +243,8 @@ def fix_spells(spells_dict):
 
 
 if __name__ == "__main__":
-    json_dict = parse_text("./nsrcg_dats/spells.dat", ["twl"])
+    json_dict = parse_text("./nsrcg_dats/cyber.dat.dat", ["sr3"])
     fix_spells(json_dict)
     with open("new_spells.json", "w") as new_file:
         json.dump(json_dict, new_file, indent=2)
     # print(json.dumps(json_dict, indent=2))
-    # parse_text("./nsrcg_dats/cyber.dat", ("cc", "mits", "mat", "r3", "src", "ssg", "sota", "sota2", "tal", "twl", "yotc", "sea"))

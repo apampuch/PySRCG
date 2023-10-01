@@ -8,7 +8,7 @@ from src.CharData.gear import *
 
 class ItemsTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent, "ItemsTab", show_quantity=True, show_race_mods=True)
+        super().__init__(parent, "ItemsTab", show_quantity=True, show_metatype_mods=True)
 
     @property
     def recurse_check_func(self):
@@ -27,15 +27,15 @@ class ItemsTab(ThreeColumnBuyTab, ABC):
         return gear_tab_recurse_end_callback
 
     def buy_callback(self, selected):
-        # modify the item for any racial mods that have been selected
-        if self.race_mod_var.get() == "Dwarf":
+        # modify the item for any metatype mods that have been selected
+        if self.metatype_mod_var.get() == "Dwarf":
             selected.properties["cost"] *= 1.1
             selected.properties["cost"] = int(selected.properties["cost"])
-            selected.properties["race_mod"] = "Dwarf"
-        elif self.race_mod_var.get() == "Troll":
+            selected.properties["metatype_mod"] = "Dwarf"
+        elif self.metatype_mod_var.get() == "Troll":
             selected.properties["cost"] *= 1.25
             selected.properties["cost"] = int(selected.properties["cost"])
-            selected.properties["race_mod"] = "Troll"
+            selected.properties["metatype_mod"] = "Troll"
 
         # get the amount by getting the value of the spinbox (always a string) and converting to int
         count = int(self.amount_spinbox.get())

@@ -220,7 +220,7 @@ class KarmaTab(NotebookTab, ABC):
             print("Can't add negative amounts!")
             return
 
-        self.statblock.gen_mode.add_karma(self.total_karma_var.get(), self.statblock.race)
+        self.statblock.gen_mode.add_karma(self.total_karma_var.get(), self.statblock.metatype)
         self.statblock.gen_mode.update_total()
         
     def sub_total_karma(self):
@@ -230,7 +230,7 @@ class KarmaTab(NotebookTab, ABC):
             print("Can't subtract negative amounts!")
             return
 
-        self.statblock.gen_mode.sub_karma(self.total_karma_var.get(), self.statblock.race)
+        self.statblock.gen_mode.sub_karma(self.total_karma_var.get(), self.statblock.metatype)
         self.statblock.gen_mode.update_total()
 
     def buy_karma_with_cash(self):
@@ -244,7 +244,7 @@ class KarmaTab(NotebookTab, ABC):
         # check if we have enough cash
         if self.statblock.pay_cash(1000):
             self.karma_for_cash_var.set(self.karma_for_cash_var.get() + 1)
-            self.statblock.gen_mode.add_karma(1, self.statblock.race)
+            self.statblock.gen_mode.add_karma(1, self.statblock.metatype)
             self.statblock.gen_mode.update_total()
         else:
             print("Not enough cash!")
@@ -264,7 +264,7 @@ class KarmaTab(NotebookTab, ABC):
             self.karma_for_cash_var.set(self.karma_for_cash_var.get() - 1)
             # self.statblock.cash += 1000
             self.statblock.add_cash(1000)
-            self.statblock.gen_mode.sub_karma(1, self.statblock.race)
+            self.statblock.gen_mode.sub_karma(1, self.statblock.metatype)
             self.statblock.gen_mode.update_total()
 
     def buy_cash_with_karma(self):

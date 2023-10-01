@@ -16,7 +16,7 @@ class Finalized(GenMode, ABC):
 
     adjustments: AdjustmentsContainer
 
-    def __init__(self, data=None, race=None):
+    def __init__(self, data=None, metatype=None):
         super().__init__()
 
         self.starting_skills_max = 99   # why you'd ever need more than 100 dice idk
@@ -25,8 +25,8 @@ class Finalized(GenMode, ABC):
         self.applied_karma = IntVar()   # applied karma is the amount of karma spent from applied changes
         self.karma_pool.set(1)          # yes we're setting it here, don't get smart with me
 
-        if data is not None and race is not None:
-            self.set_total_karma(data["total_karma"], race)
+        if data is not None and metatype is not None:
+            self.set_total_karma(data["total_karma"], metatype)
             self.applied_karma.set(data["applied_karma"])
 
         self.adjustments = AdjustmentsContainer()
@@ -45,27 +45,27 @@ class Finalized(GenMode, ABC):
         """
         return self.karma_pool.get() + self.good_karma.get() - 1
 
-    def add_karma(self, amount, race):
+    def add_karma(self, amount, metatype):
         """
         Adds karma to the total.
         :param amount: Amount of good karma to add.
-        :param race: Race of the character. This matters due to humans getting more Karma Pool.
+        :param metatype: Metatype of the character. This matters due to humans getting more Karma Pool.
         """
         total = self.total_karma() + amount
-        self.set_total_karma(total, race)
+        self.set_total_karma(total, metatype)
 
-    def sub_karma(self, amount, race):
+    def sub_karma(self, amount, metatype):
         """
         Subtracts karma to the total. Won't go below 0.
         :param amount: Amount of good karma to subtract.
-        :param race: Race of the character. This matters due to humans getting more Karma Pool.
+        :param metatype: Metatype of the character. This matters due to humans getting more Karma Pool.
         """
         total = max(self.total_karma() - amount, self.spent_karma)  # so we don't go below 0
-        self.set_total_karma(total, race)
+        self.set_total_karma(total, metatype)
 
     # calculates good karma and subtracts the karma pool tax
-    def set_total_karma(self, total, race):
-        self.karma_pool.set(total // race.karma_div + 1)         # +1 because you start with 1 karma pool
+    def set_total_karma(self, total, metatype):
+        self.karma_pool.set(total // metatype.karma_div + 1)         # +1 because you start with 1 karma pool
         good_karma_set = total - self.karma_pool.get()
         self.good_karma.set(good_karma_set + 1)  # +1 because you start with that karma pool for free
 

@@ -3,7 +3,6 @@ from abc import ABC
 from tkinter import *
 
 from src import app_data
-from src.CharData.race import all_races
 from src.GenModes.gen_mode import GenMode
 from src.utils import magic_tab_show_on_awakened_status
 
@@ -19,7 +18,7 @@ class Priority(GenMode, ABC):
 
         # 0 is the highest priority, 4 is lowest
         if data is None:
-            self.priority_order = ["resources", "attributes", "race", "skills", "magic"]
+            self.priority_order = ["resources", "attributes", "metatype", "skills", "magic"]
         else:
             self.priority_order = data
 
@@ -28,7 +27,7 @@ class Priority(GenMode, ABC):
         self.priority_value_dict = {
             "resources": [1000000, 400000, 90000, 20000, 5000],
             "attributes": [30, 27, 24, 21, 18],
-            "race": [["Elf", "Troll", "Dwarf", "Ork", "Human"],
+            "metatype": [["Elf", "Troll", "Dwarf", "Ork", "Human"],
                      ["Elf", "Troll", "Dwarf", "Ork", "Human"],
                      ["Elf", "Troll", "Dwarf", "Ork", "Human"],
                      ["Dwarf", "Ork", "Human"],
@@ -217,9 +216,9 @@ class Priority(GenMode, ABC):
             money_diff = self.get_generated_value("resources") - old_money
             app_data.app_character.statblock.add_cash(money_diff)
 
-        # reset to human if race isn't valid
-        if app_data.app_character.statblock.race.name not in self.get_generated_value("race"):
-            app_data.app_character.statblock.race = all_races["Human"]
+        # reset to human if metatype isn't valid
+        if app_data.app_character.statblock.metatype.name not in self.get_generated_value("metatype"):
+            app_data.app_character.statblock.metatype = app_data.game_data["Metatypes"]["Human"]
 
         # set magic
         awakened_val = self.get_generated_value("magic")
@@ -283,16 +282,16 @@ class Priority(GenMode, ABC):
         # find cash
         cash_index = self.priority_order.index("resources")
         L[cash_index] = "¥" + str(L[cash_index])
-        # find race
-        race_index = self.priority_order.index("race")
-        if race_index == 4:
-            L[race_index] = "Human"
-        elif race_index == 3:
-            L[race_index] = "Dwarf/Ork"
-        elif race_index == 2:
-            L[race_index] = "Elf/Troll"
+        # find metatype
+        metatype_index = self.priority_order.index("metatype")
+        if metatype_index == 4:
+            L[metatype_index] = "Human"
+        elif metatype_index == 3:
+            L[metatype_index] = "Dwarf/Ork"
+        elif metatype_index == 2:
+            L[metatype_index] = "Elf/Troll"
         else:
-            L[race_index] = "Any Race"
+            L[metatype_index] = "Any Metatype"
         # find magic
         magic_index = self.priority_order.index("magic")
         if magic_index == 0:

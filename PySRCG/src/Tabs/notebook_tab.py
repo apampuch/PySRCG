@@ -2,7 +2,6 @@ from abc import abstractmethod
 from tkinter import ttk
 import src.app_data as app_data
 from src.CharData.character import Character
-from src.CharData.race import Race
 from src.CharData.statblock import Statblock
 from src.GenModes.gen_mode import GenMode
 
@@ -40,8 +39,3 @@ class NotebookTab(ttk.Frame, Tab):
     @property
     def gen_mode(self) -> GenMode:
         return self.statblock.gen_mode
-
-    @property
-    def race(self) -> Race:
-        return self.statblock.race
-

@@ -52,11 +52,11 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
     def __init__(self, parent, name,
                  buy_button_text="Buy",
                  sell_button_text="Sell",
-                 add_inv_callbacks: List[Callable] = None,      # callback functions when adding to inventory
-                 remove_inv_callbacks: List[Callable] = None,   # callback functions when removing from inventory
+                 add_inv_callbacks: List[Callable] = None,     # callback functions when adding to inventory
+                 remove_inv_callbacks: List[Callable] = None,  # callback functions when removing from inventory
                  treeview_get_make_copy=True,
                  show_quantity=False,
-                 show_race_mods=False,
+                 show_metatype_mods=False,
                  buy_from_list=False,
                  show_cyberware_grades=False,
                  show_bioware_grades=False,
@@ -116,17 +116,20 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         amount_label = Label(amount_container, text="Quantity:")
         self.amount_spinbox = Spinbox(amount_container, from_=1, to=float('inf'))
 
-        # race mods
-        self.race_mod_var = StringVar(value="None")
+        # metatype mods
+        self.metatype_mod_var = StringVar(value="None")
 
-        self.race_mods_frame = ttk.LabelFrame(self, text="Race Mods")
-        self.no_race_mod = Radiobutton(self.race_mods_frame, text="None", variable=self.race_mod_var, value="None")
-        self.dwarf_race_mod = Radiobutton(self.race_mods_frame, text="Dwarf", variable=self.race_mod_var, value="Dwarf")
-        self.troll_race_mod = Radiobutton(self.race_mods_frame, text="Troll", variable=self.race_mod_var, value="Troll")
+        self.metatype_mods_frame = ttk.LabelFrame(self, text="Metatype Mods")
+        self.no_metatype_mod = Radiobutton(self.metatype_mods_frame, text="None",
+                                           variable=self.metatype_mod_var, value="None")
+        self.dwarf_metatype_mod = Radiobutton(self.metatype_mods_frame, text="Dwarf",
+                                              variable=self.metatype_mod_var, value="Dwarf")
+        self.troll_metatype_mod = Radiobutton(self.metatype_mods_frame, text="Troll",
+                                              variable=self.metatype_mod_var, value="Troll")
 
-        self.no_race_mod.pack(side=LEFT)
-        self.dwarf_race_mod.pack(side=LEFT)
-        self.troll_race_mod.pack(side=LEFT)
+        self.no_metatype_mod.pack(side=LEFT)
+        self.dwarf_metatype_mod.pack(side=LEFT)
+        self.troll_metatype_mod.pack(side=LEFT)
 
         # cyberware grades
         self.grade_var = StringVar(value="standard")
@@ -202,8 +205,8 @@ class ThreeColumnBuyTab(NotebookTab, ABC):
         if show_quantity:
             amount_container.grid(column=3, row=1)
 
-        if show_race_mods:
-            self.race_mods_frame.grid(column=3, row=2)
+        if show_metatype_mods:
+            self.metatype_mods_frame.grid(column=3, row=2)
 
         if show_cyberware_grades:
             self.cyberware_grade_frame.grid(column=3, row=2)

@@ -4,7 +4,7 @@ from tkinter import ttk
 
 from src import app_data
 from src.CharData.augment import Cyberware
-from src.CharData.race import all_races
+from src.CharData.metatype import Metatype
 from src.GenModes.gen_mode import GenMode
 from src.GenModes.points import Points
 from src.GenModes.priority import Priority
@@ -12,25 +12,20 @@ from src.Tabs.notebook_tab import NotebookTab
 
 
 class SetupTab(NotebookTab, ABC):
-    @NotebookTab.race.setter
-    def race(self, value):
-        self.statblock.race = value
-
     def __init__(self, parent):
         super().__init__(parent, "SetupTab")
         self.parent = parent
 
         # TODO move this to SR3_Core and make it take from there
-        self.race_vals = ["Human",
-                          "Dwarf",
-                          "Elf",
-                          "Ork",
-                          "Troll"]
+        self.metatype_vals = ["Human",
+                              "Dwarf",
+                              "Elf",
+                              "Ork",
+                              "Troll"]
 
-        self.race_box = ttk.Combobox(self, values=self.race_vals, state="readonly")
-        self.race_box.bind("<<ComboboxSelected>>", self.on_race_selected)
-        self.race_box.current(0)
-        # self.character.statblock.race = all_races[self.race_vals[0]]
+        self.metatype_box = ttk.Combobox(self, values=self.metatype_vals, state="readonly")
+        self.metatype_box.bind("<<ComboboxSelected>>", self.on_metatype_selected)
+        self.metatype_box.current(0)
 
         # self.magic_frame = ttk.LabelFrame(self, text="Magic User?")
 
@@ -61,7 +56,7 @@ class SetupTab(NotebookTab, ABC):
         self.priority_gen_radio.grid(column=0, row=0)
         self.points_gen_radio.grid(column=1, row=0)
 
-        self.race_box.grid(column=5, row=0)
+        self.metatype_box.grid(column=5, row=0)
 
         self.otaku_checkbox.grid(column=0, row=1, sticky=W)
         self.runt_checkbox.grid(column=1, row=1, sticky=W)
@@ -137,10 +132,11 @@ class SetupTab(NotebookTab, ABC):
     def on_runt_checked(self):
         self.statblock.runt_otaku = self.runt_var.get()
 
-    def on_race_selected(self, event):
-        """Event to set the race of the current character."""
-        selected_race = event.widget.get()
-        self.race = all_races[selected_race]
+    def on_metatype_selected(self, event):
+        """Event to set the metatype of the current character."""
+        selected_metatype = event.widget.get()
+        metatype = app_data.game_data["Metatypes"][selected_metatype]
+        self.statblock.metatype = Metatype(selected_metatype, **metatype)
 
     def load_character(self):
         self.otaku_var.set(self.statblock.otaku)
@@ -152,6 +148,6 @@ class SetupTab(NotebookTab, ABC):
         self.on_switch()
 
     def on_switch(self):
-        race_name = self.race.name
-        race_index = self.race_vals.index(race_name)
-        self.race_box.current(race_index)
+        metatype_name = self.statblock.metatype.name
+        metatype_index = self.metatype_vals.index(metatype_name)
+        self.metatype_box.current(metatype_index)

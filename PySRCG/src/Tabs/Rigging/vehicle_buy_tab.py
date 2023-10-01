@@ -12,18 +12,21 @@ class VehicleBuyTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
         super().__init__(parent, "VehicleAccessoriesTab", "Buy", "Sell")
 
-        self.race_mod_var = StringVar(value="None")
+        self.metatype_mod_var = StringVar(value="None")
 
-        self.race_mods_frame = ttk.LabelFrame(self, text="Race Mods")
-        self.no_race_mod = Radiobutton(self.race_mods_frame, text="None", variable=self.race_mod_var, value="None")
-        self.dwarf_race_mod = Radiobutton(self.race_mods_frame, text="Dwarf", variable=self.race_mod_var, value="Dwarf")
-        self.troll_race_mod = Radiobutton(self.race_mods_frame, text="Troll", variable=self.race_mod_var, value="Troll")
+        self.metatype_mods_frame = ttk.LabelFrame(self, text="Metatype Mods")
+        self.no_metatype_mod = Radiobutton(self.metatype_mods_frame, text="None",
+                                           variable=self.metatype_mod_var, value="None")
+        self.dwarf_metatype_mod = Radiobutton(self.metatype_mods_frame, text="Dwarf",
+                                              variable=self.metatype_mod_var, value="Dwarf")
+        self.troll_metatype_mod = Radiobutton(self.metatype_mods_frame, text="Troll",
+                                              variable=self.metatype_mod_var, value="Troll")
 
-        self.no_race_mod.pack(side=LEFT)
-        self.dwarf_race_mod.pack(side=LEFT)
-        self.troll_race_mod.pack(side=LEFT)
+        self.no_metatype_mod.pack(side=LEFT)
+        self.dwarf_metatype_mod.pack(side=LEFT)
+        self.troll_metatype_mod.pack(side=LEFT)
 
-        self.race_mods_frame.grid(row=1, column=3)
+        self.metatype_mods_frame.grid(row=1, column=3)
 
     @property
     def library_source(self):
@@ -37,15 +40,15 @@ class VehicleBuyTab(ThreeColumnBuyTab, ABC):
         return self.statblock.vehicles
 
     def buy_callback(self, item):
-        # modify the item for any racial mods that have been selected
-        if self.race_mod_var.get() == "Dwarf":
+        # modify the item for any metatype mods that have been selected
+        if self.metatype_mod_var.get() == "Dwarf":
             item.properties["cost"] *= 1.1
             item.properties["cost"] = int(item.properties["cost"])
-            item.optionals["race_mod"] = "Dwarf"
-        elif self.race_mod_var.get() == "Troll":
+            item.optionals["metatype_mod"] = "Dwarf"
+        elif self.metatype_mod_var.get() == "Troll":
             item.properties["cost"] *= 1.25
             item.properties["cost"] = int(item.properties["cost"])
-            item.optionals["race_mod"] = "Troll"
+            item.optionals["metatype_mod"] = "Troll"
 
         if app_data.pay_cash(item.properties["cost"]):
             self.add_inv_item(item)

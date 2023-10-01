@@ -10,7 +10,7 @@ from src.app_data import pay_cash
 
 class FirearmAccessoriesTab(ThreeColumnBuyTab, ABC):
     def __init__(self, parent):
-        super().__init__(parent, "FirearmAccessoriesTab", show_race_mods=True)
+        super().__init__(parent, "FirearmAccessoriesTab", show_metatype_mods=True)
 
         self.gunobj_dict = {}
         self.gun_box = ttk.Combobox(self, values=list(self.gunobj_dict.keys()), state="readonly")

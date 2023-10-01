@@ -1,12 +1,15 @@
+from copy import deepcopy
+
 from src.CharData.statblock import *
-from src.CharData.race import *
 from tkinter import StringVar
 
 
 class Character(object):
     def __init__(self, statblock: Statblock = None, file_path: str = ""):
         if statblock is None:
-            statblock = Statblock(Human)
+            stock_human = deepcopy(app_data.game_data["Metatypes"]["Human"])
+            stock_human["name"] = "Human"
+            statblock = Statblock(stock_human)
 
         # variables
         self.statblock = statblock

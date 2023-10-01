@@ -20,7 +20,6 @@ from src.CharData.lifestyle import SimpleLifestyle, AdvancedLifestyle
 from src.CharData.metamagic import Metamagic
 from src.CharData.power import Power
 from src.CharData.program import Program
-from src.CharData.race import all_races
 from src.CharData.skill import Skill
 from src.CharData.spell import Spell
 from src.CharData.tradition import Tradition
@@ -60,7 +59,7 @@ def new_char(tabs):
     # setup top bar
     app_data.on_cash_updated()
 
-    # setup the bare minimum so tab.load_character() doesn't crash
+    # set up the bare minimum so tab.load_character() doesn't crash
     app_data.app_character.name.set("")
     app_data.app_character.sex.set("Male")
 
@@ -132,9 +131,8 @@ def load(tabs):
             except ValueError:
                 print("Save file does not have a version. This save file can't be used, please manually recreate it.")
 
-            # set race
-            race_str = character_dict["statblock"]["race"]
-            new_character.statblock.race = all_races[race_str]
+            # set metatype
+            new_character.statblock.metatype = Metatype(**character_dict["statblock"]["metatype"])
             new_character.statblock.base_attributes = character_dict["statblock"]["base_attributes"]
             # new_character.statblock.cash = character_dict["statblock"]["cash"]
 
@@ -299,7 +297,8 @@ def load(tabs):
             # add tradition and aspect
             new_character.statblock.awakened = character_dict["statblock"]["awakened"]
             new_character.statblock.tradition = \
-                Tradition(**character_dict["statblock"]["tradition"]) if character_dict["statblock"]["tradition"] is not None else None
+                Tradition(**character_dict["statblock"]["tradition"]) \
+                if character_dict["statblock"]["tradition"] is not None else None
             new_character.statblock.aspect = character_dict["statblock"]["aspect"]
             new_character.statblock.focus = character_dict["statblock"]["focus"]
 

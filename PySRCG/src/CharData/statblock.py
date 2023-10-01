@@ -1,13 +1,13 @@
 from copy import copy
 from functools import reduce
 from math import ceil
-from tkinter import IntVar
+from tkinter import IntVar, DoubleVar
 from typing import Dict
 
 from src import app_data
 from src.GenModes.priority import Priority
 from src.app_data import on_cash_updated
-from src.CharData.race import Race
+from src.CharData.metatype import Metatype
 from src.statblock_modifier import StatMod
 
 all_base_attributes = ("body", "quickness", "strength", "charisma", "intelligence", "willpower")
@@ -22,7 +22,7 @@ def add_if_not_there(_dict, key):
 
 class Statblock(object):
     base_attributes: Dict[str, int | float]
-    __race: Race
+    __metatype: Metatype
 
     # interface to make adding/subtracting cash work with Currencies
     @property
@@ -111,8 +111,8 @@ class Statblock(object):
         else:
             return r
 
-    def __init__(self, race):
-        self.__race = race
+    def __init__(self, metatype):
+        self.__metatype = Metatype(**metatype)
         self.base_attributes = {"body": 1,
                                 "quickness": 1,
                                 "strength": 1,
@@ -132,9 +132,9 @@ class Statblock(object):
 
         # always start with 6 essence
         self.base_attributes["essence"] = 6.0
-        self.ess_ui_var = IntVar()  # this only exists so that we can control the progress bar with the essence value
-        self.power_points_ui_var = IntVar()  # same as above but for power points
-        self.ess_index_ui_var = IntVar()  # same as above but for essence index
+        self.ess_ui_var = DoubleVar()  # this only exists so that we can control the progress bar with the essence value
+        self.power_points_ui_var = DoubleVar()  # same as above but for power points
+        self.ess_index_ui_var = DoubleVar()  # same as above but for essence index
         self.ess_ui_var.set(6)
 
         # setup gen mode
@@ -242,9 +242,9 @@ class Statblock(object):
         else:
             total = self.base_attributes[key]
 
-        # add racial attribute bonus
-        if key in self.race.racial_attributes:
-            total += self.race.racial_attributes[key]
+        # add metatype attribute bonus
+        if key in self.metatype.metatype_attributes:
+            total += self.metatype.metatype_attributes[key]
 
         key_prefixes = ("cyber_", "bio_", "other_")
 
@@ -273,8 +273,8 @@ class Statblock(object):
             return 1
         else:
             total = self.base_attributes[key]
-            # add racial attribute bonus
-            total += self.race.racial_attributes[key]
+            # add metatype attribute bonus
+            total += self.metatype.metatype_attributes[key]
 
             key_prefixes = ("bio_", "other_")
 
@@ -340,20 +340,20 @@ class Statblock(object):
             max(0, self.armor_quickness_penalty - self.quickness)
 
     @property
-    def race(self):
-        return self.__race
+    def metatype(self):
+        return self.__metatype
 
-    @race.setter
-    def race(self, value: Race):
-        old_race = self.__race
+    @metatype.setter
+    def metatype(self, value: Metatype):
+        old_metatype = self.__metatype
 
         # adjust the attribute values so that the slider position is the same
         # if above max, set to max
         for key in all_base_attributes:
-            attr_pos = self.base_attributes[key] - old_race.racial_slider_minimum(key)
-            self.base_attributes[key] = attr_pos + value.racial_slider_minimum(key)
+            attr_pos = self.base_attributes[key] - old_metatype.metatype_slider_minimum(key)
+            self.base_attributes[key] = attr_pos + value.metatype_slider_minimum(key)
 
-        self.__race = value
+        self.__metatype = value
 
     ######################################
     # DICE POOLS, RETURNS NUMBER OF DICE #
@@ -445,7 +445,7 @@ class Statblock(object):
 
     @property
     def essence(self) -> float:
-        essence_total = 6  # I am SURE there are races that have more essence
+        essence_total = 6
 
         fit_dict = self.make_fit_dict()
 
@@ -467,6 +467,7 @@ class Statblock(object):
 
     @property
     def essence_index(self):
+        essence_index_total: float
         essence_index_total = self.essence + 3
 
         for item in self.bioware:
@@ -490,10 +491,10 @@ class Statblock(object):
 
         return essence_index_total
 
-    # NOTE: there may be edges and flaws that affect racial limits and maximums
-    def racial_limit(self, key):
+    # NOTE: there may be edges and flaws that affect metatype limits and maximums
+    def metatype_limit(self, key):
         """The soft limit of an attribute, going beyond this costs more karma and requires GM permission."""
-        r = min(6, 6 + self.race.racial_attributes[key])
+        r = min(6, 6 + self.metatype.metatype_attributes[key])
         if self.otaku:
             if self.runt_otaku:
                 if key in ("strength", "body", "quickness"):
@@ -510,9 +511,9 @@ class Statblock(object):
 
         return max(1, r)
 
-    def racial_max(self, key):
+    def metatype_max(self, key):
         """The hard maximum that an attribute can reach naturally."""
-        return ceil(self.racial_limit(key) * 1.5)
+        return ceil(self.metatype_limit(key) * 1.5)
 
     def make_fit_dict(self):
         """
@@ -578,7 +579,7 @@ class Statblock(object):
         Serializes this into a _dict for turning into a json.
         """
         return {
-            "race": self.__race.name,
+            "metatype": self.__metatype.serialize(),
             "base_attributes": self.base_attributes,
             "currencies": list(map(lambda x: x.serialize(), self.currencies)),
             "inventory": list(map(lambda x: x.serialize(), self.inventory)),
