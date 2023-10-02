@@ -117,16 +117,15 @@ class TopBar(ttk.Frame):
         self.karma_fraction.set("{}/{}".format(numer, denom))
 
 
-def post_setup(attri_tab):
+def post_setup(attributes_tab):
     """Things we need to do after initializing all tabs and classes."""
-    attri_tab.calculate_total()
+    attributes_tab.calculate_total()
 
 
 def make_tab(tab_type, name, container_types=None, container_names=None):
     """
     Creates a tab and adds it to the window.
 
-    :param container_args: List of tuples or dicts of args for each contained tab
     :type tab_type: type
     :type name: string
     :type container_types: List(type)

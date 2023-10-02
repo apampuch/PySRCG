@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Literal
 
 
 class GenMode(ABC):
@@ -21,9 +22,9 @@ class GenMode(ABC):
         pass
 
     @abstractmethod
-    def get_generated_value(self, key):
+    def get_generated_value(self, key: Literal["resources", "attributes", "metatype", "skills", "magic"]):
         """
-        This is used by priority mostly, you pass in a key and it gives you the value for the priority
+        This is used by priority mostly, you pass in a key, and it gives you the value for the priority
         that that key is at.
         :param key:
         :return:
