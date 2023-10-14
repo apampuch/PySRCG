@@ -425,6 +425,9 @@ def magic_tab_show_on_awakened_status(app_data):
     :type app_data: app_data
     """
     if app_data.app_character.statblock.awakened is None:
+        print("DEPRECIATED: Do not set awakened to None.")
+        app_data.window.tab(".!app.!magictab", state="hidden")
+    elif app_data.app_character.statblock.awakened == "Mundane":
         app_data.window.tab(".!app.!magictab", state="hidden")
     else:
         app_data.window.tab(".!app.!magictab", state="normal")

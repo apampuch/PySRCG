@@ -14,31 +14,25 @@ from src.Tabs.notebook_tab import NotebookTab
 class SetupTab(NotebookTab, ABC):
     def __init__(self, parent):
         super().__init__(parent, "SetupTab")
+        GenMode.parent = self
         self.parent = parent
 
-        # TODO move this to SR3_Core and make it take from there
-        self.metatype_vals = ["Human",
-                              "Dwarf",
-                              "Elf",
-                              "Ork",
-                              "Troll"]
-
-        self.metatype_box = ttk.Combobox(self, values=self.metatype_vals, state="readonly")
+        self.metatype_listbox_values = []
+        self.metatype_keys = []  # this is what's looked up in the dict
+        self.metatype_box = ttk.Combobox(self, values=self.metatype_listbox_values, state="readonly")
         self.metatype_box.bind("<<ComboboxSelected>>", self.on_metatype_selected)
-        self.metatype_box.current(0)
-
-        # self.magic_frame = ttk.LabelFrame(self, text="Magic User?")
+        # self.metatype_box.current(0)
 
         # generation options
         self.gen_frame = ttk.LabelFrame(self, text="Generation Mode")
         self.gen_mode_frame = Frame(self.gen_frame)
-        GenMode.gen_mode_frame = self.gen_mode_frame
-        self.gen_modes = (Priority, Points)
-        self.gen_mode_index = IntVar()
+        self.gen_mode_var = StringVar()
 
-        self.priority_gen_radio = Radiobutton(self.gen_frame, text="Priority", variable=self.gen_mode_index, value=0)
+        self.priority_gen_radio = Radiobutton(self.gen_frame, text="Priority", variable=self.gen_mode_var,
+                                              value="Priority")
         self.points_gen_radio = Radiobutton(self.gen_frame, text="Points",
-                                            variable=self.gen_mode_index, value=1, state=DISABLED)
+                                            variable=self.gen_mode_var, value="Points")
+        self.gen_mode_var.trace("w", lambda x, y, z: self.on_genmode_changed())
 
         self.otaku_var = BooleanVar()  # doesn't do anything on its own, only used to make things saner
         self.otaku_checkbox = Checkbutton(self, text="Otaku Character", variable=self.otaku_var,
@@ -61,7 +55,32 @@ class SetupTab(NotebookTab, ABC):
         self.otaku_checkbox.grid(column=0, row=1, sticky=W)
         self.runt_checkbox.grid(column=1, row=1, sticky=W)
 
-        self.priority_gen_radio.select()
+        Priority.setup_ui_elements()
+        Points.setup_ui_elements()
+        # self.gen_mode_var.set("Priority")
+
+    def on_genmode_changed(self):
+        genmodes_dict = {
+            "Priority": Priority,
+            "Points": Points
+        }
+
+        # get old money value
+        old_money = self.statblock.gen_mode.get_generated_value("resources")
+
+        # set new genmode
+        self.statblock.gen_mode = genmodes_dict[self.gen_mode_var.get()]()
+        self.statblock.gen_mode.grid_ui_elements()
+
+        self.statblock.gen_mode.on_change_to_genmode(old_money)
+        self.update_karma_bar()
+
+    def update_karma_bar(self):
+        if type(self.statblock.gen_mode) == Points:
+            app_data.top_bar.karma_bar.configure(variable=self.statblock.gen_mode.used_points,
+                                                 maximum=self.statblock.gen_mode.max_points.get())
+        else:
+            super().update_karma_bar()
 
     def on_otaku_checked(self):
         self.character.statblock.otaku = self.otaku_var.get()
@@ -134,9 +153,11 @@ class SetupTab(NotebookTab, ABC):
 
     def on_metatype_selected(self, event):
         """Event to set the metatype of the current character."""
-        selected_metatype = event.widget.get()
+        metatype_box_index = event.widget.current()
+        selected_metatype = self.metatype_keys[metatype_box_index]
         metatype = app_data.game_data["Metatypes"][selected_metatype]
         self.statblock.metatype = Metatype(selected_metatype, **metatype)
+        self.gen_mode.on_metatype_selected()
 
     def load_character(self):
         self.otaku_var.set(self.statblock.otaku)
@@ -148,6 +169,10 @@ class SetupTab(NotebookTab, ABC):
         self.on_switch()
 
     def on_switch(self):
+        self.gen_mode.fill_valid_metatypes()
         metatype_name = self.statblock.metatype.name
-        metatype_index = self.metatype_vals.index(metatype_name)
+        metatype_index = self.metatype_keys.index(metatype_name)
         self.metatype_box.current(metatype_index)
+        self.statblock.gen_mode.grid_ui_elements()
+        if type(self.statblock.gen_mode) == Points:
+            self.statblock.gen_mode.update_total(None, "points")

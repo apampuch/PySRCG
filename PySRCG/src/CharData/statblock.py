@@ -1,7 +1,7 @@
 from copy import copy
 from functools import reduce
 from math import ceil
-from tkinter import IntVar, DoubleVar
+from tkinter import DoubleVar
 from typing import Dict
 
 from src import app_data
@@ -171,7 +171,7 @@ class Statblock(object):
         """
 
         # setup awakened status
-        self.__awakened = None
+        self.__awakened = "Mundane"
         self.__tradition = None
         self.aspect = None
         self.focus = None
@@ -217,9 +217,6 @@ class Statblock(object):
 
         # setup miscellaneous programs
         self.other_programs = []
-
-        # setup ui elements for gen mode
-        self.gen_mode.setup_ui_elements()
 
     def calculate_attribute(self, key, ex_mods=True):
         """

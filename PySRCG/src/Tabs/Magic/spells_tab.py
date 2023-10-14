@@ -4,6 +4,7 @@ from copy import copy
 from src import app_data
 from src.CharData.spell import Spell
 from src.GenModes.finalized import Finalized
+from src.GenModes.points import Points
 from src.GenModes.priority import Priority
 from src.Tabs.three_column_buy_tab import ThreeColumnBuyTab
 from src.adjustment import Adjustment
@@ -138,7 +139,7 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
     def buy_spell_point_callback(self):
         if type(self.statblock.gen_mode) is not Finalized:
             if self.statblock.pay_cash(25000):
-                if type(self.statblock.gen_mode) is Priority:
+                if type(self.statblock.gen_mode) in (Priority, Points):
                     # increment purchased and max by 1
                     self.statblock.gen_mode.increment_purchased_magic_points()
                     self.calculate_total()
@@ -152,7 +153,7 @@ class SpellsTab(ThreeColumnBuyTab, ABC):
 
     def sell_spell_point_callback(self):
         if type(self.statblock.gen_mode) is not Finalized:
-            if type(self.statblock.gen_mode) is Priority:
+            if type(self.statblock.gen_mode) in (Priority, Points):
                 if self.statblock.gen_mode.decrement_purchased_magic_points():
                     self.statblock.add_cash(25000)
                     self.calculate_total()

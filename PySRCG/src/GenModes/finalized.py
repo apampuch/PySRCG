@@ -3,8 +3,6 @@ from tkinter import IntVar
 
 from src import app_data
 from src.GenModes.gen_mode import GenMode
-from src.Tabs.Rigging.vehicle_accessories_tab import VehicleAccessoriesTab
-from src.Tabs.Rigging.vehicle_buy_tab import VehicleBuyTab
 from src.adjustment import AdjustmentsContainer, Adjustment
 
 

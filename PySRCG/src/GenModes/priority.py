@@ -3,6 +3,7 @@ from abc import ABC
 from tkinter import *
 
 from src import app_data
+from src.CharData.metatype import Metatype
 from src.GenModes.gen_mode import GenMode
 from src.utils import magic_tab_show_on_awakened_status
 
@@ -12,6 +13,20 @@ def points_max():
 
 
 class Priority(GenMode, ABC):
+    priority_name_list = None
+    priority_vals_list = None
+    up_button = None
+    down_button = None
+
+    cur_skill_points = None
+    cur_magic_points = None
+    cur_attribute_points = None
+    cur_edge_flaw_points = None
+
+    max_skill_points = None
+    max_magic_points = None
+    max_attribute_points = None
+    
     def __init__(self, data=None, **kwargs):
         super().__init__()
         self.starting_skills_max = 6
@@ -28,33 +43,17 @@ class Priority(GenMode, ABC):
             "resources": [1000000, 400000, 90000, 20000, 5000],
             "attributes": [30, 27, 24, 21, 18],
             "metatype": [["Elf", "Troll", "Dwarf", "Ork", "Human"],
-                     ["Elf", "Troll", "Dwarf", "Ork", "Human"],
-                     ["Elf", "Troll", "Dwarf", "Ork", "Human"],
-                     ["Dwarf", "Ork", "Human"],
-                     ["Human"]],
+                         ["Elf", "Troll", "Dwarf", "Ork", "Human"],
+                         ["Elf", "Troll", "Dwarf", "Ork", "Human"],
+                         ["Dwarf", "Ork", "Human"],
+                         ["Human"]],
             "skills": [50, 40, 34, 30, 27],
-            "magic": ["Full", "Aspected", None, None, None]
+            "magic": ["Full", "Aspected", "Mundane", "Mundane", "Mundane"]
         }
 
-        # this is a shit way of doing it but I have no choice
-        # these need to have their values assigned after I make all of the tabs
-        self.priority_name_list = None
-        self.priority_vals_list = None
-        self.up_button = None
-        self.down_button = None
-
-        self.cur_skill_points = IntVar()
-        self.cur_magic_points = IntVar()
-        self.cur_attribute_points = IntVar()
-        self.cur_edge_flaw_points = IntVar()
-
-        self.max_skill_points = IntVar()
-        self.max_magic_points = IntVar()
-        self.max_attribute_points = IntVar()
-
-        self.max_skill_points.set(self.get_generated_value("skills"))
-        self.max_magic_points.set(self.magic_val_from_string())
-        self.max_attribute_points.set(self.get_generated_value("attributes"))
+        Priority.max_skill_points.set(self.get_generated_value("skills"))
+        Priority.max_magic_points.set(self.magic_val_from_string())
+        Priority.max_attribute_points.set(self.get_generated_value("attributes"))
 
         """
         sr3 allows purchasing extra spell points at 25000 each
@@ -77,7 +76,50 @@ class Priority(GenMode, ABC):
             "skills": (self.cur_skill_points, self.max_skill_points),
         }
 
-        # after instantiating call AttributesTab.calculate_total
+        # set up and down commands
+        Priority.up_button.config(command=lambda: self.swap_priority(-1))
+        Priority.down_button.config(command=lambda: self.swap_priority(1))
+
+    @staticmethod
+    def setup_ui_elements():
+        Priority.cur_skill_points = IntVar()
+        Priority.cur_magic_points = IntVar()
+        Priority.cur_attribute_points = IntVar()
+        Priority.cur_edge_flaw_points = IntVar()
+
+        Priority.max_skill_points = IntVar()
+        Priority.max_magic_points = IntVar()
+        Priority.max_attribute_points = IntVar()
+
+        Priority.up_button = Button(GenMode.parent.gen_mode_frame, text="↑")
+        Priority.down_button = Button(GenMode.parent.gen_mode_frame, text="↓")
+
+        Priority.priority_name_list = Listbox(GenMode.parent.gen_mode_frame, height=5,
+                                              selectmode=SINGLE, exportselection=0)
+        Priority.priority_name_list.bind("<<ListboxSelect>>", Priority.sync_list_selected)
+        Priority.priority_vals_list = Listbox(GenMode.parent.gen_mode_frame, height=5,
+                                              selectmode=SINGLE, exportselection=0)
+        Priority.priority_vals_list.bind("<<ListboxSelect>>", Priority.sync_list_selected)
+
+    def grid_ui_elements(self):
+        super().grid_ui_elements()
+
+        Priority.up_button.grid(column=2, row=1)
+        Priority.down_button.grid(column=2, row=2)
+        Priority.priority_name_list.grid(column=0, row=1, columnspan=2, rowspan=2)
+        Priority.priority_vals_list.grid(column=3, row=1, columnspan=2, rowspan=2)
+
+        self.fill_lists()
+
+    def fill_valid_metatypes(self):
+        super().fill_valid_metatypes()
+        metatype_rank = self.priority_order.index("metatype")
+        for meta_k, meta_v in app_data.game_data["Metatypes"].items():
+            if meta_v["priority_rank"] >= metatype_rank:
+                GenMode.parent.metatype_listbox_values.append(meta_k)
+                GenMode.parent.metatype_keys.append(meta_k)
+
+        GenMode.parent.metatype_box.config(values=GenMode.parent.metatype_listbox_values)
 
     def increment_purchased_magic_points(self):
         p = self.purchased_magic_points.get()
@@ -88,7 +130,7 @@ class Priority(GenMode, ABC):
     def decrement_purchased_magic_points(self):
         """
         Returns True and decrements purchased magic points if possible to do so.
-        Otherwise returns False.
+        Otherwise, returns False.
         """
         if self.purchased_magic_points.get() > 0:
             p = self.purchased_magic_points.get()
@@ -114,24 +156,6 @@ class Priority(GenMode, ABC):
         else:
             return True
 
-    def setup_ui_elements(self):
-        super().setup_ui_elements()
-
-        self.up_button = Button(GenMode.gen_mode_frame, text="↑", command=lambda: self.swap_priority(-1))
-        self.down_button = Button(GenMode.gen_mode_frame, text="↓", command=lambda: self.swap_priority(1))
-
-        self.priority_name_list = Listbox(GenMode.gen_mode_frame, height=5, selectmode=SINGLE, exportselection=0)
-        self.priority_name_list.bind("<<ListboxSelect>>", self.sync_list_selected)
-        self.priority_vals_list = Listbox(GenMode.gen_mode_frame, height=5, selectmode=SINGLE, exportselection=0)
-        self.priority_vals_list.bind("<<ListboxSelect>>", self.sync_list_selected)
-
-        self.up_button.grid(column=2, row=1)
-        self.down_button.grid(column=2, row=2)
-        self.priority_name_list.grid(column=0, row=1, columnspan=2, rowspan=2)
-        self.priority_vals_list.grid(column=3, row=1, columnspan=2, rowspan=2)
-
-        self.fill_lists()
-
     def update_total(self, amount, key):
         if key == "attributes":
             self.cur_attribute_points.set(amount)
@@ -152,7 +176,7 @@ class Priority(GenMode, ABC):
 
     def swap_priority(self, direction):
         """
-        Direction should be -1 for up or  for down
+        Direction should be -1 for up or 1 for down
         @param direction: int
         @return: None
         """
@@ -192,6 +216,7 @@ class Priority(GenMode, ABC):
         self.priority_name_list.selection_set(swap_index)
         self.priority_vals_list.selection_set(swap_index)
 
+        self.fill_valid_metatypes()
         self.on_priority_change(old_money)
 
     # gets the magic point value from a string like Full or Aspected
@@ -218,20 +243,22 @@ class Priority(GenMode, ABC):
 
         # reset to human if metatype isn't valid
         if app_data.app_character.statblock.metatype.name not in self.get_generated_value("metatype"):
-            app_data.app_character.statblock.metatype = app_data.game_data["Metatypes"]["Human"]
+            app_data.app_character.statblock.metatype = \
+                Metatype(name="Human", **app_data.game_data["Metatypes"]["Human"])
+            GenMode.parent.metatype_box.set("Human")
 
         # set magic
         awakened_val = self.get_generated_value("magic")
 
         # always override to None if otaku
         if app_data.app_character.statblock.otaku:
-            awakened_val = None
+            awakened_val = "Mundane"
 
         # set aspect to Full Mage if magic is top priority
         if awakened_val == "Full":
             app_data.app_character.statblock.aspect = "Full Mage"
         # refund all purchased spell points if set to mundane
-        elif awakened_val is None:
+        elif awakened_val == "Mundane":
             refund_value = 25000 * self.purchased_magic_points.get()
             self.purchased_magic_points.set(0)
             app_data.app_character.statblock.add_cash(refund_value)
@@ -240,14 +267,15 @@ class Priority(GenMode, ABC):
 
         magic_tab_show_on_awakened_status(app_data)
 
-    def sync_list_selected(self, event):
+    @staticmethod
+    def sync_list_selected(event):
         # figure out which we clicked
-        if event.widget is self.priority_name_list:
-            clicked_widget = self.priority_name_list
-            syncing_widget = self.priority_vals_list
+        if event.widget is Priority.priority_name_list:
+            clicked_widget = Priority.priority_name_list
+            syncing_widget = Priority.priority_vals_list
         else:
-            clicked_widget = self.priority_vals_list
-            syncing_widget = self.priority_name_list
+            clicked_widget = Priority.priority_vals_list
+            syncing_widget = Priority.priority_name_list
 
         # sync the one we didn't click to that one
         syncing_widget.selection_clear(0, END)
@@ -271,10 +299,9 @@ class Priority(GenMode, ABC):
                 self.priority_name_list.insert(END, self.priority_order[i])
             self.priority_vals_list.insert(END, L[i])
 
-    def serialize(self):
-        return {"type": "priority",
-                "data": self.priority_order,
-                "purchased_magic_points": self.purchased_magic_points.get()}
+    def on_metatype_selected(self):
+        # do nothing
+        pass
 
     def pretty_priority_values(self):
         L = self.priority_values()
@@ -319,12 +346,7 @@ class Priority(GenMode, ABC):
 
         return L
 
-    def on_set_otaku(self):
-        """
-        Called when setting otaku to True.
-        Returns True if successful, False if not.
-        @rtype: bool
-        """
+    def on_set_otaku(self) -> bool:
         if not app_data.app_character.statblock.otaku:
             raise ValueError("Should be otaku to call on_set_otaku()!")
 
@@ -370,3 +392,8 @@ class Priority(GenMode, ABC):
         index = self.priority_order.index("resources")
 
         return 4 - index
+
+    def serialize(self):
+        return {"type": "priority",
+                "data": self.priority_order,
+                "purchased_magic_points": self.purchased_magic_points.get()}

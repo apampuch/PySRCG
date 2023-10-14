@@ -27,6 +27,7 @@ from src.CharData.vehicle import Vehicle
 from src.CharData.vehicle_accessory import VehicleAccessory
 from src.CharData.wireless_accesory import WirelessAccessory
 from src.GenModes.finalized import Finalized
+from src.GenModes.points import Points
 from src.GenModes.priority import Priority
 from src.save_version_upgrade import upgrade_funcs
 from src.utils import magic_tab_show_on_awakened_status
@@ -35,6 +36,7 @@ SAVE_VERSION = 0.3
 
 gen_mode_dict = {
     "priority": Priority,
+    "points": Points,
     "finalized": Finalized
 }
 
@@ -120,6 +122,10 @@ def load(tabs):
             character_dict = json.load(file)
             new_character = Character()
 
+            # set character
+            # set first so otaku checks work correctly in points genmode
+            app_data.app_character = new_character
+
             # check if we need to upgrade
             # if so, perform all upgrade functions from where we need to start to the end
             try:
@@ -139,6 +145,12 @@ def load(tabs):
             # set genmode
             gen_mode_key = character_dict["statblock"]["gen_mode"]["type"]
 
+            # set otaku
+            # called before genmode so we know if we're an otaku or not
+            new_character.statblock.otaku = character_dict["statblock"]["otaku"]
+            new_character.statblock.runt_otaku = character_dict["statblock"]["runt_otaku"]
+            new_character.statblock.otaku_path = character_dict["statblock"]["otaku_path"]
+
             # only do purchased magic points if it's not finalized
             if gen_mode_key != "finalized":
                 new_character.statblock.gen_mode = \
@@ -148,8 +160,6 @@ def load(tabs):
             else:
                 new_character.statblock.gen_mode = \
                     gen_mode_dict[gen_mode_key](character_dict["statblock"]["gen_mode"]["data"])
-
-            new_character.statblock.gen_mode.setup_ui_elements()
 
             # convert dicts to item objects and add to inventory
             for lifestyle in character_dict["lifestyles"]:
@@ -321,14 +331,6 @@ def load(tabs):
 
             new_character.notes.set(character_dict["notes"])
             new_character.creator.set(character_dict["creator"])
-
-            # set otaku
-            new_character.statblock.otaku = character_dict["statblock"]["otaku"]
-            new_character.statblock.runt_otaku = character_dict["statblock"]["runt_otaku"]
-            new_character.statblock.otaku_path = character_dict["statblock"]["otaku_path"]
-
-            # set character
-            app_data.app_character = new_character
 
             # setup top bar
             app_data.on_cash_updated()

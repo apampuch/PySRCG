@@ -36,6 +36,7 @@ from src.Tabs.karma_tab import KarmaTab
 from src.Tabs.Magic.magic_tab import *  # imports app_data
 from src.Tabs.Setup.setup_tab import *
 from src.Tabs.Skills.skills_tab import SkillsTab
+from src.Tabs.tab import Tab
 from src.Tabs.top_menu import *  # imports app_data
 from src.game_data import GameData
 from src.utils import magic_tab_show_on_awakened_status
@@ -153,6 +154,7 @@ def make_tab(tab_type, name, container_types=None, container_names=None):
 
 def main():
     app_data.root = Tk()
+    Tab.setup_always_zero()
 
     # setup top menu
     app_data.menu = TopMenu(app_data.root)
@@ -203,6 +205,7 @@ def main():
     magic_tab_show_on_awakened_status(app_data)
 
     post_setup(app_data.attributes_tab)
+    app_data.setup_tab.gen_mode_var.set("Priority")  # do this here so we can set priority without triggering any errors
     app_data.root.mainloop()
 
 

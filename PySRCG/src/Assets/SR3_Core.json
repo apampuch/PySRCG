@@ -8,6 +8,7 @@
       "metatype_attributes": {},
       "karma_div": 10,
       "point_cost": 0,
+      "priority_rank": 4,
       "page": 56
     },
     "Dwarf": {
@@ -17,6 +18,7 @@
         "willpower": 1
       },
       "point_cost": 5,
+      "priority_rank": 3,
       "page": 56
     },
     "Elf": {
@@ -25,6 +27,7 @@
         "charisma": 2
       },
       "point_cost": 10,
+      "priority_rank": 2,
       "page": 56
     },
     "Ork": {
@@ -35,6 +38,7 @@
         "intelligence": -1
       },
       "point_cost": 5,
+      "priority_rank": 3,
       "page": 56
     },
     "Troll": {
@@ -46,6 +50,7 @@
         "intelligence": -2
       },
       "point_cost": 10,
+      "priority_rank": 2,
       "page": 56
     }
   },
