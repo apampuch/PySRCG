@@ -11,3 +11,5 @@ For example, an ork with Body 4 with no cyberware, etc. would show up as `"body"
 a +3 racial modifier to body.
 Furthermore, an intelligence of 1 would show up as `"intelligence": 2` since they have a -1 modifier to intelligence.
 Be careful when manually editing these values especially!
+
+Possible dependency: sudo apt-get install idle3
